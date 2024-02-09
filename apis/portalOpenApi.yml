@@ -1,0 +1,370 @@
+openapi: "3.0.1"
+info:
+  title: "Portal API"
+  version: "0.2.0"
+  description: |
+    Steps for using this API:
+    - Select the server based on the target environment. In a DEV environment, the default name is "test" but it can be customized.
+    - Generate a bearer token by first signing up and then signing in. Use the "idToken" property.
+      - In a DEV environment, ensure your email is verified in AWS SES.
+      - Ensure your email is related to an employee record with the "Self-Serve Portal Administrator" role or is related to a contact in NetSuite.
+    - Apply the bearer token by using the "Authorize" feature located at the top-right corner. Remember to prefix the token with "Bearer ".
+servers:
+  - url: "https://{name}.portal.dev.si.trilogy.com/api"
+    description: DEV
+    variables:
+      name:
+        default: "test"
+        description: The target environment. The default is 'test', but it can be related to a pull request (e.g. 'pr-404') or your own (e.g. 'gf-1'). 
+  - url: "https://portal.si.trilogy.com/api"
+    description: PROD
+  - url: "{url}"
+    description: custom
+    variables:
+      url:
+        default: https://test.portal.dev.si.trilogy.com/api
+        description: A custom URL.
+tags:
+  - name: "Portal: General"
+  - name: "Portal: Configuration"
+  - name: "Portal: User authentication"
+  - name: "Portal: User management"
+paths:
+  /customer:
+    get:
+      tags:
+        - "Portal: General"
+      summary: Get customer
+      operationId: getCustomer
+      description: |
+        Retrieve a customer based on its ID or its internal ID.
+
+        **Accessible for Admins only**
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: string
+          required: false
+          description: The ID of the customer.
+        - in: query
+          name: internalId
+          schema:
+            type: string
+          required: false
+          description: The internal ID of the customer.
+      security:
+        - authorizer: []
+      responses:
+        "200":
+          description: Customer details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the customer.
+                  internalId:
+                    type: number
+                    description: The internal ID of the customer.
+        "400":
+          description: Bad Request. Some parameters are incorrect. Review based on the error message.
+        "403":
+          description: Forbidden. The user is not authorized to access customer details.
+        "404":
+          description: Customer not found. The provided ID or internal ID does not match any customer.
+  /integrations:
+    get:
+      tags:
+        - "Portal: General"
+      summary: Get integrations for a customer
+      operationId: getIntegrations
+      description: Get integrations for the given customer.
+      parameters:
+        - in: query
+          name: customerId
+          schema:
+            type: string
+          required: true
+          description: |
+            ID of the customer.
+        - in: query
+          name: subscriptionId
+          schema:
+            type: string
+          required: False
+          description: |
+            The identifier of a subscription.
+            If one of the integration is related to this subscription, this integration will be the first element in the list.
+      security:
+        - authorizer: []
+      responses:
+        "200":
+          description: Integrations list.
+          content:
+            application/json:
+              schema:
+                type: array
+                description: Integrations associated with the given customer.
+                items:
+                  type: object
+                  description: Integration
+                  properties:
+                    id:
+                      type: number
+                      description: Identifier of the integration.
+                    custrecordproductfamilytitle:
+                      type: string
+                      description: Product Family.
+                    custrecordproductvarianttitle:
+                      type: string
+                      description: Product Variant.
+                  example:
+                    id: 8
+                    custrecordproductfamilytitle: DNN
+                    custrecordproductvarianttitle: Customer Cloud
+        "401":
+          description: The user is unauthorized for the requested customer ID.
+  /jwt:
+    get:
+      tags:
+        - "Portal: General"
+      summary: Get a JWT token to authorize in the Self-Serve API.
+      operationId: getJwt
+      description: Get a JWT token to authorize in the Self-Serve API.
+      security:
+        - authorizer: []
+      parameters:
+        - in: query
+          name: customerId
+          schema:
+            type: string
+          required: true
+          description: |
+            ID of the customer.
+        - in: query
+          name: integrationId
+          schema:
+            type: number
+          required: true
+          description: |
+            ID of the integration record.
+      responses:
+        "200":
+          description: JWT
+          content:
+            application/json:
+              schema:
+                type: string
+                description: JWT to include to the Authorization header as 'Bearer <JWT>' when accessing the Self-Serve API.
+                example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZmMiOiJLQVkiLCJwdmMiOiJTQS1UTksiLCJjaWQiOiIxIiwiZXhwIjoxNjQ0NTQ1MzEzLCJpYXQiOjE2NDQ0NTg5MTN9.XlsE3jLcBj8UZspskI3MnYoHKiqirwarlU5OoGi_v2g"
+        "401":
+          description: The user is unauthorized for the requested customer ID.
+        "404":
+          description: Integration not found. Either ID is incorrect or the current user does not have access rights to the record. User should be a Super-Admin to access any integration id. Otherwise only products from customer's active subscriptions are available.
+  /config:
+    get:
+      tags:
+        - "Portal: Configuration"
+      summary: Get portal config
+      operationId: getConfig
+      description: Get configuration
+      security:
+        - authorizer: []
+      responses:
+        "200":
+          description: Portal UI configuration.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Config"
+    put:
+      tags:
+        - "Portal: Configuration"
+      summary: Update the portal config
+      operationId: putConfig
+      description: |
+        The portal config will be replaced with the payload object
+
+        **Accessible for Admins only**
+      security:
+        - authorizer: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Config"
+      responses:
+        "204":
+          description: No Content
+  /user:
+    get:
+      tags:
+        - "Portal: User management"
+      summary: Get user
+      operationId: getUser
+      description: Get user data
+      security:
+        - authorizer: []
+      responses:
+        "200":
+          description: User information.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /signup:
+    post:
+      tags:
+        - "Portal: User authentication"
+      summary: Sign up a user
+      operationId: postSignup
+      description: Signs up the user based on the email address, then send an authentication link to the user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                baseUrl:
+                  type: string
+                  description: The base URL for generating the authentication link.
+                email:
+                  type: string
+                  description: The email address of the user.
+                subscriptionId:
+                  type: string
+                  description: The identifier of the target subscription.
+              required:
+                - baseUrl
+                - email
+            example:
+              baseUrl: https://tsi.trilogy.com
+              email: john.smith@trilogy.com
+              subscriptionId: "1"
+      responses:
+        '202':
+          description: Accepted. The signup process passed and an authentication link has been sent to the user.
+        '400':
+          description: Bad Request. Some parameters are incorrect. Review based on the error message.
+        '401':
+          description: Unauthorized. The authentication failed.
+  /signin:
+    post:
+      tags:
+        - "Portal: User authentication"
+      summary: Sign in a user
+      operationId: postSignin
+      description: Signs in the user based on the email address and the authentication token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: The email address of the user.
+                token:
+                  type: string
+                  description: The authentication token.
+              required:
+                - email
+                - token
+            example:
+                email: john.smith@trilogy.com
+                token: AQICAHh6j7baPD/.../Eb246Sh4m/NF7PB9shBA==
+      responses:
+        '200':
+          description: Success. The user is authenticated. Returns the authentication result.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  AccessToken:
+                    type: string
+                    description: The access token for the authenticated user.
+                  ExpiresIn:
+                    type: integer
+                    description: The expiration time of the access token in seconds.
+                  TokenType:
+                    type: string
+                    description: The type of token, e.g., "Bearer."
+                  RefreshToken:
+                    type: string
+                    description: The refresh token for obtaining a new access token.
+                  IdToken:
+                    type: string
+                    description: The ID token containing user information.
+                required:
+                  - AccessToken
+                  - ExpiresIn
+                  - TokenType
+                  - RefreshToken
+                  - IdToken
+              example:
+                AccessToken: eyJraWQiOiJnRFFDd...0gNu0b4UE6gLNYPnejC5_w
+                ExpiresIn: 3600
+                TokenType: Bearer
+                RefreshToken: eyJjdHkiOiJKV1QiL...9xGkz8axOS7iEx5CYrd7kQ
+                IdToken: eyJraWQiOiJTdDJtb...sVW9qE4qT2UIdua0x14kUA
+        '400':
+          description: Bad Request. Some parameters are incorrect. Review based on the error message.      
+        '401':
+          description: Unauthorized.  The authentication failed.
+components:
+  securitySchemes:
+    authorizer:
+      type: "apiKey"
+      name: "Authorization"
+      in: "header"
+      x-amazon-apigateway-authtype: "cognito_user_pools"
+      x-amazon-apigateway-authorizer:
+        type: "cognito_user_pools"
+  schemas:
+    Config:
+      type: object
+      description: Users associated with the customer.
+      properties:
+        enableIframe:
+          type: boolean
+          description: True, to show the new UI via IFRAME. False, for the test WebComponent.
+        iframeUrl:
+          type: string
+          description: Address of the IFRAME to show.
+        iframeHeight:
+          type: string
+          description: Width of the IFRAME in the same format which is used in HTML.
+      required:
+        - enableIframe
+        - iframeUrl
+        - iframeHeight
+    User:
+      type: object
+      description: The attributes of the current user.
+      properties:
+        isSuperAdmin:
+          type: boolean
+          description: Whether the user is a super administrator.
+        email:
+          type: string
+          format: email
+          description: The email address of the user.
+        username:
+          type: string
+          description: The username of the user.
+        customerIds:
+          type: array
+          items:
+            type: string
+          description: A list of customer IDs authorized for the user.
+      required:
+        - isSuperAdmin
+        - username
+        - email
+        - customerIds

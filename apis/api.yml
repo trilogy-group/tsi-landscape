@@ -1,0 +1,2970 @@
+openapi: 3.0.3
+info:
+  title: Subscription management API
+  version: 0.4.0
+  description: "It's necessary to [generate a JWT Token](https://rapid-engineering.atlassian.net/wiki/spaces/SI/pages/1938358285/Generate+JWT+token) and use it as authorization method in the api."
+  license:
+    name: Copyright
+  contact:
+    email: rp-si@trilogy.com
+    name: RP Sales Infrastructure
+servers:
+  - url: /api/v1
+  - url: /test/api/v1
+tags:
+  - name: Customer
+  - name: Product catalog
+  - name: Subscription
+  - name: Report Usage
+  - name: Integration internal
+  - name: Invoices
+  - name: UI customer
+  - name: UI storage
+  - name: UI subscription
+paths:
+  /subscriptions:
+    get:
+      summary: Get Customer Subscriptions
+      operationId: getCustomerSubscriptions
+      description: |-
+        Retrieve subscription list filtered by parameters and by productVariantCode and productFamilyCode (pfc and pvc) set in authentication token.
+        Subscriptions can also be filtered by subscription status, e.g. Active, Pending_Activation. 
+
+        A validation check for customer id present in JWT Token will be performed to prevent customers from fetching subscriptions of other customers.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: customerId
+          description: Required for non-customer (Admin) token
+        - schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatusEnum'
+          description: 'For more than one parameter, it needs to be indexed. Ex: statuses[0]=ACTIVE&statuses[1]=DRAFT'
+          style: form
+          in: query
+          name: statuses
+        - schema:
+            type: number
+          in: query
+          name: maxResults
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscription'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          description: Not Found
+      tags:
+        - Subscription
+  /integration/product:
+    get:
+      summary: Get Product Integration Record from NetSuite
+      operationId: get-integration-product
+      description: |-
+        Retrieve Product Integration Record for Product family (e.g. DNN) and Product Variant (e.g. SA-CUS) in JWT token
+
+        Only allowed with Admin JWT token (i.e. with padm=true flag)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductIntegration'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          description: Not Found
+      tags:
+        - Integration internal
+      security:
+        - Privileged token: []
+  /integration/reportUsage:
+    post:
+      summary: Report Usage/consumption for Subscription's usage type items.
+      operationId: post-integration-report-usage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              description: ''
+              items:
+                type: object
+                description: ''
+                properties:
+                  subscriptionId:
+                    type: number
+                    description: Subscription ID to report usage against.
+                  itemCode:
+                    type: string
+                    description: Code of item with type usage. If subscription has more than one item with such code lineNumber must be specified
+                  quantity:
+                    type: number
+                    description: Decimal usage quantity
+                  lineNumber:
+                    type: integer
+                    description: Used if more than one item with same code in subscription. Ignored otherwise
+                  usageDate:
+                    type: string
+                    format: date
+                    description: Date of usage. Subscription must be active on this date
+                required:
+                  - subscriptionId
+                  - itemCode
+                  - quantity
+                  - usageDate
+            x-examples:
+              example-1:
+                value:
+                  - subscriptionId: string
+                    unit: string
+                    quantity: 0
+                    itemId: string
+        description: 'List of usages to report. It can be for same or for different subscriptions/items/dates. '
+      responses:
+        '200':
+          $ref: '#/components/responses/PartialResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+      description: |-
+        Report consumption for usage based items which should be paid in arrears based on real usage. 
+        It is assumed that product manages online numbers and use this method scheduled with batch of items across many customers.
+        Method may return with partially success response, failed records will be reported in errors array.
+      tags:
+        - Report Usage
+      security:
+        - Privileged token: []
+    parameters: []
+  /integration/searchCustomer:
+    post:
+      summary: 'Integration: Search customer in NetSuite'
+      operationId: post-customer-search
+      description: |-
+        Retrieve customers based upon criteria specified in the request body. 
+
+        Only allowed with padm=true (Admin) in JWT token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  maxLength: 32
+                lastName:
+                  type: string
+                  maxLength: 32
+                email:
+                  type: string
+                  format: email
+                companyName:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          description: Not Found
+      tags:
+        - Integration internal
+      security:
+        - Privileged token: []
+  /integration/netsuiteRelay:
+    post:
+      summary: 'Integration: Passes any request to the NetSuite instance'
+      operationId: post-netsuite-relay
+      description: |-
+        Make a POST request to the NetSuite URL with the body provided.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                targetNSRequest:
+                  type: string
+                  enum:
+                    - generate_quote
+                    - renewal_order
+                payload:
+                  type: object
+              required:
+                - targetNSRequest
+                - payload
+            example:
+              targetNSRequest: 'generate_quote'
+              payload:
+                op: 'quote.create'
+                productFamilyCode: 'GEN'
+                productVariantCode: 'OP-SUB'
+                customerId: '2861'
+                subscriptionId: 441817
+                content: null
+      responses:
+        '200':
+          description: Success. The response contains the data returned by  NetSuite.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Security token is incorrect
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+      tags:
+        - Integration internal
+  /subscription/{subscriptionId}/renewal:
+    get:
+      summary: Get the plan and items for renewal.
+      operationId: get-subscription-renewal-info
+      description: Retrieve the code, items and quantity of the latest active subscription plan based on the given input parameters.
+      parameters:
+        - name: subscriptionId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: productTier
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ProductTierEnum'
+        - name: supportLevel
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/SupportLevelEnum'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  plan:
+                    type: object
+                    description: the plan
+                    properties:
+                      code:
+                        type: string
+                      description:
+                        type: string
+                      name:
+                        type: string
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      description: the item
+                      properties:
+                        code:
+                          type: string
+                        quantity:
+                          type: number
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '500':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Subscription
+  '/subscription/{subscriptionId}':
+    parameters:
+      - schema:
+          type: string
+        name: subscriptionId
+        in: path
+        required: true
+    get:
+      summary: Get Subscription against a subscription ID
+      operationId: get-subscription-subscriptionId
+      description: Retrieve a subscription against the subscription ID. A validation check for customer id present in JWT Token will be performed to prevent customers from fetching subscriptions of other customers.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Subscription
+    put:
+      summary: Update an Active or Draft Renewal Subscription.
+      operationId: put-subscription-subscriptionId
+      description: |-
+        Make updates to an Active Subscription or a Draft Renewal Subscription against the Subscription ID provided.
+
+        For Draft Renewal Subscription - Update the existing Draft Subscription if it's just a qauntity change or in case of Subscription Plan change, delete the old draft and generate a new Draft Subscription (returns a new Subscription Id). Keep it in Draft Status until the Quote is accepted.
+
+        For Active Term Subscription Upgrades - Generates a New Draft Subscription with requested changes (returns a new draft Subscription Id). Draft Subscription Start, End Dates and Initial Term will be same as original subscription. The new Draft Subscription with changes is linked to original subscription through a naming convention containing the Original Subscription ID.
+        Customer will retain his current price discounts percentage in case of upgrades. 
+
+        For Active Term Subscription Downgrades - Downgrades to Active Term Subscriptions are not allowed.
+
+        For Active Evergreen Subscription - The upgrades to Quantity, Edition or Success Level are applicable immediately, and the downgrades will be applied on the next billing cycle. Evergreen subscriptions do not need to go through quote acceptace process to be activate or updated.
+
+        For Trial Subscription - Trial Subscription Upgrade to the paid subscription follows the same process of active subscription update. If the input of this API is Trial Subscription ID, a draft subscription will be created with required changes.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSubscriptionConfiguration'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          description: Not Found
+      tags:
+        - Subscription
+    patch:
+      summary: Update subscription status e.g. Activate a Draft Subscription
+      operationId: patch-subscription-subscriptionId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+      description: |-
+        Activate the subscription against the subscription ID provided in API input.
+
+        If Subscription is an Evergreen Subscription - Then activate the subscription skipping the Quote Acceptance check. 
+
+        If Subscription is a Term Subscription - Then activate after verifing if the Quote is accepted, else return error.
+
+        If it's an upgrade scenario, then Activation will also deactivate the old Subscription after activating the upgraded subscription.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+              required:
+                - status
+            examples:
+              example-1:
+                value:
+                  status: ACTIVE
+      tags:
+        - Subscription
+  /customer:
+    get:
+      summary: Get Customer details
+      operationId: get-customer
+      description: Retrieve customer details for customer ID present in JWT Token or specified in input parameter in case of Admin JWT Token.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: customerId
+          description: Required if cid is not set in JWT Token.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          description: Not Found
+      tags:
+        - Customer
+    put:
+      summary: Update Customer details
+      operationId: put-customer
+      description: Update the customer information in NetSuite with the information specified in the request body
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+              example: customerId
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          description: Not Found
+      tags:
+        - Customer
+    patch:
+      summary: Partial update of a customer
+      operationId: patch-customer
+      description: |-
+        Partial update of the customer information in NetSuite based on the request body.
+        - An undefined property will be ignored.
+        - A property set to null will be emptied.
+        - A customer can update its own record.
+        - A customer can update only the shipping address of a related end-user, based on its draft subscriptions.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+              example: customerId
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          description: Not Found
+      tags:
+        - Customer
+    post:
+      summary: Create a new customer in NetSuite
+      operationId: post-customer
+      description: |-
+        Create a new customer in NetSuite with the information provided in the request body.
+
+        Only allowed with padm=true in JWT token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+              example: customerId
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Customer
+      security:
+        - Privileged token: []
+  /customer/statement:
+    get:
+      summary: Retrieve customer statement
+      operationId: get-customer-statement
+      description: Retrieve the statement for the customer ID present in JWT Token or specified in input parameter in case of Admin JWT Token.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: customerId
+          description: Required if cid is not set in JWT Token.
+        - schema:
+            type: string
+          in: query
+          name: startDate
+          description: Optional. The start date of the statement period with format 01-Jan-2021.
+          required: false
+      responses:
+        '200':
+          description: Customer Statement in base64.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: byte
+                description: base64-encoded PDF file
+              example: base64 string
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Customer
+  /customer/latestSignedQuote:
+    get:
+      summary: Retrieve customer latest signed quote
+      operationId: get-customer-latest-signed-quote
+      description: Retrieve the latest signed quote for the customer ID present in JWT Token or specified in input parameter in case of Admin JWT Token.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: customerId
+          description: Required if cid is not set in JWT Token.
+        - schema:
+            type: string
+          in: query
+          name: endUserId
+          description: Optional. The end user id in case of a reseller to get the latest signed quote for a specific end user.
+          required: false
+      responses:
+        '200':
+          description: Latest signed quote in base64.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: byte
+                description: base64-encoded PDF file
+              example: base64 string
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Customer
+  /subscriptionPlans:
+    get:
+      summary: List available subscription plans
+      operationId: get-subscriptionPlan
+      description: Retrieve Subscription Plans for a product family (e.g. DNN) and product variant (SA-CUS) present in JWT token.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubscriptionPlan'
+        '401':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Product catalog
+  /subscriptionPlans/latestCode:
+    get:
+      summary: Get the latest subscription plan code
+      operationId: get-subscriptionPlans-latestCode
+      description: Retrieve the code of the latest active subscription plan based on the given input parameters.
+      parameters:
+        - name: productTier
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ProductTierEnum'
+        - name: supportLevel
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/SupportLevelEnum'
+        - name: isSupport
+          in: query
+          required: true
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string                
+                description: The subscription plan code.
+                example: DNN CustomerCloud EVOQ, STANDARD EDITION, GOLD SUCCESS-002
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '500':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Product catalog
+  /products:
+    get:
+      summary: Get list of products and variants
+      operationId: get-product
+      description: List available products based on Product Family Code and Product Variant in JWT Token
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductCoordinates'
+        '401':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Product catalog
+  /invoices:
+    get:
+      summary: List customer invoices
+      operationId: get-invoice
+      description: Retrieve customer invoices from NetSuite filtered by input parameters. Invoices returned also contain the Stripe Invoice Payment Link along with other invoice details.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: customerId
+          description: Required for non-customer token
+        - schema:
+            type: string
+          in: query
+          name: subscriptionId
+        - schema:
+            type: string
+          in: query
+          name: startDate
+        - schema:
+            type: string
+          in: query
+          name: endDate
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InvoiceInfo'
+        '401':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Invoices
+  /subscription/preview:
+    post:
+      summary: Calculate subscription pricing for a new subscription purchase.
+      operationId: post-subscription-preview
+      description: 'Calculate subscription prices a customer will be charged for selected Product Edition, Support Plan and Add-Ons with intended quantities.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseSubscriptionConfiguration'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Preview'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Subscription
+  '/subscription/preview/{subscriptionId}':
+    parameters:
+      - schema:
+          type: string
+        name: subscriptionId
+        description: 'Id of an active subscription in case of a upgrade/downgrade, or Id of a Draft Renewal Subscription when calculating prices for a subscription renewal.'
+        in: path
+        required: true
+    post:
+      summary: Calculate subscription pricing for active subscription update or subscription renewal.
+      operationId: post-subscription-preview-susbscriptionId
+      description: 'Calculate final price after applying discounts (if applicable) for Subscription Upgrades, Downgrades or Renewals.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseSubscriptionConfiguration'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Preview'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Subscription
+  /subscription:
+    post:
+      summary: Create a new Subscription
+      operationId: post-subscription
+      description: |-
+        Create a new subscription in NetSuite with the given configuration in request body. New subscriptions will always be created in Draft status and will be activated as follows:
+
+        If the created subscription is a Term Subscription, then the subscription has to go through Quote Generation and Acceptance process before activation.
+
+        If the created subscription is an Evergreen subscription, then it can directly be activated skipping the Quote flow by calling the PATCH /Subscription API.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: customerId
+          description: "Required for non-customer (Admin) token, i.e. Admin creating Subscription on Customer's behalf"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubscriptionConfiguration'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Subscription
+  /subscription/startTrial:
+    post:
+      summary: Start Trial Subscription
+      operationId: post-subscription-startTrial
+      description: |-
+        Start trial subscription based on Trial Subscription Config present in Production Integration record. Trial config specifies the Subscription Plan, Items, Quantities and trial duration in number of days to be used in trial subscription.
+
+        A customer is not eligible for a trial subscription if he already has any trial or paid subscription against his customer account in NetSuite.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: customerId
+          description: Required for non-customer token
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Subscription  
+  '/subscription/{subscriptionId}/contractualDocuments':
+    post:
+      summary: Create a contractual document
+      operationId: post-subscription-contractualDocuments
+      description: |-
+        Create a contractual document by uploading a PDF file and attaching it to the existing contractual documents record.
+      parameters:
+        - name: subscriptionId
+          in: path
+          description: The identifier of the target subscription.
+          required: true
+          schema:
+            type: integer
+        - name: customerId
+          in: query
+          description: The customer ID (entity ID). Required only for non-customer (admin) token.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  $ref: '#/components/schemas/ContractualDocumentTypeEnum'
+                filename:
+                  type: string
+                  description: The filename, including the extension. Only PDF files are supported.
+                contents:
+                  type: string
+                  description: The base64-encoded representation of the file contents.
+              required:
+                - type
+                - filename
+                - contents
+              example:
+                type: 'purchase-order'
+                filename: 'sample.pdf'
+                contents: 'JVBERi0xLjMNCiXi48/T...MjcxNA0KJSVFT0YNCg=='
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contractualDocumentsId:
+                    type: integer
+                    description: The identifier of the contractual documents record related to the target subscription.
+                  fileId:
+                    type: integer
+                    description: The identifier of the uploaded file.
+                required:
+                  - contractualDocumentsId
+                  - fileId
+                example:
+                  contractualDocumentsId: 145482
+                  fileId: 16273973
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '500':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Subscription
+  '/subscription/{subscriptionId}/renewalIntent':
+    post:
+      summary: Record latest renewal intent.
+      operationId: post-subscription-renewalIntent
+      description: |-
+        Records the date/time of a renewal intent on a certain subscription (opportunity).
+      parameters:
+        - name: subscriptionId
+          in: path
+          description: The identifier of the target subscription.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  subscriptionId:
+                    type: integer
+                    description: The identifier of the target subscription.
+                  lastActivity:
+                    type: string
+                    description: The date/time recorded as the last renewal activity (ISO format).
+                required:
+                  - subscriptionId
+                  - lastActivity
+                example:
+                  subscriptionId: 1160600
+                  lastActivity: "2024-02-08T16:40:33.708Z"
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '500':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Subscription
+  '/invoice/{number}/download':
+    parameters:
+      - schema:
+          type: string
+        name: number
+        in: path
+        required: true
+        description: Invoice Number taken from the List Invoices API response.
+    get:
+      summary: Download Invoice document
+      operationId: get-invoice-download
+      description: Download Invoice PDF document in base64 format for the given invoice Id in API Input.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: base64
+              example: base64 string
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+      tags:
+        - Invoices
+  /quote:
+    post:
+      summary: Generate a NetSuite Quote
+      operationId: post-quote
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    description: Id of quote created
+                  quoteType:
+                    type: string
+                    enum: ['FullTCs', 'NoTCs', 'Reseller', 'Other']
+                required:
+                  - id
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+      description: 'Create a Quote in NetSuite against a draft term subscription. The Draft subscription can be a new subscription, an upgrade of an active paid or trial subscription or a draft renewal subscription.'
+      tags:
+        - Quote
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subscriptionId:
+                  type: integer
+                orderType:
+                  type: string
+                  pattern: '^([Rr][Ee][Nn][Ee][Ww][Aa][Ll]|[Qq][Uu][Oo][Tt][Ee])$'
+                recipients:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                      role:
+                        type: string
+                        pattern: '^([Cc][Cc]|[Ss][Ii][Gg][Nn][Ee][Rr])$'
+                    required:
+                      - email
+                      - role
+                expiry:
+                  type: string
+                  pattern: '^(\d{2}-\w{3}-\d{4})$'
+                quoteLineStartDates:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      line:
+                        type: string
+                      startDate:
+                        type: string
+                    required:
+                      - line
+                      - startDate
+                quoteLineEndDates:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      line:
+                        type: string
+                      endDate:
+                        type: string
+                    required:
+                      - line
+                      - endDate
+                salesRep:
+                  type: number
+                lineItemsHeaderText:
+                  type: string
+                lineItemsFooterText:
+                  type: string
+                terms:
+                  type: string
+              required:
+                - subscriptionId
+  /quote/createForSelfServe:
+    post:
+      summary: Create a NetSuite Quote for Self-Serve
+      operationId: post-quote-create-for-self-serve
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    description: Id of quote created
+                required:
+                  - id
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+      description: 'Create a quote soft-linked to a renewal subscription in NetSuite.'
+      tags:
+        - Quote
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - type: object
+                  properties:
+                    subscriptionId:
+                      type: integer
+                    recipients:
+                      type: array
+                      description: A list of recipients. If defined, this array must contain one and only one signer. If there is no signer, this list will be ignored. If there are more than one signer, an error will be thrown.
+                      items:
+                        type: object
+                        properties:
+                          email:
+                            type: string
+                            description: The email address of the recipient, or an email list separated by comma or semicolon characters.
+                          role:
+                            type: string
+                            pattern: '^([Cc][Cc]|[Ss][Ii][Gg][Nn][Ee][Rr])$'
+                            description: The role of the recipient. Possible values are 'signer' and 'cc'. Any different value will be considered as 'cc'.
+                        required:
+                          - email
+                          - role
+                - $ref: '#/components/schemas/BaseSubscriptionConfiguration'
+              required:
+                - subscriptionId
+                - planCode
+                - items
+                - frequency
+                - duration
+              example:
+                subscriptionId: 10
+                recipients:
+                  - email: signer@customer.com
+                    role: signer
+                  - email: first-cc@customer.com
+                    role: cc
+                  - email: second-cc@customer.com
+                    role: cc
+                planCode: Kayako TNK GROWTH PLATINUM
+                items:
+                  - code: Kay-SA-TNK-STA
+                    quantity: 25
+                  - code: Kay-SA-COL-STA
+                    quantity: 2
+                frequency: MONTHLY
+                duration: 12
+  '/quote/{quoteId}/download':
+    parameters:
+      - schema:
+          type: integer
+        name: quoteId
+        in: path
+        required: true
+    get:
+      summary: Download quote PDF
+      tags:
+        - Quote
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/pdf:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+      operationId: get-quote-quoteId-download
+      description: |-
+        Download quote PDF in base64 format against the quote id provided in API input.
+
+        The Quote PDF will also contain the Terms and Conditions PDF appended with Quote document. The Terms and Conditions PDF document is taken from Product Integration Record.
+  '/quote/{quoteId}/accept':
+    parameters:
+      - schema:
+          type: integer
+        name: quoteId
+        in: path
+        required: true
+    post:
+      summary: 'Accept quote, save acceptance parameters and email Quote for eSignatures.'
+      operationId: post-quote-quoteId-accept
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+      description: |-
+        Accept quote and record the customer acceptance details (e.g. Acceptor's name, title, email, ccEmail, time of acceptance and IP Address) in a contractual document object in NetSuite. The contractual document also contains the link to accepted quote and conractual document is linked to the subscription through the Contractual Document Field.
+
+        Once the Quote is accepted, an Adobe eSign agreement is also created in NetSuite against the accepted Quote and emailed to Acceptor for eSignatures, and also cc'ed to ccEmail if specified.
+
+        Once the Quote is accepted through API, the related Term Subscription can be activated. The eSignatures through email is an asynchronous operation and does not prevent the subscription from activation.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                acceptor:
+                  type: object
+                  required:
+                    - name
+                    - jobTitle
+                    - email
+                    - phone
+                  properties:
+                    name:
+                      type: string
+                      minLength: 1
+                      pattern: ^\S.+
+                    jobTitle:
+                      type: string
+                      pattern: ^\S.+
+                      minLength: 1
+                    email:
+                      type: string
+                      format: email
+                    phone:
+                      type: string
+                      pattern: ^\S.+
+                      minLength: 1
+                ccEmail:
+                  type: string
+                  format: email
+                  nullable: true
+              required:
+                - acceptor
+            examples:
+              example-1:
+                value:
+                  acceptor:
+                    name: Tyler
+                    jobTitle: COO
+                    email: tyler@paperstreetsoap.com
+                    phone: (288) 555-0153
+                  ccEmail: thenarrator2@paperstreetsoap.com
+      tags:
+        - Quote
+  /invoice:
+    parameters: []
+    post:
+      summary: Generate a new invoice for a billing account.
+      operationId: post-invoice
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceInfo'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+      description: |-
+        Generate an invoice against a billing account of a customer. This API is intended to be used for new customers who made a first time purchase and have no previous active subscription available. This API would generate an Invoice for the new purchase made and present the customer with a Stripe Invoice Payment link to make the payment.
+
+        The Subscription ID in input would correctly determine the billing account to be used and also specifies the subscription he has just purchased which needs to be invoiced.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subscriptionId:
+                  type: integer
+              required:
+                - subscriptionId
+      tags:
+        - Invoices
+  /ui/customer/interests/:
+    post:
+      summary: Enrolls the customer in the interests of specific prime products.
+      description: |
+        The customer will be enrolled in the interests of the prime products specified in the request body.
+        
+        This request works only for a customer context, as the email address is retrieved from the JWT token.
+      tags:
+        - UI customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subscriptionId:
+                  type: integer
+                  description: The active subscription currently undergoing the renewal process (i.e. the parent subscription).
+                productCodes:
+                  type: array
+                  description: A list of prime products.
+                  items:
+                    type: string
+                    description: A prime product code, with case-insensitive matching.
+              required:
+                - subscriptionId
+                - productCodes
+              example:
+                subscriptionId: 1196564
+                productCodes:
+                  - Cloudfix
+                  - Crossover
+      responses:
+        '204':
+          description: Successful response. No content.
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '500':
+          $ref: '#/components/responses/Error'
+  /ui/customer/support:
+    post:
+      summary: Submits a customer support request.
+      description: |
+        The customer support request will be submitted to the customer support team.
+
+        This request works only for a customer context, as the email address is retrieved from the JWT token.
+      tags:
+        - UI customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subscriptionId:
+                  type: integer
+                  description: The identifier of the subscription to be renewed.
+                message:
+                  type: string
+                  description: The customer's request message.
+                firstName:
+                  type: string
+                  description: The customer's first name.
+                lastName:
+                  type: string
+                  description: The customer's last name.
+                phone:
+                  type: string
+                  description: The customer's phone number.
+              required:
+                - subscriptionId
+                - message
+              example:
+                subscriptionId: 123456
+                message: "I need assistance with my subscription."
+                firstName: "John"
+                lastName: "Doe"
+                phone: "123-456-7890"
+      responses:
+        '204':
+          description: Successful response. No content.
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '500':
+          $ref: '#/components/responses/Error'
+  /ui/storage:
+    get:
+      summary: Get the content stored for a given subscription in the user context.
+      tags:
+        - UI storage
+      parameters:
+        - name: subscriptionId
+          in: query
+          required: true
+          schema:
+            type: string
+            description: The identifier of the subscription.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The JSON content stored. The default value is null.
+                additionalProperties: {}
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '500':
+          $ref: '#/components/responses/Error'
+    put:
+      summary: Update the content stored for a given subscription in the user context.
+      tags:
+        - UI storage
+      parameters:
+        - name: subscriptionId
+          in: query
+          required: true
+          schema:
+            type: string
+            description: The identifier of the subscription.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: The JSON content to store.
+              additionalProperties: {}
+      responses:
+        '204':
+          description: Content updated successfully.
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '500':
+          $ref: '#/components/responses/Error'
+  '/ui/subscription/{subscriptionId}/agreementStatus':
+    parameters:
+      - schema:
+          type: integer
+        name: subscriptionId
+        in: path
+        required: true
+    get:
+      summary: Get the most advanced agreement status of Self-Serve quotes for the given subscription.
+      tags:
+        - UI subscription
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AgreementStatusResponseEnum'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '500':
+          $ref: '#/components/responses/Error'
+components:
+  schemas:
+    CustomerInfo:
+      type: object
+      description: Short customer info to match. If customer is company - companyName will be not empty
+      example:
+        id: '4651565415'
+        firstName: John
+        lastName: Smith
+        email: john.smith@example.com
+        companyName: Smith tools
+        address:
+          line1: 536 Paper street
+          line2: 2nd floor
+          city: Bradford
+          state: DE
+          country: US
+          zip: '19808'
+          phone: 111-111-111
+        shippingAddress:
+          line1: 17 Sheet street
+          line2: 3rd floor
+          city: Texas City
+          state: TX
+          country: US
+          zip: '12345'
+          phone: 222-222-222
+        primaryContact:
+          name:
+            title: Mr
+            firstName: Tyler
+            middleName: E
+            lastName: Durden
+          email: tyler@paperstreetsoap.com
+          phone: (288) 555-0153
+          billingAddress:
+            line1: 536 Paper street
+            line2: 2nd floor
+            city: Bradford
+            state: DE
+            country: US
+            zip: '19808'
+            phone: 111-111-111
+      x-examples:
+        example-1:
+          id: '4651565415'
+          firstName: John
+          lastName: Smith
+          email: john.smith@example.com
+          companyName: Smith tools
+          address:
+            line1: 536 Paper street
+            line2: 2nd floor
+            city: Bradford
+            state: DE
+            country: US
+            zip: '19808'
+            phone: 111-111-111
+          shippingAddress:
+            line1: 17 Sheet street
+            line2: 3rd floor
+            city: Texas City
+            state: TX
+            country: US
+            zip: '12345'
+            phone: 222-222-222
+          primaryContact:
+            name:
+              title: Mr
+              firstName: Tyler
+              middleName: E
+              lastName: Durden
+            email: tyler@paperstreetsoap.com
+            phone: (288) 555-0153
+            billingAddress:
+              line1: 536 Paper street
+              line2: 2nd floor
+              city: Bradford
+              state: DE
+              country: US
+              zip: '19808'
+              phone: 111-111-111
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+          maxLength: 32
+        lastName:
+          type: string
+          maxLength: 32
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        companyName:
+          type: string
+        address:
+          description: The billing address, and if not defined separately, the shipping address.
+          allOf:
+            - $ref: '#/components/schemas/Address'
+        shippingAddress:
+          description: The shipping address, if different from the billing address.
+          allOf:
+            - $ref: '#/components/schemas/Address'
+        primaryContact:
+          $ref: '#/components/schemas/Contact'
+    Subscription:
+      type: object
+      example:
+        id: 487524
+        status: DRAFT
+        currency: USD
+        customer:
+          id: '4651565415'
+          firstName: John
+          lastName: Smith
+          email: john.smith@example.com
+          phone: '1234567'
+          companyName: Smith tools
+          address:
+            line1: 536 Paper street
+            line2: 2nd floor
+            city: Bradford
+            state: DE
+            country: US
+            zip: '19808'
+            phone: 111-111-111
+          shippingAddress:
+            line1: 17 Sheet street
+            line2: 3rd floor
+            city: Texas City
+            state: TX
+            country: US
+            zip: '12345'
+            phone: 222-222-222
+        endUser:
+          id: '4651565415'
+          firstName: John
+          lastName: Smith
+          email: john.smith@example.com
+          phone: '1234567'
+          companyName: Smith tools
+          address:
+            line1: 536 Paper street
+            line2: 2nd floor
+            city: Bradford
+            state: DE
+            country: US
+            zip: '19808'
+            phone: 111-111-111
+          shippingAddress:
+            line1: 17 Sheet street
+            line2: 3rd floor
+            city: Texas City
+            state: TX
+            country: US
+            zip: '12345'
+            phone: 222-222-222
+        plan:
+          id: 85156
+          code: Kay-SA-TNK-STA-PLA
+          description: Kayako TNK Growth, Platinum Success
+          title: Kayako TNK GROWTH PLATINUM
+          productTier: Standard
+          productTierTitle: Standard
+          supportLevel: Platinum
+          revenueType: SaaS
+          isTrial: false
+        items:
+          - id: 82865
+            code: Kay-SA-TNK-STA
+            title: Kayako TNK Standard
+            type: Recurring
+            typeId: 2
+            desc: description
+            minQuantity: 1
+            maxQuantity: 10000
+            required: true
+            prices:
+              - type: Tiered
+                frequency: ANNUALLY
+                pricebookid: 10611
+                ranges:
+                  - priceplanid: 4889293
+                    type: Rate
+                    fromQuantity: 0
+                    price: 10
+                  - priceplanid: 4889293
+                    type: Rate
+                    fromQuantity: 1000
+                    price: 9
+              - type: Tiered
+                frequency: MONTHLY
+                ranges:
+                  - fromQuantity: 0
+                    price: 11
+                  - fromQuantity: 1000
+                    price: 10
+            amount: 50
+            totalIntervalValue: 40
+            productTier: Standard
+            revenueType: SaaS
+        includedItems:
+          - id: 82865
+            code: Kay-SA-TNK-STA
+            quantity: 5
+        term:
+          start: 1-Nov-2021
+          end: 31-Oct-2022
+          frequency: ANNUALLY
+          nextBillCycleDate: 1-Dec-2021
+        autorenewal: false
+        parentSubscription: 545457
+        renewalNumber: 2
+        totalAmount: 50
+        totalIntervalValue: 40
+        operations:
+          ['renew', 'changeEdition', 'changeSuccessPlan', 'changeQuantity', 'changeTerm', 'changeBillingFrequency']
+        quotes:
+          - id: 36891513
+            isSelfServe: true
+            agreements:
+              - id: 204502
+                type: 'Quote'
+                status: 'Draft'
+              - id: 204503
+                type: 'End User Agreement'
+                status: 'Draft'
+          - id: 36891514
+            isSelfServe: false
+            agreements:
+              - id: 204504
+                type: 'Quote'
+                status: 'Out For Signature'
+          - id: 36891515
+            isSelfServe: false
+            agreements: []
+      properties:
+        id:
+          type: number
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        currency:
+          type: string
+          maxLength: 3
+          minLength: 3
+          description: ISO currency code
+        customer:
+          $ref: '#/components/schemas/CustomerInfo'
+        distributor:
+          $ref: '#/components/schemas/CustomerInfo'
+        reseller:
+          $ref: '#/components/schemas/CustomerInfo'
+        enduser:
+          $ref: '#/components/schemas/CustomerInfo'
+        plan:
+          $ref: '#/components/schemas/SubscriptionPlanInfo'
+        items:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/SubscriptionLineItem'
+              - type: object
+                properties:
+                  amount:
+                    type: number
+        includedItems:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: number
+              code:
+                type: string
+              quantity:
+                type: number
+            required:
+              - code
+        term:
+          type: object
+          required:
+            - start
+            - frequency
+          properties:
+            start:
+              type: string
+            end:
+              type: string
+            frequency:
+              $ref: '#/components/schemas/FrequencyEnum'
+            nextBillCycleDate:
+              type: string
+        autorenewal:
+          type: boolean
+        parentSubscriptionId:
+          type: number
+          description: ID of previous subscription (active or not) if this subscription is renewal
+        renewalNumber:
+          type: number
+          description: Renewal cycle number
+        totalAmount:
+          type: number
+        totalIntervalValue:
+          type: number
+        operations:
+          type: array
+          items:
+            type: string
+            pattern: '^(renew|changeEdition|changeSuccessPlan|changeQuantity|changeTerm|changeBillingFrequency)$'
+        quotes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Quote'
+      required:
+        - id
+        - status
+        - plan
+        - term
+        - items
+        - includedItems
+      x-examples:
+        example-1:
+          id: 487524
+          status: ACTIVE
+          currency: USD
+          customer:
+            id: '4651565415'
+            firstName: John
+            lastName: Smith
+            email: john.smith@example.com
+            company: Smith tools
+          enduser:
+            id: '4651565415'
+            firstName: John
+            lastName: Smith
+            email: john.smith@example.com
+            company: Smith tools
+          plan:
+            id: 82902
+            code: Premium Plan
+            description: Premium Plan description
+            title: The Premium Plan
+            productTier: Standard
+            supportLevel: Silver
+            revenueType: SaaS
+            isTrial: false
+          items:
+            - id: 82865
+              code: DNN-SA-CUS-BA
+              title: item title
+              type: Recurring
+              desc: description
+              minQuantity: 1
+              maxQuantity: 10000
+              required: true
+              prices:
+                - type: Tiered
+                  frequency: ANNUALLY
+
+                  ranges:
+                    - fromQuantity: 0
+                      price: 10
+                    - fromQuantity: 1000
+                      price: 9
+                - type: Tiered
+                  frequency: MONTHLY
+                  ranges:
+                    - fromQuantity: 0
+                      price: 11
+                    - fromQuantity: 1000
+                      price: 10
+              amount: 50
+          includedItems:
+            - id: 82865
+              code: DNN-SA-CUS-BA
+              quantity: 5
+          term:
+            start: 1-NOV-2021
+            end: 31-OCT-2022
+            frequency: ANNUALLY
+          autorenewal: false
+          parentSubscription: 545457
+          renewalNumber: 2
+          totalAmount: 50
+      description: |-
+        Subscription view model.
+        Pricing and amounts will hidden if current user is not customer.
+    Quote:
+      description: |-
+        Quote view model.
+      type: object
+      properties:
+        id:
+          type: number
+          readOnly: true
+        isSelfServe:
+          type: boolean
+          readOnly: true
+          description: Whether the quote is a self-serve quote or not.
+        agreements:
+          type: array
+          items:
+            $ref: '#/components/schemas/Agreement'
+      required:
+        - id
+    Agreement:
+      description: |-
+        Agreement view model.
+      type: object
+      properties:
+        id:
+          type: number
+          readOnly: true
+        type:
+          $ref: '#/components/schemas/AgreementTypeEnum'
+        status:
+          $ref: '#/components/schemas/AgreementStatusEnum'
+      required:
+        - id
+        - status
+    ProductIntegration:
+      type: object
+      properties:
+        family:
+          $ref: '#/components/schemas/CodeAndTitle'
+        variant:
+          $ref: '#/components/schemas/CodeAndTitle'
+        notification:
+          $ref: '#/components/schemas/UrlAndAuth'
+        secret:
+          type: string
+      example:
+        family:
+          code: SOC
+          title: Sococo
+        variant:
+          code: SA
+          title: SaaS
+        notification:
+          url: 'https://app.sococo.com/sievent'
+          auth:
+            username: eventuser
+            password: eventpassword
+        secret: lrfer2jvf3
+    Event:
+      title: Event
+      type: object
+      description: |-
+        Body structure to be sent to webhook. 
+
+        **content** structure depends on **type**. For **type**="subscription_X" it will be SubscriptionInfo
+      x-examples:
+        example-1:
+          type: subscription_created
+          content:
+            id: 487524
+            status: ACTIVE
+            currency: USD
+            customer:
+              id: '4651565415'
+              firstName: John
+              lastName: Smith
+              email: john.smith@example.com
+              company: Smith tools
+            enduser:
+              id: '4651565415'
+              firstName: John
+              lastName: Smith
+              email: john.smith@example.com
+              company: Smith tools
+            plan:
+              id: 82902
+              code: Premium Plan
+              title: The Premium Plan
+              productTier: Standard
+              supportLevel: Silver
+              revenueType: SaaS
+              isTrial: false
+            items:
+              - id: 82865
+                code: DNN-SA-CUS-BA
+                title: item title
+                type: Recurring
+                desc: description
+                minQuantity: 1
+                maxQuantity: 10000
+                required: true
+                prices:
+                  - type: Tiered
+                    frequency: ANNUALLY
+                    ranges:
+                      - fromQuantity: 0
+                        price: 10
+                      - fromQuantity: 1000
+                        price: 9
+                  - type: Tiered
+                    frequency: MONTHLY
+                    ranges:
+                      - fromQuantity: 0
+                        price: 11
+                      - fromQuantity: 1000
+                        price: 10
+                amount: 50
+            includedItems:
+              - id: 82865
+                code: DNN-SA-CUS-BA
+                quantity: 5
+            term:
+              start: 1-NOV-2021
+              end: 31-OCT-2022
+              frequency: ANNUALLY
+            autorenewal: false
+            parentSubscription: 545457
+            renewalNumber: 2
+            totalAmount: 50
+          date: '2019-08-24'
+      properties:
+        type:
+          type: string
+          enum:
+            - subscription_created
+            - subscription_updated
+            - subscription_terminated
+          description: Event type
+        content:
+          $ref: '#/components/schemas/Subscription'
+        date:
+          type: string
+          format: date
+          description: Date when event happened
+      required:
+        - type
+        - content
+        - date
+    SubscriptionItem:
+      title: SubscriptionItem
+      type: object
+      x-examples:
+        example-1:
+          id: string
+          code: string
+          title: string
+          quantity: 2
+          status: ACTIVE
+          type: onetime
+      properties:
+        id:
+          type: number
+        code:
+          type: string
+        title:
+          type: string
+        quantity:
+          type: number
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - PENDING_ACTIVATION
+            - SUSPENDED
+            - DRAFT
+            - CLOSED
+            - TERMINATED
+            - NOT_INCLUDED
+        type:
+          type: string
+          enum:
+            - onetime
+            - requrring
+            - usage
+      required:
+        - code
+        - quantity
+        - status
+        - type
+    SubscriptionPlanInfo:
+      type: object
+      title: SubscriptionPlanInfo
+      properties:
+        id:
+          type: number
+        code:
+          type: string
+        description:
+          type: string
+          description: Description of the subscription plan
+        title:
+          type: string
+          description: Subscription plan name
+        productTier:
+          $ref: '#/components/schemas/ProductTierEnum'
+        productTierTitle:
+          type: string
+        supportLevel:
+          $ref: '#/components/schemas/SupportLevelEnum'
+        revenueType:
+          type: string
+        isTrial:
+          type: boolean
+      required:
+        - id
+        - code
+    SubscriptionPlan:
+      title: SubscriptionPlan
+      type: object
+      x-examples:
+        example-Sococo-Unlimited:
+          id: '123'
+          code: SOC-SUB-UNLIMITED
+          _ns_displayname: SOC-SUB-UNLIMITED
+          description: Sococo Unlimited
+          title: Sococo Unlimited
+          isTrial: false
+          product:
+            family:
+              code: SOC
+              title: SOC
+            variant:
+              code: SA
+              title: SaaS
+          initialterm:
+            name: Annual - 1 Year
+            unit: MONTHS
+            duration: 12
+            type: STANDARD
+          items:
+            - id: '123'
+              code: SOC-SUBI-USERS
+              title: Users
+              type: required
+              desc: Number of seats
+              maxQuantity: 999999
+              minQuantity: 10
+              prices:
+                - type: tiered
+                  frequency: monthly
+                  ranges:
+                    - fromQuantity: 0
+                      price: 42
+                  currency: USD
+            - id: '123'
+              code: SOC-SUBI-MEDIA-PKG
+              title: Media minutes
+              type: addon
+              desc: 1000 minutes
+              maxQuantity: 999999
+              minQuantity: 0
+              prices:
+                - type: tiered
+                  frequency: monthly
+                  ranges:
+                    - fromQuantity: 0
+                      price: 13
+                  currency: USD
+        example-Sococo-Standard:
+          id: '234'
+          code: SOC-SUB-STD
+          _ns_displayname: SOC-SUB-STD
+          description: Sococo
+          title: Sococo
+          isTrial: false
+          product:
+            family:
+              code: SOC
+              title: SOC
+            variant:
+              code: SA
+              title: SaaS
+          initialterm:
+            name: Annual - 1 Year
+            unit: MONTHS
+            duration: 12
+            type: STANDARD
+          items:
+            - id: '123'
+              code: SOC-SUBI-USERS
+              title: Users
+              type: required
+              desc: Number of seats
+              maxQuantity: 999999
+              minQuantity: 10
+              prices:
+                - type: tiered
+                  frequency: monthly
+                  ranges:
+                    - fromQuantity: 0
+                      price: 68
+                  currency: USD
+            - id: '123'
+              code: SOC-SUBI-MEDIA-PKG
+              title: Media minutes
+              type: addon
+              desc: 1000 minutes
+              maxQuantity: 999999
+              minQuantity: 0
+              prices:
+                - type: tiered
+                  frequency: monthly
+                  ranges:
+                    - fromQuantity: 0
+                      price: 13
+                  currency: USD
+          productTier: Standard
+          supportLevel: Silver
+          revenueType: SaaS
+      properties:
+        id:
+          type: number
+          description: Internal plan id
+        code:
+          type: string
+          description: Code to identify plan on product side. Corresponds to subscription plan name
+        _ns_displayname:
+          type: string
+          description: Plan display name in english
+        description:
+          type: string
+          description: Description of the subscription plan
+        title:
+          type: string
+          description: Description of the subscription plan (deprecated)
+        isTrial:
+          type: boolean
+          description: Indicate if subscription plan is for trial
+        product:
+          $ref: '#/components/schemas/ProductCoordinates'
+        initialterm:
+          $ref: '#/components/schemas/TermDescription'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubscriptionPlanItem'
+        productTier:
+          $ref: '#/components/schemas/ProductTierEnum'
+        productTierTitle:
+          type: string
+        supportLevel:
+          $ref: '#/components/schemas/SupportLevelEnum'
+        revenueType:
+          type: string
+        supportOnly:
+          type: boolean
+          description: Indicate tha this plan is support only and can be upgraded only to another support only plan
+      required:
+        - code
+        - items
+    TermDescription:
+      title: TermDescription
+      type: object
+      properties:
+        name:
+          type: string
+        unit:
+          $ref: '#/components/schemas/UnitTermEnum'
+        duration:
+          type: number
+        type:
+          $ref: '#/components/schemas/TermTypeEnum'
+      example:
+        name: Annual - 1 Year
+        unit: MONTHS
+        duration: 12
+        type: STANDARD
+    ProductCoordinates:
+      title: ProductCoordinates
+      type: object
+      properties:
+        family:
+          $ref: '#/components/schemas/CodeAndTitle'
+        variant:
+          $ref: '#/components/schemas/CodeAndTitle'
+      example:
+        family:
+          code: SOC
+          title: Sococo
+        variant:
+          code: SA
+          title: 'SaaS, the only one, just default'
+    CodeAndTitle:
+      title: ElementPair
+      type: object
+      properties:
+        code:
+          type: string
+          description: Code to be used for identification
+        title:
+          type: string
+          description: Displayable entity title
+    JWTToken:
+      title: JWTToken
+      type: object
+      properties:
+        pfc:
+          type: string
+          description: Product family code
+        pvc:
+          type: string
+          description: Product variant code
+        cid:
+          type: string
+          description: Customer ID
+        padm:
+          type: boolean
+          description: Product Admin flag. Requred for certain endpoints which must be used only by product backend
+    UrlAndAuth:
+      title: UrlAndAuth
+      type: object
+      properties:
+        url:
+          type: string
+        auth:
+          type: object
+          properties:
+            username:
+              type: string
+            password:
+              type: string
+    InvoiceInfo:
+      title: InvoiceInfo
+      type: object
+      example:
+        stripeInvoicePaymentLink: 'https://app.suitesync.io/payments/acct_1KMEYNArxAm3Gt9Z/custinvc/22035055'
+        number: INV9842454
+        date: 13-Jul-2021
+        dueDate: 12-Aug-2021
+        status:
+          code: A
+          title: 'Invoice:Open'
+        totalAmount: 123.52
+        taxAmount: 12.21
+        currency: USD
+        _asofdate: 1-Jul-2020
+        _id: 5846511
+      properties:
+        stripeInvoicePaymentLink:
+          type: string
+        number:
+          type: string
+        date:
+          type: string
+        dueDate:
+          type: string
+        totalAmount:
+          type: number
+        taxAmount:
+          type: number
+        currency:
+          type: string
+        status:
+          $ref: '#/components/schemas/CodeAndTitle'
+        _asofdate:
+          type: string
+        _id:
+          type: integer
+      required:
+        - number
+        - date
+        - dueDate
+        - totalAmount
+        - taxAmount
+        - currency
+        - status
+    Address:
+      title: Address
+      type: object
+      example:
+        line1: 536 Paper street
+        line2: ''
+        city: Bradford
+        state: DE
+        country: US
+        zip: '19808'
+        phone: 111-111-111
+      x-examples:
+        example-1:
+          line1: 536 Paper street
+          line2: ''
+          city: Bradford
+          state: DE
+          country: US
+          zip: '19808'
+          phone: 111-111-111
+      nullable: true
+      properties:
+        line1:
+          type: string
+          nullable: true
+        line2:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        zip:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+    Customer:
+      title: Customer
+      type: object
+      x-internal: false
+      example:
+        id: SOC-SA-6048b1177cd71936d2234cc6
+        individual: false
+        stripeCustomerAccountLink: 'https://app.suitesync.io/customers/acct_1KMEyNArTAm3Gt1Z/537215/0611239180'
+        individualName:
+          title: Mr
+          firstName: Tyler
+          middleName: E
+          lastName: Durden
+        companyName: Paper Street Soap Co.
+        currency: USD
+        email: tyler@paperstreetsoap.com
+        phone: (288) 555-0153
+        address:
+          line1: 536 Paper street
+          line2: 2nd floor
+          city: Bradford
+          state: DE
+          country: US
+          zip: '19808'
+          phone: 111-111-111
+        shippingAddress:
+          line1: 17 Sheet street
+          line2: 3rd floor
+          city: Texas City
+          state: TX
+          country: US
+          zip: '12345'
+          phone: 222-222-222
+        primaryContact:
+          name:
+            title: Mr
+            firstName: Tyler
+            middleName: E
+            lastName: Durden
+          email: tyler@paperstreetsoap.com
+          phone: (288) 555-0153
+          billingAddress:
+            line1: 536 Paper street
+            line2: 2nd floor
+            city: Bradford
+            state: DE
+            country: US
+            zip: '19808'
+            phone: 111-111-111
+      x-examples:
+        example-1:
+          id: SOC-SA-6048b1177cd71936d2234cc6
+          individual: false
+          individualName:
+            title: Mr
+            firstName: Tyler
+            middleName: E
+            lastName: Durden
+          companyName: Paper Street Soap Co.
+          currency: USD
+          email: tyler@paperstreetsoap.com
+          phone: (288) 555-0153
+          address:
+            line1: 536 Paper street
+            line2: 2nd floor
+            city: Bradford
+            state: DE
+            country: US
+            zip: '19808'
+            phone: 111-111-111
+          primaryContact:
+            name:
+              title: Mr
+              firstName: Tyler
+              middleName: E
+              lastName: Durden
+            email: tyler@paperstreetsoap.com
+            phone: (288) 555-0153
+            billingAddress:
+              line1: 536 Paper street
+              line2: 2nd floor
+              city: Bradford
+              state: DE
+              country: US
+              zip: '19808'
+              phone: 111-111-111
+      properties:
+        id:
+          type: string
+          maxLength: 83
+          nullable: true
+        stripeCustomerAccountLink:
+          type: string
+        individual:
+          type: boolean
+          description: 'true for person, false for company'
+          nullable: true
+        individualName:
+          $ref: '#/components/schemas/PersonName'
+        companyName:
+          type: string
+          maxLength: 83
+          description: Required if customer is company
+          nullable: true
+        currency:
+          type: string
+          maxLength: 3
+          minLength: 3
+          description: ISO currency code
+          nullable: true
+        email:
+          type: string
+          format: email
+          maxLength: 254
+          nullable: true
+        phone:
+          type: string
+          maxLength: 32
+          nullable: true
+        address:
+          description: The billing address, and if not defined separately, the shipping address.
+          allOf:
+            - $ref: '#/components/schemas/Address'
+        shippingAddress:
+          description: The shipping address, if different from the billing address.
+          allOf:
+            - $ref: '#/components/schemas/Address'
+        primaryContact:
+          $ref: '#/components/schemas/Contact'
+    Contact:
+      title: Contact
+      type: object
+      example:
+        id: '321'
+        email: tyler@paperstreetsoap.com
+        title: Mr
+        firstName: Tyler
+        middleName: ''
+        lastName: Durden
+        phone: (288) 555-0153
+        billingAddress:
+          line1: 536 Paper street
+          line2: ''
+          city: Bradford
+          state: DE
+          country: US
+          zip: '19808'
+          phone: 111-111-111
+      nullable: true
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          $ref: '#/components/schemas/PersonName'
+        email:
+          type: string
+          format: email
+          maxLength: 254
+          nullable: true
+        phone:
+          type: string
+          maxLength: 32
+          nullable: true
+        billingAddress:
+          $ref: '#/components/schemas/Address'
+    BaseSubscriptionConfiguration:
+      title: BaseSubscriptionConfiguration
+      type: object
+      description: 'Set of items, quantities and plan for subscription creation and modification'
+      example:
+        planCode: Kayako TNK GROWTH PLATINUM
+        items:
+          - code: Kay-SA-TNK-STA
+            quantity: 25
+          - code: Kay-SA-COL-STA
+            quantity: 2
+        frequency: MONTHLY
+        duration: 12
+      properties:
+        planCode:
+          type: string
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              quantity:
+                type: integer
+            required:
+              - code
+        frequency:
+          $ref: '#/components/schemas/FrequencyEnum'
+        duration:
+          type: integer
+          description: |-
+            Term duration in months. Must be equal or greater than the subscription plan initial term.
+
+            Inform only for creation and renewal. If duration is not informed, the subscription plan initial term will be applied.
+
+            In an update for an active subscription, duration can't be informed.
+          minimum: 1
+          maximum: 84
+    PersonName:
+      title: PersonName
+      type: object
+      nullable: true
+      properties:
+        title:
+          type: string
+          maxLength: 99
+          nullable: true
+        firstName:
+          type: string
+          maxLength: 32
+          nullable: true
+        middleName:
+          type: string
+          maxLength: 32
+          nullable: true
+        lastName:
+          type: string
+          maxLength: 32
+          nullable: true
+    SubscriptionPlanItem:
+      title: SubscriptionPlanItem
+      type: object
+      properties:
+        id:
+          type: number
+        code:
+          type: string
+        title:
+          type: string
+        type:
+          $ref: '#/components/schemas/ItemTypeEnum'
+        desc:
+          type: string
+        minQuantity:
+          type: integer
+        maxQuantity:
+          type: integer
+          exclusiveMinimum: false
+        required:
+          type: boolean
+        prices:
+          type: array
+          description: Array of prices for frequency
+          items:
+            type: object
+            properties:
+              type:
+                $ref: '#/components/schemas/PriceTypeEnum'
+              frequency:
+                $ref: '#/components/schemas/PriceFrequencyEnum'
+              currency:
+                type: string
+                description: USD by default
+              ranges:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fromQuantity:
+                      type: integer
+                    price:
+                      type: number
+                  required:
+                    - fromQuantity
+                    - price
+            required:
+              - type
+              - ranges
+        amount:
+          type: number
+        totalIntervalValue:
+          type: number
+      required:
+        - code
+        - type
+    SubscriptionLineItem:
+      title: SubscriptionLineItem
+      type: object
+      properties:
+        id:
+          type: number
+        code:
+          type: string
+        title:
+          type: string
+        type:
+          $ref: '#/components/schemas/ItemTypeEnum'
+        desc:
+          type: string
+        minQuantity:
+          type: integer
+        maxQuantity:
+          type: integer
+          exclusiveMinimum: false
+        required:
+          type: boolean
+        prices:
+          type: array
+          description: Array of prices for frequency
+          items:
+            type: object
+            properties:
+              type:
+                $ref: '#/components/schemas/PriceTypeEnum'
+              frequency:
+                $ref: '#/components/schemas/PriceFrequencyEnum'
+              ranges:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fromQuantity:
+                      type: integer
+                    price:
+                      type: number
+                  required:
+                    - fromQuantity
+                    - price
+            required:
+              - type
+              - ranges
+        amount:
+          type: number
+        totalIntervalValue:
+          type: number
+      required:
+        - code
+        - type
+    StatusEnum:
+      type: string
+      title: StatusEnum
+      enum:
+        - ACTIVE
+        - PENDING_ACTIVATION
+        - SUSPENDED
+        - DRAFT
+        - CLOSED
+        - TERMINATED
+        - NOT_INCLUDED
+    UnitTermEnum:
+      type: string
+      title: UnitTermEnum
+      enum:
+        - DAYS
+        - WEEKS
+        - MONTHS
+        - YEARS
+    TermTypeEnum:
+      type: string
+      title: TermTypeEnum
+      enum:
+        - CUSTOM
+        - EVERGREEN
+        - STANDARD
+    ProductTierEnum:
+      type: string
+      title: ProductTierEnum
+      enum:
+        - Standard
+        - Professional
+        - Enterprise
+    SupportLevelEnum:
+      type: string
+      title: SupportLevelEnum
+      enum:
+        - Silver
+        - Gold
+        - Platinum
+    ItemTypeEnum:
+      type: string
+      title: ItemTypeEnum
+      enum:
+        - One Time
+        - Recurring
+        - Usage
+    PriceFrequencyEnum:
+      type: string
+      title: PriceFrequencyEnum
+      enum:
+        - ONETIME
+        - WEEKLY
+        - MONTHLY
+        - QUARTERLY
+        - ANNUALLY
+    PriceTypeEnum:
+      type: string
+      title: PriceTypeEnum
+      enum:
+        - Tiered
+        - Volume
+    FrequencyEnum:
+      type: string
+      title: FrequencyEnum
+      description: Billing frequency
+      enum:
+        - HOURLY
+        - DAILY
+        - WEEKLY
+        - BIWEEKLY
+        - SEMIMONTHLY
+        - QUADWEEKLY
+        - MONTHLY
+        - BIMONTHLY
+        - QUARTERLY
+        - SEMIANNUALLY
+        - ANNUALLY
+        - BIENNIALLY
+        - TRIENNIALLY
+        - ONETIME
+        - ENDOFPERIOD
+        - STARTOFPERIOD
+        - CUSTOM
+    AgreementTypeEnum:
+      type: string
+      title: AgreementTypeEnum
+      description: Agreement type
+      enum:
+        - Quote
+        - End User Agreement
+        - Reseller Agreement
+        - Other
+    AgreementStatusEnum:
+      type: string
+      title: AgreementStatusEnum
+      description: Agreement status
+      enum:
+        - Draft
+        - Out For Signature
+        - Signed
+        - Expired
+        - Cancelled
+        - Not Yet Sent For Signature
+        - EchoSign Account Payments Not Up to Date
+        - Other
+        - Out For Approval
+        - Approved
+    AgreementStatusResponseEnum:
+      type: string
+      title: AgreementStatusResponseEnum
+      description: Agreement status response
+      enum:
+        - draft
+        - out-for-signature
+        - signed
+        - no-agreement
+        - no-quote
+    ContractualDocumentTypeEnum:
+      type: string
+      title: ContractualDocumentTypeEnum
+      description: Contractual document type
+      enum:
+        - purchase-order
+    CreateSubscriptionConfiguration:
+      allOf:
+        - $ref: '#/components/schemas/BaseSubscriptionConfiguration'
+        - type: object
+          properties:
+            resellerId:
+              type: string
+            distributorId:
+              type: string
+            contractualDocumentId:
+              type: integer
+              nullable: true
+              description: |-
+                Id of contractual document object.
+      description: Model for subscription create
+    UpdateSubscriptionConfiguration:
+      title: UpdateSubscriptionConfiguration
+      allOf:
+        - $ref: '#/components/schemas/BaseSubscriptionConfiguration'
+    PaymentLink:
+      title: PaymentLink
+      type: object
+      properties:
+        type:
+          type: string
+        url:
+          type: string
+          format: uri
+      required:
+        - type
+        - url
+    Preview:
+      title: Preview
+      type: object
+      properties:
+        frequency:
+          type: string
+        totalAmount:
+          type: number
+        totalListPrice:
+          type: number
+        successPlanPremium:
+          type: number
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              title:
+                type: string
+              quantity:
+                type: number
+              amount:
+                type: number
+      example:
+        frequency: Monthly
+        totalAmount: 110
+        totalListPrice: 220
+        successPlanPremium: 20
+        items:
+          - code: Kay-SA-TNK-STA
+            title: Kayako TNK Standard
+            quantity: 2
+            amount: 90
+          - code: Kay-SA-COL-STA
+            title: Kayako COLLABORATOR TNK Standard
+            quantity: 2
+            amount: 20
+  securitySchemes:
+    Token:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: |-
+        JWT tokent signed and encrypted. Can store productFamilyCode, productVariantCode and customerID so results of all requests will be filtered by these values. See JWTToken model
+        ### JWT payload
+          * pfc: string // Product Family Code
+          * pvc: string // Product Variant Code
+          * cid: string // Customer id
+    Privileged token:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: Privileged token - same as normal token with padm=true in payload
+  responses:
+    Error:
+      description: General error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                minItems: 1
+                items:
+                  type: object
+                  properties:
+                    path:
+                      type: string
+                    message:
+                      type: string
+                    errorCode:
+                      type: string
+                  required:
+                    - message
+    PartialResponse:
+      description: Partially successful response. Check errors for failed messages
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    path:
+                      type: string
+                    message:
+                      type: string
+                    errorCode:
+                      type: string
+                  required:
+                    - message
+  parameters: {}
+  x-examples: {}
+security:
+  - Token: []
