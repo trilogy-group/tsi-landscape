@@ -1,0 +1,2307 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "5b56e196-f133-4e69-b1ea-348f8170e36b",
+      "created": "2022-12-28T19:09:14.339228Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "81f545df-c45f-4f66-a32f-2bf719988343",
+        "created": "2022-12-28T21:47:05.943444Z"
+      },
+      "title": "Subflow sync NS subsidiary to SF",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "subsidiaryId": {
+              "title": "Subsidiary Id",
+              "type": "number"
+            },
+            "updateType": {
+              "title": "Update Type",
+              "description": "",
+              "type": "string",
+              "enum": [
+                {
+                  "text": "Always",
+                  "value": "always"
+                },
+                {
+                  "text": "Only Creation",
+                  "value": "onlyCreation"
+                },
+                {
+                  "text": "Only Changes",
+                  "value": "onlyChanges"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "subsidiaryId",
+            "updateType"
+          ],
+          "advanced": []
+        },
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-6",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "boolean-condition-7",
+                "type": "branch",
+                "content": {
+                  "true": [],
+                  "false": [
+                    {
+                      "name": "callable-workflow-response-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              }
+            ],
+            "false": [
+              {
+                "name": "boolean-condition-8",
+                "type": "branch",
+                "content": {
+                  "true": [],
+                  "false": [
+                    {
+                      "name": "callable-workflow-response-4",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "boolean-condition-1",
+                "type": "branch",
+                "content": {
+                  "true": [],
+                  "false": [
+                    {
+                      "name": "terminate-1",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "script-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-5",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-4",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "netsuite-3",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-3",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-5",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-2",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "salesforce-2",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-3",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "storage-2",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": [
+                          {
+                            "name": "storage-3",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "false": [
+                    {
+                      "name": "storage-1",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "storage-4",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-5",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "salesforce-7",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "salesforce-4",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-9",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "script-6",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "salesforce-8",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": [
+                          {
+                            "name": "salesforce-3",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "script-4",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "salesforce-6",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "salesforce-3": {
+          "title": "Upload logo",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "create_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Body"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.record.content"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "FolderId"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "00l2x000001IY41AAG"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Name"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "IsPublic"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "Document"
+            }
+          }
+        },
+        "storage-2": {
+          "title": "Set uploadLogo true",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "uploadLogo"
+            },
+            "value": {
+              "type": "boolean",
+              "value": true
+            }
+          }
+        },
+        "netsuite-2": {
+          "title": "Get subsidiary soap",
+          "description": "Logo only comes on soap, but country doesn't come correct on soap and we need to get through rest",
+          "connector": {
+            "name": "netsuite",
+            "version": "1.9"
+          },
+          "operation": "get_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "subsidiary"
+            },
+            "internal_id": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.response.body.items[0].id"
+            }
+          }
+        },
+        "boolean-condition-5": {
+          "title": "Upload logo?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-4.value"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Id extracted?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-3.result",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "salesforce-8": {
+          "title": "Update logo url",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "Subsidiary__c"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "LogoUrl__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-6.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-5.id"
+            }
+          }
+        },
+        "salesforce-7": {
+          "title": "Find logo in SF",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Documents",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Document",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Document ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Document"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Name"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "BodyLength"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.record.fileSize"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "FolderId"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "00l2x000001IY41AAG"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "storage-3": {
+          "title": "Set uploadLogo false",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "uploadLogo"
+            },
+            "value": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Create subsidiary?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].isinactive",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "F"
+                    },
+                    "is_case_sensitive": {
+                      "value": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].iselimination",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "F"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "salesforce-4": {
+          "title": "Get Org Id",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "query",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "query": {
+              "type": "string",
+              "value": "SELECT Id FROM Organization"
+            }
+          }
+        },
+        "boolean-condition-7": {
+          "title": "Should update?",
+          "description": "When subsidiary is found, it should update only if updateType is onlyChanges or always",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.updateType"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "onlyChanges"
+                    },
+                    "is_case_sensitive": {
+                      "value": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.updateType"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "always"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "netsuite-3": {
+          "title": "Get logo",
+          "connector": {
+            "name": "netsuite",
+            "version": "1.9"
+          },
+          "operation": "get_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "file"
+            },
+            "internal_id": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-2.record.logo.attributes.internalId"
+            }
+          }
+        },
+        "salesforce-5": {
+          "title": "Upsert subsidiary",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "upsert_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "Subsidiary__c"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Name"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].name"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "State__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].state",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "City__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].city",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Country__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].country",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Street__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Postal_Code__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].zip",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "CurrencyIsoCode"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].currency"
+                    }
+                  }
+                }
+              ]
+            },
+            "lookup_field": {
+              "type": "string",
+              "value": "Netsuite_Id__c"
+            },
+            "lookup_value": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.response.body.items[0].id"
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get subsidiary",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Subsidiaries",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Subsidiary",
+                  "properties": {
+                    "Name": {
+                      "name": "Name",
+                      "type": "string",
+                      "title": "Subsidiary Name"
+                    },
+                    "City__c": {
+                      "name": "City__c",
+                      "type": "string",
+                      "title": "City"
+                    },
+                    "State__c": {
+                      "name": "State__c",
+                      "type": "string",
+                      "title": "State"
+                    },
+                    "Country__c": {
+                      "name": "Country__c",
+                      "type": "string",
+                      "title": "Country"
+                    },
+                    "Street__c": {
+                      "name": "Street__c",
+                      "type": "string",
+                      "title": "Street"
+                    },
+                    "Postal_Code__c": {
+                      "name": "Postal_Code__c",
+                      "type": "string",
+                      "title": "Postal Code"
+                    },
+                    "LogoUrl__c": {
+                      "name": "LogoUrl__c",
+                      "type": "string",
+                      "title": "LogoUrl"
+                    },
+                    "CurrencyIsoCode": {
+                      "name": "CurrencyIsoCode",
+                      "type": "string",
+                      "title": "Currency ISO Code"
+                    },
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Record ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "Subsidiary__c"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Name"
+                },
+                {
+                  "type": "string",
+                  "value": "City__c"
+                },
+                {
+                  "type": "string",
+                  "value": "State__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Country__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Street__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Postal_Code__c"
+                },
+                {
+                  "type": "string",
+                  "value": "LogoUrl__c"
+                },
+                {
+                  "type": "string",
+                  "value": "CurrencyIsoCode"
+                },
+                {
+                  "type": "string",
+                  "value": "Id"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Netsuite_Id__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].id"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "boolean-condition-6": {
+          "title": "SF Subsidiary found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.total"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": ">"
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Get logo document",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Documents",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Document",
+                  "properties": {
+                    "BodyLength": {
+                      "name": "BodyLength",
+                      "type": "number",
+                      "title": "Body Length"
+                    },
+                    "Name": {
+                      "name": "Name",
+                      "type": "string",
+                      "title": "Document Name"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "BodyLength"
+                },
+                {
+                  "type": "string",
+                  "value": "Name"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Document"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Id"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-3.result"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "script-6": {
+          "title": "Build logo url",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "logoId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-7.records[0].Id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "orgId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-4.records[0].Id"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\tif (input.orgId === '00D2x000000qNQaEAM') {\n    return `https://trilogy-sales--c.documentforce.com/servlet/servlet.ImageServer?id=${input.logoId}&oid=${input.orgId}`;\n  }\n  return `https://trilogy-sales--full.sandbox.file.force.com/servlet/servlet.ImageServer?id=${input.logoId}&oid=${input.orgId}`;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-1": {
+          "title": "SuiteQL subsidiary data",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subsidiaryId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.subsidiaryId"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  return {\n    q:\n      `SELECT s.id, s.name, a.city, case when a.country in ('CN','JP') \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tthen coalesce(st.fullname,a.state) else a.state \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tend as state, c.name as country, a.addr1, a.addr2, a.zip, \n\t\t\t\t\t\t\tcr.symbol as currency, s.isinactive, s.iselimination\n\t\t\t\tFROM Subsidiary s\n        LEFT JOIN subsidiaryMainAddress a on a.nkey = s.mainaddress\n        LEFT JOIN country c on c.id = a.country\n        LEFT JOIN state st on st.shortname = a.state and st.country = a.country\n        LEFT JOIN currency cr on cr.id = s.currency\n        where s.id = ` + input.subsidiaryId\n  };\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "script-3": {
+          "title": "extract logo document id",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "link"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].LogoUrl__c",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  if (!input.link) {\n    return undefined;\n  }\n\tconst regex = /^https:\\/\\/.+force\\.com\\/servlet\\/servlet\\.ImageServer((\\?id=(?<id>[^&]+)&)|(\\?.+&id=(?<id2>[^&]+)&?))(.+)?$/;\n\tconst documentId = input.link.match(regex)?.groups?.id || input.link.match(regex)?.groups?.id2;\n  return documentId;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "Subsidiary have logo?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.record.logo.attributes.internalId",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "storage-4": {
+          "title": "Get uploadLogo",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "uploadLogo"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "Terminate",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "Subsidiary {$.steps.netsuite-1.response.body.items[0].name} is inactive or is elimination and it was not synced to SalesForce. Id: {$.steps.netsuite-1.response.body.items[0].id}"
+            }
+          }
+        },
+        "script-4": {
+          "title": "Build logo url",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "logoId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-3.id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "orgId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-4.records[0].Id"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\tif (input.orgId === '00D2x000000qNQaEAM') {\n    return `https://trilogy-sales--c.documentforce.com/servlet/servlet.ImageServer?id=${input.logoId}&oid=${input.orgId}`;\n  }\n  return `https://trilogy-sales--full.sandbox.file.force.com/servlet/servlet.ImageServer?id=${input.logoId}&oid=${input.orgId}`;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-8": {
+          "title": "Should create?",
+          "description": "When subsidiary is not found, it should update only if updateType is onlyCreation or always",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.updateType"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "onlyCreation"
+                    },
+                    "is_case_sensitive": {
+                      "value": true,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.updateType"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "always"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Set uploadLogo true",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "uploadLogo"
+            },
+            "value": {
+              "type": "boolean",
+              "value": true
+            }
+          }
+        },
+        "boolean-condition-9": {
+          "title": "Is logo in SF?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-7.records[0].Id",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "salesforce-6": {
+          "title": "Update logo url",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "Subsidiary__c"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "LogoUrl__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-4.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-5.id"
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Query subsidiary data",
+          "description": "Getting with suiteQL to get state full name for China and Japan and also to get currency symbol. Rest or soap don't return these.",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "x-netsuite-jobid": {
+                        "type": "string"
+                      },
+                      "preference-applied": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "p3p": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "hasMore": {
+                        "type": "boolean"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "addr1": {
+                              "type": "string"
+                            },
+                            "city": {
+                              "type": "string"
+                            },
+                            "country": {
+                              "type": "string"
+                            },
+                            "currency": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "iselimination": {
+                              "type": "string"
+                            },
+                            "isinactive": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "offset": {
+                        "type": "number"
+                      },
+                      "totalResults": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result"
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            }
+          }
+        },
+        "script-5": {
+          "title": "Get filename",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "name"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.record.name"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "fileType"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.record.fileType"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// if the file doesn't have extension, we need to add to upload to SF\nexports.step = function(input) {\n\tif (input.fileType === '_PNGIMAGE' && input.name.substr(input.name.length -4).toLowerCase() !== '.png') {\n    return `${input.name}.png`;\n  } else if (input.fileType === '_JPGIMAGE' && input.name.substr(input.name.length -4).toLowerCase() !== '.jpg') {\n    return `${input.name}.jpg`;\n  }\n  return input.name;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "callable-workflow-response-4": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "script-2": {
+          "title": "Format address",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "addr1"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].addr1",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "addr2"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].addr2",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  if (!input.addr1 && !input.addr2) {\n    return null;\n  }\n  if (input.addr1 && input.addr2) {\n\t\treturn `${input.addr1}\\n${input.addr2}`;\n  }\n  if (input.addr1) {\n  \treturn `${input.addr1}`;\n  }\n  return `${input.addr2}`;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "NS logo != SF logo?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].Name",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.record.fileSize"
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].BodyLength",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "callable-workflow-response-3": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": []
+    }
+  ],
+  "projects": []
+}

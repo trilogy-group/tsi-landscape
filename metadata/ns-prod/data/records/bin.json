@@ -1,0 +1,239 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "description": "Check this box to remove all references to this record from your account. You can reactivate the record at any time."
+    },
+    "binNumber": {
+      "title": "Bin Number",
+      "type": "string",
+      "description": "Enter a number, name, or code for this bin that can help you identify its location in your warehouse. For example, you can track bins by number and track rows and shelves by letter. The first bin in the first shelf of the first row would be AA01. Note: Bin numbers cannot include an Ampersand (&amp;).",
+      "nullable": true
+    },
+    "lastModifiedDate": {
+      "title": "Last Modified Date",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "memo": {
+      "title": "Memo",
+      "type": "string",
+      "description": "Enter a description or notes for this bin. This memo is only stored with this record and not visible on other pages or lists.",
+      "nullable": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "inventoryBalance": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "quantityOnHand": {
+                "title": "On-Hand Quantity",
+                "type": "string",
+                "nullable": true
+              },
+              "quantityAvailable": {
+                "title": "Available Quantity",
+                "type": "string",
+                "nullable": true
+              },
+              "committedQtyPerSerialLotNumberLocation": {
+                "title": "Committed Quantity (Per Serial/Lot Number & Location)",
+                "type": "string",
+                "nullable": true
+              },
+              "committedQtyPerSerialLotNumber": {
+                "title": "Committed Quantity (Per Serial/Lot Number)",
+                "type": "string",
+                "nullable": true
+              },
+              "quantityPicked": {
+                "title": "Picked Quantity",
+                "type": "string",
+                "nullable": true
+              },
+              "committedQtyPerLocation": {
+                "title": "Committed Quantity (Per Location)",
+                "type": "string",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "item": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "inventoryNumber": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "location": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": []
+}

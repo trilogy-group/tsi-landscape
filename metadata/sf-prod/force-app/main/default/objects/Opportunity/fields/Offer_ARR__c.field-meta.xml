@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Offer_ARR__c</fullName>
+    <externalId>false</externalId>
+    <formula>/*IF( 
+  ISPICKVAL(Win_Type__c, &apos;Auto-Renew&apos;),
+  Offer_Quote__r.Quote_Arr__c, 
+  ARR__c
+)*/
+
+IF(
+NOT(ISBLANK(SBQQ__PrimaryQuote__c)) &amp;&amp; SBQQ__PrimaryQuote__c == AR_Quote__c  &amp;&amp;  NOT(ISBLANK(Offer_Quote__c)), 
+Offer_Quote__r.Quote_ARR__c,
+IF(
+NOT(ISBLANK(SBQQ__PrimaryQuote__c)) &amp;&amp; SBQQ__PrimaryQuote__c == AR_Quote__c  &amp;&amp;  ISBLANK(Offer_Quote__c),
+Uptick__c,
+ARR__c))</formula>
+    <inlineHelpText>If it&apos;s an auto-renewal - show the ARR from the offer quote.</inlineHelpText>
+    <label>Offer ARR</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

@@ -1,0 +1,52 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "description": "Check this box to inactivate this contact category."
+    },
+    "name": {
+      "title": "Role",
+      "type": "string",
+      "description": "Enter the name for this contact category.",
+      "nullable": true
+    },
+    "description": {
+      "title": "Description",
+      "type": "string",
+      "description": "Enter a description of this note type.",
+      "nullable": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "name",
+    "description",
+    "externalId",
+    "id"
+  ]
+}

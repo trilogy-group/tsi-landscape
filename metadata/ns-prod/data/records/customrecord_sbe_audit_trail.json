@@ -1,0 +1,277 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_sbe_audit_old_value": {
+      "title": "Old Value",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_sbe_audit_record_id": {
+      "title": "Record ID",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_sbe_audit_new_value": {
+      "title": "New Value",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_sbe_audit_error_message": {
+      "title": "Error Message",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_sbe_operation_record_type": {
+      "title": "Operation Record Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_sbe_audit_record_type": {
+      "title": "Record Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_sbe_audit_bo_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_sbe_audit_op_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_sbe_audit_operation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_sbe_audit_status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "owner",
+    "isInactive",
+    "custrecord_sbe_audit_old_value",
+    "created",
+    "custrecord_sbe_audit_record_id",
+    "externalId",
+    "lastmodifiedby",
+    "custrecord_sbe_audit_op_type",
+    "abbreviation",
+    "custrecord_sbe_audit_bo_type",
+    "custrecord_sbe_audit_new_value",
+    "scriptId",
+    "custrecord_sbe_audit_error_message",
+    "lastmodified",
+    "custrecord_sbe_audit_operation",
+    "name",
+    "custrecord_sbe_operation_record_type",
+    "id",
+    "custrecord_sbe_audit_record_type",
+    "custrecord_sbe_audit_status"
+  ],
+  "x-ns-custom-record": true
+}

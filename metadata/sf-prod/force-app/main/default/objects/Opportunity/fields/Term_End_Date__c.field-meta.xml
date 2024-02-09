@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Term_End_Date__c</fullName>
+    <description>LAMBDA-60439 field to calculate end of the renewal term based on the close date</description>
+    <externalId>false</externalId>
+    <formula>IF(
+       (ISPICKVAL(Type,&apos;Upsell&apos;)|| RecordTypeId=&apos;0122x000000V65fAAC&apos;) 
+			&amp;&amp;  NOT(ISBLANK(ContractId)) , AddMonths(Contract.StartDate,Opportunity_Term__c),
+	    	AddMonths(Renewal_Date__c-1,Opportunity_Term__c)
+)</formula>
+    <inlineHelpText>Term calculated to be used in templates</inlineHelpText>
+    <label>Term End Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

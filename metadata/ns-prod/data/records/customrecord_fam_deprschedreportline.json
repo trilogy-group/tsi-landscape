@@ -1,0 +1,409 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_method": {
+      "title": "Depreciation Method",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_p1": {
+      "title": "Period 1",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_p2": {
+      "title": "Period 2",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_currency": {
+      "title": "Currency",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_type": {
+      "title": "Asset Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_p12": {
+      "title": "Period 12",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_posting": {
+      "title": "Posting",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_year": {
+      "title": "Fiscal Year",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_p11": {
+      "title": "Period 11",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_p10": {
+      "title": "Period 10",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_book": {
+      "title": "Accounting Book",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_assetlife": {
+      "title": "Asset Life",
+      "type": "number",
+      "format": "float",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_p9": {
+      "title": "Period 9",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "recordId": {
+      "title": "Record ID",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_p7": {
+      "title": "Period 7",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_p8": {
+      "title": "Period 8",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_p5": {
+      "title": "Period 5",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_p6": {
+      "title": "Period 6",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_p3": {
+      "title": "Period 3",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_p4": {
+      "title": "Period 4",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_subsidiary": {
+      "title": "Subsidiary",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_assetid": {
+      "title": "Asset Id",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_schedrepline_assetname": {
+      "title": "Asset Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_fam_schedrepline_parent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_fam_schedrepline_src_astval": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_fam_schedrepline_src_altdepr": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_fam_schedrepline_src_asset": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "custrecord_fam_schedrepline_method",
+    "custrecord_fam_schedrepline_src_altdepr",
+    "custrecord_fam_schedrepline_p1",
+    "externalId",
+    "lastmodifiedby",
+    "custrecord_fam_schedrepline_p2",
+    "scriptId",
+    "id",
+    "custrecord_fam_schedrepline_src_asset",
+    "owner",
+    "custrecord_fam_schedrepline_currency",
+    "custrecord_fam_schedrepline_type",
+    "custrecord_fam_schedrepline_p12",
+    "custrecord_fam_schedrepline_posting",
+    "custrecord_fam_schedrepline_year",
+    "created",
+    "custrecord_fam_schedrepline_p11",
+    "custrecord_fam_schedrepline_parent",
+    "custrecord_fam_schedrepline_p10",
+    "custrecord_fam_schedrepline_book",
+    "abbreviation",
+    "custrecord_fam_schedrepline_assetlife",
+    "custrecord_fam_schedrepline_p9",
+    "recordId",
+    "custrecord_fam_schedrepline_p7",
+    "custrecord_fam_schedrepline_p8",
+    "custrecord_fam_schedrepline_p5",
+    "custrecord_fam_schedrepline_p6",
+    "lastmodified",
+    "custrecord_fam_schedrepline_p3",
+    "custrecord_fam_schedrepline_p4",
+    "custrecord_fam_schedrepline_src_astval",
+    "name",
+    "custrecord_fam_schedrepline_subsidiary",
+    "custrecord_fam_schedrepline_assetid",
+    "custrecord_fam_schedrepline_assetname"
+  ],
+  "x-ns-custom-record": true
+}

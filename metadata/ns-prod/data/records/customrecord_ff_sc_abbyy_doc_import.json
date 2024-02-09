@@ -1,0 +1,463 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_td_abbyyyres": {
+      "title": "ABBYY Response",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_sent_to_abbyy": {
+      "title": "Sent to ABBYY",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_attachment": {
+      "title": "Attachment",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_abbyy_project_guid": {
+      "title": "Project GUID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_abbyy_datetime_rece_abb": {
+      "title": "Date Received From Abby",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_abbyy_date_sent_p2pv1": {
+      "title": "Date sent to S&C v1(epoch)",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_abbyy_document_error": {
+      "title": "ABBYY Server Error",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_abbyy_file_id": {
+      "title": "FileId",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_date_received_abbyy": {
+      "title": "Date received from ABBYY(epoch)",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_receiv_from_abbyy": {
+      "title": "Received from ABBYY",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_abbyy_response": {
+      "title": "Abbyy response",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_td_datafile": {
+      "title": "Data file",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_abbyy_batch_id": {
+      "title": "Batch Id",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_abbyy_datetime_sent_abb": {
+      "title": "Date Sent To Abby",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_abbyy_project_id": {
+      "title": "Project Id",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_abbyy_datetime_sent_v1": {
+      "title": "Date Sent To P2P V1",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_date_sent_abbyy": {
+      "title": "Date sent to ABBYY(epoch)",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_sent_to_p2p_v1": {
+      "title": "Sent to S&C v1",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_td_abbbyyreq": {
+      "title": "ABBYY Request",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "custrecord_ff_sc_detected_vendor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_vendor_id": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_td_status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_subsidiary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_detected_sub": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_td_transaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_erpff_sc_aby_doc_import_emrec": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_td_billtoprocess": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_vendor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [],
+  "x-ns-custom-record": true
+}

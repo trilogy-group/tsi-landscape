@@ -1,0 +1,191 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schem_det_js_schemaname": {
+      "title": "Schema Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schem_det_js_schema": {
+      "title": "Schema JSON",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schem_det_js_type": {
+      "title": "Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schem_det_js_meta": {
+      "title": "Meta",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schem_det_js_name": {
+      "title": "Report Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "custrecord_str_schem_det_js_parent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "owner",
+    "isInactive",
+    "custrecord_str_schem_det_js_schemaname",
+    "custrecord_str_schem_det_js_schema",
+    "created",
+    "externalId",
+    "lastmodifiedby",
+    "abbreviation",
+    "custrecord_str_schem_det_js_type",
+    "scriptId",
+    "lastmodified",
+    "custrecord_str_schem_det_js_meta",
+    "name",
+    "id",
+    "custrecord_str_schem_det_js_parent",
+    "custrecord_str_schem_det_js_name"
+  ],
+  "x-ns-custom-record": true
+}

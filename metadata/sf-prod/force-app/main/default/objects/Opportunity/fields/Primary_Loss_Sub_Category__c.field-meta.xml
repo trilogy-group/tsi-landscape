@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Loss_Sub_Category__c</fullName>
+    <description>choose a secondary reason when moving to closed lost stage</description>
+    <externalId>false</externalId>
+    <inlineHelpText>required feild</inlineHelpText>
+    <label>Primary Loss Sub Category</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Primary_Loss_Reason__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetName>Primary_Loss_Sub_Category</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>0-Unknown</controllingFieldValue>
+            <valueName>0-Unknown</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>1-Pricing Dissatisfaction</controllingFieldValue>
+            <valueName>1-Post Acquisition Price Increase</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>1-Pricing Dissatisfaction</controllingFieldValue>
+            <valueName>Post Acquisition Price Increase</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>1-Pricing Dissatisfaction</controllingFieldValue>
+            <valueName>Pricing Gap with Competition</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>1-Pricing Dissatisfaction</controllingFieldValue>
+            <valueName>Failure to Sign MY Agreement Last Renewal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>1-Pricing Dissatisfaction</controllingFieldValue>
+            <valueName>Inability to Sign MY Agreement This Renewal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>2-Value</controllingFieldValue>
+            <valueName>Lack of Product Innovation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>2-Value</controllingFieldValue>
+            <valueName>Lack of ROI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>2-Value</controllingFieldValue>
+            <valueName>Value Never Acheived</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>2-Value</controllingFieldValue>
+            <valueName>Lack of Vision</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>3-Operational Dissatisfaction</controllingFieldValue>
+            <valueName>3-Outages</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>3-Operational Dissatisfaction</controllingFieldValue>
+            <valueName>Product Stability</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>3-Operational Dissatisfaction</controllingFieldValue>
+            <valueName>Support Issues</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>3-Operational Dissatisfaction</controllingFieldValue>
+            <valueName>Lack of CSM Engagement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>3-Operational Dissatisfaction</controllingFieldValue>
+            <valueName>Professional Services Issues</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>4-Legal/Compliance Issues</controllingFieldValue>
+            <valueName>4-Rejected Red Line Requests</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>4-Legal/Compliance Issues</controllingFieldValue>
+            <valueName>Inability to Sign EUA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>4-Legal/Compliance Issues</controllingFieldValue>
+            <valueName>Compliance Issues</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>4-Legal/Compliance Issues</controllingFieldValue>
+            <valueName>Rejected Red Line Requests</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>5-Ceased Usage</controllingFieldValue>
+            <valueName>5-Budget Cuts</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>5-Ceased Usage</controllingFieldValue>
+            <valueName>Use Case Dissolved</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>5-Ceased Usage</controllingFieldValue>
+            <valueName>Company Acquired</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

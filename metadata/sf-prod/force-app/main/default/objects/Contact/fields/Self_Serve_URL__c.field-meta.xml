@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Self_Serve_URL__c</fullName>
+    <description>LAMBDA-65776 Formula field to dynamically generate Self-Service login URL</description>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(&apos;https://www.tsi.trilogy.com/manage-subscriptions?subscriptionId=&apos;&amp; Current_NS_Id__c, &apos;Self Service Portal&apos;)</formula>
+    <inlineHelpText>This field shows the Self service portal login URL personalized to this Contact</inlineHelpText>
+    <label>Self Serve URL</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

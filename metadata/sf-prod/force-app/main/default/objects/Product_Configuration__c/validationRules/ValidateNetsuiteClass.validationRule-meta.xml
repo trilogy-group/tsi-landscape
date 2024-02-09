@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidateNetsuiteClass</fullName>
+    <active>true</active>
+    <errorConditionFormula>CONTAINS(NetSuite_Class__c , &quot;:&quot;)</errorConditionFormula>
+    <errorDisplayField>NetSuite_Class__c</errorDisplayField>
+    <errorMessage>NetSuite Class is incorrect. It should be the name part only (i.e., without &apos;:&apos; symbol)</errorMessage>
+</ValidationRule>

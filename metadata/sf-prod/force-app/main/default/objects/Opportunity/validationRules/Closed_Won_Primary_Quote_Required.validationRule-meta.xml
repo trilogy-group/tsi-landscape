@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_Won_Primary_Quote_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+TEXT(StageName) = &apos;Closed Won&apos;,
+TEXT(Win_Type__c) = &apos;Quote Signed&apos;,
+SBQQ__PrimaryQuote__c = null
+) &amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorDisplayField>SBQQ__PrimaryQuote__c</errorDisplayField>
+    <errorMessage>Primary Quote is mandatory when the Opportunity is Won with the “Quote Signed” Win Type</errorMessage>
+</ValidationRule>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Task_Dispatcher__c</fullName>
+    <description>Task Dispatcher for which this mapping is part of</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Task Dispatcher for which this mapping is part of</inlineHelpText>
+    <label>Task Dispatcher</label>
+    <referenceTo>Task_Dispatcher__c</referenceTo>
+    <relationshipLabel>Cadence Task Configurations</relationshipLabel>
+    <relationshipName>Cadence_Task_Configurations</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>true</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

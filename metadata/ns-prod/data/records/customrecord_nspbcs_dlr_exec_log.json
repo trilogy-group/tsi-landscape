@@ -1,0 +1,232 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_exec_curr_member": {
+      "title": "Current Member of Group Job",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_exec_dm_log_file": {
+      "title": "Job Log File",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_exec_name": {
+      "title": "Job Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_exec_status": {
+      "title": "Job Execution Status",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_exec_dlr_id": {
+      "title": "Job Internal Id",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_exec_parent_id": {
+      "title": "Parent ID",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_job_exec_context": {
+      "title": "Job Execution Context",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "recordId": {
+      "title": "Record ID",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_exec_child_jobs": {
+      "title": "Child Jobs",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_exec_type": {
+      "title": "Execution Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_script_task_id": {
+      "title": "Script Task Id",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_exec_schedule_meta": {
+      "title": "Job Schedule Metadata",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_exec_notes": {
+      "title": "Execution Notes",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_exec_dm_job_id": {
+      "title": "Process id",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "owner",
+    "custrecord_nspbcs_dlr_exec_curr_member",
+    "custrecord_nspbcs_dlr_exec_dm_log_file",
+    "custrecord_nspbcs_dlr_exec_name",
+    "created",
+    "externalId",
+    "lastmodifiedby",
+    "custrecord_nspbcs_dlr_exec_status",
+    "abbreviation",
+    "custrecord_nspbcs_dlr_exec_dlr_id",
+    "custrecord_nspbcs_dlr_exec_parent_id",
+    "custrecord_nspbcs_job_exec_context",
+    "recordId",
+    "custrecord_nspbcs_dlr_exec_child_jobs",
+    "scriptId",
+    "custrecord_nspbcs_dlr_exec_type",
+    "custrecord_nspbcs_script_task_id",
+    "lastmodified",
+    "custrecord_nspbcs_dlr_exec_schedule_meta",
+    "custrecord_nspbcs_dlr_exec_notes",
+    "name",
+    "custrecord_nspbcs_dlr_exec_dm_job_id",
+    "id"
+  ],
+  "x-ns-custom-record": true
+}

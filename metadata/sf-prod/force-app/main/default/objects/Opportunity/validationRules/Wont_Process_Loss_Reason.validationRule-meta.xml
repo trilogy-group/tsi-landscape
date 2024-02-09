@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wont_Process_Loss_Reason</fullName>
+    <active>true</active>
+    <description>Limit the &quot;Won&apos;t Process&quot; stage to specific &quot;Loss Reasons&quot;</description>
+    <errorConditionFormula>Text(StageName) = &quot;Won&apos;t Process&quot; &amp;&amp; Not (Text(Loss_Reason__c) = &apos;Prime&apos; || Text(Loss_Reason__c) = &apos;Duplicate&apos; || Text(Loss_Reason__c) = &apos;Handled by the BU&apos; || Text(Loss_Reason__c) = &apos;Data Quality&apos; || Text(Loss_Reason__c) = &apos;Handled by Central Renewals&apos; || Text(Loss_Reason__c) = &apos;Finance Action&apos; || Text(Loss_Reason__c) = &apos;Product Shutdown&apos;)  &amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorMessage>Stage Won&apos;t Process can only be set if Loss Reason is Duplicate, Prime, Data Quality, or Handled by the BU</errorMessage>
+</ValidationRule>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidationBypassDateTime__c</fullName>
+    <description>LAMBDA-62558 Validation field to temporarily unlock the opportunity in certain validations</description>
+    <externalId>false</externalId>
+    <inlineHelpText>To be populated by flows which want to bypass the cross object opportunity update</inlineHelpText>
+    <label>ValidationBypassDateTime</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>DateTime</type>
+</CustomField>

@@ -1,0 +1,592 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "5893220e-e4df-4c17-a8cf-44971aea8471",
+      "created": "2023-08-26T06:22:49.037128Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "0c145cd5-0a3a-480f-bd7e-2cc8a66fd232",
+      "version": {
+        "id": "f3446aa6-4d06-4723-99d8-c8db8a9fa690",
+        "created": "2023-08-26T06:23:50.381843Z"
+      },
+      "title": "Update Opportunity on Replaced Subscription termination",
+      "description": "This flow is triggered on the termination of a replaced subscription. It updates the opportunity to reference the replacement subscription when:\n- The replacement setup is correct, and;\n- There is an open opportunity for the replaced subscription.",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "termination_order_reason": {
+              "type": "string",
+              "title": "Termination order reason"
+            },
+            "replaced_subscription_id": {
+              "title": "Replaced Subscription ID",
+              "type": "string"
+            },
+            "replacement_subscription_id": {
+              "title": "Replacement Subscription ID",
+              "type": "string"
+            },
+            "parent_subscription_id": {
+              "title": "Parent Subscription ID",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string",
+              "title": "message"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "callable-workflow-response-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "netsuite-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-2",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "callable-workflow-response-2",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-3",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "callable-workflow-response-3",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "salesforce-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "callable-workflow-response-4",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "boolean-condition-2": {
+          "title": "Has same parent sub?",
+          "description": "This condition ensures the replaced subscription and the replacement subscription have the same parent subscription. If not, the process will be skipped.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.custrecord_parent_subscription.id",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.parent_subscription_id",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "SKIP - unexpected reason",
+          "description": "Skips the process because the termination order reason is unexpected.",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "SKIP - The termination order reason is \"{$.steps.trigger.data.termination_order_reason}\", while expecting \"Subscription Invalid\" or \"Finance Action\"."
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Has expected reason?",
+          "description": "This condition ensures the termination order reason is \"Subscription Invalid\" or \"Finance Action\". If not, the process will be skipped.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.termination_order_reason"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "in"
+                    },
+                    "value2": {
+                      "type": "array",
+                      "value": [
+                        {
+                          "type": "string",
+                          "value": "Invalid Subscription"
+                        },
+                        {
+                          "type": "string",
+                          "value": "Finance Action"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "callable-workflow-response-2": {
+          "title": "SKIP - different parent subs",
+          "description": "Skips the process because the replaced subscription and the replacement subscription have different parent subscriptions.",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "SKIP - The replaced subscription {$.steps.trigger.data.replaced_subscription_id} and the replacement subscription {$.steps.trigger.data.replacement_subscription_id} have different parent subscriptions, respectively {$.steps.trigger.data.parent_subscription_id or:'[empty]'} and {$.steps.netsuite-1.custrecord_parent_subscription.id or:'[empty]'}."
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Find open opp",
+          "description": "Finds the open opportunity related to the replaced subscription if any.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Opportunities",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Opportunity",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Opportunity ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.replaced_subscription_id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "IsClosed"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Not equal to"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Update NetSuite ID",
+          "description": "Updates the NetSuite ID on the open opportunity related to the replaced subscription to reference the replacement subscription.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.replacement_subscription_id"
+                    }
+                  }
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-1.records[0].Id"
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get replacement sub",
+          "description": "Gets the replacement subscription, for checking the parent subscription.",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "subscription"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.replacement_subscription_id"
+            }
+          }
+        },
+        "callable-workflow-response-4": {
+          "title": "SUCCESS",
+          "description": "The flow processing is successful. Returns a response to prevent a flow failure.",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "SUCCESS"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "Exists open opp?",
+          "description": "This condition ensures there exists an open opportunity referencing the replaced subscription. If not, the process will be skipped.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.total"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "callable-workflow-response-3": {
+          "title": "SKIP - no open opp",
+          "description": "Skips the process because there is no open opportunity for the replaced subscription.",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "SKIP - There is no open opportunity for the replaced subscription {$.steps.trigger.data.replaced_subscription_id}."
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Sync call",
+          "description": "This flow is triggered on the termination of a replaced subscription.",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

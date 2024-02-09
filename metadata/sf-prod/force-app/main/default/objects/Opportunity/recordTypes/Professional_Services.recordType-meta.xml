@@ -1,0 +1,2846 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Professional_Services</fullName>
+    <active>true</active>
+    <businessProcess>Professional Services Process</businessProcess>
+    <description>Record Type for Professional Services</description>
+    <label>Professional Services</label>
+    <picklistValues>
+        <picklist>AI_Pitch_Sentiment__c</picklist>
+        <values>
+            <fullName>Highly Interested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Interested but not ready to act</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Neutral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Interested - Don%27t see value in the feature</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Skeptical</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>AR_Scenario__c</picklist>
+        <values>
+            <fullName>Ghosted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Involuntary</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unresponsive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Voluntary - Price</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Voluntary - Terms</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Voluntary - Unknown</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Account_Health__c</picklist>
+        <values>
+            <fullName>Amber - No Confirmation On Renewal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Black - Termination Notice Received</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Green - Confirmed They Will Renew</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Red - Confirmed They Will Not Renew</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ancillary_Loss_Reason_s__c</picklist>
+        <values>
+            <fullName>Company Acquired</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Compliance Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failure to Sign MY Agreement Last Renewal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inability to Sign EUA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inability to Sign MY Agreement This Renewal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lack of CSM Engagement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lack of Product Innovation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lack of Vision</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing Gap with Competition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Stability</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Professional Services Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Support Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Use Case Dissolved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Value Never Achieved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>unable to reduce licenses</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Billing_Schedule__c</picklist>
+        <values>
+            <fullName>100%25 Net 30</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>100%25 Upfront</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>50%25 Upon Receipt %2F 50%25 Net 30</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Monthly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Monthly Billing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prepaid%2C Annual 2YR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prepaid%2C Annual 3YR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prepaid%2C Annual 4YR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prepaid%2C Annual 5YR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SB Annual Billing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SB Monthly Billing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SB Monthly Billing Day 5 Net 30</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SB Monthly Billing EOM</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Business_Value_Fit__c</picklist>
+        <values>
+            <fullName>Green</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Red</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yellow</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Central_Loss_Reason__c</picklist>
+        <values>
+            <fullName>3-Operational Dissatisfaction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lost to Competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Budget %2F Lost Funding</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Price</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Replacement Due to M%26A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unhappy with Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Users Left the Company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Value</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Champion_Creation__c</picklist>
+        <values>
+            <fullName>Green</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Red</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yellow</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contact_ID__c</picklist>
+        <values>
+            <fullName>Green</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Red</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yellow</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contracts__c</picklist>
+        <values>
+            <fullName>Green</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Red</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yellow</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>CurrencyIsoCode__c</picklist>
+        <values>
+            <fullName>AED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AUD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CAD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CHF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CNY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EUR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GBP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HKD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>INR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>JPY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MMK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MYR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NOK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NZD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OMR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SEK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SGD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>USD</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>CurrentContractHasAutoRenewalClause__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Current_Billing_Term__c</picklist>
+        <values>
+            <fullName>Annual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Monthly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>One Time</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quarterly</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Current_Success_Level__c</picklist>
+        <values>
+            <fullName>Gold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legacy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platinum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standard</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Customer_Business_Value__c</picklist>
+        <values>
+            <fullName>Happy with value delivered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Has unresolved concerns</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unknown</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Customer_Moving_Off_Product__c</picklist>
+        <values>
+            <fullName>At risk</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No longer using product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Started moving off product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unknown</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Deal_Desk_Substage__c</picklist>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed-Won %28AWS MarketPlace%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duplicate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending Deal Desk</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending NetSuite</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending PO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending Write Off</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Economic_Buyer__c</picklist>
+        <values>
+            <fullName>Green</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Red</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yellow</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Extensions_Granted__c</picklist>
+        <values>
+            <fullName>0</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ForecastCategoryName</picklist>
+        <values>
+            <fullName>Best Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Omitted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pipeline</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>Advertisement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aged Lead</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contact Us</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Current Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Current Customer Cross-Sell</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CxO Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Demo Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Employee Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Google AdWords</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Marketing%2FMQL%2F10%25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Marketing%2FSQL%2F20%25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prime</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prime Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Chat</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Download</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Purchased List</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewals Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Research</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SAM%2FCP Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Services Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Support Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Trade Show</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Website</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Website Quote Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Website Trial</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Lead_Source_Detail__c</picklist>
+        <values>
+            <fullName>AWS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Badge Scan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CloudFix</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Conference Parties</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Demo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finops Foundation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Google</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Google Display</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Google PMax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Google Search</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IHM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IT Brew</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Install Base</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LinkedIn</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meetup</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Newsletter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>QR Code</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reddit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sponsorship</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tech Advisors</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TechTarget</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>The Channel Company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>The Register</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Twitter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VIB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>YouTube</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Loss_Reason__c</picklist>
+        <values>
+            <fullName>Company Acquired</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract Terms %26 Conditions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Data Quality</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duplicate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finance Action</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Handled by the BU</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inactive Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lack of ROI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lost to Competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Min seats is too high</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Budget %2F Lost Funding</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Decision %2F Non-Responsive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Using Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Overdue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pre-Import</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prime</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Shutdown</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Professional Services Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Project Postponed%2FCanceled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales%2FBilling Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Security Review Failure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Support issues</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>NPS__c</picklist>
+        <values>
+            <fullName>0</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>PS_Opportunity_Discovered__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Price_Budget__c</picklist>
+        <values>
+            <fullName>Green</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Red</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yellow</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Price_Reset__c</picklist>
+        <values>
+            <fullName>Price Reset</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Primary_Loss_Reason__c</picklist>
+        <values>
+            <fullName>0-Unknown</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1-Pricing Dissatisfaction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2-Value</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3-Operational Dissatisfaction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4-Legal%2FCompliance Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5-Ceased Usage</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Primary_Loss_Sub_Category__c</picklist>
+        <values>
+            <fullName>0-Unknown</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1-Post Acquisition Price Increase</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2-Lack of ROI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3-Outages</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4-Rejected Red Line Requests</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5-Budget Cuts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Budget Cuts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Company Acquired</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Compliance Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failure to Sign MY Agreement Last Renewal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inability to Sign EUA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inability to Sign MY Agreement This Renewal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lack of CSM Engagement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lack of Product Innovation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lack of ROI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lack of Vision</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outages</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Post Acquisition Price Increase</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing Gap with Competition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Stability</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Professional Services Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected Red Line Requests</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Support Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Use Case Dissolved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Value Never Acheived</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product_Fit__c</picklist>
+        <values>
+            <fullName>Green</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Red</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yellow</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product_Solution_Service_Name__c</picklist>
+        <values>
+            <fullName>AES Customer Engagement Platform</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AlertFind</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AlertFind Add On</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Artemis 9000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Artemis Views</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ask Me Anything</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea CRM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea CRM Add On</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Clinical Solutions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Cloud Integration Hub</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Collaborative Enterprise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Compliance Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea DXSI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Distribution Channel Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Library Subscription</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Messenger</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Monitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Planning Solutions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Playbooks</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Portal Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Process</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Pulse</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Quality Management Solutions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Regulatory Solutions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Social</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Store Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Store Management Add On</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Auto Configuration Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bonzai</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CRM Email Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CSM Add-on Basic</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CSM Add-on Premier</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Campaign Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CloudFix</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Collaborative Opportunity Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Content Lifecycle Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email Archival</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email Continuity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email Security</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Evoq Content</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Extended Maintenance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FirstRain</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gold Concierge</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hypercare</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Infer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Innovation Enablement Program</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integrated Media Intelligence</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jive Add On</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jive for Mobile</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kayako</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Leadership Exchange</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>List Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Managed Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Microsoft Teams Integrations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Onyx</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pivotal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Predictive CRM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quicksilver</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revenue Lifecycle Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revenue Lifecycle Management Add On</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Intelligence</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SalesBuilder</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Saratoga</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Smart Notifications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sococo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Synoptos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Synoptos Add On</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Targeted Newsletter</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product__c</picklist>
+        <values>
+            <fullName>ACRM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Accuris</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Acorn</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AnswerHub</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Artemis</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Artemis %28APS%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AtHand</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Platform</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea SAS %28ARS%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Social</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Autotrol</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bonzai</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BroadVision</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BryterCX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CallStream%2FCityNumbers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CloudFix</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Computron</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Config</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CoreTrac</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DCM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DNN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EPM Live</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EngineYard</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Everest</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finserv %28AIS%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Firm58</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FirstRain</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FogBugz</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gensym</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GoMembers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ISTA %28AES%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite Local Search</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite Misc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Infer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Infinio</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Influitive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>InfoBright</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jigsaw Platform</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kandy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kayako</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Knova</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lyris %28AEM%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Messageone</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mobilogy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MyAlerts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NewNet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NextDocs %28ALSS%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>None</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NorthPlains</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nuview</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ObjectStore</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Olive Software</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Onyx</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PeerApp</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pivotal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Placeable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Playbooks</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prologic</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ResponseTek</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SLI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>STL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Saratoga</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ScaleArc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>School Loop</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sensage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Gateway</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Skyvera Misc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Smart Routines</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sococo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>StreetSmart</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SupportSoft</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Synoptos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Take</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Telco ResponseTek</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Test</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tradebeam</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Verdiem</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VoltDelta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>XO Hire</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Purchase_Order__c</picklist>
+        <values>
+            <fullName>Attached</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Required</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>QC_Status__c</picklist>
+        <values>
+            <fullName>Accepted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Accepted-Reworked</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected-Final</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reworked</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Quoting_Entity__c</picklist>
+        <values>
+            <fullName>%40Hand Australia Pty Ltd</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>%40Hand Software Corporation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>APSAP Software Services Private Limited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Accuris ESW</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Accuris Ireland</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Accuris Zep</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aclate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Acorn Performance Group%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Agentek%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aptean Canada Corporation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aptean Software Sdn Bhd</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Software FZ-LLC %28Dubai%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Software GmbH %28Vienna%2FAustria%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aurea Software%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Auto-Trol Technology Corporation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Avolin Canada Corporation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Avolin Canada Ltd</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Avolin Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Avolin Japan Co%2E Ltd</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Avolin LLC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Avolin Software Technology %28Shenzhen%29 Co%2E%2C Ltd%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Avolin UK Limited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Beckon%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bespeak</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bizness Apps</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chute Corporation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Compressus%2C Inc%2E d%2Fb%2Fa Ignite Data Solutions Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Computron Software Australia Pty Ltd</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Computron Software Ltd</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Computron Software%2C LLC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Coretrac%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DNN Corp%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dynamic Owl</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dynamic Owl Consulting%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EPM Live%2CInc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ESW Holdings%2C Inc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ESW Operations LLC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ESW Technologies FZ-LLC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Everest Software Inc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GY Agemni%2C LLC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gensym Corporation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IMI Holdings Ireland Limited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite Analytics%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite Auto-Trol Solutions%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite Data Solutions Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite Enterprise Software Solutions%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite Everest Solutions%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite Firm58 Solutions%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite FirstRain Solutions%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite Infer Solutions%2CInc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite Knowledge Marketing Solutions%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite Local Search Solutions%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite Marketing Analytics%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite Olive Software Solutions%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite RMSA Retail Solutions%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite SV Solutions%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite Scalearc Solutions Inc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ignite Technologies%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IgniteTech CX Solutions%2C LLC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Industri-Matematik International AB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Infinio Systems%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jive Software%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kayako</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Latis Networks Inc%2E DBA StillSecure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MBI Solutions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MessageOne%2C LLC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MyAlerts Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NewNet Communication Technologies BV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NextDocs Corporation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>North Plains Systems Corp%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>North Plains%2C LLC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NuView Systems%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ObjectStore%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Olive Software Limited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PeerApp %28US%29%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pivotal Corporation Ireland Unlimited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pivotal Technologies Corporation Limited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prologic Limited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PurchasingNet Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quantum Retail Technology%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ResponseTek Networks Corp%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Right90 Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>S%2EL%2EI Systems%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SLI Systems %28UK%29 Limited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Saphire AC Holdings%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sapphire France S%2EA%2ES%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sapphire Software Technology %28Shenzhen%29 Co%2E%2C Ltd</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Saratoga Systems%2C AB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>School Loop Inc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Skyvera Solutions%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Skyvera%2C LLC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sococo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Symphony Commerce%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Synoptos Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TriActive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Trilogy Enterprises%2C Inc%2E %28DE%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Trilogy Japan K%2EK%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Update Software Deutschland GmbH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vasona Networks Inc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vasona Networks Mexico</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Versata FZ-LLC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Versata International%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Versata Software%2C Inc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Versata%2C Inc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Volt Delta Resources%2C LLC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vyre Limited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>XANT%2C Inc%2E dba InsideSales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Xinet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Xinet GmbH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Xinet%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ZephyrTel%2C Inc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Zumobi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>update sales GmbH</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Sales_Play__c</picklist>
+        <values>
+            <fullName>CSM Add On - Basic</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CSM Add On - Premier</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Enterprise Edition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Expansion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Extended Maintenance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Extended Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Extension Pack</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Extension Packs - Premier</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gold Concierge</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gold Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Grow - A-List</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Grow - Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Grow - Enterprise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HyperCare</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Innovation Enablement Program</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>License Expansion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>License Overages</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Managed Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Managed Services %28P%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NCA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other - NCA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other - Propacks</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other-NCA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS 1-time</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS ARR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS-ARR - Extension Packs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS-ARR - Gold Concierge</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS-ARR - Hypercare</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS-ARR - Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Perpetual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pilot</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platinum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platinum Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium Onboarding</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prime - TSL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pro Packs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product 1x</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewal Reset</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewal Uptick</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retain - Contractual Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standard Solution</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unlimited Single Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unlimited Solution</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Upgrade to Latest</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WWYB</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Secondary_Loss_Reason__c</picklist>
+        <values>
+            <fullName>Company Acquired</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Compliance Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract terms %26 conditions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lack of ROI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lost to Competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Min seats is too high</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Budget %2F Lost Funding</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Decision %2F Non-Responsive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Using Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Price</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Issues - Exceeds Needs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Issues - Lack of Innovation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Issues - Product Problems</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product issues - Missing FeatureI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Professional Services Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Project Postponed%2FCanceled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Security Review Failure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Support Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tech Stack Consolidation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Trust in Product%2FCompany Lost</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Sub_Play__c</picklist>
+        <values>
+            <fullName>AES Customer Engagement Platform</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Account Collaboration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ask Me Anything</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CRM eMail Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CloudFix</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Collaborative Opportunity Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Content Lifecycle Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Crisis Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Enhanced Onboarding</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gold Concierge Pack</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integrated Media Intelligence</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jive Mobile</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Leadership Exchange</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Microsoft Teams Integration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Personalized Newsletter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Predictive CRM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product as Feature</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Intelligence</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Smart Notifications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Targeted Newsletters</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Value Expansion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Virtual Net New</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Subscription_Status__c</picklist>
+        <values>
+            <fullName>Activated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Draft</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminated - Churn</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminated - Finance Action</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminated - Invalid Subscription</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Success_Level__c</picklist>
+        <values>
+            <fullName>Gold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legacy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platinum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standard</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Timeframe__c</picklist>
+        <values>
+            <fullName>Green</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Red</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yellow</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Prime</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Professional Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Upsell</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Understanding__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Unlimited_Coverage__c</picklist>
+        <values>
+            <fullName>0%25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>100%25 - Signed%2C Not Using</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>100%25 - Using</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Unlimited_Opportunity_Discovered__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Unlimited_Status__c</picklist>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delayed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not engaged</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not using</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Using</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Upsell_Opportunity_Discovered__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Usage_Status__c</picklist>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Installed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Using</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Onboarding Requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Using</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Value__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Vision_Questions__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Vision_engagement_and_excitement__c</picklist>
+        <values>
+            <fullName>Excited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Interested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No vision</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not interested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other Blocker</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Win_Reason__c</picklist>
+        <values>
+            <fullName>Business Value</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Support</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Win_Type__c</picklist>
+        <values>
+            <fullName>Auto-Renew</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Co-Term</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PO Received</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quote Signed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Self-Serve</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Work_Delivered__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

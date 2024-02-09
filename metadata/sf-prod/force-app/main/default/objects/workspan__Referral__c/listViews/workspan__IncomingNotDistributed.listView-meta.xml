@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__IncomingNotDistributed</fullName>
+    <columns>NAME</columns>
+    <columns>workspan__CustomerName__c</columns>
+    <columns>workspan__CustomerContactFirstName__c</columns>
+    <columns>workspan__CustomerContactLastName__c</columns>
+    <columns>workspan__ReferralStatus__c</columns>
+    <columns>workspan__SourcedByPartner__c</columns>
+    <columns>workspan__NextStep__c</columns>
+    <columns>workspan__ReferralReceivedOn__c</columns>
+    <columns>workspan__ReferralExpirationDate__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>workspan__IsNotDistributed__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>workspan__IsDeleted__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Incoming Not Distributed</label>
+</ListView>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__GoogleSummaryOfSupport__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Summary of support required by Google</inlineHelpText>
+    <label>Google Summary Of Support</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Technical support</fullName>
+                <default>false</default>
+                <label>Technical support</label>
+            </value>
+            <value>
+                <fullName>Transaction related support (POC/GCP Marketplace/Procurement)</fullName>
+                <default>false</default>
+                <label>Transaction related support (POC/GCP Marketplace/Procurement)</label>
+            </value>
+            <value>
+                <fullName>Up-selling/Renewal/Cross-selling support</fullName>
+                <default>false</default>
+                <label>Up-selling/Renewal/Cross-selling support</label>
+            </value>
+            <value>
+                <fullName>Align sales/account strategy</fullName>
+                <default>false</default>
+                <label>Align sales/account strategy</label>
+            </value>
+            <value>
+                <fullName>Already in touch with the Google Cloud Sales Team</fullName>
+                <default>false</default>
+                <label>Already in touch with the Google Cloud Sales Team</label>
+            </value>
+            <value>
+                <fullName>Other (Please use &apos;Summary of the Opportunity&apos; field for explanation)</fullName>
+                <default>false</default>
+                <label>Other (Please use &apos;Summary of the Opportunity&apos; field for explanation)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

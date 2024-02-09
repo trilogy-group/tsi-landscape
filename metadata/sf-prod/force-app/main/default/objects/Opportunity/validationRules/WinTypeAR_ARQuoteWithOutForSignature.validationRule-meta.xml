@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WinTypeAR_ARQuoteWithOutForSignature</fullName>
+    <active>true</active>
+    <description>AR Quote field must be set and the AR Quote should be Out for Signature to set the Win Type to Auto-Renew</description>
+    <errorConditionFormula>TEXT(Win_Type__c) = &apos;Auto-Renew&apos; &amp;&amp;
+(ISBLANK(AR_Quote__c) || TEXT(AR_Quote__r.SBQQ__Status__c) != &apos;Out for Signature&apos;) &amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorDisplayField>AR_Quote__c</errorDisplayField>
+    <errorMessage>AR Quote field must be set and the AR Quote should be Out for Signature to set the Win Type to Auto-Renew</errorMessage>
+</ValidationRule>

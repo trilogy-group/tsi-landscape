@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Floor_for_QS__c</fullName>
+    <description>Temporary formula field to convert Floor__c checkbox to a Number value, which then be used in Quicksight reporting. This is a temporary field until Quicksight bug of retrieving checkbox field values correctly from salesforce reports.</description>
+    <externalId>false</externalId>
+    <formula>if(Floor__c,1,0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Floor_for_QS</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

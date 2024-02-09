@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Sentiment_Details_Required</fullName>
+    <active>true</active>
+    <description>Customer sentiment details are required when customer business value or customer moving off product fields are unknown or they are at risk of moving off product or have unresolved concerns.</description>
+    <errorConditionFormula>AND (OR (IsPickval(Customer_Business_Value__c,&apos;Unknown&apos;), IsPickval(Customer_Business_Value__c,&apos;Has unresolved concerns&apos;), IsPickVal( Customer_Moving_Off_Product__c, &apos;Unknown&apos;), IsPickVal( Customer_Moving_Off_Product__c, &apos;At Risk&apos;), IsPickVal( Customer_Moving_Off_Product__c, &apos;Started moving off product&apos;)), IsBLANK( Customer_Sentiment_Details__c ),IsClosed==false,ISPickval(Type,&apos;Renewal&apos;) )&amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)</errorConditionFormula>
+    <errorDisplayField>Customer_Sentiment_Details__c</errorDisplayField>
+    <errorMessage>If customer HAS UNRESOLVED CONCERNS or is AT RISK of moving off product or any of the Customer Sentiment choices are UNKNOWN, please explain in the Customer Sentiment Details field.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,628 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "85d98b43-4b57-471c-8881-5b6284656472",
+      "created": "2023-09-01T19:48:58.876827Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "project_id": "2974a216-c661-40f7-a26d-984a5a49fdf9",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "44088036-e3e4-4a78-b5d8-07876590bb04",
+        "created": "2023-09-01T19:50:06.120653Z"
+      },
+      "title": "Import error handler",
+      "description": "This flow is to handle the unexpected errors that can happen during importing the Contract Reviews from the spreadsheet into netsuite",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {
+          "spreadsheetId": ""
+        },
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "branch-1",
+          "type": "branch",
+          "content": {
+            "branch1": [
+              {
+                "name": "storage-8",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "storage-9",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "storage-1",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "__default__": [
+              {
+                "name": "storage-2",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "storage-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-4",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-5",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "sheets-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-6",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-7",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-10",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "branch-1": {
+          "title": "Branch by connector name",
+          "description": "Branch to get the correct error message to show to the user",
+          "connector": {
+            "name": "branch",
+            "version": "1.2"
+          },
+          "operation": "simple",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result"
+            },
+            "branches": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "netsuite"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "netsuite"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "script-1": {
+          "title": "Get Connector Name",
+          "description": "Get the name of the step where the error happened",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "step_name"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.origin.step_name"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n  const regex = /(?<step>.*)-\\d+/;\n  const stepName = input.step_name.match(regex).groups.step;\n\treturn stepName;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-2": {
+          "title": "Save Error Message",
+          "description": "Save the message to be used later",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "error_message"
+            },
+            "value": {
+              "type": "object",
+              "value": {
+                "errorMessage": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.error.message"
+                },
+                "result": {
+                  "type": "string",
+                  "value": "Execution Error"
+                }
+              }
+            }
+          }
+        },
+        "storage-5": {
+          "title": "Get log row number",
+          "description": "Get the log row where the error message will be written",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "LogRow_{$.steps.script-3.result}"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "storage-9": {
+          "title": "Get contract data",
+          "description": "Get the contract data to show the message to the user according to the row name that is in the spreadsheet.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "ContractData_{$.steps.script-3.result}"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "script-3": {
+          "title": "Get flow execution uuid",
+          "description": "script that gets the flow execution uuid to get the tab name and the row number to log the error.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "url"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.origin.step_log_url"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  const regex = /https:\\/\\/app.tray.io\\/workflow\\/[^\\/]+\\/logs\\/(?<id>.{36})/;\n  return input.url.match(regex).groups.id;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-4": {
+          "title": "Get log tab name",
+          "description": "Get the log tab name where the error message will be written",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "LogTabName_{$.steps.script-3.result}"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "storage-7": {
+          "title": "Remove log row number",
+          "description": "Remove this saved value from the Account storage",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "delete",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "LogRow_{$.steps.script-3.result}"
+            }
+          }
+        },
+        "storage-10": {
+          "title": "Remove contract data",
+          "description": "Remove this saved value from the Account storage",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "delete",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "ContractData_{$.steps.script-3.result}"
+            }
+          }
+        },
+        "sheets-1": {
+          "title": "Log execution errors",
+          "description": "Logs the result and the error message in the log",
+          "connector": {
+            "name": "sheets",
+            "version": "8.1"
+          },
+          "operation": "update_values_in_spreadsheet",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "TSI Service User google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/51312ff204893a2751b6788b914f9b78.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "spreadsheet_id": {
+              "type": "jsonpath",
+              "value": "$.config.spreadsheetId"
+            },
+            "value_input_option": {
+              "type": "string",
+              "value": "RAW"
+            },
+            "major_dimension": {
+              "type": "string",
+              "value": "ROWS"
+            },
+            "values": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "array",
+                  "value": [
+                    {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-3.value.result"
+                    },
+                    {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-3.value.errorMessage"
+                    }
+                  ]
+                }
+              ]
+            },
+            "include_values_in_response": {
+              "type": "boolean",
+              "value": false
+            },
+            "range": {
+              "type": "string",
+              "value": "{$.steps.storage-4.value}!B{$.steps.storage-5.value}:C{$.steps.storage-5.value}"
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Save Error Message",
+          "description": "Save the message to be used later",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "error_message"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.script-2.result"
+            }
+          }
+        },
+        "storage-6": {
+          "title": "Remove log tab name",
+          "description": "Remove this saved value from the Account storage",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "delete",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "LogTabName_{$.steps.script-3.result}"
+            }
+          }
+        },
+        "storage-3": {
+          "title": "Get Error Message",
+          "description": "Gets the error message to insert in the spreadsheet",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "error_message"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "storage-8": {
+          "title": "Get NS field map",
+          "description": "Gets the ns field map to show the message to the user according to the row name that is in the spreadsheet.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "NSContractReviewFieldMap"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "script-2": {
+          "title": "Extract NS Error",
+          "description": "Script that extracts the error message from netsuite connectors",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "error"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.error.response.body",
+                      "fallback": {
+                        "value": "$.steps.trigger.error.message",
+                        "type": "jsonpath"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsFieldMap"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-8.value"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "contractData"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-9.value"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  let errorMessage = getErrorMessage(input.error);\n  //remove this sentence that doesn't add any information\n  errorMessage = errorMessage.replace('Error while accessing a resource. ','');\n\n  //search if a nsField is within the error message\n  const arrayFieldsFound = Object.entries(input.nsFieldMap).filter(([fieldName, fieldData]) => errorMessage.includes(fieldData.key));\n  //if a field is found, change the error message to have the row name\n  if (arrayFieldsFound.length !== 0) {\n    const nsFieldFound = arrayFieldsFound[0][1].key;\n    const rowName = getRowName(arrayFieldsFound, input.contractData);\n    errorMessage = errorMessage.replace(`field ${nsFieldFound}`,`row '${rowName}'`);\n    errorMessage = errorMessage.replace(`${nsFieldFound}`,`row '${rowName}'`);\n    return {\n      errorMessage,\n      result: 'Data Errors'\n    }\n  }\n  if (errorMessage.startsWith('Please enter value(s) for:')) {\n    return {\n      errorMessage,\n      result: 'Data Errors'\n    }\n  }\n  return {\n    errorMessage,\n    result: 'Execution Error'\n  }\n};\n\nfunction getRowName(arrayFields, contractData) {\n  const fieldKeys = arrayFields.map(i => i[0]);\n  for (const key of fieldKeys) {\n    if (contractData[key]) {\n      return contractData[key].rowName;\n    }\n  }\n}\n\nfunction getErrorMessage(error) {\n  try {\n    const errorObj = JSON.parse(error);\n\t\treturn errorObj[\"o:errorDetails\"][0].detail;\n  } catch {\n    if (error[\"o:errorDetails\"] && error[\"o:errorDetails\"][0]?.detail) {\n      return error[\"o:errorDetails\"][0].detail;\n    }\n    if (error.error && error.error.code && error.error.message) {\n      return error.error.code + ' - ' + error.error.message;\n    }\n  \tif (error.readResponse || error.writeResponse) {\n    \tconst response = error.readResponse || error.writeResponse;\n      const statusDetail = response.status.statusDetail[0];\n      if (statusDetail && statusDetail.code && statusDetail.message) {\n        return statusDetail.code + ' - ' + statusDetail.message;\n      }\n    }\n  \treturn error;\n  }\n}"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "trigger": {
+          "title": "Alert",
+          "connector": {
+            "name": "alerting-trigger",
+            "version": "1.1"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "include_raw_response": {
+              "value": true,
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "dependencies": []
+    }
+  ],
+  "projects": []
+}

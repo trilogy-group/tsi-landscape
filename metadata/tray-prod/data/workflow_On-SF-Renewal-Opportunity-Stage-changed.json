@@ -1,0 +1,287 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "fb3558d0-7167-4b1a-ae46-a084719dc77c",
+      "created": "2022-07-07T06:38:27.019681Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "group": "b706c3fa-9137-46ef-a971-47480298b98b",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "9b6bc087-fcc8-46d6-99ad-e24b22e27e78",
+        "created": "2023-05-16T16:49:35.170406Z"
+      },
+      "title": "On SF Renewal Opportunity Stage changed",
+      "description": "When opportunity is in Finalizing with lost reason set, terminate the associated draft Renewal Subscription.\nWhen opportunity is reopen (moved out of Closed Lost stage), void termination order for the associated renewal subscription.",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string",
+              "title": "Message",
+              "description": "Description of the flow outcome"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-5",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "terminate-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "loop-1",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "call-workflow-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        }
+      ],
+      "steps": {
+        "boolean-condition-5": {
+          "title": "Event Org Id Match?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].Id"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.organization_id"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Exec on SF stage change",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "bfc32cc1-1707-44b5-8c54-3623aa1a699d"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "opportunityId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.Id"
+                }
+              }
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop Opportunities",
+          "description": "Loop through all the changed opportunities",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "count": {
+                "type": "number"
+              },
+              "index": {
+                "type": "number"
+              },
+              "is_first": {
+                "type": "boolean"
+              },
+              "is_last": {
+                "type": "boolean"
+              },
+              "branch_name": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.events"
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "OrgId Does Not Match",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "Event is from another org ('{$.steps.trigger.organization_id}' instead of '{$.steps.salesforce-2.records[0].Id}'). Please fix the sandbox outbound messages list."
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Get Org Id",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "query",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "query": {
+              "type": "string",
+              "value": "SELECT Id FROM Organization"
+            }
+          }
+        },
+        "trigger": {
+          "title": "On stage change",
+          "connector": {
+            "name": "salesforce-notification",
+            "version": "3.0"
+          },
+          "operation": "record_field_change",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "public_url": {
+              "type": "jsonpath",
+              "value": "$.env.public_url"
+            },
+            "object_prefix": {
+              "type": "string",
+              "value": "Tray"
+            },
+            "include_created_records": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "field": {
+              "type": "string",
+              "value": "StageName"
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "bfc32cc1-1707-44b5-8c54-3623aa1a699d",
+          "name": "Trigger On SF Renewal Opportunity Stage changed subflow"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

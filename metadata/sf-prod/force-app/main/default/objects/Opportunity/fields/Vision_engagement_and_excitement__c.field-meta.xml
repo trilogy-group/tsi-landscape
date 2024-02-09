@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vision_engagement_and_excitement__c</fullName>
+    <description>Field migrated from IgniteTech: Vision engagement and excitement</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Field migrated from IgniteTech: Vision engagement and excitement</inlineHelpText>
+    <label>Vision engagement and excitement</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Excited</fullName>
+                <default>false</default>
+                <label>Excited</label>
+            </value>
+            <value>
+                <fullName>Interested</fullName>
+                <default>false</default>
+                <label>Interested</label>
+            </value>
+            <value>
+                <fullName>Not interested</fullName>
+                <default>false</default>
+                <label>Not interested</label>
+            </value>
+            <value>
+                <fullName>Other Blocker</fullName>
+                <default>false</default>
+                <label>Other Blocker</label>
+            </value>
+            <value>
+                <fullName>No vision</fullName>
+                <default>false</default>
+                <label>No vision</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

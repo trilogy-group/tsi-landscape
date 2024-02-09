@@ -1,0 +1,583 @@
+{
+  "type": "object",
+  "properties": {
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_is_eu_agreement": {
+      "title": "EU Agreement",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_audit_trail": {
+      "title": "Audit Trail PDF",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_celigo_agreement_link": {
+      "title": "Host Signing for the Current Signer",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_interactive_url": {
+      "title": "Interactive URL",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_celigo_host_agreement_signer": {
+      "title": "Host Signing for the First Signer",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_external_id": {
+      "title": "Adobe Sign Agreement External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_signed_doc": {
+      "title": "Signed Document",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_confirm_pass": {
+      "title": "Confirm Password",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_entity_id": {
+      "title": "Entity Id",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_celigo_allow_x_days_to_sign": {
+      "title": "Allow Signers X days to sign document",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_kba_protect": {
+      "title": "Knowledge Based Authentication",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_echo_send_doc_45s_at": {
+      "title": "(Hidden) Send Doc &gt; 45s At",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_need_update": {
+      "title": "Need To Update",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_parent_record": {
+      "title": "Parent Record Id",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_folder": {
+      "title": "Agreement Folder",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_parent_type": {
+      "title": "Parent Record Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_protect_sign": {
+      "title": "Password Required To Sign",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_jj_matching_recs": {
+      "title": "Matching Links",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_signed_url": {
+      "title": "Signed Document URL",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_celigo_agreement_expiration": {
+      "title": "Signing Deadline",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_protect_view": {
+      "title": "Password Required To View PDF",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_password": {
+      "title": "Password",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_senddocinteractive": {
+      "title": "Preview document or position signatures",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_message": {
+      "title": "Message",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_webid_protect": {
+      "title": "Web Identity Authentication",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_dont_act": {
+      "title": "Processing",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_days_until_deadline": {
+      "title": "Days Until Signing Deadline",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "recordId": {
+      "title": "Record ID",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_sender_signs": {
+      "title": "I Also Need To Sign This Agreement",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_date_signed": {
+      "title": "Date Signed",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_doc_key": {
+      "title": "Document Key",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_echosign_date_sent": {
+      "title": "Date Sent",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "custrecord_echosign_created": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_agreement_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_es_parent_tran": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_echosign_sign_order": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_celigo_agreement_language": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_echosign_reminder": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_echosign_status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_echosign_sign_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_echosign_modified": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "custrecord_echosign_status",
+    "externalId",
+    "lastmodifiedby",
+    "custrecord_is_eu_agreement",
+    "custrecord_celigo_agreement_link",
+    "custrecord_echosign_interactive_url",
+    "custrecord_celigo_host_agreement_signer",
+    "scriptId",
+    "custrecord_echosign_sign_type",
+    "custrecord_echosign_external_id",
+    "id",
+    "custrecord_echosign_entity_id",
+    "custrecord_celigo_allow_x_days_to_sign",
+    "custrecord_echosign_kba_protect",
+    "custrecord_echo_send_doc_45s_at",
+    "created",
+    "custrecord_echosign_need_update",
+    "custrecord_echosign_parent_record",
+    "custrecord_echosign_folder",
+    "custrecord_echosign_parent_type",
+    "custrecord_echosign_protect_sign",
+    "lastmodified",
+    "name",
+    "custrecord_jj_matching_recs",
+    "isInactive",
+    "custrecord_echosign_signed_url",
+    "custrecord_celigo_agreement_expiration",
+    "custrecord_echosign_protect_view",
+    "custrecord_agreement_type",
+    "custrecord_echosign_password",
+    "custrecord_echosign_senddocinteractive",
+    "custrecord_echosign_message",
+    "custrecord_echosign_modified",
+    "owner",
+    "custrecord_echosign_webid_protect",
+    "custrecord_echosign_reminder",
+    "custrecord_echosign_created",
+    "custrecord_echosign_dont_act",
+    "abbreviation",
+    "custrecord_echosign_days_until_deadline",
+    "recordId",
+    "custrecord_echosign_sender_signs",
+    "custrecord_es_parent_tran",
+    "custrecord_echosign_date_signed",
+    "custrecord_echosign_doc_key",
+    "custrecord_echosign_sign_order",
+    "custrecord_celigo_agreement_language",
+    "custrecord_echosign_date_sent"
+  ],
+  "x-ns-custom-record": true
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Delivery_Date_From_Being_Empty</fullName>
+    <active>true</active>
+    <description>LAMBDA-60085 Validation to make sure Delivery Date is populated when Service is Delivered</description>
+    <errorConditionFormula>AND (ISBLANK(Delivery_Date__c), IsPickVal( Delivery_Status__c,&quot;Delivered&quot;))</errorConditionFormula>
+    <errorDisplayField>Delivery_Date__c</errorDisplayField>
+    <errorMessage>Fill Delivery Date field with the date service was delivered</errorMessage>
+</ValidationRule>

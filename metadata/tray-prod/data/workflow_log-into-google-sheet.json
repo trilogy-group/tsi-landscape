@@ -1,0 +1,583 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "0fcb6f8c-6b00-4cd2-9e37-ffd4de3f9742",
+      "created": "2022-06-01T11:43:49.643404Z",
+      "workspace_id": "ddb7dc60-0c96-4280-b59f-517d94a74202",
+      "creator": "ea98028e-3c67-4163-be3f-643c230a71c0",
+      "version": {
+        "id": "263b8bd4-bd86-4e1b-91d6-aef366388c61",
+        "created": "2022-06-01T11:43:57.971833Z"
+      },
+      "title": "log into google sheet",
+      "description": "callable workflow that logs one log line into requested Google sheet workbook",
+      "enabled": true,
+      "tags": [
+        "callable",
+        "log"
+      ],
+      "settings": {
+        "config": {},
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "sheets-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-1",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "boolean-condition-1",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "storage-1",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "storage-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-2",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "sheets-3",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "sheets-4",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "date-time-helpers-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "sheets-2",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "storage-2": {
+          "title": "get worksheet is present flag",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "default_value": {
+              "type": "boolean",
+              "value": false
+            },
+            "key": {
+              "type": "string",
+              "value": "IsSheetPresent"
+            }
+          }
+        },
+        "sheets-3": {
+          "title": "create worksheet",
+          "connector": {
+            "name": "sheets",
+            "version": "8.1"
+          },
+          "operation": "create_worksheet",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "Konstantin Borisov's google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/51312ff204893a2751b6788b914f9b78.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "spreadsheet_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.google_sheet_id"
+            },
+            "title": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.worksheet"
+            },
+            "row_count": {
+              "type": "number",
+              "value": 5
+            },
+            "column_count": {
+              "type": "number",
+              "value": 4
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "worksheet exist?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-2.value"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "loop-1": {
+          "title": "loop worksheets",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "properties": {
+                    "type": "object",
+                    "properties": {
+                      "sheetId": {
+                        "type": "number"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "index": {
+                        "type": "number"
+                      },
+                      "sheetType": {
+                        "type": "string"
+                      },
+                      "gridProperties": {
+                        "type": "object",
+                        "properties": {
+                          "rowCount": {
+                            "type": "number"
+                          },
+                          "columnCount": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.sheets-1.sheets"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "worksheet is found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.worksheet"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-1.value.properties.title"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "sheets-2": {
+          "title": "insert log row into worksheet",
+          "connector": {
+            "name": "sheets",
+            "version": "8.0"
+          },
+          "operation": "create_row",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "Konstantin Borisov's google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/51312ff204893a2751b6788b914f9b78.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "spreadsheet_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.google_sheet_id"
+            },
+            "worksheet_name": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.worksheet"
+            },
+            "value_input_option": {
+              "type": "string",
+              "value": "RAW"
+            },
+            "data": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "A"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.date-time-helpers-1.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "B"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.level"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "C"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.message"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "D"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.log_url"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "storage-1": {
+          "title": "save worksheet is present flag",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "IsSheetPresent"
+            },
+            "value": {
+              "type": "boolean",
+              "value": true
+            }
+          }
+        },
+        "sheets-4": {
+          "title": "create worksheet headers",
+          "connector": {
+            "name": "sheets",
+            "version": "8.1"
+          },
+          "operation": "create_column_headers_for_sheet",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "Konstantin Borisov's google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/51312ff204893a2751b6788b914f9b78.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "value_input_option": {
+              "type": "string",
+              "value": "RAW"
+            },
+            "spreadsheet_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.google_sheet_id"
+            },
+            "worksheet_name": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.worksheet"
+            },
+            "data": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "time"
+                },
+                {
+                  "type": "string",
+                  "value": "level"
+                },
+                {
+                  "type": "string",
+                  "value": "message"
+                },
+                {
+                  "type": "string",
+                  "value": "log_url"
+                }
+              ]
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "google_sheet_id": {
+                "type": "string"
+              },
+              "worksheet": {
+                "type": "string"
+              },
+              "level": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "log_url": {
+                "type": "string"
+              },
+              "#calling_workflow": {
+                "type": "string"
+              },
+              "#calling_execution": {
+                "type": "string"
+              },
+              "#calling_execution_log_url": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {}
+        },
+        "sheets-1": {
+          "title": "get worksheets",
+          "connector": {
+            "name": "sheets",
+            "version": "8.1"
+          },
+          "operation": "list_worksheets",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "Konstantin Borisov's google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/51312ff204893a2751b6788b914f9b78.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "spreadsheet_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.google_sheet_id"
+            }
+          }
+        },
+        "date-time-helpers-1": {
+          "title": "get current time",
+          "connector": {
+            "name": "date-time-helpers",
+            "version": "3.0"
+          },
+          "operation": "current_timestamp",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "timezone": {
+              "type": "string",
+              "value": "UTC"
+            },
+            "format": {
+              "type": "object",
+              "value": {
+                "existing_format": {
+                  "type": "string",
+                  "value": "YYYY-MM-DDTHH:mm:ssZ"
+                }
+              }
+            }
+          }
+        }
+      },
+      "dependencies": []
+    }
+  ],
+  "projects": []
+}

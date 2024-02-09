@@ -1,0 +1,2576 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "eded41c8-5521-45c5-99f7-3737fbc7ee1e",
+      "created": "2023-03-14T20:25:04.672749Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "71ed8ab3-1499-4335-9a63-2a4628c72df9",
+        "created": "2023-12-06T01:58:54.389227Z"
+      },
+      "title": "Sync SF Contact To NS Contact",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "sfContactId": {
+              "title": "SalesForce Contact Id",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "netsuite-2",
+                "type": "branch",
+                "content": {
+                  "error": [
+                    {
+                      "name": "boolean-condition-4",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "script-4",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "netsuite-4",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "boolean-condition-5",
+                            "type": "branch",
+                            "content": {
+                              "true": [
+                                {
+                                  "name": "salesforce-3",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "call-workflow-2",
+                                  "type": "normal",
+                                  "content": {}
+                                }
+                              ],
+                              "false": [
+                                {
+                                  "name": "salesforce-4",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "boolean-condition-6",
+                                  "type": "branch",
+                                  "content": {
+                                    "true": [
+                                      {
+                                        "name": "salesforce-5",
+                                        "type": "normal",
+                                        "content": {}
+                                      },
+                                      {
+                                        "name": "call-workflow-4",
+                                        "type": "normal",
+                                        "content": {}
+                                      }
+                                    ],
+                                    "false": [
+                                      {
+                                        "name": "salesforce-2",
+                                        "type": "normal",
+                                        "content": {}
+                                      },
+                                      {
+                                        "name": "call-workflow-3",
+                                        "type": "normal",
+                                        "content": {}
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "name": "callable-workflow-response-2",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": [
+                          {
+                            "name": "call-workflow-1",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "terminate-1",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "success": []
+                }
+              },
+              {
+                "name": "script-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-5",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-6",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-2",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "boolean-condition-3",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "script-2",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "netsuite-3",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "script-3",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": []
+                      }
+                    },
+                    {
+                      "name": "netsuite-1",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "salesforce-3": {
+          "title": "Reset NS Id",
+          "description": "This will fix the NS ID and trigger a new synchronization",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "value": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "Contact"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.sfContactId"
+            }
+          }
+        },
+        "boolean-condition-5": {
+          "title": "Not Found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-4.response.body.items[0]",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Has something changed?",
+          "description": "We need to update the object only if there are changes. This is needed to prevent circular updates between NS and SF.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.firstName",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.firstName",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.lastName",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.lastName",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.middleName",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.middleName",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.title",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Title",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.email",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Email",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.phone",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result.phone",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.mobilePhone",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result.mobile",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.salutation",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Salutation",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result.fax",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.fax",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.company.id",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-6.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.changedEntityId"
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Notify Admins",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "19a25dd7-1955-4eb6-a36e-32ef321c5fe3"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "subject": {
+                  "type": "string",
+                  "value": "Tray.IO Contact Synchronization"
+                },
+                "content": {
+                  "type": "string",
+                  "value": "NS Contact with Id={$.steps.salesforce-1.records[0].NetSuite_ID__c} is not found. The customer does not have a contact with the same email and name. The NetSuite ID is set to NULL for the SF Contact {$.steps.trigger.data.sfContactId}"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Notify Admins",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "19a25dd7-1955-4eb6-a36e-32ef321c5fe3"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "subject": {
+                  "type": "string",
+                  "value": "Tray.IO Contact Synchronization"
+                },
+                "content": {
+                  "type": "string",
+                  "value": "There was an error getting NS Contact with Id={$.steps.salesforce-1.records[0].NetSuite_ID__c} is not found, synchronization failed for the SF Contact {$.steps.trigger.data.sfContactId}."
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "Contact Not Found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.errors.netsuite-2.response.statusCode",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 404
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Contact Exists in NS?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].NetSuite_ID__c",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": ""
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "salesforce-4": {
+          "title": "Search contact in SF",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Contacts",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Contact",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Contact ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Contact"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-4.response.body.items[0].id"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "callable-workflow-response-2": {
+          "title": "Stop",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "netsuite-4": {
+          "title": "Find contacts",
+          "description": "Run the SQL to get the subscription term",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "x-netsuite-jobid": {
+                        "type": "string"
+                      },
+                      "preference-applied": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "p3p": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "hasMore": {
+                        "type": "boolean"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "entityid": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "offset": {
+                        "type": "number"
+                      },
+                      "totalResults": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-4.result"
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            }
+          }
+        },
+        "netsuite-3": {
+          "title": "Find contacts",
+          "description": "Run the SQL to get the subscription term",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-2.result"
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            }
+          }
+        },
+        "salesforce-5": {
+          "title": "Reset NS Id",
+          "description": "This will fix the NS ID and trigger a new synchronization",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "value": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "Contact"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.sfContactId"
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get Contact",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.2"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Contacts",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Contact",
+                  "properties": {
+                    "Salutation": {
+                      "name": "Salutation",
+                      "type": "string",
+                      "title": "Salutation"
+                    },
+                    "FirstName": {
+                      "name": "FirstName",
+                      "type": "string",
+                      "title": "First Name"
+                    },
+                    "LastName": {
+                      "name": "LastName",
+                      "type": "string",
+                      "title": "Last Name"
+                    },
+                    "MiddleName": {
+                      "name": "MiddleName",
+                      "type": "string",
+                      "title": "Middle Name"
+                    },
+                    "Title": {
+                      "name": "Title",
+                      "type": "string",
+                      "title": "Title"
+                    },
+                    "Email": {
+                      "name": "Email",
+                      "type": "string",
+                      "title": "Email"
+                    },
+                    "Phone": {
+                      "name": "Phone",
+                      "type": "string",
+                      "title": "Business Phone"
+                    },
+                    "MobilePhone": {
+                      "name": "MobilePhone",
+                      "type": "string",
+                      "title": "Mobile Phone"
+                    },
+                    "MailingCountry": {
+                      "name": "MailingCountry",
+                      "type": "string",
+                      "title": "Mailing Country"
+                    },
+                    "MailingState": {
+                      "name": "MailingState",
+                      "type": "string",
+                      "title": "Mailing State/Province"
+                    },
+                    "MailingStreet": {
+                      "name": "MailingStreet",
+                      "type": "string",
+                      "title": "Mailing Street"
+                    },
+                    "MailingPostalCode": {
+                      "name": "MailingPostalCode",
+                      "type": "string",
+                      "title": "Mailing Zip/Postal Code"
+                    },
+                    "NetSuite_ID__c": {
+                      "name": "NetSuite_ID__c",
+                      "type": "string",
+                      "title": "NetSuite ID"
+                    },
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Contact ID"
+                    },
+                    "MailingCity": {
+                      "name": "MailingCity",
+                      "type": "string",
+                      "title": "Mailing City"
+                    },
+                    "Description": {
+                      "name": "Description",
+                      "type": "string",
+                      "title": "Contact Description"
+                    },
+                    "Fax": {
+                      "name": "Fax",
+                      "type": "string",
+                      "title": "Business Fax"
+                    },
+                    "Name": {
+                      "name": "Name",
+                      "type": "string",
+                      "title": "Full Name"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Salutation"
+                },
+                {
+                  "type": "string",
+                  "value": "FirstName"
+                },
+                {
+                  "type": "string",
+                  "value": "LastName"
+                },
+                {
+                  "type": "string",
+                  "value": "MiddleName"
+                },
+                {
+                  "type": "string",
+                  "value": "Title"
+                },
+                {
+                  "type": "string",
+                  "value": "Email"
+                },
+                {
+                  "type": "string",
+                  "value": "Phone"
+                },
+                {
+                  "type": "string",
+                  "value": "MobilePhone"
+                },
+                {
+                  "type": "string",
+                  "value": "MailingCountry"
+                },
+                {
+                  "type": "string",
+                  "value": "MailingState"
+                },
+                {
+                  "type": "string",
+                  "value": "MailingStreet"
+                },
+                {
+                  "type": "string",
+                  "value": "MailingPostalCode"
+                },
+                {
+                  "type": "string",
+                  "value": "NetSuite_ID__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Id"
+                },
+                {
+                  "type": "string",
+                  "value": "MailingCity"
+                },
+                {
+                  "type": "string",
+                  "value": "Description"
+                },
+                {
+                  "type": "string",
+                  "value": "Fax"
+                },
+                {
+                  "type": "string",
+                  "value": "Name"
+                },
+                {
+                  "type": "string",
+                  "value": "Account.NetSuite_ID__c"
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "Contact"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Id"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.sfContactId"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "boolean-condition-6": {
+          "title": "Contact found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-4.total"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": ">"
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Update NS Id",
+          "description": "This will fix the NS ID and trigger a new synchronization",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-4.response.body.items[0].id"
+                    }
+                  }
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "Contact"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.sfContactId"
+            }
+          }
+        },
+        "call-workflow-4": {
+          "title": "Notify Admins",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "19a25dd7-1955-4eb6-a36e-32ef321c5fe3"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "subject": {
+                  "type": "string",
+                  "value": "Tray.IO Contact Synchronization"
+                },
+                "content": {
+                  "type": "string",
+                  "value": "NS Contact with Id={$.steps.salesforce-1.records[0].NetSuite_ID__c} is not found. The customer has a contact with the same email and name, but this contact is already synced to another SF contact ({$.steps.salesforce-4.records[0].Id}) The NetSuite ID is set to NULL for the SF Contact {$.steps.trigger.data.sfContactId}"
+                }
+              }
+            }
+          }
+        },
+        "script-6": {
+          "title": "fix company",
+          "description": "Determines the company for the sync into NetSuite, considering we don't want to delink anything if the contact is not linked to an account in Salesforce.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "sfCompany"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Account.NetSuite_ID__c",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsCompany"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.company.id",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n\tconst { sfCompany, nsCompany } = input;\n\treturn sfCompany ?? nsCompany;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-1": {
+          "title": "fix name",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsContact"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "sfContact"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0]"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  const res = {\n    firstName: input.sfContact.FirstName,\n    middleName: input.sfContact.MiddleName,\n    lastName: input.sfContact.LastName,\n    entityId: [ input.sfContact.FirstName, input.sfContact.MiddleName?.charAt(0), input.sfContact.LastName ].filter(Boolean).join(' '),\n  }\n  const regex = /^(?<entity>[\\s\\S]*) \\d$/;\n  // entityId and SF Name can have a digit at the end when we have two contacts with the same name\n  // removing that to check if it's the same\n  const currentEntityId = input.nsContact.entityId.match(regex)?.groups?.entity ?? input.nsContact.entityId;\n  const currentSFName = input.sfContact.Name.match(regex)?.groups?.entity ?? input.sfContact.Name;\n  if ((!input.nsContact.firstName && !input.nsContact.lastName && !input.nsContact.middleName && \n      (input.nsContact.email?.toLowerCase() === currentSFName.toLowerCase() || \n      input.nsContact.entityId.toLowerCase() === currentSFName.toLowerCase())) || \n      currentSFName.toLowerCase() === input.sfContact.Email) {\n    res.firstName = null;\n    res.middleName = null;\n    res.lastName = null;\n    if (currentEntityId.toLowerCase() === input.nsContact.email?.toLowerCase()) {\n      res.entityId = input.sfContact.Email;\n    }\n  }\n  res.changedEntityId = currentEntityId.toLowerCase() !== res.entityId.toLowerCase();\n  // if entityId will have the same characters, keeping the current entity id\n  // setting here to not change and have same letter cases\n  if (!res.changedEntityId) {\n    res.entityId = input.nsContact.entityId;\n  }\n  // When the NS contact doesn't have a last name, the last name of the SF contact is set to the entity ID.\n  // If the last name is equal to the entity ID, don't sync it back to NS contact.\n  if (res.lastName === res.entityId) {\n  \t res.lastName = null;\n  }\n  return res;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "call-workflow-3": {
+          "title": "Notify Admins",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "19a25dd7-1955-4eb6-a36e-32ef321c5fe3"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "subject": {
+                  "type": "string",
+                  "value": "Tray.IO Contact Synchronization"
+                },
+                "content": {
+                  "type": "string",
+                  "value": "NS Contact with Id={$.steps.salesforce-1.records[0].NetSuite_ID__c} is not found, but there is the same contact with another id ({$.steps.netsuite-4.response.body.items[0].id}). The NetSuite Id is updated for the SF Contact {$.steps.trigger.data.sfContactId}."
+                }
+              }
+            }
+          }
+        },
+        "netsuite-2": {
+          "title": "Get Current Contact",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.5"
+          },
+          "operation": "get_record",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "links": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "rel": {
+                      "type": "string"
+                    },
+                    "href": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "category": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "comments": {
+                "type": "string"
+              },
+              "company": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custentity_echosign_verified": {
+                "type": "boolean"
+              },
+              "customForm": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "dateCreated": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "entityId": {
+                "type": "string"
+              },
+              "fax": {
+                "type": "string"
+              },
+              "firstName": {
+                "type": "string"
+              },
+              "globalSubscriptionStatus": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "id": {
+                "type": "string"
+              },
+              "isInactive": {
+                "type": "boolean"
+              },
+              "isPrivate": {
+                "type": "boolean"
+              },
+              "lastModifiedDate": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              },
+              "middleName": {
+                "type": "string"
+              },
+              "mobilePhone": {
+                "type": "string"
+              },
+              "owner": {
+                "type": "number"
+              },
+              "phone": {
+                "type": "string"
+              },
+              "salutation": {
+                "type": "string"
+              },
+              "subsidiary": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "title": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {
+            "strategy": "manual"
+          },
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "contact"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-1.records[0].NetSuite_ID__c"
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "script-3": {
+          "title": "get entityId",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "NScontacts"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.response.body.items"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "entityId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.entityId"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\tconst contact = input.NScontacts.find(i => i.entityid === input.entityId);\n  if (!contact) {\n    return input.entityId\n  }\n  for (let c = 1; c <= input.NScontacts.length; c++) {\n    const entityId = `${input.entityId} ${c}`;\n    const matchEntity = input.NScontacts.find(i => i.entityid === entityId);  \n    if (!matchEntity) {\n      return entityId\n    }\n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "Error",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "Getting contact by its Id failed."
+            }
+          }
+        },
+        "script-4": {
+          "title": "SuiteQL find contact",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "company"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Account.NetSuite_ID__c",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "sfContact"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0]"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsContactId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].NetSuite_ID__c"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  let queryString = `SELECT id, entityid FROM contact\n\t\t\t\tWHERE company = ${input.company} \n          ${addCondition('firstname', input.sfContact.FirstName)}\n          ${addCondition('lastname', input.sfContact.LastName)}\n          ${addCondition('email', input.sfContact.Email)}`;\n\treturn {\n    q: queryString\n  }\n};\n\nfunction escapeQuote(str) {\n  if(!str){\n    return '';\n  }\n  return str.replace(/'/g, \"''\");\n}\n\nfunction addCondition(field,value) {\n  if(!value){\n    return `AND (${field} IS NULL OR ${field}='') `;\n  }\n  return `AND ${field}='${escapeQuote(value)}' `;\n}"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Update Contact",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.5"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "contact"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-1.records[0].NetSuite_ID__c"
+            },
+            "writable_record_fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "firstName"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.firstName"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "lastName"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.lastName"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "middleName"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.middleName"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "title"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Title"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "email"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Email"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "phone"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result.phone"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "mobilePhone"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result.mobile"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "salutation"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Salutation"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "fax"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result.fax"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "company"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-6.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "entityId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-3.result",
+                      "fallback": {
+                        "value": "$.steps.script-1.result.entityId",
+                        "type": "jsonpath"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "script-5": {
+          "title": "fix phones",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "sfPhone"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Phone",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "sfMobile"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].MobilePhone",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "sfFax"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Fax",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsPhone"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.phone",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsMobile"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.mobilePhone",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsFax"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.fax",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\t// Remove all non-digit characters from the Salesforce numbers\n  const sfPhone = input.sfPhone ? input.sfPhone.replace(/\\D/g, \"\") : undefined;\n  const sfMobile = input.sfMobile ? input.sfMobile.replace(/\\D/g, \"\") : undefined;\n  const sfFax = input.sfFax ?  input.sfFax.replace(/\\D/g, \"\") : undefined;\n\n  // netsuite doesn't accept numbers with less than 7 digits\n  return {\n    phone: !sfPhone || sfPhone.length < 7 ? input.nsPhone : input.sfPhone,\n    mobile: !sfMobile || sfMobile.length < 7 ? input.nsMobile : input.sfMobile,\n    fax: !sfFax || sfFax.length < 7 ? input.nsFax : input.sfFax\n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-2": {
+          "title": "SuiteQL find contact",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "company"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-6.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "entityId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.entityId"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsContactId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].NetSuite_ID__c"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\treturn {\n    q: `SELECT id, entityid FROM contact\n\t\t\t\tWHERE company = ${input.company} \n\t\t\t\t\tAND entityid like '${escapeQuote(input.entityId)}%'\n\t\t\t\t\tAND id != ${input.nsContactId}`\n  }\n};\n\nfunction escapeQuote(str) {\n    return str.replace(/'/g, \"''\");\n}"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "entityId changed?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.changedEntityId"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "19a25dd7-1955-4eb6-a36e-32ef321c5fe3",
+          "name": "Send Admin Email"
+        },
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

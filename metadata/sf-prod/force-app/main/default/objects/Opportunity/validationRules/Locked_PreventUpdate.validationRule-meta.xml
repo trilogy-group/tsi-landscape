@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Locked_PreventUpdate</fullName>
+    <active>true</active>
+    <description>Prevent a record update when the record is locked by an approval process.</description>
+    <errorConditionFormula>IsLocked__c = true
+&amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorMessage>This record is locked due to a pending approval. Please contact your administrator for help.</errorMessage>
+</ValidationRule>

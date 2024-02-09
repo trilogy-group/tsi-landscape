@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>QC_Status__c</fullName>
+    <description>Indicates QC status of this opportunity.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Accepted - First time right
+Rejected - Failed any rule on the quality bar
+Rejected-Final  - Can&apos;t be fixed 
+Reworked - QC rejection addressed
+Accepted-Reworked - QC accepted after rework</inlineHelpText>
+    <label>QC Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+                <label>Accepted</label>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <label>Rejected</label>
+            </value>
+            <value>
+                <fullName>Reworked</fullName>
+                <default>false</default>
+                <label>Reworked</label>
+            </value>
+            <value>
+                <fullName>Accepted-Reworked</fullName>
+                <default>false</default>
+                <label>Accepted-Reworked</label>
+            </value>
+            <value>
+                <fullName>Rejected-Final</fullName>
+                <default>false</default>
+                <label>Rejected-Final</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

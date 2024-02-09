@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WinTypeAR_OppShouldBeQuoteFollowUp_AWSMP</fullName>
+    <active>true</active>
+    <description>Opportunity Should be in stage Quote Follow-up to set the Win Type to AWS Marketplace.</description>
+    <errorConditionFormula>TEXT(Win_Type__c) = &apos;AWS Marketplace&apos; &amp;&amp;
+TEXT(StageName) != &apos;Quote Follow-Up&apos; &amp;&amp; TEXT(StageName) != &apos;Finalizing&apos; &amp;&amp; TEXT(StageName) != &apos;Closed Won&apos; &amp;&amp;
+NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorDisplayField>StageName</errorDisplayField>
+    <errorMessage>Opportunity Should be in stage Quote Follow-up to set the Win Type to AWS Marketplace.</errorMessage>
+</ValidationRule>

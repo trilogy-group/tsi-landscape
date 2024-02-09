@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidatePrimaryContact</fullName>
+    <active>false</active>
+    <description>LAMBDA-52272 validation to check if the primary contact on the quote belongs to the same Account/Partner on the opportunity</description>
+    <errorConditionFormula>Invalid_Primary_Contact__c &amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Quote_QBs__c)</errorConditionFormula>
+    <errorDisplayField>SBQQ__PrimaryContact__c</errorDisplayField>
+    <errorMessage>The Primary Contact must be associated with the Partner Account (Reseller/Distributor) or Opportunity Account (End User)</errorMessage>
+</ValidationRule>

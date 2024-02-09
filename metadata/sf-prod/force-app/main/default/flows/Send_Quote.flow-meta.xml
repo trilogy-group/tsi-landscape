@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <assignments>
+        <description>Sets the Quote Approver according to formula</description>
+        <name>Set_Quote_Approver</name>
+        <label>Set Quote Approver</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Quote.Quote_Approver__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>QuoteApprover</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Updatethequote</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Checks if the quote is valid</description>
+        <name>Is_Quote_Valid</name>
+        <label>Is Quote Valid?</label>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>ErrorScreen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Valid</defaultConnectorLabel>
+        <rules>
+            <name>Valid</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Validate_Quote.ValidQuote</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Quote</targetReference>
+            </connector>
+            <label>Valid</label>
+        </rules>
+    </decisions>
+    <description>Sends a quote to approval</description>
+    <formulas>
+        <description>Gets the quote approver from the product configuration record</description>
+        <name>QuoteApprover</name>
+        <dataType>String</dataType>
+        <expression>IF(
+NOT(ISBLANK({!Get_Quote.SBQQ__Opportunity2__r.Product_Configuration__c})),
+IF(
+ISPICKVAL({!Get_Quote.SBQQ__Opportunity2__r.Type},&apos;Renewal&apos;),
+{!Get_Quote.SBQQ__Opportunity2__r.Product_Configuration__r.Renewal_Manager__c},
+{!Get_Quote.SBQQ__Opportunity2__r.Product_Configuration__r.New_Business_Manager__c}
+),
+{!Get_Quote.SBQQ__Opportunity2__r.OwnerId}
+)</expression>
+    </formulas>
+    <interviewLabel>Send Quote {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Send Quote</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <description>We need to get the quote to get the quote approver</description>
+        <name>Get_Quote</name>
+        <label>Get Quote</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_Quote_Approver</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__Quote__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Update the quote with the status and approver</description>
+        <name>Updatethequote</name>
+        <label>Update the quote</label>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
+        <connector>
+            <targetReference>Send_Quote_to_Approval</targetReference>
+        </connector>
+        <inputReference>Get_Quote</inputReference>
+    </recordUpdates>
+    <screens>
+        <description>Shows the error message when the quote is not valid</description>
+        <name>ErrorScreen</name>
+        <label>Error Screen</label>
+        <locationX>314</locationX>
+        <locationY>350</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>ErrorMessage</name>
+            <fieldText>&lt;p&gt;{!Validate_Quote.ErrorMessage}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Final_Message</name>
+        <label>Final Message</label>
+        <locationX>50</locationX>
+        <locationY>782</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>FinalText</name>
+            <fieldText>&lt;p&gt;Quote sent for approval.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Validate_Quote</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <description>Sends the quote to approval</description>
+        <name>Send_Quote_to_Approval</name>
+        <label>Send Quote to Approval</label>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
+        <connector>
+            <targetReference>Final_Message</targetReference>
+        </connector>
+        <flowName>Subflow_Send_Quote_To_Approval</flowName>
+        <inputAssignments>
+            <name>Quote</name>
+            <value>
+                <elementReference>Get_Quote</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <subflows>
+        <description>Call subflow that validates the quote</description>
+        <name>Validate_Quote</name>
+        <label>Validate Quote</label>
+        <locationX>182</locationX>
+        <locationY>134</locationY>
+        <connector>
+            <targetReference>Is_Quote_Valid</targetReference>
+        </connector>
+        <flowName>Subflow_Validate_Quote</flowName>
+        <inputAssignments>
+            <name>QuoteId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <variables>
+        <description>Quote Id to be sent</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

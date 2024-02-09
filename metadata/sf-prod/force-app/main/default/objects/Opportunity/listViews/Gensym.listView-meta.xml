@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Gensym</fullName>
+    <columns>OPPORTUNITY.TYPE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>Renewal_Date__c</columns>
+    <columns>ARR__c</columns>
+    <columns>Success_Level__c</columns>
+    <columns>Current_ARR__c</columns>
+    <columns>Current_Success_Level__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Product__c</field>
+        <operation>equals</operation>
+        <value>Gensym</value>
+    </filters>
+    <label>Gensym</label>
+</ListView>

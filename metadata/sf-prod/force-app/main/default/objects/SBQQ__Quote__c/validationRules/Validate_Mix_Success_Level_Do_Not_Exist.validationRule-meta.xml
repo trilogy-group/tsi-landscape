@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Mix_Success_Level_Do_Not_Exist</fullName>
+    <active>true</active>
+    <description>validate that the quote line items do not have products with price more than zero and they belong to different groups</description>
+    <errorConditionFormula>Has_Mixed_Success_Level__c &amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)</errorConditionFormula>
+    <errorMessage>All products on the quote should have the same success level</errorMessage>
+</ValidationRule>

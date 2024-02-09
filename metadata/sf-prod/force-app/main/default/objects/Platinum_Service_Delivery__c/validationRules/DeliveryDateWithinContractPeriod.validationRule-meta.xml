@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DeliveryDateWithinContractPeriod</fullName>
+    <active>true</active>
+    <description>LAMBDA-66822 validation to make sure Delivery date falls within Contract dates</description>
+    <errorConditionFormula>OR ( Delivery_Date__c &lt;  Contract_Start_Date__c ,  
+ Delivery_Date__c &gt; Contract_End_Date__c)</errorConditionFormula>
+    <errorDisplayField>Delivery_Date__c</errorDisplayField>
+    <errorMessage>The entered delivery date falls outside the duration of the subscription. Kindly recheck the details and make sure the delivery status is updated against the correct subscription</errorMessage>
+</ValidationRule>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>StartDateEqualsRenewalDate</fullName>
+    <active>true</active>
+    <description>For Renewal opportunities Quote Start Date should be the same as Opportunity Renewal Date.</description>
+    <errorConditionFormula>AND(ISPICKVAL(SBQQ__Opportunity2__r.Type,&apos;Renewal&apos;), SBQQ__Opportunity2__r.Renewal_Date__c!=SBQQ__StartDate__c, SBQQ__Primary__c, NOT($Setup.Quality_Bars_Configuration__c.Disabled_Quote_QBs__c))</errorConditionFormula>
+    <errorDisplayField>SBQQ__StartDate__c</errorDisplayField>
+    <errorMessage>For Renewal opportunities Quote Start Date should be the same as Opportunity Renewal Date.</errorMessage>
+</ValidationRule>

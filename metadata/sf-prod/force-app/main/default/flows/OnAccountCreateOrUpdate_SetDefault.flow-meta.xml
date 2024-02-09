@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <assignments>
+        <description>Set the Sync_To_IgniteTech_HubSpot__c field based on the values in the Product_Families__c multi-picklist.</description>
+        <name>Sync_to_Ignite_HubSpot_user</name>
+        <label>Sync to Ignite HubSpot user</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Sync_To_IgniteTech_HubSpot__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>SyncToIgniteHubSpot</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Set default values when an account is created or updated.
+
+Added Config in Sync to Ignite HubSpot
+Removed FogBugz in Sync to Ignite HubSpot</description>
+    <formulas>
+        <description>Formula field to calculate if mark the Sync_To_IgniteTech_HubSpot__c true or false.</description>
+        <name>SyncToIgniteHubSpot</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+INCLUDES({!$Record.Product_Families__c}, &apos;Acorn&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;AnswerHub&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;AtHand&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Aurea Social&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Autotrol&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;BryterCX&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Computron&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Config&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;CoreTrac&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;DNN&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;EPM Live&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Everest&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Firm58&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;FirstRain&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Gensym&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;GoMembers&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Ignite Local Search&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Ignite Misc&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;InfoBright&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Jive&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Knova&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;MyAlerts&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;NorthPlains&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Nuview&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;ObjectStore&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Placeable&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Pricer&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Prologic&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;ScaleArc&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Sensage&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Smart Routines&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;StreetSmart&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;SupportSoft&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Take&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Tradebeam&apos;),
+INCLUDES({!$Record.Product_Families__c}, &apos;Verdiem&apos;)
+)</expression>
+    </formulas>
+    <interviewLabel>OnAc {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>OnAccountCreateOrUpdate_SetDefault</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Sync_to_Ignite_HubSpot_user</targetReference>
+        </connector>
+        <object>Account</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

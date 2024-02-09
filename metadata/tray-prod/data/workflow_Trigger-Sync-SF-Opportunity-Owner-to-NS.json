@@ -1,0 +1,89 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "46bc4b0a-9a27-46a3-9fe4-1cf9b9e43698",
+      "created": "2023-10-03T06:33:21.656621Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "0c145cd5-0a3a-480f-bd7e-2cc8a66fd232",
+      "version": {
+        "id": "2be9457a-9a9e-4715-9669-f4b53492fa1f",
+        "created": "2023-10-03T06:33:49.782635Z"
+      },
+      "title": "Trigger Sync SF Opportunity Owner to NS",
+      "description": "This flow is triggered when the opportunity owner or the stage name changes and initiates asynchronously the sync of the opportunity owner into NetSuite.",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "trigger": {
+          "title": "Async call",
+          "description": "This flow is triggered when the opportunity owner or the stage name changes and initiates asynchronously the sync of the opportunity owner into NetSuite.",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "call-workflow-1": {
+          "title": "Sync SF opp owner",
+          "description": "Calls synchronously the subflow syncing the SF opportunity owner into NS.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "cc9d7dd2-b905-4623-8074-5dfd9f815fd4"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "opportunityId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.opportunityId"
+                }
+              }
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "cc9d7dd2-b905-4623-8074-5dfd9f815fd4",
+          "name": "Sync SF Opportunity Owner to NS"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

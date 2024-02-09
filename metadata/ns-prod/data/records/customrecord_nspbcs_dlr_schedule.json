@@ -1,0 +1,341 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_quick_exec_sequence": {
+      "title": "Quick Execution Sequence",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_manual_last_run_dt": {
+      "title": "Manual Execution Last Run Date-Time",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_end_period": {
+      "title": "End Period",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_sched_last_run_dt": {
+      "title": "Scheduled Execution Last Run Date-Time",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_description": {
+      "title": "Description",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_source_filters": {
+      "title": "Source Filters",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_job_name": {
+      "title": "Job Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_imp_type": {
+      "title": "Import Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_start_period": {
+      "title": "Start Period",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_plan_cube_refresh": {
+      "title": "Refresh Cube",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_period_type": {
+      "title": "Period Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_post_proc_plugin_id": {
+      "title": "Post Process Plugin",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_imp_savedsearch": {
+      "title": "Saved Search",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_group_members": {
+      "title": "Group Members",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_prev_status": {
+      "title": "Previous Status",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_abort_on_failure": {
+      "title": "Abort on Failure",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_schedule_settings": {
+      "title": "Schedule",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_save_epm_log": {
+      "title": "Save Planning & Budgeting Log",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_import_mode": {
+      "title": "Import Mode",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_job_type": {
+      "title": "Job Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_imp_dimension": {
+      "title": "Dimension",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_imp_filename": {
+      "title": "Filename",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_status": {
+      "title": "Status",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "recordId": {
+      "title": "Record ID",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_inactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_export_mode": {
+      "title": "Export Mode",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_imp_upload_only": {
+      "title": "Upload Only",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_params": {
+      "title": "Param Key Value Pairs",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_dlr_exec_log_id": {
+      "title": "Execution Log ID",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_curr_step": {
+      "title": "Current Executing Step",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "custrecord_nspbcs_quick_exec_sequence",
+    "custrecord_nspbcs_dlr_manual_last_run_dt",
+    "custrecord_nspbcs_dlr_end_period",
+    "custrecord_nspbcs_dlr_sched_last_run_dt",
+    "externalId",
+    "lastmodifiedby",
+    "custrecord_nspbcs_dlr_description",
+    "custrecord_nspbcs_source_filters",
+    "custrecord_nspbcs_dlr_job_name",
+    "scriptId",
+    "custrecord_nspbcs_imp_type",
+    "custrecord_nspbcs_dlr_start_period",
+    "custrecord_nspbcs_plan_cube_refresh",
+    "custrecord_nspbcs_dlr_period_type",
+    "custrecord_nspbcs_post_proc_plugin_id",
+    "custrecord_nspbcs_imp_savedsearch",
+    "custrecord_nspbcs_group_members",
+    "custrecord_nspbcs_dlr_prev_status",
+    "custrecord_nspbcs_abort_on_failure",
+    "custrecord_nspbcs_dlr_schedule_settings",
+    "custrecord_nspbcs_save_epm_log",
+    "id",
+    "custrecord_nspbcs_dlr_import_mode",
+    "custrecord_nspbcs_dlr_job_type",
+    "owner",
+    "custrecord_nspbcs_imp_dimension",
+    "custrecord_nspbcs_imp_filename",
+    "created",
+    "abbreviation",
+    "custrecord_nspbcs_dlr_status",
+    "recordId",
+    "custrecord_nspbcs_dlr_inactive",
+    "lastmodified",
+    "custrecord_nspbcs_dlr_export_mode",
+    "name",
+    "custrecord_nspbcs_imp_upload_only",
+    "custrecord_nspbcs_params",
+    "custrecord_nspbcs_dlr_exec_log_id",
+    "custrecord_nspbcs_curr_step"
+  ],
+  "x-ns-custom-record": true
+}

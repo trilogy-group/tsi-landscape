@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <assignments>
+        <name>update_related_quote</name>
+        <label>update related quote</label>
+        <locationX>308</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Quote.SBQQ__ExpirationDate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>SetQuoteExpiryValue</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Expiration_Date</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Check if this quote is the AR quote for the opportunity. We don&apos;t want to set expiration date for AR quotes, because they already have an expiration date set. Normally the expiration date for AR quotes is the renewal date for the opportunity.</description>
+        <name>Is_Auto_Renew_Quote</name>
+        <label>Is Auto-Renew Quote?</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>update_related_quote</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Other</defaultConnectorLabel>
+        <rules>
+            <name>AR_Quote</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Quote.SBQQ__Opportunity2__r.AR_Quote__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Get_Quote.Id</elementReference>
+                </rightValue>
+            </conditions>
+            <label>AR Quote</label>
+        </rules>
+    </decisions>
+    <description>Sets the quote expiration date to be 30 days before renewal date when renewal is more than 45 days.
+15 days before renewal date when renewal is more than 22 days and less than 45 days.
+7 days from today if renewal date is less than 22 days.
+If renewal date is not set in the opportunity, expiration date will be 15 days from today.
+This flow skips Auto-Renew quotes.</description>
+    <formulas>
+        <name>daysTillRenewal</name>
+        <dataType>Number</dataType>
+        <expression>{!Get_Quote.SBQQ__Opportunity2__r.Renewal_Date__c} - Today()</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <name>SetQuoteExpiryValue</name>
+        <dataType>Date</dataType>
+        <expression>IF({!Get_Quote.SBQQ__Opportunity2__r.Renewal_Date__c}==null, TODAY()+15,
+	IF({!daysTillRenewal}&gt;=45,{!Get_Quote.SBQQ__Opportunity2__r.Renewal_Date__c}-30,
+		IF({!daysTillRenewal}&gt;=22,{!Get_Quote.SBQQ__Opportunity2__r.Renewal_Date__c}-15,
+		TODAY()+7
+		)
+	   )
+)</expression>
+    </formulas>
+    <interviewLabel>SetQuoteExpiryDate {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quote_SetQuoteExpiryDate</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Gets the quote to update the expiration date</description>
+        <name>Get_Quote</name>
+        <label>Get Quote</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_Auto_Renew_Quote</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>quoteId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__Quote__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Expiration_Date</name>
+        <label>Update Expiration Date</label>
+        <locationX>308</locationX>
+        <locationY>458</locationY>
+        <inputReference>Get_Quote</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Quote</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Quote Id that will be set the expiration date</description>
+        <name>quoteId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

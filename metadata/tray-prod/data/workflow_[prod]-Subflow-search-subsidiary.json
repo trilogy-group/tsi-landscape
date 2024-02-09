@@ -1,0 +1,701 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "9b7b94e7-83e8-4ef4-a029-f8a121039c1f",
+      "created": "2022-10-10T15:31:40.699616Z",
+      "workspace_id": "ddb7dc60-0c96-4280-b59f-517d94a74202",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "aa44b982-cfb5-47c8-b7b6-3617a38ec3be",
+        "created": "2022-10-10T15:32:25.375819Z"
+      },
+      "title": "[prod] Subflow search subsidiary",
+      "description": "Given a subsidiary id and a list of subsidiary ids, search if the subsidiary is in the list and also search among the subsidiary childrens if included children is true.",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "71aa75f4-6165-40a6-a918-093b1b13e568",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "subsidiaryIdToSearch": {
+              "title": "Subsidiary Id to Search",
+              "type": "number"
+            },
+            "subsidiaryIds": {
+              "title": "Subsidiary Ids",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "title": "Item"
+              },
+              "additionalItems": true
+            },
+            "includeChildren": {
+              "title": "Include Children",
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "subsidiaryIdToSearch",
+            "subsidiaryIds",
+            "includeChildren"
+          ],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "found": {
+              "title": "Found",
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "callable-workflow-response-1",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "storage-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-2",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "loop-1",
+                "type": "loop",
+                "content": {
+                  "_loop": [
+                    {
+                      "name": "storage-2",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "script-1",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "netsuite-1",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-3",
+                      "type": "branch",
+                      "content": {
+                        "true": [],
+                        "false": [
+                          {
+                            "name": "callable-workflow-response-2",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "script-2",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-4",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "callable-workflow-response-3",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": []
+                      }
+                    },
+                    {
+                      "name": "storage-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "callable-workflow-response-4",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "script-1": {
+          "title": "SuiteQL get children",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subsidiaryIds"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-2.value"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  return {\n    q:\n      `select id from subsidiary where parent in (${input.subsidiaryIds.join(',')})`\n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-2": {
+          "title": "Get subsidiary ids",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            },
+            "key": {
+              "type": "string",
+              "value": "subsidiaryIds"
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Include children?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.includeChildren"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "type": "object",
+              "value": {
+                "found": {
+                  "value": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "storage-3": {
+          "title": "Store subsidiary ids",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "subsidiaryIds"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.script-2.result"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Subsidiary is included?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.subsidiaryIdToSearch"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "in"
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.subsidiaryIds"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "callable-workflow-response-2": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "success": {
+                  "type": "boolean",
+                  "value": true
+                },
+                "addedSubsidiary": {
+                  "value": false,
+                  "type": "boolean"
+                },
+                "found": {
+                  "value": false,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Store subsidiary ids",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "subsidiaryIds"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.subsidiaryIds"
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "Subsidiary found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.subsidiaryIdToSearch"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "in"
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop until break",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_forever",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "properties": {
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {}
+        },
+        "netsuite-1": {
+          "title": "Get children",
+          "description": "Run the SQL to get the subscription term",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result"
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            }
+          }
+        },
+        "callable-workflow-response-4": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "type": "object",
+              "value": {
+                "found": {
+                  "value": false,
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "script-2": {
+          "title": "Get subsidiary ids array",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subsidiaries"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "searchedSubsidiaries"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-2.value"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\treturn input.subsidiaries.map(i => parseInt(i.id)).filter(i => !input.searchedSubsidiaries.includes(i));\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "Records found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.count"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": ">"
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "callable-workflow-response-3": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "type": "object",
+              "value": {
+                "found": {
+                  "value": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": []
+    }
+  ],
+  "projects": []
+}

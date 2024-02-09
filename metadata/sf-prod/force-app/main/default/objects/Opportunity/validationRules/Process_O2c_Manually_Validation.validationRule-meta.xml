@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Process_O2c_Manually_Validation</fullName>
+    <active>true</active>
+    <description>LAMBDA-46020 validation rule to process</description>
+    <errorConditionFormula>AND( Process_O2C_Manually__c,
+OR(IsBlank(Process_O2C_Manually_Reason__c),
+Product_Configuration__r.Manual_Quote__c )
+)&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorMessage>Please fill in Process O2C Manually Reason to select the Process O2C Manually field and make sure the product is not already processed manually</errorMessage>
+</ValidationRule>

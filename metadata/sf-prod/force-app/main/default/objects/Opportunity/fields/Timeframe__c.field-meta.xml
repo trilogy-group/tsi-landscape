@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Timeframe__c</fullName>
+    <description>Green: EB is aware and aligned &amp; Inside 1 month post-scan
+||
+Yellow: EB is aware and aligned &amp; Inside 3 Months post-scan
+||
+Red: EB is aware, but Unclear timeline or Outside 3 Months</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Green: EB is aware and aligned &amp; Inside 1 month post-scan
+||
+Yellow: EB is aware and aligned &amp; Inside 3 Months post-scan
+||
+Red: EB is aware, but Unclear timeline or Outside 3 Months</inlineHelpText>
+    <label>Timeframe</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Opportunity_Progression</valueSetName>
+    </valueSet>
+</CustomField>

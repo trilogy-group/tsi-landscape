@@ -1,0 +1,385 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "7b618e09-ed98-464f-9abd-44d120e665a2",
+      "created": "2022-11-28T14:55:04.961412Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "group": "7c935415-52b9-4258-ac9e-db99a7b673c2",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "97b8ad4e-f385-4dd4-a259-bf611ace7914",
+        "created": "2023-01-27T18:49:14.977717Z"
+      },
+      "title": "Subflow Download ContentDocument from SF",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "contentDocumentUrl": {
+              "type": "string",
+              "title": "Content Document URL"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "contentDocumentUrl"
+          ],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "title": "File",
+              "type": "object",
+              "properties": {
+                "name": {
+                  "title": "name",
+                  "type": "string"
+                },
+                "url": {
+                  "title": "url",
+                  "type": "string"
+                },
+                "mime_type": {
+                  "title": "mime_type",
+                  "type": "string"
+                },
+                "expires": {
+                  "title": "expires",
+                  "type": "number"
+                }
+              },
+              "additionalProperties": false,
+              "required": [],
+              "advanced": []
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "file"
+          ],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "script-1": {
+          "title": "Get Content Document Id",
+          "description": "Gets the Content Document Id from the Purchase Order Link to download the Purchase Order to attach to the ticket",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "DocumentLink"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.contentDocumentUrl"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "//Gets the Content Document Id from the document link to download the document to attach to the ticket\nexports.step = function(input) {\n\tconst regex = /^https:\\/\\/trilogy-sales\\S*.lightning.force.com\\/lightning\\/r\\/ContentDocument\\/(?<id>[^\\/]+)\\/view/;\n\tconst id = input.DocumentLink.match(regex)?.groups.id;\n  return id\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "type": "object",
+              "value": {
+                "file": {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result"
+                    },
+                    "url": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.file.url"
+                    },
+                    "mime_type": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.file.mime_type"
+                    },
+                    "expires": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.file.expires"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get Content Version Id",
+          "description": "To download the PO file we need the ContentVersionId and that is Latest Published Version Id field in Content Document object",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Content Documents",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Content Document",
+                  "properties": {
+                    "LatestPublishedVersionId": {
+                      "name": "LatestPublishedVersionId",
+                      "type": "string",
+                      "title": "Latest Published Version ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "LatestPublishedVersionId"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "ContentDocument"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Id"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Download document",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "download_file",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "mime_type": {
+                    "type": "string"
+                  },
+                  "expires": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "content_version_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-1.records[0].LatestPublishedVersionId"
+            }
+          }
+        },
+        "script-2": {
+          "title": "Fix extension",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "file"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.file"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\tif (input.file.name.match(/\\.\\w{1,4}$/)){\n    return input.file.name;\n  }\n  switch (input.file.mime_type) {\n    case 'application/pdf':\n      return `${input.file.name}.pdf`;\n    case 'image/jpeg':\n      return `${input.file.name}.jpg`;\n    case 'image/png':\n      return `${input.file.name}.png`;\n    case 'application/vnd.ms-excel':\n      return `${input.file.name}.xls`;\n    default:\n      return input.file.name;\n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": []
+    }
+  ],
+  "projects": []
+}

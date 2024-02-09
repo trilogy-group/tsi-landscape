@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Upper_Threshold_greater_than_Lower</fullName>
+    <active>false</active>
+    <description>Upper Threshold must be greater than Lower Threshold</description>
+    <errorConditionFormula>ISPICKVAL( QC_Rule__r.Automation_ID__c, &apos;Threshold&apos; ) &amp;&amp; NOT(ISNULL(Upper_Threshold__c) || ISNULL(Lower_Threshold__c)) &amp;&amp; (Upper_Threshold__c &lt;= Lower_Threshold__c)</errorConditionFormula>
+    <errorMessage>Upper Threshold must be greater than Lower Threshold</errorMessage>
+</ValidationRule>

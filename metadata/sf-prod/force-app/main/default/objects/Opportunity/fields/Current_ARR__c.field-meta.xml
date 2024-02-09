@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_ARR__c</fullName>
+    <description>Current ARR = master products ARR + addons ARR of the parent subscription.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Total annual recurring revenue (ARR) of the current (parent) subscription (include both addons ARR and master products ARR)</inlineHelpText>
+    <label>Current ARR</label>
+    <precision>11</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Currency</type>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Quote_Expired__c</fullName>
+    <description>True if the expiration date is in the past. This is needed to be used in the lightning page because the lightning page doesn&apos;t support filtering by date fields.</description>
+    <externalId>false</externalId>
+    <formula>SBQQ__ExpirationDate__c &lt;  TODAY()</formula>
+    <inlineHelpText>True if the expiration date is in the past</inlineHelpText>
+    <label>Is Quote Expired?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

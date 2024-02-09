@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CallResults_Allowed_Variants</fullName>
+    <active>true</active>
+    <description>Limit the possible values of this field</description>
+    <errorConditionFormula>NOT(OR(ISBLANK(CallDisposition),
+CallDisposition=&apos;Allowed values for this field:&apos;,
+CallDisposition=&apos;Completed - Action needed&apos;,
+CallDisposition=&apos;Completed - Lost&apos;,
+CallDisposition=&apos;Completed - Evaluating&apos;,
+CallDisposition=&apos;Attempted to call - Left voicemail&apos;,
+CallDisposition=&apos;Call No Show&apos;,
+CallDisposition=&apos;Bad phone number&apos;,
+CallDisposition=&apos;Attempted to call - Try again later&apos;,
+CallDisposition=&apos;SDR Call - Renewal Call Scheduled&apos;,
+CallDisposition=&apos;SDR Call - Action needed&apos;))</errorConditionFormula>
+    <errorDisplayField>CallDisposition</errorDisplayField>
+    <errorMessage>Call Result value is invalid, only limited values are accepted, please check &apos;Logging Calls&apos; and &apos;SDR Logging Calls&apos; playbooks (playbook registry - https://rapid-engineering.atlassian.net/servicedesk/customer/portal/5/article/1377927208)</errorMessage>
+</ValidationRule>

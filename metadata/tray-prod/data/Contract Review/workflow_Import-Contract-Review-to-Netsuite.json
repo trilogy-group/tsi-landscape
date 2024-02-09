@@ -1,0 +1,1288 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "6550c42c-6262-424e-8311-04a0a4acea91",
+      "created": "2023-09-01T19:52:14.061972Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "project_id": "2974a216-c661-40f7-a26d-984a5a49fdf9",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "d844c1bd-377a-452f-a585-0b9f6197ff3e",
+        "created": "2023-09-01T19:52:54.877728Z"
+      },
+      "title": "Import Contract Review to Netsuite",
+      "description": "Import a Contract Review from the Google Spreadsheet to Netsuite",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {
+          "spreadsheetId": ""
+        },
+        "alerting_workflow_id": "85d98b43-4b57-471c-8881-5b6284656472",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-5",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "sheets-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "sheets-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "terminate-1",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "netsuite-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "sheets-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "sheets-4",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-4",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-6",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "script-1": {
+          "title": "Get NS fields with data",
+          "description": "This script transforms the data provided and formats as needed to insert in netsuite",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "data"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "options"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.options"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsFieldMap"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.nsFieldMap"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  const nsValues = [];\n  const errorArray = [];\n  for (const field in input.nsFieldMap) {\n    if (input.data[field] && input.data[field].value) {\n      let value = input.data[field].value;\n      const valueLowerCase = value.toLowerCase().trim();\n      if (valueLowerCase === 'no' || valueLowerCase === 'none' || valueLowerCase === 'n/a') {\n        continue;\n      }\n\n      const { key, type } = input.nsFieldMap[field];\n      // Transformations based on the type\n      switch(type) {\n        case 'Date':\n          const dateParts = value.split('/');\n          if (dateParts.length !== 3) {\n            errorArray.push(`'${input.data[field].rowName}' has an invalid date.`);\n            continue;\n          }\n          value = `${dateParts[2]}-${dateParts[0]}-${dateParts[1]}`;\n          break;\n        case 'Boolean':\n          if (valueLowerCase !== 'true' && valueLowerCase !== 'false') {\n            errorArray.push(`'${input.data[field].rowName}' has an invalid value. Expected values: True, False.`);\n            continue;\n          }\n          value = valueLowerCase === 'true';\n          break;\n        case 'Currency':\n          //all currency symbols currently in netsuite and some other common currencies\n          const currencySymbolsPattern = /^(?:£|C\\$|€|AED|лв\\.|лв|¥|AU\\$|Dkr|Nkr|PHP|sFr\\.|HK\\$|R\\$|OMR|kr|Kč|NZ\\$|SG\\$|TRY|₪|RM|Mex\\$|¥|K|Rs\\.|COL\\$|NT\\$|R|\\$)?([\\d\\.]+)$/;\n          \n          value = value.replace(',','').trim();\n          value = value.match(currencySymbolsPattern);\n          if (value) {\n            value = value[1];\n          }\n          //no-fall through\n        case 'Percent':\n          value = value.replace('%','').trim();\n          //no-fall through\n        case 'Number':\n          value = value.replace(',','').trim();\n          if (value && isNaN(value)) {\n            errorArray.push(`'${input.data[field].rowName}' has an value that is not a number. A number is expected in this cell.`);\n            continue;\n          }\n          value = parseFloat(value);\n          break;\n        case 'List':\n          value = input.options.find(i => i.type === input.nsFieldMap[field].listType && i.name.toLowerCase().trim() === valueLowerCase)?.id;\n          if (!value) {\n            errorArray.push(`'${input.data[field].rowName}' has an invalid value. Expected values: ${input.options.filter(i => i.type === input.nsFieldMap[field].listType).map(i => i.name).join(', ')}.`);\n            continue;\n          }\n          value = parseInt(value);\n          break;\n        default:\n          //do nothing\n          break;\n      }\n\n      nsValues.push({\n        key: key,\n        value: value\n      });\n    } else if (field === 'netsuiteSubscriptionId' || field === 'reviewDate') {\n      const rowNames = {\n        netsuiteSubscriptionId: 'Netsuite Subscription Id',\n        reviewDate: 'Review Date'\n      };\n      errorArray.push(`Please enter value for: ${rowNames[field]}.`);\n    }\n  } \n\tconst errors = errorArray.length === 0 ? null : errorArray.join('\\n');\n  return {\n    nsValues,\n    errors\n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-2": {
+          "title": "Save log row number",
+          "description": "Saves the log row number to be used by the alerting flow that catches errors that happened in this flow to properly log the error.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "LogRow_{$.env.execution_uuid}"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.log.row"
+            }
+          }
+        },
+        "storage-3": {
+          "title": "Remove log tab name",
+          "description": "Remove this saved value from the Account storage",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "delete",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "LogTabName_{$.env.execution_uuid}"
+            }
+          }
+        },
+        "storage-4": {
+          "title": "Remove log row number",
+          "description": "Remove this saved value from the Account storage",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "delete",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "LogRow_{$.env.execution_uuid}"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Has data errors?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.errors"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "sheets-2": {
+          "title": "Log data errors",
+          "description": "Logs the result and errors in the log",
+          "connector": {
+            "name": "sheets",
+            "version": "8.1"
+          },
+          "operation": "update_values_in_spreadsheet",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "TSI Service User google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/51312ff204893a2751b6788b914f9b78.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "spreadsheet_id": {
+              "type": "jsonpath",
+              "value": "$.config.spreadsheetId"
+            },
+            "value_input_option": {
+              "type": "string",
+              "value": "RAW"
+            },
+            "major_dimension": {
+              "type": "string",
+              "value": "ROWS"
+            },
+            "values": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "array",
+                  "value": [
+                    {
+                      "type": "string",
+                      "value": "Data Errors"
+                    },
+                    {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.errors"
+                    }
+                  ]
+                }
+              ]
+            },
+            "include_values_in_response": {
+              "type": "boolean",
+              "value": false
+            },
+            "range": {
+              "type": "string",
+              "value": "{$.steps.trigger.log.tabName}!B{$.steps.trigger.log.row}:C{$.steps.trigger.log.row}"
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "Terminate - Data errors",
+          "description": "Terminate the execution because there are data errors for this contract.",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "terminate_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "sheets-1": {
+          "title": "Log execution start",
+          "description": "Logs the Opportunity, exectution start time and url, and that is processing",
+          "connector": {
+            "name": "sheets",
+            "version": "8.1"
+          },
+          "operation": "update_values_in_spreadsheet",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "TSI Service User google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/51312ff204893a2751b6788b914f9b78.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "spreadsheet_id": {
+              "type": "jsonpath",
+              "value": "$.config.spreadsheetId"
+            },
+            "value_input_option": {
+              "type": "string",
+              "value": "RAW"
+            },
+            "major_dimension": {
+              "type": "string",
+              "value": "ROWS"
+            },
+            "values": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "array",
+                  "value": [
+                    {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.opportunity.value"
+                    },
+                    {
+                      "type": "string",
+                      "value": "Processing"
+                    },
+                    {
+                      "type": "string",
+                      "value": ""
+                    },
+                    {
+                      "type": "jsonpath",
+                      "value": "$.env.execution_start_time"
+                    },
+                    {
+                      "type": "jsonpath",
+                      "value": "$.env.execution_log_url"
+                    }
+                  ]
+                }
+              ]
+            },
+            "include_values_in_response": {
+              "type": "boolean",
+              "value": false
+            },
+            "range": {
+              "type": "string",
+              "value": "{$.steps.trigger.log.tabName}!A{$.steps.trigger.log.row}:E{$.steps.trigger.log.row}"
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Save log tab name",
+          "description": "Saves the log tab name to be used by the alerting flow that catches errors that happened in this flow to properly log the error.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "LogTabName_{$.env.execution_uuid}"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.log.tabName"
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Insert Contract Review",
+          "description": "Creates the Contract Review in Netsuite",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "create_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "customrecord_contract_review"
+            },
+            "writable_record_fields": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result.nsValues"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "column": {
+                    "type": "string"
+                  },
+                  "opportunity": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "opportunityLink": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "netsuiteSubscriptionId": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "netsuiteSubscriptionRecordLink": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "documentsFolder": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "masterAgreementFound": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customerName": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customerType": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "product": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "arr": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "tcv": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "autoRenewedLastTerm": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "reviewDate": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "contractType": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "contractEndDate": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "contractTerm": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "contractLanguage": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "masterAgreementEffectiveDate": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "masterAgreementOnEswStandardPaper": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "masterAgreementVersion": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "latestSignedQuoteOnEswStandardPaper": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "latestSignedQuoteVersion": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "federalGovernmentContract": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "contractNoticeRequirements": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "transferOfRightsOrObligationsToAnAffiliateSubcontractorByProvider": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "useOfForeignEntitiesAsAffiliatesSubcontractors": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "restrictionOnNewBuyerActingUnderContractAfterAChangeOfControlAtProvider": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "contractLawCountry": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "contractLawState": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "exclusiveJurisdiction": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "indemnifiableLossesLiabilityLimit": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "limitationOfLiability": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "exclusionOfLimitationOfLiability": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "missingOrNonStandardDisclaimerOfIndirectDamages": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "autoRenewalClause": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "autoRenewalPrice": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "autoRenewalCustomTerm": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "providerAutoRenewalNoticePeriod": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "providerAutoRenewalNoticeRequirements": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customerTerminationRight": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customerTerminationNoticePeriod": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customerTerminationRefundOfPrepaidFees": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customerContractExtensionRight": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "providerRightToNotAutorenew": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "providerLockInPeriod": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "providerTerminationNoticeRequirements": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "capsOnRenewalPrice": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customerRightToReduceEntitlements": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "mfnClauseAffiliates": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "providerPriceChangeNoticePeriod": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "providerPriceChangeNoticeRequirement": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "rowName": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "links": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "links",
+                    "id",
+                    "name",
+                    "type"
+                  ]
+                }
+              },
+              "log": {
+                "type": "object",
+                "properties": {
+                  "tabName": {
+                    "type": "string"
+                  },
+                  "row": {
+                    "type": "number"
+                  }
+                }
+              },
+              "#calling_workflow": {
+                "type": "string"
+              },
+              "#calling_execution": {
+                "type": "string"
+              },
+              "#calling_execution_log_url": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {}
+        },
+        "sheets-3": {
+          "title": "Update netsuite Id",
+          "description": "Update the netsuite id in the corresponding column",
+          "connector": {
+            "name": "sheets",
+            "version": "8.1"
+          },
+          "operation": "update_cell_value",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "TSI Service User google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/51312ff204893a2751b6788b914f9b78.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "value_input_option": {
+              "type": "string",
+              "value": "RAW"
+            },
+            "spreadsheet_id": {
+              "type": "jsonpath",
+              "value": "$.config.spreadsheetId"
+            },
+            "worksheet_name": {
+              "type": "string",
+              "value": "Contracts"
+            },
+            "cell": {
+              "type": "string",
+              "value": "{$.steps.trigger.data.column}3"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.record_id"
+            }
+          }
+        },
+        "storage-5": {
+          "title": "Save contract data",
+          "description": "Saves the contract data to be used by the alerting flow that catches errors that happened in this flow to properly log the error.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "ContractData_{$.env.execution_uuid}"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data"
+            }
+          }
+        },
+        "sheets-4": {
+          "title": "Log execution success",
+          "description": "Log that execution was successfully",
+          "connector": {
+            "name": "sheets",
+            "version": "8.1"
+          },
+          "operation": "update_cell_value",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "TSI Service User google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/51312ff204893a2751b6788b914f9b78.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "spreadsheet_id": {
+              "type": "jsonpath",
+              "value": "$.config.spreadsheetId"
+            },
+            "value_input_option": {
+              "type": "string",
+              "value": "RAW"
+            },
+            "cell": {
+              "type": "string",
+              "value": "B{$.steps.trigger.log.row}"
+            },
+            "value": {
+              "type": "string",
+              "value": "Success"
+            },
+            "worksheet_name": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.log.tabName"
+            }
+          }
+        },
+        "storage-6": {
+          "title": "Remove contract data",
+          "description": "Remove this saved value from the Account storage",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "delete",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "ContractData_{$.env.execution_uuid}"
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "85d98b43-4b57-471c-8881-5b6284656472",
+          "name": "Import error handler"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

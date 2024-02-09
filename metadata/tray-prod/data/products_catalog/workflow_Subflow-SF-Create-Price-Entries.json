@@ -1,0 +1,2907 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "3209901b-cc87-4c18-b301-1f103b7a82a7",
+      "created": "2023-03-30T16:51:31.966757Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "637ce482-0932-4e7a-acfc-c00a6dcc2bcf",
+        "created": "2023-06-01T17:02:23.150782Z"
+      },
+      "title": "Subflow SF Create Price Entries",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "sf_product_id": {
+              "type": "string",
+              "title": "SF Product Id",
+              "description": "Identifier of the product in Salesforce"
+            },
+            "item_id": {
+              "title": "Netsuite Item Id",
+              "type": "string",
+              "description": "Netsuite Item Identifier"
+            },
+            "ns_subscription_plan_id": {
+              "title": "NS Subscription Plan Id",
+              "type": "string",
+              "description": "Identifier of the Netsuite Subscription Plan"
+            },
+            "zeroOutPrices": {
+              "title": "Zero Out Prices",
+              "type": "boolean",
+              "default": false,
+              "description": "True, if the prices should be zeroes (sub-bundled product)"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "title": "Success",
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-7",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-1",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "salesforce-6",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "loop-4",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "netsuite-4",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "netsuite-7",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-5",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "salesforce-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-1",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "salesforce-4",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": [
+                    {
+                      "name": "salesforce-5",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "boolean-condition-5",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "boolean-condition-3",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "script-2",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "loop-2",
+                            "type": "loop",
+                            "content": {
+                              "_loop": [
+                                {
+                                  "name": "salesforce-11",
+                                  "type": "normal",
+                                  "content": {}
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "false": [
+                          {
+                            "name": "loop-5",
+                            "type": "loop",
+                            "content": {
+                              "_loop": [
+                                {
+                                  "name": "script-6",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "salesforce-3",
+                                  "type": "normal",
+                                  "content": {}
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "salesforce-8",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-2",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "salesforce-10",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": [
+              {
+                "name": "salesforce-9",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "salesforce-3": {
+          "title": "Create SF Block Price",
+          "description": "Insert the price block into Saleforce",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "create_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "SBQQ__BlockPrice__c"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "value": "SBQQ__Product__c",
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.sf_product_id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Name"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-6.result.name"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "value": "SBQQ__PriceBook2__c",
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "SBQQ__LowerBound__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-6.result.lowerBound"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "SBQQ__UpperBound__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-6.result.upperBound"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "SBQQ__Price__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-6.result.price"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "CurrencyIsoCode"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-7.response.body.items[0].symbol"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "boolean-condition-5": {
+          "title": "Is tiered?",
+          "description": "If we have more than 1 tier, then we need to create block prices",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result[1].value",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Block Price?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-8.records[0].Id",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Return Success",
+          "description": "Just mandatory return step to show the calling workflow there is no error",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "success": {
+                  "type": "boolean",
+                  "value": true
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "salesforce-8": {
+          "title": "Get Block Prices",
+          "description": "Get existing block prices to delete them",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "number"
+              },
+              "next_page_offset": {
+                "type": "null"
+              },
+              "records": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "Id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Id"
+                  ]
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "SBQQ__BlockPrice__c"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                }
+              ]
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "SBQQ__Product__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.sf_product_id"
+                    }
+                  }
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "salesforce-7": {
+          "title": "Get Block Prices",
+          "description": "Get existing block prices to delete them",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Block Prices",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Block Price",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Record ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "SBQQ__BlockPrice__c"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                }
+              ]
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "SBQQ__Product__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.sf_product_id"
+                    }
+                  }
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop over the Price Blocks",
+          "description": "We need to clear and re-create the block prices records.",
+          "connector": {
+            "name": "loop",
+            "version": "1.1"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "required": true,
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "object",
+                "title": "Block Price",
+                "properties": {
+                  "Id": {
+                    "name": "Id",
+                    "type": "string",
+                    "title": "Record ID"
+                  }
+                }
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-7.records"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Entry exists?",
+          "description": "Do we have an Entry for this Product already?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.total"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": ">"
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "netsuite-4": {
+          "title": "Get Pricebook details",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "priceBook"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.loop-4.value.id"
+            },
+            "expand_sub_resources": {
+              "type": "boolean",
+              "value": true
+            }
+          }
+        },
+        "netsuite-3": {
+          "title": "Find NS PriceBooks",
+          "description": "Find the Pricebooks for the Plan",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "find_records",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "priceBook"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "subscriptionPlan"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "EQUAL"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "name"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "CONTAIN_NOT"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "DO NOT USE"
+                    }
+                  }
+                }
+              ]
+            },
+            "limit": {
+              "type": "number",
+              "value": 100
+            },
+            "offset": {
+              "type": "number",
+              "value": 0
+            },
+            "conditions_matching": {
+              "type": "string",
+              "value": "Match all conditions"
+            }
+          }
+        },
+        "salesforce-5": {
+          "title": "Create Price Book Entry",
+          "description": "New entry",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "create_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "PricebookEntry"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Product2Id"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.sf_product_id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Pricebook2Id"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "UnitPrice"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result[0].value"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "IsActive"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "CurrencyIsoCode"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-7.response.body.items[0].symbol"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get SF Standard Pricebook",
+          "description": "Select the Standard Pricebook from Salesforce",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Price Books",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Price Book",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Price Book ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "Pricebook2"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                }
+              ]
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "IsStandard"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "loop-4": {
+          "title": "Loop Pricebooks",
+          "description": "Each pricebook has prices for one currency",
+          "connector": {
+            "name": "loop",
+            "version": "1.1"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "required": true,
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-3.items"
+            }
+          }
+        },
+        "loop-2": {
+          "title": "Loop over Tiers",
+          "connector": {
+            "name": "loop",
+            "version": "1.1"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "lowerBound": {
+                    "type": "number"
+                  },
+                  "upperBound": {
+                    "type": "number"
+                  },
+                  "price": {
+                    "type": "number"
+                  }
+                }
+              },
+              "count": {
+                "type": "number"
+              },
+              "index": {
+                "type": "number"
+              },
+              "is_first": {
+                "type": "boolean"
+              },
+              "is_last": {
+                "type": "boolean"
+              },
+              "branch_name": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.script-2.result"
+            }
+          }
+        },
+        "script-5": {
+          "title": "Get NS Item Priceplan",
+          "description": "Find prices for the Netsuite item",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "links": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "fromval": {
+                      "type": "string"
+                    },
+                    "fullname": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "priceoption": {
+                      "type": "string"
+                    },
+                    "symbol": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "links",
+                    "fromval",
+                    "fullname",
+                    "id",
+                    "priceoption",
+                    "symbol",
+                    "value"
+                  ]
+                }
+              },
+              "console": {
+                "type": "array",
+                "items": {}
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "items"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "itemId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.item_id"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\tvar filtered = input.items.filter(row=> row.id === input.itemId);\n\t// order by row.fromval\n\tvar sorted = filtered.sort((a,b) => a.fromval - b.fromval);\n\treturn sorted;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Get Existing PB Entry",
+          "description": "Search the Entry for the product",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Price Book Entries",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Price Book Entry",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Price Book Entry ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "PricebookEntry"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                }
+              ]
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Product2Id"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.sf_product_id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Pricebook2Id"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "CurrencyIsoCode"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-7.response.body.items[0].symbol"
+                    }
+                  }
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "netsuite-7": {
+          "title": "Get Prices w SuiteQL",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "x-netsuite-jobid": {
+                        "type": "string"
+                      },
+                      "preference-applied": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "p3p": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "hasMore": {
+                        "type": "boolean"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "fromval": {
+                              "type": "string"
+                            },
+                            "fullname": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "priceoption": {
+                              "type": "string"
+                            },
+                            "symbol": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "links",
+                            "fromval",
+                            "fullname",
+                            "id",
+                            "priceoption",
+                            "symbol",
+                            "value"
+                          ]
+                        }
+                      },
+                      "offset": {
+                        "type": "number"
+                      },
+                      "totalResults": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "object",
+                  "value": {
+                    "q": {
+                      "type": "string",
+                      "value": "SELECT i.id, cur.symbol, i.fullName, pt.fromval, pt.value, CASE WHEN pt.pricingOption=-102 THEN 'Fixed Amount' ELSE 'Rate' END priceOption\r\nFROM priceBook pb\r\nJOIN priceBookLineInterval  pbi ON pbi.priceBook=pb.id\r\nJOIN item i ON i.id=pbi.item\r\nJOIN pricePlan pp ON pp.id=pbi.pricePlan\r\nJOIN priceTiers pt ON pt.pricePlan=pp.id\r\nJOIN currency cur ON cur.id=pb.currency\r\nWHERE pb.id= {$.steps.loop-4.value.id}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "script-6": {
+          "title": "Block Price Data",
+          "description": "Compose a block-price data object.",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "lowerBound": {
+                    "type": "number"
+                  },
+                  "upperBound": {
+                    "type": "number"
+                  },
+                  "price": {
+                    "type": "number"
+                  }
+                }
+              },
+              "console": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "prodCode"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-5.value.fullname"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "productTier"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.custitem_product_tier.refName",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "current"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-5.value"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "tiers"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  let tiers = input.tiers;\n  console.log('tiers', tiers);\n  let nextTier = tiers.find(tier => parseInt(tier.fromval) > parseInt(input.current.fromval));\n  console.log('nextTier', nextTier);\n  let lowerBound = input.current.fromval;\n  let upperBound = nextTier ? nextTier.fromval : null;  \n\treturn {\n  \tname : input.prodCode + \" \" + input.productTier + \" \" + input.current.fromval + '-'+ (upperBound?upperBound:'inf'),\n    lowerBound : parseInt(lowerBound), //+1 increment is not needed\n    upperBound : parseInt(upperBound), //+1 increment is not needed\n    price: input.current.value\n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-1": {
+          "title": "Sum Prices",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "prices"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-7.response.body.items"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "planId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.ns_subscription_plan_id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subscriptionPlanName"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.displayName"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "zeroOutPrices"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.zeroOutPrices",
+                      "fallback": {
+                        "type": "boolean",
+                        "value": false
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Sum the support and add-ons prices,\n// Zero out the support prices\nexports.step = function (input) {\n  if(input.zeroOutPrices){\n    // Zero out values for input.prices array\n    input.prices.forEach(function(priceObject) {\n        priceObject.value = \"0\";\n    });\n  }\n    // Grouping items with same first 3 parts of subscriptionPlanName\n    const groupedPrices = input.prices.reduce((accumulator, currentPrice) => {\n        const { subscriptionPlanName } = input;\n        const [tier1, tier2, tier3] = subscriptionPlanName.split('-');\n        const regex = new RegExp(`^${tier1}-${tier2}-${tier3}`);\n        const isMatching = currentPrice.fullname.match(regex);\n\n        if (isMatching) {\n            // Zero out the main and support products prices\n            accumulator[`${currentPrice.fullname}${currentPrice.fromval}`] = { ...currentPrice };\n            accumulator[`${currentPrice.fullname}${currentPrice.fromval}`].value = 0;\n            // Add the 'Main' product with summed price\n            const key = `${tier1}-${tier2}-${tier3}${currentPrice.fromval}`;\n            if (!accumulator[key]) {\n                accumulator[key] = accumulator[key] || { ...currentPrice };\n                accumulator[key].fullname = 'Main';\n                // Set plan id instead of an item id on the summed element\n              \taccumulator[key].id = input.planId;\n                accumulator[key].value = 0;\n            }\n\n            console.log(`${key}-->${accumulator[key].value}+${currentPrice.value}`);\n            accumulator[key].value =\n                parseFloat(accumulator[key].value) + parseFloat(currentPrice.value);\n        } else {\n\n            accumulator[`${currentPrice.fullname}${currentPrice.fromval}`] = { ...currentPrice };\n        }\n\n        return accumulator;\n    }, {});\n\n\n    const output = {\n        prices: Object.values(groupedPrices).map(price => {\n            const { fullname } = price;\n\n            if (fullname.endsWith('-ADD')) {\n                const suffix = ['SIL', 'GOL', 'PLA'].find(suffix => {\n                    return input.prices.some(\n                        p =>\n                            p.fullname === fullname.replace(/-ADD$/, `-${suffix}`) &&\n                            p.fromval === price.fromval\n                    );\n                });\n\n                if (suffix) {\n                    const supportFullname = fullname.replace(\n                        /-ADD$/,\n                        `-${suffix}`\n                    );\n                    const addonPrice = parseFloat(price.value);\n                    const supportPrice = parseFloat(\n                        input.prices.find(\n                            p =>\n                                p.fullname === supportFullname && p.fromval === price.fromval\n                        ).value\n                    );\n                    const correctedPrice = addonPrice + supportPrice;\n\n                    return { ...price, value: `${correctedPrice}` };\n                }\n            } /*else if (\n                (!input.subscriptionPlanName.includes('-MNT')) && (\n                fullname.endsWith('-SIL') ||\n                fullname.endsWith('-GOL') ||\n                fullname.endsWith('-PLA'))\n            ) {\n                return { ...price, value: '0' };\n            }*/\n\n            return price;\n        }),\n    };\n\n    return output.prices;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "salesforce-9": {
+          "title": "Update Pricing Method",
+          "description": "Get existing block prices to delete them",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "Product2"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "SBQQ__PricingMethod__c"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "List"
+                    }
+                  }
+                }
+              ]
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.sf_product_id"
+            }
+          }
+        },
+        "netsuite-2": {
+          "title": "Get subscription plan details",
+          "description": "Get NS Plan by Id",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "links": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "rel": {
+                      "type": "string"
+                    },
+                    "href": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "autoRenewal": {
+                "type": "boolean"
+              },
+              "class": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "createdDate": {
+                "type": "string"
+              },
+              "custitemistrial": {
+                "type": "boolean"
+              },
+              "customForm": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "defaultRenewalTerm": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "description": {
+                "type": "string"
+              },
+              "displayName": {
+                "type": "string"
+              },
+              "externalId": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "includeChildren": {
+                "type": "boolean"
+              },
+              "incomeAccount": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "initialTerm": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "isInactive": {
+                "type": "boolean"
+              },
+              "itemId": {
+                "type": "string"
+              },
+              "itemType": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "lastModifiedDate": {
+                "type": "string"
+              },
+              "member": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "links": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "rel": {
+                                "type": "string"
+                              },
+                              "href": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "rel",
+                              "href"
+                            ]
+                          }
+                        },
+                        "billingMode": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "isRequired": {
+                          "type": "boolean"
+                        },
+                        "item": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "rel": {
+                                    "type": "string"
+                                  },
+                                  "href": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "rel",
+                                  "href"
+                                ]
+                              }
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "lineNumber": {
+                          "type": "number"
+                        },
+                        "prorateEndDate": {
+                          "type": "boolean"
+                        },
+                        "prorateStartDate": {
+                          "type": "boolean"
+                        },
+                        "renewalOption": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "revRecOption": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "subscriptionLineType": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "links",
+                        "billingMode",
+                        "isRequired",
+                        "item",
+                        "lineNumber",
+                        "prorateEndDate",
+                        "prorateStartDate",
+                        "renewalOption",
+                        "revRecOption",
+                        "subscriptionLineType"
+                      ]
+                    }
+                  },
+                  "totalResults": {
+                    "type": "number"
+                  }
+                }
+              },
+              "subsidiary": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "count": {
+                    "type": "number"
+                  },
+                  "hasMore": {
+                    "type": "boolean"
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "links": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "rel": {
+                                "type": "string"
+                              },
+                              "href": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "rel",
+                              "href"
+                            ]
+                          }
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "refName": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "links",
+                        "id",
+                        "refName"
+                      ]
+                    }
+                  },
+                  "offset": {
+                    "type": "number"
+                  },
+                  "totalResults": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "subscriptionplan"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.ns_subscription_plan_id"
+            },
+            "expand_sub_resources": {
+              "type": "boolean",
+              "value": true
+            }
+          }
+        },
+        "salesforce-11": {
+          "title": "Create SF Block Price",
+          "description": "Insert the price block into Saleforce",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "create_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "SBQQ__BlockPrice__c"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "value": "SBQQ__Product__c",
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.sf_product_id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Name"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.name"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "value": "SBQQ__PriceBook2__c",
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "SBQQ__LowerBound__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.lowerBound"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "SBQQ__UpperBound__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.upperBound"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "SBQQ__Price__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.price"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "CurrencyIsoCode"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-7.response.body.items[0].symbol"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "OverageRate__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.overage"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "loop-5": {
+          "title": "Loop over Tiers",
+          "connector": {
+            "name": "loop",
+            "version": "1.1"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "fromval": {
+                    "type": "string"
+                  },
+                  "fullname": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "priceoption": {
+                    "type": "string"
+                  },
+                  "symbol": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "count": {
+                "type": "number"
+              },
+              "index": {
+                "type": "number"
+              },
+              "is_first": {
+                "type": "boolean"
+              },
+              "is_last": {
+                "type": "boolean"
+              },
+              "branch_name": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.script-5.result"
+            }
+          }
+        },
+        "salesforce-4": {
+          "title": "Update Price Book Entry",
+          "description": "Entry exists, updating",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "PricebookEntry"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-2.records[0].Id"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "UnitPrice"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result[0].value"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "IsActive"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "salesforce-10": {
+          "title": "Update Pricing Method",
+          "description": "Get existing block prices to delete them",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "Product2"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "SBQQ__PricingMethod__c"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "Block"
+                    }
+                  }
+                }
+              ]
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.sf_product_id"
+            }
+          }
+        },
+        "salesforce-6": {
+          "title": "Delete Block Price",
+          "description": "Clear the existing price block",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "delete_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "SBQQ__BlockPrice__c"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.loop-1.value.Id"
+            }
+          }
+        },
+        "script-2": {
+          "title": "Block Price Data",
+          "description": "Compose a block-price data object.",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "lowerBound": {
+                    "type": "number"
+                  },
+                  "upperBound": {
+                    "type": "number"
+                  },
+                  "price": {
+                    "type": "number"
+                  }
+                }
+              },
+              "console": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "prodCode"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result[0].fullname"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "tiers"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n    let tiers = input.tiers;\n    console.log('tiers', tiers);\n    let bound = input.tiers[1].fromval;\n    return [{\n        name: input.prodCode + '-fixed',\n        lowerBound: 0,\n        upperBound: bound,\n        price: input.tiers[0].value,\n        overage: null,\n    },\n    {\n        name: input.prodCode + '-overage',\n        lowerBound: bound,\n        upperBound: null,\n        price: input.tiers[0].value,\n        overage: input.tiers[1].value,\n    }];\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "Overage Pricing?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result[0].priceoption",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Fixed Amount"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result[1].priceoption",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Rate"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result[2].priceoption",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": []
+    }
+  ],
+  "projects": []
+}

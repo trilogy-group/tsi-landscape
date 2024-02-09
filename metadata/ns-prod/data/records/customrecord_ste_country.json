@@ -1,0 +1,244 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_ctry_ta_short": {
+      "title": "Tax Agency Name Short",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_ctry_taxonsales": {
+      "title": "Tax on Sales",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_ctry_reversecharge": {
+      "title": "Reverse Charge",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_ctry_country_vies_prefix": {
+      "title": "Vies Prefix",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_ctry_tax_type": {
+      "title": "Tax Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_ctry_tax_reg_format": {
+      "title": "Tax Registration Format",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_ctry_country_name": {
+      "title": "Country Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_ctry_level": {
+      "title": "Level",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_ctry_taxonpurchase": {
+      "title": "Tax on Purchase",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_ctry_country_code": {
+      "title": "Country Code",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_ctry_tax_agency": {
+      "title": "Tax Agency Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_ctry_taxliability": {
+      "title": "Tax Liability",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_ctry_ta_stecode": {
+      "title": "Tax Agency STE Code",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ste_ctry_parent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "owner",
+    "custrecord_ste_ctry_ta_short",
+    "custrecord_ste_ctry_taxonsales",
+    "custrecord_ste_ctry_reversecharge",
+    "created",
+    "custrecord_ste_ctry_country_vies_prefix",
+    "externalId",
+    "lastmodifiedby",
+    "custrecord_ste_ctry_tax_type",
+    "abbreviation",
+    "custrecord_ste_ctry_tax_reg_format",
+    "custrecord_ste_ctry_country_name",
+    "scriptId",
+    "custrecord_ste_ctry_level",
+    "lastmodified",
+    "custrecord_ste_ctry_taxonpurchase",
+    "custrecord_ste_ctry_country_code",
+    "custrecord_ste_ctry_tax_agency",
+    "custrecord_ste_ctry_parent",
+    "name",
+    "custrecord_ste_ctry_taxliability",
+    "id",
+    "custrecord_ste_ctry_ta_stecode"
+  ],
+  "x-ns-custom-record": true
+}

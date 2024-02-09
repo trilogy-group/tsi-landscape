@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Final_Quote_IQB_2_3_Prim_Quote_Contact</fullName>
+    <active>true</active>
+    <errorConditionFormula>TEXT(StageName) = &apos;Final Quote&apos; &amp;&amp; 
+( SBQQ__PrimaryQuote__c = null || SBQQ__PrimaryQuote__r.SBQQ__PrimaryContact__c = null ||  ISBLANK(SBQQ__PrimaryQuote__r.SBQQ__PrimaryContact__r.Email) ) &amp;&amp;  NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)</errorConditionFormula>
+    <errorDisplayField>SBQQ__PrimaryQuote__c</errorDisplayField>
+    <errorMessage>The &apos;Primary Contact&apos; of &apos;Primary Quote&apos; must be set and must have an &apos;Email&apos;.</errorMessage>
+</ValidationRule>

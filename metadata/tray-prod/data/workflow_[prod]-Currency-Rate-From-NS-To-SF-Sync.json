@@ -1,0 +1,775 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "fb3a3caa-8636-4d14-bd7f-6e0c9cfdf7e5",
+      "created": "2022-06-01T19:12:04.870324Z",
+      "workspace_id": "ddb7dc60-0c96-4280-b59f-517d94a74202",
+      "creator": "ea98028e-3c67-4163-be3f-643c230a71c0",
+      "version": {
+        "id": "1f053c2e-6149-409d-98ff-10f4ea6329e5",
+        "created": "2022-06-01T19:13:06.991814Z"
+      },
+      "title": "[prod] Currency Rate From NS To SF Sync",
+      "enabled": false,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-1",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "script-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "netsuite-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "loop-2",
+                "type": "loop",
+                "content": {
+                  "_loop": [
+                    {
+                      "name": "salesforce-2",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "storage-2",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "math-helpers-1",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "storage-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "call-workflow-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "script-1": {
+          "title": "compose currency rate SuiteQL",
+          "description": "formats a query text to select the currency rate from Netsuite",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "curRec"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-1.value"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Since Currency is available in Beta only,\n// we use suiteQL to get the code\nexports.step = function (input) {\n  let dateClause;\n  \n  if (input.curRec.expr0 && input.curRec.expr0.startsWith('0000-')) { // falback \n    dateClause = ` and currencyRate.effectivedate > TO_DATE('2021-12-23', 'YYYY-MM-DD')`;\n  } else {\n    dateClause = ` and currencyRate.effectivedate > TO_DATE('${input.curRec.expr0}', 'YYYY-MM-DD')`;\n  }\n  \n  return {\n    q:\n      `select baseCur.symbol as base,\n 1/currencyRate.exchangerate as exchangerate,\n TO_CHAR(effectivedate, 'YYYY-MM-DD') as effectivedate,\n tranCur.symbol as cur \nfrom currencyRate\njoin currency as baseCur on baseCur.id=currencyRate.basecurrency\njoin currency as tranCur on tranCur.id=currencyRate.transactioncurrency\nwhere tranCur.symbol='${input.curRec.IsoCode}' \n and baseCur.symbol='USD'\n${dateClause}`\n  };\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-2": {
+          "title": "get updated rates count",
+          "description": "gets updated rates count",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "default_value": {
+              "type": "number",
+              "value": 0
+            },
+            "key": {
+              "type": "string",
+              "value": "UpdatedLinesCount"
+            }
+          }
+        },
+        "storage-3": {
+          "title": "save updated rates count",
+          "description": "saves updated rates count",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.math-helpers-1.result"
+            },
+            "key": {
+              "type": "string",
+              "value": "UpdatedLinesCount"
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "log info",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "0fcb6f8c-6b00-4cd2-9e37-ffd4de3f9742"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "google_sheet_id": {
+                  "type": "string",
+                  "value": "1p6r0PYef1wxHS4e9VDo9xKzpihueB6_O3eQ-nEP6Cl4"
+                },
+                "worksheet": {
+                  "type": "string",
+                  "value": "[prod] currency exchange sync log"
+                },
+                "level": {
+                  "type": "string",
+                  "value": "INFO"
+                },
+                "message": {
+                  "type": "string",
+                  "value": "Currency exchange sync is done. Rows updated: {$.steps.math-helpers-1.result}"
+                },
+                "log_url": {
+                  "type": "jsonpath",
+                  "value": "$.env.execution_log_url"
+                }
+              }
+            }
+          }
+        },
+        "loop-1": {
+          "title": "loop through currencies",
+          "description": "loop through the currencies present in the Salesforce",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "expr0": {
+                    "type": "string"
+                  },
+                  "IsoCode": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "expr0",
+                  "IsoCode"
+                ]
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-1.records"
+            }
+          }
+        },
+        "math-helpers-1": {
+          "title": "increment updated rates count",
+          "description": "increments updated rates count",
+          "connector": {
+            "name": "math-helpers",
+            "version": "2.0"
+          },
+          "operation": "add",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "first_value": {
+              "type": "jsonpath",
+              "value": "$.steps.storage-2.value"
+            },
+            "second_value": {
+              "type": "number",
+              "value": 1
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "get currency last sync date",
+          "description": "gets currency last sync date from salesforce",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "query",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "number"
+              },
+              "next_page_offset": {
+                "type": "null"
+              },
+              "records": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "expr0": {
+                      "type": "string"
+                    },
+                    "IsoCode": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "expr0",
+                    "IsoCode"
+                  ]
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "query": {
+              "type": "string",
+              "value": "select max(StartDate), IsoCode from DatedConversionRate where IsoCode <> 'USD' group by IsoCode"
+            }
+          }
+        },
+        "loop-2": {
+          "title": "loop new rates",
+          "description": "loops the new rates of current currency",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "base": {
+                    "type": "string"
+                  },
+                  "cur": {
+                    "type": "string"
+                  },
+                  "effectivedate": {
+                    "type": "string"
+                  },
+                  "exchangerate": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "links",
+                  "base",
+                  "cur",
+                  "effectivedate",
+                  "exchangerate"
+                ]
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.response.body.items"
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "get currency rates after date",
+          "description": "gets currency rates from NetSuite after last date",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "x-netsuite-jobid": {
+                        "type": "string"
+                      },
+                      "preference-applied": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "p3p": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "hasMore": {
+                        "type": "boolean"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "base": {
+                              "type": "string"
+                            },
+                            "cur": {
+                              "type": "string"
+                            },
+                            "effectivedate": {
+                              "type": "string"
+                            },
+                            "exchangerate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "links",
+                            "base",
+                            "cur",
+                            "effectivedate",
+                            "exchangerate"
+                          ]
+                        }
+                      },
+                      "offset": {
+                        "type": "number"
+                      },
+                      "totalResults": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result"
+                }
+              }
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "create currency rate record",
+          "description": "creates currency rate record in Salesforse",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "create_record",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "success": {
+                "type": "boolean"
+              },
+              "errors": {
+                "type": "array",
+                "items": {}
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "IsoCode"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.cur"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "ConversionRate"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.exchangerate"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "StartDate"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.effectivedate"
+                    }
+                  }
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "DatedConversionRate"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Scheduled Trigger",
+          "connector": {
+            "name": "scheduled",
+            "version": "3.5"
+          },
+          "operation": "simple",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "synchronous": {
+              "type": "boolean",
+              "value": true
+            },
+            "public_url": {
+              "type": "jsonpath",
+              "value": "$.env.public_url"
+            },
+            "interval": {
+              "type": "integer",
+              "value": 1
+            },
+            "time_unit": {
+              "type": "string",
+              "value": "days"
+            },
+            "start_date": {
+              "type": "string",
+              "value": "2022-05-31 21:00"
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "0fcb6f8c-6b00-4cd2-9e37-ffd4de3f9742",
+          "name": "log into google sheet"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

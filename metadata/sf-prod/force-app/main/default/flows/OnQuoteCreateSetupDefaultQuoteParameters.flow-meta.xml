@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <assignments>
+        <name>Assign_Due_on_receipt</name>
+        <label>Assign Due on receipt</label>
+        <locationX>50</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.SBQQ__PaymentTerms__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Due on receipt</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Net_30</name>
+        <label>Assign Net 30</label>
+        <locationX>314</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.SBQQ__PaymentTerms__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Net 30</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>In Advance is the case for 99% of quotes.
+Netsuite Id and O2C Ticket Link should be empty for new quotes. This is necessary because when a quote is cloned, maybe it will have some value there.
+New quotes must have Draft status.</description>
+        <name>Set_default_values</name>
+        <label>Set default values</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Billing_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Advance</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.NetSuite_ID__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.O2C_Ticket_Link__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.SBQQ__Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Draft</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Start_Date</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Start_Date</name>
+        <label>Start Date</label>
+        <locationX>182</locationX>
+        <locationY>395</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Net_30</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>More than 30 days</defaultConnectorLabel>
+        <rules>
+            <name>Less_than_30_days</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__StartDate__c</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference>TodayPlus30Days</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Due_on_receipt</targetReference>
+            </connector>
+            <label>Less than 30 days</label>
+        </rules>
+    </decisions>
+    <description>This is the flow we want to run once at quote creation and set a few initial variables.
+
+Enable custom setting: Automation Setting Disable All Flow in entry criteria</description>
+    <formulas>
+        <name>DefaultUptickAmount</name>
+        <dataType>Number</dataType>
+        <expression>IF(ISNULL({!$Record.SBQQ__Opportunity2__r.Product_Configuration__r.Uptick_Multiplier__c}), 0, 
+{!$Record.SBQQ__Opportunity2__r.Current_ARR__c} * {!$Record.SBQQ__Opportunity2__r.Product_Configuration__r.Uptick_Multiplier__c}
+)</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>TodayPlus30Days</name>
+        <dataType>Date</dataType>
+        <expression>TODAY() + 30</expression>
+    </formulas>
+    <interviewLabel>OnQuoteCreateSetupDefaultQuoteParameters {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>OnQuoteCreate_SetupDefaultQuoteParameters</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_default_values</targetReference>
+        </connector>
+        <object>SBQQ__Quote__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

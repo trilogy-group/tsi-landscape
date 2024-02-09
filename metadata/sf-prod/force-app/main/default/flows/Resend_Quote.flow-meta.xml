@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Clones the quote with the line items</description>
+        <name>Clone_Quote</name>
+        <label>Clone Quote</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <actionName>QuoteCloner</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Set_Quote_Expiration_Date</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>quoteId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>59.0</apiVersion>
+    <assignments>
+        <description>Sets the quote status to Accepted in order to start the generation of netsuite quote and o2c jira ticket by automation</description>
+        <name>Set_quote_status_to_Accepted</name>
+        <label>Set quote status to Accepted</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>Get_quote.SBQQ__Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Accepted</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Quote_Status_to_Accepted</targetReference>
+        </connector>
+    </assignments>
+    <description>Resend an expired quote, cloning the quote and changing the expiration date</description>
+    <formulas>
+        <description>Builds the final message to show to the user</description>
+        <name>FinalMessage</name>
+        <dataType>String</dataType>
+        <expression>IF({!Get_quote.SBQQ__Opportunity2__r.Manual_O2C__c}, 
+&quot;The &quot; &amp; {!QuoteUrl} &amp; &quot; is created and accepted.&lt;br&gt;This quote is for an opportunity marked as Manual O2C and it&apos;s necessary to create a jira ticket manually in order for O2C to create this quote in Netsuite and send it to the customer.&lt;br&gt;Please, set the O2C Ticket Link field after the ticket is created.&quot;, 
+&quot;The &quot; &amp; {!QuoteUrl} &amp; &quot; is created and the process to create the NetSuite Quote and the O2C Jira ticket have already started.&lt;br&gt;Check the quote in two minutes and the Quote status should be Generated and the NetSuite Id and O2C Ticket Link fields should be set.&quot;)</expression>
+    </formulas>
+    <formulas>
+        <description>Get the quote url to be used in the final message</description>
+        <name>QuoteUrl</name>
+        <dataType>String</dataType>
+        <expression>&quot;&lt;a href=\&quot;&quot; &amp; LEFT({!$Api.Partner_Server_URL_580},FIND(&quot;/&quot;,{!$Api.Partner_Server_URL_580},10)) &amp; {!Get_quote.Id} &amp; &quot;\&quot;&gt;quote &quot; &amp; {!Get_quote.Name} &amp; &quot;&lt;/a&gt;&quot;</expression>
+    </formulas>
+    <interviewLabel>Resend Quote {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Resend Quote</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <description>Gets the cloned quote</description>
+        <name>Get_quote</name>
+        <label>Get quote</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_quote_status_to_Accepted</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Clone_Quote.clonedQuoteId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__Quote__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Updates the quote status to Accepted to trigger the quote generation in netsuite</description>
+        <name>Update_Quote_Status_to_Accepted</name>
+        <label>Update Quote Status to Accepted</label>
+        <locationX>176</locationX>
+        <locationY>566</locationY>
+        <connector>
+            <targetReference>Final_Message</targetReference>
+        </connector>
+        <inputReference>Get_quote</inputReference>
+    </recordUpdates>
+    <screens>
+        <description>Screen to show the final message with the quote number to the user</description>
+        <name>Final_Message</name>
+        <label>Final Message</label>
+        <locationX>176</locationX>
+        <locationY>674</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>FinalMessageText</name>
+            <fieldText>&lt;p&gt;{!FinalMessage}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Clone_Quote</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <description>Calls the subflow that sets the quote expiration date</description>
+        <name>Set_Quote_Expiration_Date</name>
+        <label>Set Quote Expiration Date</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <connector>
+            <targetReference>Get_quote</targetReference>
+        </connector>
+        <flowName>Quote_SetQuoteExpiryDate</flowName>
+        <inputAssignments>
+            <name>quoteId</name>
+            <value>
+                <elementReference>Clone_Quote.clonedQuoteId</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <variables>
+        <description>Quote record id to be resend</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

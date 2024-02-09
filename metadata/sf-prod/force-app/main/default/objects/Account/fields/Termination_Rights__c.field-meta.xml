@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Termination_Rights__c</fullName>
+    <description>If Contract Format &apos;Pre-Aurea MSA&apos; or &apos;Customer MSA&apos; is selected Termination Rights must be populated. Field copied from Aurea SFDC.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If Contract Format &apos;Pre-Aurea MSA&apos; or &apos;Customer MSA&apos; is selected Termination Rights must be populated</inlineHelpText>
+    <label>Termination Rights</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Customer</fullName>
+                <default>false</default>
+                <label>Customer</label>
+            </value>
+            <value>
+                <fullName>Bi-lateral</fullName>
+                <default>false</default>
+                <label>Bi-lateral</label>
+            </value>
+            <value>
+                <fullName>Termed</fullName>
+                <default>false</default>
+                <label>Termed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,1167 @@
+{
+  "type": "object",
+  "properties": {
+    "renewalEndDate": {
+      "title": "Renewal End Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true
+    },
+    "idNumber": {
+      "title": "Number",
+      "type": "string",
+      "description": "The automatically generated number identifying this subscription.",
+      "nullable": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "memo": {
+      "title": "Memo",
+      "type": "string",
+      "description": "Use this fields to enter notes.",
+      "nullable": true
+    },
+    "effectiveDate": {
+      "title": "Effective Date",
+      "type": "string",
+      "description": "The date on which the change order takes effect.",
+      "format": "date",
+      "nullable": true
+    },
+    "terminateAtStartOfDay": {
+      "title": "Effective at Start of day",
+      "type": "boolean"
+    },
+    "renewalStartDate": {
+      "title": "Renewal Start Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true
+    },
+    "approvalDate": {
+      "title": "Approval Date",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "subscriptionChangeOrderStatus": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "ACTIVE",
+            "VOIDED"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "createdBy": {
+      "title": "Created By",
+      "type": "string",
+      "nullable": true
+    },
+    "action": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "ACTIVATE",
+            "MODIFY_PRICING",
+            "SUSPEND",
+            "REACTIVATE",
+            "RENEW",
+            "TERMINATE"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "requestOffCycleInvoice": {
+      "title": "Request Off-Cycle Invoice for Advance Charges",
+      "type": "boolean",
+      "description": "Select to set the default for off-cycle invoices, which is inherited from other records. An off-cycle invoice bills for subscriptions with a partial period. For example, sending a bill before the recurring scheduled bills."
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "approvalStatus": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "PENDING_APPROVAL",
+            "APPROVED",
+            "REJECTED"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "renewalTranType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "VendPymt",
+            "CustCred",
+            "ItemShip",
+            "Check",
+            "RevContr",
+            "Journal",
+            "CustChrg",
+            "OrdResv",
+            "RevArrng",
+            "GLAdj",
+            "InvReval",
+            "Opprtnty",
+            "CustRfnd",
+            "CashRfnd",
+            "TrnfrOrd",
+            "Build",
+            "Unbuild",
+            "RevComm",
+            "SalesOrd",
+            "Rfq",
+            "VPrepApp",
+            "TegPybl",
+            "Deposit",
+            "WOIssue",
+            "FinChrg",
+            "PurchOrd",
+            "FftReq",
+            "StatChng",
+            "ExpRept",
+            "DepAppl",
+            "Wave",
+            "OwnTrnsf",
+            "StPickUp",
+            "TegRcvbl",
+            "WOCompl",
+            "NettStlm",
+            "InvAdjst",
+            "Transfer",
+            "Paycheck",
+            "BalJrnal",
+            "VendBill",
+            "YtdAdjst",
+            "XChgJrnl",
+            "ItemRcpt",
+            "Estimate",
+            "PChkJrnl",
+            "VPrep",
+            "SysJrnl",
+            "Commissn",
+            "TaxPymt",
+            "RtnAuth",
+            "CustInvc",
+            "FxReval",
+            "WorkOrd",
+            "PurchCon",
+            "BinTrnfr",
+            "LiaAdjst",
+            "InvDistr",
+            "VendRfq",
+            "LiabPymt",
+            "RevComRv",
+            "TaxLiab",
+            "InvcGrp",
+            "CuTrPrch",
+            "CustAuth",
+            "VendAuth",
+            "InvCount",
+            "InvWksht",
+            "CardRfnd",
+            "VendCred",
+            "PEJrnl",
+            "BinWksht",
+            "Custom",
+            "CustPymt",
+            "CustDep",
+            "PurchReq",
+            "WOClose",
+            "InbShip",
+            "CashSale",
+            "BlankOrd",
+            "CuTrSale",
+            "DeprCust",
+            "CardChrg",
+            "InvTrnfr"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "dateCreated": {
+      "title": "Date Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "renewalMethod": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "",
+            "EXTEND_EXISTING_SUBSCRIPTION",
+            "CREATE_NEW_SUBSCRIPTION"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "customForm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "-10951"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "autoName": {
+      "title": "Auto",
+      "type": "boolean"
+    },
+    "modificationType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "NEW_CHURN",
+            "UPSELL_DOWNSELL",
+            "IGNORED"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "requestor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "subscriptionPlan": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "changeOrderLine": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "billingAccount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "customer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_st_change_reason": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "newSubLine": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "include": {
+                "title": "Include",
+                "type": "string",
+                "nullable": true
+              },
+              "sequence": {
+                "title": "Line Number",
+                "type": "string",
+                "nullable": true
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "multiplierLine": {
+                "title": "Included Quantity Multiplier",
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "itemDisplay": {
+                "title": "Item",
+                "type": "string",
+                "nullable": true
+              },
+              "discount": {
+                "title": "Discount",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "subscriptionLine": {
+                "title": "Subscription Line",
+                "type": "string",
+                "nullable": true
+              },
+              "subscriptionLineType": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string",
+                    "enum": [
+                      "1",
+                      "2",
+                      "3",
+                      "4"
+                    ]
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  }
+                }
+              },
+              "required": {
+                "title": "Required",
+                "type": "string",
+                "nullable": true
+              },
+              "status": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string",
+                    "enum": [
+                      "DRAFT"
+                    ]
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  }
+                }
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "item": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "pricePlan": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "subLine": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "item": {
+                "title": "Item",
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "terminationDate": {
+                "title": "Termination Date",
+                "type": "string",
+                "format": "date",
+                "nullable": true
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "apply": {
+                "title": "Include",
+                "type": "boolean"
+              },
+              "recurringAmountNew": {
+                "title": "Recurring Amount",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "discount": {
+                "title": "Discount",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "pricePlan": {
+                "title": "Rate Plan",
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "renewalUplift": {
+                "title": "% Renewal Uplift",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "startDate": {
+                "title": "Start Date",
+                "type": "string",
+                "format": "date",
+                "nullable": true
+              },
+              "sequence": {
+                "title": "Line Number",
+                "type": "string",
+                "nullable": true
+              },
+              "endDate": {
+                "title": "End Date",
+                "type": "string",
+                "format": "date",
+                "nullable": true
+              },
+              "billingMode": {
+                "title": "Billing Mode",
+                "type": "string",
+                "nullable": true
+              },
+              "statusNew": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string",
+                    "enum": [
+                      "DRAFT",
+                      "PENDING_ACTIVATION",
+                      "ACTIVE",
+                      "SUSPENDED",
+                      "CLOSED"
+                    ]
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  }
+                }
+              },
+              "quantityNew": {
+                "title": "Quantity",
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "recurringAmount": {
+                "title": "Recurring Amount",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "discountNew": {
+                "title": "Discount",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "includeInRenewal": {
+                "title": "Include In Renewal Subscription",
+                "type": "boolean"
+              },
+              "subscriptionLine": {
+                "title": "Subscription Line",
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "status": {
+                "title": "Status",
+                "type": "string",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "pricePlanNew": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "subsidiary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "subscription": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "renewalPlan": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "renewalSteps": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "step": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string",
+                    "enum": [
+                      "CREATE_NEW_SUBSCRIPTION",
+                      "CREATE_NEW_SALES_TRANSACTION"
+                    ]
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  }
+                }
+              },
+              "error": {
+                "title": "Error Message",
+                "type": "string",
+                "nullable": true
+              },
+              "status": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string",
+                    "enum": [
+                      "SUCCESS",
+                      "FAILURE"
+                    ]
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  }
+                }
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "subscription": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "transaction": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "renewalPriceBook": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "renewalTerm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "renewalEndDate",
+    "idNumber",
+    "externalId",
+    "subscriptionPlan",
+    "memo",
+    "subscription",
+    "effectiveDate",
+    "terminateAtStartOfDay",
+    "renewalStartDate",
+    "approvalDate",
+    "subscriptionChangeOrderStatus",
+    "createdBy",
+    "billingAccount",
+    "custrecord_st_change_reason",
+    "action",
+    "requestOffCycleInvoice",
+    "id",
+    "renewalPlan",
+    "approvalStatus",
+    "renewalTerm",
+    "renewalTranType",
+    "dateCreated",
+    "renewalMethod",
+    "subsidiary",
+    "requestor",
+    "renewalPriceBook",
+    "modificationType",
+    "customer"
+  ]
+}

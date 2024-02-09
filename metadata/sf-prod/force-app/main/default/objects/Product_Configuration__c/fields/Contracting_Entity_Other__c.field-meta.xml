@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contracting_Entity_Other__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>All other locales</description>
+    <externalId>false</externalId>
+    <inlineHelpText>All other locales</inlineHelpText>
+    <label>Contracting Entity Other</label>
+    <referenceTo>Subsidiary__c</referenceTo>
+    <relationshipLabel>Product Configurations (Contracting Entity Other)</relationshipLabel>
+    <relationshipName>OtherEntities</relationshipName>
+    <required>true</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

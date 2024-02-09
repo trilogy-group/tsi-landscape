@@ -1,0 +1,5577 @@
+{
+  "type": "object",
+  "properties": {
+    "custentityzuorabilltotaxregion": {
+      "title": "Zuora Bill To Tax Region",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "startDate": {
+      "title": "Start Date",
+      "type": "string",
+      "description": "Enter the date this person or company became a customer, lead or prospect. If this person or company has a contract with you, enter the start date of the contract. If you enter an estimate or an opportunity for this customer, this field will be updated with the date of that transaction.",
+      "format": "date",
+      "nullable": true
+    },
+    "lastSaleDate": {
+      "title": "Last Sales Date",
+      "type": "string",
+      "description": "Returns the date of the last sale to the customer.",
+      "format": "date",
+      "nullable": true
+    },
+    "custentity_erpff_p2p_party_endp_sch_id": {
+      "title": "Party endpoint scheme ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "thirdPartyZipCode": {
+      "title": "3rd Party Billing Zip",
+      "type": "string",
+      "description": "Enter the zip code associated with the customer’s UPS or FedEx account number.",
+      "nullable": true
+    },
+    "custentityzuoraintegrationstatus": {
+      "title": "Zuora Integration Status",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentityzuorabilltoid": {
+      "title": "Zuora Bill To ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_collection_notes": {
+      "title": "Collection Notes",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "dateCreated": {
+      "title": "Date Created",
+      "type": "string",
+      "description": "In this field, NetSuite automatically records the date you created this record.",
+      "format": "date-time",
+      "nullable": true
+    },
+    "custentity_arr": {
+      "title": "ARR",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_timezone": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "America/Sao_Paulo",
+            "Asia/Vladivostok",
+            "Africa/Nairobi",
+            "Asia/Hong_Kong",
+            "Asia/Riyadh",
+            "Pacific/Kwajalein",
+            "America/Montevideo",
+            "Africa/Cairo",
+            "Africa/Windhoek",
+            "Europe/Moscow",
+            "Asia/Karachi",
+            "Pacific/Honolulu",
+            "America/Guatemala",
+            "Australia/Hobart",
+            "Australia/Perth",
+            "Australia/Darwin",
+            "Europe/London",
+            "Asia/Kuala_Lumpur",
+            "Asia/Baghdad",
+            "Europe/Budapest",
+            "Asia/Rangoon",
+            "America/Manaus",
+            "America/Bogota",
+            "Asia/Calcutta",
+            "Asia/Kabul",
+            "America/Tijuana",
+            "Pacific/Tongatapu",
+            "America/New_York",
+            "Asia/Beirut",
+            "Atlantic/Azores",
+            "Asia/Yerevan",
+            "Etc/GMT+12",
+            "America/Chihuahua",
+            "Asia/Krasnoyarsk",
+            "GMT",
+            "America/Anchorage",
+            "Europe/Warsaw",
+            "America/Chicago",
+            "Asia/Yakutsk",
+            "America/Halifax",
+            "Etc/GMT-1",
+            "Africa/Johannesburg",
+            "America/Godthab",
+            "Europe/Paris",
+            "Europe/Istanbul",
+            "Etc/GMT-3",
+            "America/Santiago",
+            "Pacific/Auckland",
+            "Europe/Minsk",
+            "Asia/Baku",
+            "America/Caracas",
+            "Europe/Kiev",
+            "Asia/Tehran",
+            "Asia/Dacca",
+            "Atlantic/Reykjavik",
+            "Pacific/Samoa",
+            "America/La_Paz",
+            "Asia/Taipei",
+            "America/Regina",
+            "Asia/Tashkent",
+            "Asia/Manila",
+            "Pacific/Guam",
+            "Asia/Bangkok",
+            "Asia/Irkutsk",
+            "America/St_Johns",
+            "Asia/Muscat",
+            "America/Denver",
+            "US/East-Indiana",
+            "Europe/Amsterdam",
+            "America/Buenos_Aires",
+            "America/Noronha",
+            "Asia/Seoul",
+            "Asia/Amman",
+            "Australia/Sydney",
+            "Asia/Tokyo",
+            "Australia/Adelaide",
+            "Asia/Katmandu",
+            "Asia/Almaty",
+            "America/Phoenix",
+            "America/Los_Angeles",
+            "Australia/Brisbane",
+            "America/Mexico_City",
+            "Pacific/Guadalcanal",
+            "Etc/GMT+3",
+            "Asia/Yekaterinburg",
+            "Asia/Jerusalem",
+            "Etc/GMT+1"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "overdueBalance": {
+      "title": "Overdue",
+      "type": "number",
+      "description": "The Overdue field shows the total amount owed for open transactions that are past their due date based on the invoice terms. Note: For open transactions that do not have a due date, the transaction date is used as the due date to calculate this total. If you use the Multiple Currencies feature, the amount in this field is shown in the customer&apos;s currency.",
+      "format": "double",
+      "nullable": true
+    },
+    "phoneticName": {
+      "title": "Furigana",
+      "type": "string",
+      "description": "Enter the furigana character you want to use to sort this record.",
+      "nullable": true
+    },
+    "custentity_cr_ms_active": {
+      "title": "M/S Active",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentityzuoraid": {
+      "title": "Zuora ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_budget_approved": {
+      "title": "Budget Approved?",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentity_tesorio_rep_sub": {
+      "title": "Represents Subsidiary",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentityzuoracreateddate": {
+      "title": "Zuora Created Date",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentityzuoraorigin": {
+      "title": "Zuora Origin",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_ff_sc_entity_ita_apy_code": {
+      "title": "Italian Payment Term Code",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_ava_exemptcertno": {
+      "title": "Exemption Certificate No",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_2663_direct_debit": {
+      "title": "Direct Debit",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "openingBalance": {
+      "title": "Opening Balance",
+      "type": "number",
+      "description": "Enter the opening balance of this customer&apos;s account.",
+      "format": "double",
+      "nullable": true
+    },
+    "custentity_marquee_customer": {
+      "title": "Marquee Customer",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentity_swe_customer_discount": {
+      "title": "Customer Discount",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_rfc": {
+      "title": "RFC",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentityzuorasyncdate": {
+      "title": "Zuora Sync Date",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "email": {
+      "title": " Email",
+      "type": "string",
+      "description": "Enter your customer&apos;s email address. If you allow your customers to access their accounts online, this becomes part of their access codes.",
+      "nullable": true
+    },
+    "custentity_decision_maker_id": {
+      "title": "Decision Maker Identified",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentity_sta_factoring_inv_not_to_cust": {
+      "title": "E-invoicing operator should not forward factoring eInvoice to customer",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "depositBalance": {
+      "title": "Deposit Balance",
+      "type": "number",
+      "description": "The Customer Deposit Balance field displays the total amount of unapplied deposits for the customer. Deposits are recorded in the general ledger, as a liability, when the customer makes an advance payment before delivery of goods or services. A deposit balance exists until the goods or services are delivered. Deposits do not affect the customer&apos;s accounts receivable balance. If you use the Multiple Currencies feature, the amount in this field is shown in the customer&apos;s currency.",
+      "format": "double",
+      "nullable": true
+    },
+    "lastOrderDate": {
+      "title": "Last Sales Order Date",
+      "type": "string",
+      "description": "Returns the date of the last order from the customer.",
+      "format": "date",
+      "nullable": true
+    },
+    "firstSaleDate": {
+      "title": "First Sale Date",
+      "type": "string",
+      "description": "Returns the date of the first sale to the customer.",
+      "format": "date",
+      "nullable": true
+    },
+    "customForm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "99",
+            "77",
+            "-2",
+            "109",
+            "-8",
+            "94",
+            "-9"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "custentity_naw_trans_need_approval": {
+      "title": "Transactions Need Approval",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "aging": {
+      "title": "Current",
+      "type": "number",
+      "description": "The overdue A/R balance is shown here with the balance totals for each aging period.",
+      "format": "double",
+      "nullable": true
+    },
+    "custentity_sta_einvoice_factoring_custno": {
+      "title": "Factoring Customer No",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "description": "Returns the customer&apos;s external ID, if one is assigned.",
+      "nullable": true
+    },
+    "custentity_erpff_p2p_basw_tax_id": {
+      "title": "Tax ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "language": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "ro_RO",
+            "af_ZA",
+            "tl_PH",
+            "pt_BR",
+            "th_TH",
+            "bn_BD",
+            "cs_CZ",
+            "ca_ES",
+            "hu_HU",
+            "kn_IN",
+            "sk_SK",
+            "es_ES",
+            "nl_NL",
+            "is_IS",
+            "te_IN",
+            "sv_SE",
+            "sq_AL",
+            "es_AR",
+            "da_DK",
+            "ta_IN",
+            "sr_RS",
+            "en",
+            "ar",
+            "hr_HR",
+            "ko_KR",
+            "en_US",
+            "lt_LT",
+            "no_NO",
+            "el_GR",
+            "it_IT",
+            "ru_RU",
+            "pl_PL",
+            "en_AU",
+            "tr_TR",
+            "id_ID",
+            "hi_IN",
+            "mr_IN",
+            "fr_FR",
+            "he_IL",
+            "ja_JP",
+            "de_DE",
+            "ms_MY",
+            "zh_TW",
+            "fr_CA",
+            "pa_IN",
+            "fa_IR",
+            "bg_BG",
+            "vi_VN",
+            "hy_AM",
+            "lb_LU",
+            "xx_US",
+            "sh_RS",
+            "ht_HT",
+            "fi_FI",
+            "en_GB",
+            "gu_IN",
+            "et_EE",
+            "en_CA",
+            "lv_LV",
+            "uk_UA",
+            "bs_BA",
+            "zh_CN",
+            "sl_SI",
+            "pt_PT"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "entityId": {
+      "title": "Entity ID",
+      "type": "string",
+      "description": "Enter the name of this customer, prospect or lead the way it should appear in all lists and on the Pay to the Order of line of checks. If you use Auto-Generated Numbering, the customer number or code fills here. Enter the customer name in the Company Name field.",
+      "nullable": true
+    },
+    "custentity_nslc_num_identificacion": {
+      "title": "Tax Identification Number",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "emailPreference": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "PDF",
+            "HTML",
+            "DEFAULT"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "custentityzuorasoldtoid": {
+      "title": "Zuora Sold To ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_sta_einvoicing_payer_ovt": {
+      "title": "Payer EDI",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "mobilePhone": {
+      "title": "Mobile Phone",
+      "type": "string",
+      "description": "Enter a mobile or cell phone number for this person.",
+      "nullable": true
+    },
+    "searchStage": {
+      "title": "Stage",
+      "type": "string",
+      "description": "Returns the stage of the customer record, such as Customer or Lead.",
+      "nullable": true
+    },
+    "custentity_portal_instructions": {
+      "title": "Portal Instructions",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "altPhone": {
+      "title": "Alt. Phone",
+      "type": "string",
+      "description": "If applicable, enter an alternate phone number for this record.",
+      "nullable": true
+    },
+    "firstOrderDate": {
+      "title": "First Sales Order Date",
+      "type": "string",
+      "description": "Returns the date of the first order from the customer.",
+      "format": "date",
+      "nullable": true
+    },
+    "custentity_year_est": {
+      "title": "Year Established",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "faxTransactions": {
+      "title": "Fax Transactions",
+      "type": "boolean",
+      "description": "Set a preferred transaction delivery method for this customer. Choose to send transactions by regular mail, by email, by fax, or by a combination of the three. Then, when you select the customer on a transaction, their preferred delivery method is marked by default. * Email – Check this box to check the To Be Emailed box by default on transactions when this customer is selected. * Print – Check this box to check the To Be Printed box by default on transactions when this customer is selected. * Fax – Check this box to check the To Be Faxed box by default on transactions when this customer is selected. Once you enter these settings on the customer record, these boxes are checked by default for transactions created from the customer record or for transactions that are copied or converted. Note: These settings override any customized settings on transaction forms you use. There are also preferences to set default values for new customer records at Setup &gt; Company &gt; Preferences &gt; Printing, Fax,&amp; Email Preferences. On the Print subtab, Fax subtab, or Email subtab, check Customers Default to [Print/Fax/Email] Transactions. You can also set these fields using the Mass Update function. Go to Lists &gt; Mass Updates &gt; Mass Updates &gt; General and click Customer."
+    },
+    "custentity_nsts_ci_fax_attachment": {
+      "title": "Send CI via Fax",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentity_cfdi_numctapgo": {
+      "title": "Num Cuenta Pago",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentityzuorasalesrep": {
+      "title": "Zuora Sales Rep",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "altEmail": {
+      "title": "Alt. Email",
+      "type": "string",
+      "description": "Enter an alternate email address for this customer. If you use the Capture Email Replies, email sent with the alternate email address are automatically attached to the customer record.",
+      "nullable": true
+    },
+    "custentity_cr_ms_active_date": {
+      "title": "M/S Active Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_portal_username": {
+      "title": "Portal Username",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_ste_taxgroups": {
+      "title": "STE Tax Groups",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_lockout_notice_date": {
+      "title": "Lockout Notice Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_ste_entity_nexuses": {
+      "title": "STE Entity Nexuses",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "salutation": {
+      "title": "Mr./Ms...",
+      "type": "string",
+      "description": "Enter the title of this person, such as Mr., Mrs., Ms., Dr., Rev., etc.",
+      "nullable": true
+    },
+    "custentity_sta_use_en16931_2017_a1_2019": {
+      "title": "Use standard EN 16931-1:2017+A1:2019  in electronic billing",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "firstName": {
+      "title": "First Name",
+      "type": "string",
+      "description": "Enter this customer&apos;s name.",
+      "nullable": true
+    },
+    "homePhone": {
+      "title": "Home Phone",
+      "type": "string",
+      "description": "Enter a home phone number for this person.",
+      "nullable": true
+    },
+    "title": {
+      "title": "Job Title",
+      "type": "string",
+      "description": "Enter the job title for this person&apos;s position at his or her company.",
+      "nullable": true
+    },
+    "defaultShippingAddress": {
+      "title": "Default Shipping Address",
+      "type": "string",
+      "description": "Returns the customer&apos;s default shipping address, if one is entered on the customer record.",
+      "nullable": true
+    },
+    "custentity_contract_item_retention_date": {
+      "title": "Retained Until",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "billingTransactionType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "CashSale",
+            "CustInvc"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "custentity_portal_password": {
+      "title": "Portal Password",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "shippingCarrier": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "ups",
+            "nonups"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "aging2": {
+      "title": "31-60 Days",
+      "type": "number",
+      "description": "The overdue A/R balance is shown here with the balance totals for each aging period.",
+      "format": "double",
+      "nullable": true
+    },
+    "aging3": {
+      "title": "61-90 Days",
+      "type": "number",
+      "description": "The overdue A/R balance is shown here with the balance totals for each aging period.",
+      "format": "double",
+      "nullable": true
+    },
+    "custentityzuoraaccountmrr": {
+      "title": "Zuora Account MRR",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "aging1": {
+      "title": "1-30 Days",
+      "type": "number",
+      "description": "The overdue A/R balance is shown here with the balance totals for each aging period.",
+      "format": "double",
+      "nullable": true
+    },
+    "aging4": {
+      "title": "Over 90 Days",
+      "type": "number",
+      "description": "The overdue A/R balance is shown here with the balance totals for each aging period.",
+      "format": "double",
+      "nullable": true
+    },
+    "custentity_nsts_ci_lock_inui": {
+      "title": "CI Lock on Online consolidation",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentity_mhi_stripe_payment_expiry": {
+      "title": "Expires",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_dl_sales_rep_bcc": {
+      "title": "BCC Email to Sales Representative",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentity7": {
+      "title": "Follow up Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_emea_company_reg_num": {
+      "title": "Company Registration Number",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_ste_taxregnumres": {
+      "title": "STE Tax Number Validation Result",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "middleName": {
+      "title": "Middle Name",
+      "type": "string",
+      "description": "Returns the customer&apos;s middle name or initial, if one is entered on the customer record.",
+      "nullable": true
+    },
+    "custentity_3805_dunning_paused": {
+      "title": "Pause Dunning",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "daysOverdue": {
+      "title": "Days",
+      "type": "integer",
+      "description": "The number of days overdue this balance is overdue is shown here.",
+      "format": "int64",
+      "nullable": true
+    },
+    "custentityzuorataxexemptcertificateid": {
+      "title": "Zuora Tax Exempt Certificate ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "creditLimit": {
+      "title": "Credit Limit",
+      "type": "number",
+      "description": "Enter a credit limit to define the maximum currency amount the customer is allowed to accrue in outstanding receivables. When you meet or exceed this customer&apos;s limit while you are entering transactions, NetSuite can warn you or block the transaction. To set preferences for credit limit handling, an administrator must go to Setup &gt; Accounting &gt; Accounting Preferences &gt; General &gt; Customer Credit Limit Handling. For more information, click Help at the top of the page and search for Customer Credit Limits and Holds.",
+      "format": "double",
+      "nullable": true
+    },
+    "custentity_3805_dunning_letters_toprint": {
+      "title": "Allow Letters to be Printed",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentityzuorabilltoworkemail": {
+      "title": "Zuora Bill To Work Email",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_reference_notes": {
+      "title": "Reference Notes",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_platinum_customer": {
+      "title": "Platinum Customer",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentity_erpff_p2p_party_endpoint_id": {
+      "title": "Party endpoint ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_has_active_subscription": {
+      "title": "Has Active Subscription",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentity_coll_notes": {
+      "title": "Collection Note",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "emailTransactions": {
+      "title": "Email Transactions",
+      "type": "boolean",
+      "description": "Set a preferred transaction delivery method for this customer. Choose to send transactions by regular mail, by email, by fax, or by a combination of the three. Then, when you select the customer on a transaction, their preferred delivery method is marked by default. * Email – Check this box to check the To Be Emailed box by default on transactions when this customer is selected. * Print – Check this box to check the To Be Printed box by default on transactions when this customer is selected. * Fax – Check this box to check the To Be Faxed box by default on transactions when this customer is selected. Once you enter these settings on the customer record, these boxes are checked by default for transactions created from the customer record or for transactions that are copied or converted. Note: These settings override any customized settings on transaction forms you use. There are also preferences to set default values for new customer records at Setup &gt; Company &gt; Preferences &gt; Printing, Fax,&amp; Email Preferences. On the Print subtab, Fax subtab, or Email subtab, check Customers Default to [Print/Fax/Email] Transactions. You can also set these fields using the Mass Update function. Go to Lists &gt; Mass Updates &gt; Mass Updates &gt; General and click Customer."
+    },
+    "custentity_nsts_ci_exclude_ci": {
+      "title": "Exclude  From Consolidated Invoicing",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "thirdPartyCountry": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "PR",
+            "PS",
+            "PT",
+            "PW",
+            "PY",
+            "QA",
+            "AD",
+            "AE",
+            "AF",
+            "AG",
+            "AI",
+            "AL",
+            "AM",
+            "AN",
+            "AO",
+            "AQ",
+            "AR",
+            "AS",
+            "AT",
+            "RE",
+            "AU",
+            "AW",
+            "AX",
+            "AZ",
+            "RO",
+            "BA",
+            "BB",
+            "RS",
+            "BD",
+            "BE",
+            "RU",
+            "BF",
+            "BG",
+            "RW",
+            "BH",
+            "BI",
+            "BJ",
+            "BL",
+            "BM",
+            "BN",
+            "BO",
+            "SA",
+            "BQ",
+            "SB",
+            "BR",
+            "SC",
+            "BS",
+            "SD",
+            "BT",
+            "SE",
+            "SG",
+            "BV",
+            "BW",
+            "SH",
+            "SI",
+            "BY",
+            "SJ",
+            "BZ",
+            "SK",
+            "SL",
+            "SM",
+            "SN",
+            "SO",
+            "CA",
+            "SR",
+            "CC",
+            "SS",
+            "ST",
+            "CD",
+            "CF",
+            "SV",
+            "CG",
+            "SX",
+            "CH",
+            "SY",
+            "CI",
+            "SZ",
+            "CK",
+            "CL",
+            "CM",
+            "CN",
+            "CO",
+            "CR",
+            "TC",
+            "TD",
+            "CS",
+            "TF",
+            "CU",
+            "CV",
+            "TG",
+            "CW",
+            "TH",
+            "CX",
+            "CY",
+            "TJ",
+            "TK",
+            "CZ",
+            "TL",
+            "TM",
+            "TN",
+            "TO",
+            "TR",
+            "TT",
+            "DE",
+            "TV",
+            "TW",
+            "DJ",
+            "TZ",
+            "DK",
+            "DM",
+            "DO",
+            "UA",
+            "UG",
+            "DZ",
+            "UM",
+            "EA",
+            "US",
+            "EC",
+            "EE",
+            "EG",
+            "EH",
+            "UY",
+            "UZ",
+            "VA",
+            "ER",
+            "VC",
+            "ES",
+            "VE",
+            "ET",
+            "VG",
+            "VI",
+            "VN",
+            "VU",
+            "FI",
+            "FJ",
+            "FK",
+            "FM",
+            "FO",
+            "FR",
+            "WF",
+            "GA",
+            "GB",
+            "WS",
+            "GD",
+            "GE",
+            "GF",
+            "GG",
+            "GH",
+            "GI",
+            "GL",
+            "GM",
+            "GN",
+            "GP",
+            "GQ",
+            "GR",
+            "GS",
+            "GT",
+            "GU",
+            "GW",
+            "GY",
+            "XK",
+            "HK",
+            "HM",
+            "HN",
+            "HR",
+            "YE",
+            "HT",
+            "HU",
+            "IC",
+            "ID",
+            "YT",
+            "IE",
+            "IL",
+            "IM",
+            "IN",
+            "IO",
+            "ZA",
+            "IQ",
+            "IR",
+            "IS",
+            "IT",
+            "ZM",
+            "JE",
+            "ZW",
+            "JM",
+            "JO",
+            "JP",
+            "KE",
+            "KG",
+            "KH",
+            "KI",
+            "KM",
+            "KN",
+            "KP",
+            "KR",
+            "KW",
+            "KY",
+            "KZ",
+            "LA",
+            "LB",
+            "LC",
+            "LI",
+            "LK",
+            "LR",
+            "LS",
+            "LT",
+            "LU",
+            "LV",
+            "LY",
+            "MA",
+            "MC",
+            "MD",
+            "ME",
+            "MF",
+            "MG",
+            "MH",
+            "MK",
+            "ML",
+            "MM",
+            "MN",
+            "MO",
+            "MP",
+            "MQ",
+            "MR",
+            "MS",
+            "MT",
+            "MU",
+            "MV",
+            "MW",
+            "MX",
+            "MY",
+            "MZ",
+            "NA",
+            "NC",
+            "NE",
+            "NF",
+            "NG",
+            "NI",
+            "NL",
+            "NO",
+            "NP",
+            "NR",
+            "NU",
+            "NZ",
+            "OM",
+            "PA",
+            "PE",
+            "PF",
+            "PG",
+            "PH",
+            "PK",
+            "PL",
+            "PM",
+            "PN"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "custentity_est_budget": {
+      "title": "Estimated Budget",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_portal_url": {
+      "title": "Portal URL",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_echosign_fix_link_is_processe": {
+      "title": "Adobe Acrobat Sign Is Parent Link Up To Date",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "balance": {
+      "title": "Balance",
+      "type": "number",
+      "description": "The customer&apos;s current accounts receivable balance due appears here. If you use the Multiple Currencies feature, the amount in this field is shown in the customer&apos;s currency.",
+      "format": "double",
+      "nullable": true
+    },
+    "custentity_nsts_swva_blockcolemail": {
+      "title": "Block Collection Email",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentityzuoraparentid": {
+      "title": "Zuora Parent ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "printOnCheckAs": {
+      "title": "Print on Check As",
+      "type": "string",
+      "description": "What you enter here prints on the Pay to the Order of line of a check instead of what you entered in the Customer field.",
+      "nullable": true
+    },
+    "custentity5": {
+      "title": "Expected Payment Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity2": {
+      "title": "Dunning Success in the last week",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "description": "The internal ID for this record is shown here. If you do not want to show internal IDs, clear the Show Internal IDs box at Home &gt; Set Preferences.",
+      "nullable": true
+    },
+    "custentity3": {
+      "title": "DUNNING SUCCESS IN THE LAST MONTH",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "fax": {
+      "title": "Fax",
+      "type": "string",
+      "description": "Enter a fax number for this record. You should enter the fax number exactly as it must be dialed. If a &apos;1&apos; is required to fax to this number, be sure to include it at the beginning of the number. The number you enter automatically appears in the To Be Faxed field of transactions when you select this customer. To fax NetSuite forms, an administrator must first set up fax service at Setup &gt; Set Up Printing, Fax and E-mail &gt; Fax.",
+      "nullable": true
+    },
+    "custentity_3805_last_dunning_letter_sent": {
+      "title": "Last Email Sent",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentityzuoraupdateddate": {
+      "title": "Zuora Updated Date",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "billingTransactionForm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "230",
+            "233",
+            "234",
+            "235",
+            "237",
+            "117",
+            "118",
+            "239",
+            "119",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "18",
+            "240",
+            "120",
+            "241",
+            "121",
+            "242",
+            "1",
+            "122",
+            "243",
+            "123",
+            "244",
+            "124",
+            "245",
+            "125",
+            "126",
+            "247",
+            "248",
+            "249",
+            "20",
+            "21",
+            "-9907",
+            "22",
+            "23",
+            "-9908",
+            "24",
+            "-9909",
+            "-9903",
+            "-9904",
+            "28",
+            "-9905",
+            "-9906",
+            "250",
+            "130",
+            "251",
+            "131",
+            "252",
+            "132",
+            "253",
+            "133",
+            "254",
+            "134",
+            "255",
+            "135",
+            "256",
+            "136",
+            "257",
+            "258",
+            "-9901",
+            "-9902",
+            "30",
+            "-9918",
+            "-9919",
+            "35",
+            "36",
+            "-9914",
+            "-9915",
+            "-9916",
+            "39",
+            "-9917",
+            "260",
+            "140",
+            "261",
+            "262",
+            "142",
+            "143",
+            "144",
+            "145",
+            "146",
+            "147",
+            "149",
+            "-9910",
+            "-9911",
+            "-9912",
+            "-9913",
+            "40",
+            "41",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "150",
+            "157",
+            "158",
+            "159",
+            "50",
+            "52",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "160",
+            "161",
+            "162",
+            "164",
+            "-9892",
+            "-9893",
+            "-9894",
+            "169",
+            "-9899",
+            "60",
+            "61",
+            "62",
+            "-9895",
+            "63",
+            "-9896",
+            "64",
+            "-9898",
+            "66",
+            "67",
+            "68",
+            "69",
+            "170",
+            "175",
+            "176",
+            "178",
+            "179",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "180",
+            "181",
+            "182",
+            "183",
+            "188",
+            "189",
+            "80",
+            "-10106",
+            "81",
+            "-10105",
+            "82",
+            "-10104",
+            "83",
+            "84",
+            "85",
+            "-10109",
+            "86",
+            "-10108",
+            "87",
+            "-10107",
+            "88",
+            "89",
+            "190",
+            "192",
+            "193",
+            "194",
+            "195",
+            "196",
+            "197",
+            "198",
+            "199",
+            "-9960",
+            "90",
+            "91",
+            "-9965",
+            "92",
+            "-9966",
+            "93",
+            "-9967",
+            "94",
+            "-9968",
+            "95",
+            "-9961",
+            "96",
+            "-9962",
+            "97",
+            "98",
+            "-9964",
+            "99",
+            "-9970",
+            "-9971",
+            "-9976",
+            "-9977",
+            "-9978",
+            "-9979",
+            "-9972",
+            "-9974",
+            "-9975",
+            "-9980",
+            "-9981",
+            "-9982",
+            "-9987",
+            "-9988",
+            "-9989",
+            "-9983",
+            "-9984",
+            "-9985",
+            "-9986",
+            "-9990",
+            "-9991",
+            "-9992",
+            "-9993",
+            "-9998",
+            "-9999",
+            "-9994",
+            "-9995",
+            "-9996",
+            "-9997",
+            "-9929",
+            "-9925",
+            "-9926",
+            "-9927",
+            "-9928",
+            "-9921",
+            "-9922",
+            "-9923",
+            "-9924",
+            "-9920",
+            "-9936",
+            "-9938",
+            "-9939",
+            "200",
+            "201",
+            "202",
+            "203",
+            "205",
+            "-9932",
+            "206",
+            "-9933",
+            "207",
+            "-9934",
+            "208",
+            "-9935",
+            "209",
+            "-9930",
+            "-9931",
+            "-9947",
+            "-9948",
+            "210",
+            "212",
+            "213",
+            "214",
+            "215",
+            "-9943",
+            "-9944",
+            "-9945",
+            "219",
+            "-9946",
+            "-9940",
+            "-9941",
+            "-9942",
+            "-9958",
+            "-9959",
+            "220",
+            "221",
+            "222",
+            "223",
+            "225",
+            "226",
+            "-9954",
+            "228",
+            "-9955",
+            "229",
+            "-9956",
+            "-9957",
+            "-9950",
+            "-9951",
+            "-9952",
+            "-9953"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "alcoholRecipientType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "CONSUMER",
+            "LICENSEE"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "lastName": {
+      "title": "Last Name",
+      "type": "string",
+      "description": "Optionally enter a last name here.",
+      "nullable": true
+    },
+    "custentityzuoracrmid": {
+      "title": "Zuora CRM ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_sta_einv_businessid": {
+      "title": "Business ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "endDate": {
+      "title": "End Date",
+      "type": "string",
+      "description": "If you have a contract with this customer, enter the end date here. If you are entering a job record, enter the projected end date of the job here.",
+      "format": "date",
+      "nullable": true
+    },
+    "phone": {
+      "title": "Phone",
+      "type": "string",
+      "description": "Enter a phone number for your customer. It will appear on the Customer List report.",
+      "nullable": true
+    },
+    "companyName": {
+      "title": "Company Name",
+      "type": "string",
+      "description": "Enter the legal name of the customer. If you use Auto-Generated Numbering, it is important that you enter the customer&apos;s name here, as the Customer Name field fills with the number or code for this record.",
+      "nullable": true
+    },
+    "custentityzuorasoldtoworkemail": {
+      "title": "Zuora Sold To Work Email",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_erpff_p2p_party_endp_op_id": {
+      "title": "Party endpoint operator ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "defaultAddress": {
+      "title": "Default Address",
+      "type": "string",
+      "description": "This field automatically shows the default billing address that you enter and add using the Address subtab.",
+      "nullable": true
+    },
+    "custentity_cte_rfc": {
+      "title": "R.F.C.",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_contract_item_customer_since": {
+      "title": "Customer Since",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_multi_locations": {
+      "title": "Multiple Locations",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentity_2663_customer_refund": {
+      "title": "EFT Customer Refund Payment",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentity_ot_lead_notes": {
+      "title": "TBD:Lead Notes",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentityzuoraacountnumber": {
+      "title": "Zuora Account Number",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "creditHoldOverride": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "AUTO",
+            "OFF",
+            "ON"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "custentity_mhi_stripe_payment_portal": {
+      "title": "Stripe Payment Portal",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "isPerson": {
+      "title": "Is Individual",
+      "type": "boolean",
+      "description": "Choose the type of customer record you are creating by selecting Company or Individual in the Type field. This selection determines which fields and subtabs are used on this record."
+    },
+    "custentity_erpff_p2p_auto_send_document": {
+      "title": "Automatically send e-documents",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentity_sta_einvoicing_payer_operator": {
+      "title": "Payer EDI Operator",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "openingBalanceDate": {
+      "title": "Opening Balance Date",
+      "type": "string",
+      "description": "Enter the date of the balance entered in the Opening Balance field.",
+      "format": "date",
+      "nullable": true
+    },
+    "url": {
+      "title": "URL",
+      "type": "string",
+      "description": "Enter the URL associated with this customer.",
+      "nullable": true
+    },
+    "custentity_str_gl_de_gobd_taxno": {
+      "title": "GL Tax Number",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "autoName": {
+      "title": "Auto",
+      "type": "boolean",
+      "description": "Clear this box to manually enter a name for this record. If you leave this box marked, NetSuite assigns a name or number for this record based on your settings at Setup &gt; Set Up Auto-Generated Numbers."
+    },
+    "shipComplete": {
+      "title": "Ship Complete",
+      "type": "boolean",
+      "description": "Check this box if you only want to ship orders to this customer when they are completely fulfilled."
+    },
+    "custentityzuorapurchaseordernumber": {
+      "title": "Zuora Purchase Order Number",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "thirdPartyCarrier": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "fedex",
+            "ups",
+            "usps"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "custentity_continue_providing_support": {
+      "title": "Continue providing support",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentityzuoracustomerservicerepname": {
+      "title": "Zuora Customer Service Rep Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_sta_einv_ent_vat_excemption": {
+      "title": "VAT Exemption Disclaimer",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentityzuoraautopay": {
+      "title": "Zuora Auto Pay",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "numberFormat": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "isAutogeneratedRepresentingEntity": {
+      "title": "Is Autogenerated Representing Entity",
+      "type": "boolean",
+      "description": "This field indicates that this entity was automatically generated by NetSuite to represent a specific subsidiary."
+    },
+    "isBudgetApproved": {
+      "title": "Budget Approved",
+      "type": "boolean",
+      "description": "Check this box if the customer&apos;s budget has been approved."
+    },
+    "custentity_uplift": {
+      "title": "Uplift",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_cr_ms_inactive_date": {
+      "title": "M/S Inactive Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "unbilledOrders": {
+      "title": "Unbilled Orders",
+      "type": "number",
+      "description": "This field displays the total amount of orders that have been entered but not yet billed. If you have enabled the preference Customer Credit Limit Includes Orders, then this total is included in credit limit calculations. Set this preference at Setup &gt; Accounting &gt; Preferences &gt; Accounting Preferences &gt; General. If you use the Multiple Currencies feature, the amount in this field is shown in the customer&apos;s currency.",
+      "format": "double",
+      "nullable": true
+    },
+    "custentity_3805_dunning_letters_toemail": {
+      "title": "Allow Letters to be Emailed",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "globalSubscriptionStatus": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "defaultOrderPriority": {
+      "title": "Default Order Priority",
+      "type": "number",
+      "description": "Enter a number to designate the priority for this customer.",
+      "format": "float",
+      "nullable": true
+    },
+    "custentity_uplift_cap": {
+      "title": "Uplift Cap (hidden)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_sta_einvoice_factoring": {
+      "title": "Invoices for Factoring",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "description": "When you check this box, this customer will no longer appear on customer, prospect or lead list unless you check the Show Inactives box at the bottom of the list page. This customer&apos;s name will also no longer appear in other dropdown lists containing customers, and the customer will no longer have access to NetSuite or be able to sign into your Web store."
+    },
+    "thirdPartyAcct": {
+      "title": "3rd Party Billing Account Number",
+      "type": "string",
+      "description": "Enter this customer’s FedEx® or UPS® account number in the 3rd Party Billing Account Number field. This account number is used if you select Consignee Billing on item fulfillments using UPS or select Bill Recipient on item fulfillments using FedEx.",
+      "nullable": true
+    },
+    "estimatedBudget": {
+      "title": "Estimated Budget",
+      "type": "number",
+      "description": "Enter the estimated budget the prospect or customer has for this opportunity.",
+      "format": "double",
+      "nullable": true
+    },
+    "custentity_echosign_verified": {
+      "title": "Adobe Acrobat Sign Verified",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentity_3805_exclude_comp_email": {
+      "title": "Do not Send Letters to Customer Email",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentity_2663_email_address_notif": {
+      "title": "Email Address for Payment Notification",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "negativeNumberFormat": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "0",
+            "1"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "custentity_ste_taxcodes": {
+      "title": "STE Tax Codes",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_cust_require_po": {
+      "title": "Purchase Order Required",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentity_nsts_ci_in_process": {
+      "title": "CI In Process",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "defaultTaxReg": {
+      "title": "Default Tax Reg. Number",
+      "type": "string",
+      "description": "Select the default tax registration number for this entity.",
+      "nullable": true
+    },
+    "custentity_nsts_ci_email_attachment": {
+      "title": "Send CI via Email",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "comments": {
+      "title": "Comments",
+      "type": "string",
+      "description": "Enter any other information you wish to track for this customer.",
+      "nullable": true
+    },
+    "accountNumber": {
+      "title": "Account",
+      "type": "string",
+      "description": "If you assign accounts to your customers, enter an account number for this customer here.",
+      "nullable": true
+    },
+    "reminderDays": {
+      "title": "Reminder Days",
+      "type": "integer",
+      "description": "Enter how many days before the end date you want to be reminded that this customer&apos;s contract or job service needs renewing. You can set the reminder to appear in the Reminders portlet on your Home, Lists and Transactions pages by clicking Customize Page on each page. On the Layout tab, click the Right Side Content subtab, and check the Reminders box. Then click the Reminders subtab, and check the Customers to Review box. Click Save.",
+      "format": "int64",
+      "nullable": true
+    },
+    "lastModifiedDate": {
+      "title": "Last Modified Date",
+      "type": "string",
+      "description": "Returns the date on which the customer record was last modified.",
+      "format": "date-time",
+      "nullable": true
+    },
+    "printTransactions": {
+      "title": "Print Transactions",
+      "type": "boolean",
+      "description": "Set a preferred transaction delivery method for this customer. Choose to send transactions by regular mail, by email, by fax, or by a combination of the three. Then, when you select the customer on a transaction, their preferred delivery method is marked by default. * Email – Check this box to check the To Be Emailed box by default on transactions when this customer is selected. * Print – Check this box to check the To Be Printed box by default on transactions when this customer is selected. * Fax – Check this box to check the To Be Faxed box by default on transactions when this customer is selected. Once you enter these settings on the customer record, these boxes are checked by default for transactions created from the customer record or for transactions that are copied or converted. Note: These settings override any customized settings on transaction forms you use. There are also preferences to set default values for new customer records at Setup &gt; Company &gt; Preferences &gt; Printing, Fax,&amp; Email Preferences. On the Print subtab, Fax subtab, or Email subtab, check Customers Default to [Print/Fax/Email] Transactions. You can also set these fields using the Mass Update function. Go to Lists &gt; Mass Updates &gt; Mass Updates &gt; General and click Customer."
+    },
+    "custentity_ar_follow_up_date": {
+      "title": "AR Follow Up Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_cust_inv_submission_inst": {
+      "title": "Customer Invoice Submission Instructions",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_erpff_p2p_basw_tax_scheme_id": {
+      "title": "Tax Scheme ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_stripe_customer_account_link": {
+      "title": "Stripe Customer Account Link",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_3805_dunning_status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_tri_class": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "subscriptions": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "subscribed": {
+                "title": "Subscribed",
+                "type": "boolean"
+              },
+              "lastModifiedDate": {
+                "title": "Last Modified",
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "subscription": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "custentity_jj_po_required": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_pref_paymnt_method": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "defaultBankAccount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_uplift_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_sta_einvoice_routing_channel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_9572_ddcust_entitybnkformat": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_3805_dunning_substatus": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_reference_status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentityzuorapaymentterm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "receivablesAccount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "salesReadiness": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_9997_dd_file_format": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_buying_time_frame": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "groupPricing": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "level": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "group": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "prefCcProcessor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "salesRep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "shippingItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "billingSchedule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "openingBalanceAccount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "subsidiary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentityzuorabatch": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_ff_sc_entity_ita_pay_term": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_nsts_ci_default_layout": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "territory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_nsts_ci_email_sender": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_ar_specialist_list": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentityzuorataxexemptstatus": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_ff_sc_bank_details": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity8": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "entityStatus": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity9": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity4": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity6": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "billingRateCard": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentityzuorasendtozuora": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_nsts_ci_fax_sender": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentityzuorabillcycleday": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "subscriptionMessageHistory": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "drAccount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "representingSubsidiary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_3805_dunning_procedure": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_uplift_cap_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_9572_refcust_entitybnkformat": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_9572_dd_file_format": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "addressBook": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "internalId": {
+                "title": "Internal ID",
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "defaultBilling": {
+                "title": "Default Billing",
+                "type": "boolean"
+              },
+              "addressBookAddress_text": {
+                "title": "Address",
+                "type": "string",
+                "nullable": true
+              },
+              "defaultShipping": {
+                "title": "Default Shipping",
+                "type": "boolean"
+              },
+              "isResidential": {
+                "title": "Residential Address",
+                "type": "boolean"
+              },
+              "label": {
+                "title": "Label",
+                "type": "string",
+                "nullable": true
+              },
+              "id": {
+                "title": "ID",
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "addressId": {
+                "title": "Internal ID",
+                "type": "string",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "addressBookAddress": {
+                "type": "object",
+                "properties": {
+                  "zip": {
+                    "title": "Zip",
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "country": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "title": "Internal identifier",
+                        "type": "string",
+                        "enum": [
+                          "PR",
+                          "PS",
+                          "PT",
+                          "PW",
+                          "PY",
+                          "QA",
+                          "AD",
+                          "AE",
+                          "AF",
+                          "AG",
+                          "AI",
+                          "AL",
+                          "AM",
+                          "AN",
+                          "AO",
+                          "AQ",
+                          "AR",
+                          "AS",
+                          "AT",
+                          "RE",
+                          "AU",
+                          "AW",
+                          "AX",
+                          "AZ",
+                          "RO",
+                          "BA",
+                          "BB",
+                          "RS",
+                          "BD",
+                          "BE",
+                          "RU",
+                          "BF",
+                          "BG",
+                          "RW",
+                          "BH",
+                          "BI",
+                          "BJ",
+                          "BL",
+                          "BM",
+                          "BN",
+                          "BO",
+                          "SA",
+                          "BQ",
+                          "SB",
+                          "BR",
+                          "SC",
+                          "BS",
+                          "SD",
+                          "BT",
+                          "SE",
+                          "SG",
+                          "BV",
+                          "BW",
+                          "SH",
+                          "SI",
+                          "BY",
+                          "SJ",
+                          "BZ",
+                          "SK",
+                          "SL",
+                          "SM",
+                          "SN",
+                          "SO",
+                          "CA",
+                          "SR",
+                          "CC",
+                          "SS",
+                          "ST",
+                          "CD",
+                          "CF",
+                          "SV",
+                          "CG",
+                          "SX",
+                          "CH",
+                          "SY",
+                          "CI",
+                          "SZ",
+                          "CK",
+                          "CL",
+                          "CM",
+                          "CN",
+                          "CO",
+                          "CR",
+                          "TC",
+                          "TD",
+                          "CS",
+                          "TF",
+                          "CU",
+                          "CV",
+                          "TG",
+                          "CW",
+                          "TH",
+                          "CX",
+                          "CY",
+                          "TJ",
+                          "TK",
+                          "CZ",
+                          "TL",
+                          "TM",
+                          "TN",
+                          "TO",
+                          "TR",
+                          "TT",
+                          "DE",
+                          "TV",
+                          "TW",
+                          "DJ",
+                          "TZ",
+                          "DK",
+                          "DM",
+                          "DO",
+                          "UA",
+                          "UG",
+                          "DZ",
+                          "UM",
+                          "EA",
+                          "US",
+                          "EC",
+                          "EE",
+                          "EG",
+                          "EH",
+                          "UY",
+                          "UZ",
+                          "VA",
+                          "ER",
+                          "VC",
+                          "ES",
+                          "VE",
+                          "ET",
+                          "VG",
+                          "VI",
+                          "VN",
+                          "VU",
+                          "FI",
+                          "FJ",
+                          "FK",
+                          "FM",
+                          "FO",
+                          "FR",
+                          "WF",
+                          "GA",
+                          "GB",
+                          "WS",
+                          "GD",
+                          "GE",
+                          "GF",
+                          "GG",
+                          "GH",
+                          "GI",
+                          "GL",
+                          "GM",
+                          "GN",
+                          "GP",
+                          "GQ",
+                          "GR",
+                          "GS",
+                          "GT",
+                          "GU",
+                          "GW",
+                          "GY",
+                          "XK",
+                          "HK",
+                          "HM",
+                          "HN",
+                          "HR",
+                          "YE",
+                          "HT",
+                          "HU",
+                          "IC",
+                          "ID",
+                          "YT",
+                          "IE",
+                          "IL",
+                          "IM",
+                          "IN",
+                          "IO",
+                          "ZA",
+                          "IQ",
+                          "IR",
+                          "IS",
+                          "IT",
+                          "ZM",
+                          "JE",
+                          "ZW",
+                          "JM",
+                          "JO",
+                          "JP",
+                          "KE",
+                          "KG",
+                          "KH",
+                          "KI",
+                          "KM",
+                          "KN",
+                          "KP",
+                          "KR",
+                          "KW",
+                          "KY",
+                          "KZ",
+                          "LA",
+                          "LB",
+                          "LC",
+                          "LI",
+                          "LK",
+                          "LR",
+                          "LS",
+                          "LT",
+                          "LU",
+                          "LV",
+                          "LY",
+                          "MA",
+                          "MC",
+                          "MD",
+                          "ME",
+                          "MF",
+                          "MG",
+                          "MH",
+                          "MK",
+                          "ML",
+                          "MM",
+                          "MN",
+                          "MO",
+                          "MP",
+                          "MQ",
+                          "MR",
+                          "MS",
+                          "MT",
+                          "MU",
+                          "MV",
+                          "MW",
+                          "MX",
+                          "MY",
+                          "MZ",
+                          "NA",
+                          "NC",
+                          "NE",
+                          "NF",
+                          "NG",
+                          "NI",
+                          "NL",
+                          "NO",
+                          "NP",
+                          "NR",
+                          "NU",
+                          "NZ",
+                          "OM",
+                          "PA",
+                          "PE",
+                          "PF",
+                          "PG",
+                          "PH",
+                          "PK",
+                          "PL",
+                          "PM",
+                          "PN"
+                        ]
+                      },
+                      "refName": {
+                        "title": "Reference Name",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "addr2": {
+                    "title": "Address 2",
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "city": {
+                    "title": "City",
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "addr1": {
+                    "title": "Address 1",
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "lastModifiedDate": {
+                    "title": "Last Modified Date",
+                    "type": "string",
+                    "format": "date-time",
+                    "nullable": true
+                  },
+                  "addr3": {
+                    "title": "Address 3",
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "externalId": {
+                    "title": "External ID",
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "addrPhone": {
+                    "title": "Phone",
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "addressee": {
+                    "title": "Addressee",
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "attention": {
+                    "title": "Attention",
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "override": {
+                    "title": "Override",
+                    "type": "boolean"
+                  },
+                  "state": {
+                    "title": "State/Province",
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "addrText": {
+                    "title": "Address",
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                },
+                "x-ns-filterable": []
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "buyingReason": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_3805_dunning_level": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "terms": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_3805_last_dunning_result": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_cfdi_metododepago": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_customer_channel_tier": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentityzuoradefaultpaymentmethod": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_9572_refundcust_entitybnk_sub": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_sta_einvoicing_delivery_metho": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_sta_ep_charge_bearer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_nsts_swva_collections_rep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_cfdi_metpago": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "campaignCategory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "leadSource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_other_sw_considered": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "itemPricing": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "price": {
+                "title": "Unit Price",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "currency": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "item": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "level": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "buyingTimeFrame": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_erpff_p2p_party_endp_scheme": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_collection_status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_ann_revenue": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "currencyList": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "overrideCurrencyFormat": {
+                "title": "Override Currency Format",
+                "type": "boolean"
+              },
+              "balance": {
+                "title": "Balance",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "depositBalance": {
+                "title": "Deposit Balance",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "unbilledOrders": {
+                "title": "Unbilled Orders",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "symbolPlacement": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string",
+                    "enum": [
+                      "1",
+                      "2"
+                    ]
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  }
+                }
+              },
+              "overdueBalance": {
+                "title": "Overdue Balance",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "displaySymbol": {
+                "title": "Symbol",
+                "type": "string",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "currency": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "custentity_3805_dunning_manager": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_nsts_ci_fax_template": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "campaignEvent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_9572_custref_file_format": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "contactList": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/contact"
+          }
+        }
+      }
+    },
+    "custentity_sta_einvoice_language": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "currency": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_reference_classification": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "parent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "taxRegistration": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "address": {
+                "title": "Address",
+                "type": "string",
+                "nullable": true
+              },
+              "taxRegistrationNumber": {
+                "title": "Tax Reg. Number",
+                "type": "string",
+                "nullable": true
+              },
+              "nexusCountry": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string",
+                    "enum": [
+                      "PR",
+                      "PS",
+                      "PT",
+                      "PW",
+                      "PY",
+                      "QA",
+                      "AD",
+                      "AE",
+                      "AF",
+                      "AG",
+                      "AI",
+                      "AL",
+                      "AM",
+                      "AN",
+                      "AO",
+                      "AQ",
+                      "AR",
+                      "AS",
+                      "AT",
+                      "RE",
+                      "AU",
+                      "AW",
+                      "AX",
+                      "AZ",
+                      "RO",
+                      "BA",
+                      "BB",
+                      "RS",
+                      "BD",
+                      "BE",
+                      "RU",
+                      "BF",
+                      "BG",
+                      "RW",
+                      "BH",
+                      "BI",
+                      "BJ",
+                      "BL",
+                      "BM",
+                      "BN",
+                      "BO",
+                      "SA",
+                      "BQ",
+                      "SB",
+                      "BR",
+                      "SC",
+                      "BS",
+                      "SD",
+                      "BT",
+                      "SE",
+                      "SG",
+                      "BV",
+                      "BW",
+                      "SH",
+                      "SI",
+                      "BY",
+                      "SJ",
+                      "BZ",
+                      "SK",
+                      "SL",
+                      "SM",
+                      "SN",
+                      "SO",
+                      "CA",
+                      "SR",
+                      "CC",
+                      "SS",
+                      "ST",
+                      "CD",
+                      "CF",
+                      "SV",
+                      "CG",
+                      "SX",
+                      "CH",
+                      "SY",
+                      "CI",
+                      "SZ",
+                      "CK",
+                      "CL",
+                      "CM",
+                      "CN",
+                      "CO",
+                      "CR",
+                      "TC",
+                      "TD",
+                      "CS",
+                      "TF",
+                      "CU",
+                      "CV",
+                      "TG",
+                      "CW",
+                      "TH",
+                      "CX",
+                      "CY",
+                      "TJ",
+                      "TK",
+                      "CZ",
+                      "TL",
+                      "TM",
+                      "TN",
+                      "TO",
+                      "TR",
+                      "TT",
+                      "DE",
+                      "TV",
+                      "TW",
+                      "DJ",
+                      "TZ",
+                      "DK",
+                      "DM",
+                      "DO",
+                      "UA",
+                      "UG",
+                      "DZ",
+                      "UM",
+                      "EA",
+                      "US",
+                      "EC",
+                      "EE",
+                      "EG",
+                      "EH",
+                      "UY",
+                      "UZ",
+                      "VA",
+                      "ER",
+                      "VC",
+                      "ES",
+                      "VE",
+                      "ET",
+                      "VG",
+                      "VI",
+                      "VN",
+                      "VU",
+                      "FI",
+                      "FJ",
+                      "FK",
+                      "FM",
+                      "FO",
+                      "FR",
+                      "WF",
+                      "GA",
+                      "GB",
+                      "WS",
+                      "GD",
+                      "GE",
+                      "GF",
+                      "GG",
+                      "GH",
+                      "GI",
+                      "GL",
+                      "GM",
+                      "GN",
+                      "GP",
+                      "GQ",
+                      "GR",
+                      "GS",
+                      "GT",
+                      "GU",
+                      "GW",
+                      "GY",
+                      "XK",
+                      "HK",
+                      "HM",
+                      "HN",
+                      "HR",
+                      "YE",
+                      "HT",
+                      "HU",
+                      "IC",
+                      "ID",
+                      "YT",
+                      "IE",
+                      "IL",
+                      "IM",
+                      "IN",
+                      "IO",
+                      "ZA",
+                      "IQ",
+                      "IR",
+                      "IS",
+                      "IT",
+                      "ZM",
+                      "JE",
+                      "ZW",
+                      "JM",
+                      "JO",
+                      "JP",
+                      "KE",
+                      "KG",
+                      "KH",
+                      "KI",
+                      "KM",
+                      "KN",
+                      "KP",
+                      "KR",
+                      "KW",
+                      "KY",
+                      "KZ",
+                      "LA",
+                      "LB",
+                      "LC",
+                      "LI",
+                      "LK",
+                      "LR",
+                      "LS",
+                      "LT",
+                      "LU",
+                      "LV",
+                      "LY",
+                      "MA",
+                      "MC",
+                      "MD",
+                      "ME",
+                      "MF",
+                      "MG",
+                      "MH",
+                      "MK",
+                      "ML",
+                      "MM",
+                      "MN",
+                      "MO",
+                      "MP",
+                      "MQ",
+                      "MR",
+                      "MS",
+                      "MT",
+                      "MU",
+                      "MV",
+                      "MW",
+                      "MX",
+                      "MY",
+                      "MZ",
+                      "NA",
+                      "NC",
+                      "NE",
+                      "NF",
+                      "NG",
+                      "NI",
+                      "NL",
+                      "NO",
+                      "NP",
+                      "NR",
+                      "NU",
+                      "NZ",
+                      "OM",
+                      "PA",
+                      "PE",
+                      "PF",
+                      "PG",
+                      "PH",
+                      "PK",
+                      "PL",
+                      "PM",
+                      "PN"
+                    ]
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  }
+                }
+              },
+              "id": {
+                "title": "ID",
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "nexusState": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "nexus": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "custentity_erpff_p2p_basw_tax_scheme": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "priceLevel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_company_size": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_9572_ddcust_entitybank_sub": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_atlas_pbcs_category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_nsts_ci_email_template": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_sw_switched_from": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "parent",
+    "custentity_company_size",
+    "custentityzuorabilltotaxregion",
+    "custentity_customer_channel_tier",
+    "startDate",
+    "lastSaleDate",
+    "buyingReason",
+    "custentity_erpff_p2p_party_endp_sch_id",
+    "thirdPartyZipCode",
+    "custentityzuoraintegrationstatus",
+    "custentity_ff_sc_entity_ita_pay_term",
+    "custentityzuorabilltoid",
+    "custentity_collection_notes",
+    "dateCreated",
+    "custentity_3805_last_dunning_result",
+    "buyingTimeFrame",
+    "custentity_arr",
+    "custentity_timezone",
+    "custentity_9572_ddcust_entitybank_sub",
+    "phoneticName",
+    "custentity_cr_ms_active",
+    "custentityzuoraid",
+    "custentity_budget_approved",
+    "custentityzuoracreateddate",
+    "custentityzuoraorigin",
+    "custentity_ava_exemptcertno",
+    "custentity_2663_direct_debit",
+    "salesReadiness",
+    "custentity_marquee_customer",
+    "custentity_reference_classification",
+    "custentityzuorasendtozuora",
+    "custentity_swe_customer_discount",
+    "custentity_rfc",
+    "custentity_9572_custref_file_format",
+    "currency",
+    "custentityzuorasyncdate",
+    "custentity_buying_time_frame",
+    "email",
+    "custentity_decision_maker_id",
+    "custentity_sta_factoring_inv_not_to_cust",
+    "campaignEvent",
+    "lastOrderDate",
+    "firstSaleDate",
+    "custentity_naw_trans_need_approval",
+    "custentity_9572_ddcust_entitybnkformat",
+    "custentity_sta_einvoice_factoring_custno",
+    "externalId",
+    "custentity_erpff_p2p_basw_tax_id",
+    "language",
+    "entityId",
+    "custentity_reference_status",
+    "custentity_nslc_num_identificacion",
+    "emailPreference",
+    "custentityzuorasoldtoid",
+    "custentity_uplift_cap_type",
+    "custentity_sta_einvoicing_payer_ovt",
+    "contact",
+    "mobilePhone",
+    "priceLevel",
+    "searchStage",
+    "altPhone",
+    "firstOrderDate",
+    "custentity_year_est",
+    "faxTransactions",
+    "custentity_nsts_ci_fax_attachment",
+    "custentity_cfdi_numctapgo",
+    "custentityzuorasalesrep",
+    "altEmail",
+    "custentity_cr_ms_active_date",
+    "custentity_erpff_p2p_basw_tax_scheme",
+    "custentity_lockout_notice_date",
+    "representingSubsidiary",
+    "leadSource",
+    "salutation",
+    "custentity_sta_use_en16931_2017_a1_2019",
+    "firstName",
+    "homePhone",
+    "contactList",
+    "title",
+    "custentity_3805_dunning_manager",
+    "defaultShippingAddress",
+    "custentity_contract_item_retention_date",
+    "billingTransactionType",
+    "custentity_3805_dunning_procedure",
+    "shippingCarrier",
+    "custentity_3805_dunning_substatus",
+    "custentityzuoraaccountmrr",
+    "custentity_9572_refcust_entitybnkformat",
+    "custentity_9997_dd_file_format",
+    "custentity_nsts_swva_collections_rep",
+    "custentity_nsts_ci_lock_inui",
+    "custentity_mhi_stripe_payment_expiry",
+    "custentity_nsts_ci_default_layout",
+    "custentity_dl_sales_rep_bcc",
+    "custentity8",
+    "custentity9",
+    "custentity6",
+    "custentity7",
+    "custentity_emea_company_reg_num",
+    "middleName",
+    "custentityzuorabatch",
+    "custentity_3805_dunning_paused",
+    "custentityzuorataxexemptcertificateid",
+    "creditLimit",
+    "prefCcProcessor",
+    "custentity_3805_dunning_letters_toprint",
+    "custentity_cfdi_metpago",
+    "custentityzuorabilltoworkemail",
+    "custentity_reference_notes",
+    "custentity_platinum_customer",
+    "custentity_erpff_p2p_party_endpoint_id",
+    "custentity_has_active_subscription",
+    "custentity_sta_einvoicing_delivery_metho",
+    "custentity_coll_notes",
+    "emailTransactions",
+    "drAccount",
+    "custentity_nsts_ci_email_template",
+    "custentity_nsts_ci_fax_sender",
+    "custentity_nsts_ci_exclude_ci",
+    "custentity_sw_switched_from",
+    "thirdPartyCountry",
+    "custentity_est_budget",
+    "custentity_3805_dunning_level",
+    "custentity_echosign_fix_link_is_processe",
+    "terms",
+    "custentity_nsts_swva_blockcolemail",
+    "custentity4",
+    "printOnCheckAs",
+    "custentity5",
+    "custentity2",
+    "custentityzuoradefaultpaymentmethod",
+    "id",
+    "custentity3",
+    "fax",
+    "custentity_collection_status",
+    "custentity_9572_dd_file_format",
+    "custentity_erpff_p2p_party_endp_scheme",
+    "custentity_3805_last_dunning_letter_sent",
+    "custentityzuoraupdateddate",
+    "billingRateCard",
+    "billingTransactionForm",
+    "alcoholRecipientType",
+    "lastName",
+    "custentityzuoracrmid",
+    "custentity_sta_einv_businessid",
+    "custentity_atlas_pbcs_category",
+    "custentity_sta_einvoice_language",
+    "endDate",
+    "phone",
+    "companyName",
+    "custentityzuorasoldtoworkemail",
+    "custentity_erpff_p2p_party_endp_op_id",
+    "custentity_cte_rfc",
+    "custentity_9572_refundcust_entitybnk_sub",
+    "custentity_contract_item_customer_since",
+    "custentity_multi_locations",
+    "custentity_sta_ep_charge_bearer",
+    "custentity_2663_customer_refund",
+    "custentityzuoraacountnumber",
+    "creditHoldOverride",
+    "custentity_mhi_stripe_payment_portal",
+    "receivablesAccount",
+    "isPerson",
+    "custentity_erpff_p2p_auto_send_document",
+    "custentity_cfdi_metododepago",
+    "custentity_sta_einvoicing_payer_operator",
+    "salesRep",
+    "custentity_nsts_ci_email_sender",
+    "billingSchedule",
+    "custentity_uplift_type",
+    "url",
+    "custentity_nsts_ci_fax_template",
+    "custentity_str_gl_de_gobd_taxno",
+    "custentity_other_sw_considered",
+    "shipComplete",
+    "custentityzuorapurchaseordernumber",
+    "thirdPartyCarrier",
+    "custentity_continue_providing_support",
+    "custentityzuoracustomerservicerepname",
+    "shippingItem",
+    "custentity_sta_einv_ent_vat_excemption",
+    "custentity_sta_einvoice_routing_channel",
+    "defaultBankAccount",
+    "custentityzuoraautopay",
+    "numberFormat",
+    "isAutogeneratedRepresentingEntity",
+    "isBudgetApproved",
+    "custentity_3805_dunning_status",
+    "custentity_uplift",
+    "custentity_cr_ms_inactive_date",
+    "custentity_3805_dunning_letters_toemail",
+    "globalSubscriptionStatus",
+    "custentityzuorabillcycleday",
+    "defaultOrderPriority",
+    "custentity_uplift_cap",
+    "custentity_sta_einvoice_factoring",
+    "custentity_ff_sc_bank_details",
+    "isInactive",
+    "thirdPartyAcct",
+    "estimatedBudget",
+    "custentity_echosign_verified",
+    "custentity_ann_revenue",
+    "custentity_3805_exclude_comp_email",
+    "entityStatus",
+    "custentity_2663_email_address_notif",
+    "negativeNumberFormat",
+    "custentity_cust_require_po",
+    "custentity_nsts_ci_in_process",
+    "defaultTaxReg",
+    "custentity_nsts_ci_email_attachment",
+    "custentity_ar_specialist_list",
+    "comments",
+    "accountNumber",
+    "reminderDays",
+    "lastModifiedDate",
+    "custentity_pref_paymnt_method",
+    "printTransactions",
+    "custentity_ar_follow_up_date",
+    "custentity_cust_inv_submission_inst",
+    "custentity_erpff_p2p_basw_tax_scheme_id",
+    "custentityzuorapaymentterm",
+    "category",
+    "custentityzuorataxexemptstatus",
+    "territory"
+  ]
+}

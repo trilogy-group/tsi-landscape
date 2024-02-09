@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sync_To_IgniteTech_HubSpot__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Field used to decide if the Account Product Families values contain IgniteTech BU products. This field will be used in an Account sharing rule to share all the account with this filed = true to the IgniteTech HubSpot Integration User. Created a checked instead of a formula due to a limitation in Salesforce sharing rule. Hide from page layout.</description>
+    <externalId>false</externalId>
+    <label>Sync To IgniteTech HubSpot?</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

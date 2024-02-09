@@ -1,0 +1,960 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "621f40f4-a95c-49b4-97e4-e962f2c0d73b",
+      "created": "2023-01-19T18:44:20.482329Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "a8a0dce2-55ad-40dc-afb8-89214bad1c25",
+        "created": "2023-12-04T15:18:21.939543Z"
+      },
+      "title": "Cancel O2C ticket",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "stageName": {
+              "type": "string",
+              "title": "Stage Name"
+            },
+            "instance": {
+              "title": "Instance",
+              "type": "string"
+            },
+            "o2cTicketLink": {
+              "title": "O2C Ticket Link",
+              "type": "string"
+            },
+            "o2cTicketType": {
+              "title": "O2C Ticket Type",
+              "type": "string",
+              "enum": [
+                {
+                  "text": "Quote",
+                  "value": "Quote"
+                },
+                {
+                  "text": "Invoice",
+                  "value": "Invoice"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "stageName",
+            "instance",
+            "o2cTicketType"
+          ],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "oppRecalled": {
+              "title": "Opportunity Recalled",
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "oppRecalled"
+          ],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "branch-1",
+          "type": "branch",
+          "content": {
+            "__default__": [
+              {
+                "name": "callable-workflow-response-4",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "branch1": [],
+            "branch2": [
+              {
+                "name": "boolean-condition-8",
+                "type": "branch",
+                "content": {
+                  "true": [],
+                  "false": [
+                    {
+                      "name": "callable-workflow-response-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "boolean-condition-2",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "boolean-condition-3",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "script-1",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "jira-cloud-1",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-4",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "data-mapper-2",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "jira-cloud-2",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "jira-cloud-3",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": [
+                          {
+                            "name": "boolean-condition-5",
+                            "type": "branch",
+                            "content": {
+                              "true": [
+                                {
+                                  "name": "data-mapper-1",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "jira-cloud-4",
+                                  "type": "normal",
+                                  "content": {}
+                                }
+                              ],
+                              "false": []
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "script-1": {
+          "title": "Get Key",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "ticketURL"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.o2cTicketLink"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Extract ticket key out of an url\nexports.step = function(input) {\n const regex = /\\/(?<key>[^/]+)$/;\n const key = input.ticketURL.match(regex).groups.key;\n return key;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-5": {
+          "title": "Ready for Work or Internal QC?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.jira-cloud-1.fields.status.name"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Ready for Work"
+                    },
+                    "is_case_sensitive": {
+                      "value": false,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.jira-cloud-1.fields.status.name"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Internal QC"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Prod?",
+          "description": "Cancel tickets on production only",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.instance"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "4914352"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "oppRecalled": {
+                  "value": true,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "jira-cloud-2": {
+          "title": "Update Cancel Reason",
+          "connector": {
+            "name": "jira-cloud",
+            "version": "2.0"
+          },
+          "operation": "update_issue",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3698bbfd-cdf2-419a-8e47-a0c47d4445b2",
+            "title": "O2C-Devgraph-APL-auth",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/7b32dbcd474d8c1f71bf9ee60c173096.png"
+            },
+            "scopes": [
+              "read:jira-work",
+              "read:jira-user",
+              "write:jira-work",
+              "offline_access"
+            ],
+            "service_name": "jira-cloud",
+            "service_version": 1
+          },
+          "properties": {
+            "issue_id": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result"
+            },
+            "other_fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "customfield_10083"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.data-mapper-2.result"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "Input QC?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.jira-cloud-1.fields.status.name"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Input QC"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "branch-1": {
+          "title": "O2C Ticket Type",
+          "connector": {
+            "name": "branch",
+            "version": "1.2"
+          },
+          "operation": "simple",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.o2cTicketType"
+            },
+            "branches": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "Quote"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "Quote"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "Invoice"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "Invoice"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "data-mapper-1": {
+          "title": "Get message",
+          "connector": {
+            "name": "data-mapper",
+            "version": "3.5"
+          },
+          "operation": "map_one_value",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "mappings": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "Quote"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "Please do not send this Quote to the Customer because it’s not valid anymore."
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "Invoice"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "Please do not issue invoice because the Quote is not valid anymore. If the Invoice is already issued, please void it."
+                    }
+                  }
+                }
+              ]
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.o2cTicketType"
+            },
+            "default_value": {
+              "type": "string",
+              "value": "This ticket is not valid anymore."
+            }
+          }
+        },
+        "jira-cloud-3": {
+          "title": "Fail Input QC",
+          "description": "Id 121 is Fail Input QC",
+          "connector": {
+            "name": "jira-cloud",
+            "version": "2.0"
+          },
+          "operation": "transition_issue",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3698bbfd-cdf2-419a-8e47-a0c47d4445b2",
+            "title": "O2C-Devgraph-APL-auth",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/7b32dbcd474d8c1f71bf9ee60c173096.png"
+            },
+            "scopes": [
+              "read:jira-work",
+              "read:jira-user",
+              "write:jira-work",
+              "offline_access"
+            ],
+            "service_name": "jira-cloud",
+            "service_version": 1
+          },
+          "properties": {
+            "issue_id": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result"
+            },
+            "transition_id": {
+              "type": "string",
+              "value": "121"
+            }
+          }
+        },
+        "data-mapper-2": {
+          "title": "Get message",
+          "connector": {
+            "name": "data-mapper",
+            "version": "3.5"
+          },
+          "operation": "map_one_value",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "mappings": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "Quote"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "Salesforce Quote is canceled."
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "Invoice"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "Opportunity was recalled, canceling this ticket to not issue an invoice. Another ticket will be created"
+                    }
+                  }
+                }
+              ]
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.o2cTicketType"
+            },
+            "default_value": {
+              "type": "string",
+              "value": "This ticket is not valid anymore."
+            }
+          }
+        },
+        "jira-cloud-1": {
+          "title": "Get Ticket",
+          "connector": {
+            "name": "jira-cloud",
+            "version": "2.0"
+          },
+          "operation": "get_issue",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3698bbfd-cdf2-419a-8e47-a0c47d4445b2",
+            "title": "O2C-Devgraph-APL-auth",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/7b32dbcd474d8c1f71bf9ee60c173096.png"
+            },
+            "scopes": [
+              "read:jira-work",
+              "read:jira-user",
+              "write:jira-work",
+              "offline_access"
+            ],
+            "service_name": "jira-cloud",
+            "service_version": 1
+          },
+          "properties": {
+            "issue_id": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result"
+            }
+          }
+        },
+        "boolean-condition-8": {
+          "title": "Quote Follow-up or previous?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.stageName"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Pending"
+                    },
+                    "is_case_sensitive": {
+                      "value": false,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.stageName"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Outreach"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.stageName"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Engaged"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.stageName"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Proposal"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.stageName"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Final Quote"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.stageName"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Quote Follow-Up"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "jira-cloud-4": {
+          "title": "Add comment",
+          "connector": {
+            "name": "jira-cloud",
+            "version": "2.0"
+          },
+          "operation": "create_issue_comment",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3698bbfd-cdf2-419a-8e47-a0c47d4445b2",
+            "title": "O2C-Devgraph-APL-auth",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/7b32dbcd474d8c1f71bf9ee60c173096.png"
+            },
+            "scopes": [
+              "read:jira-work",
+              "read:jira-user",
+              "write:jira-work",
+              "offline_access"
+            ],
+            "service_name": "jira-cloud",
+            "service_version": 1
+          },
+          "properties": {
+            "issue_id": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result"
+            },
+            "body": {
+              "type": "jsonpath",
+              "value": "$.steps.data-mapper-1.result"
+            }
+          }
+        },
+        "callable-workflow-response-4": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "oppRecalled": {
+                  "value": false,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "O2C Ticket Exists?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.o2cTicketLink",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "callable-workflow-response-3": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "oppRecalled": {
+                  "value": false,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

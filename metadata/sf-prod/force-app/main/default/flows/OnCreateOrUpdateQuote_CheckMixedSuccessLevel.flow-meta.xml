@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <assignments>
+        <description>accumulate platinum amount</description>
+        <name>Accumulate_Platinum</name>
+        <label>Accumulate Platinum</label>
+        <locationX>270</locationX>
+        <locationY>611</locationY>
+        <assignmentItems>
+            <assignToReference>PlatinumAmount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_through_line_items.SBQQ__Quantity__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_line_items</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>accumulate gold success level quantity</description>
+        <name>AccumulateGold</name>
+        <label>AccumulateGold</label>
+        <locationX>534</locationX>
+        <locationY>719</locationY>
+        <assignmentItems>
+            <assignToReference>GoldAmount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_through_line_items.SBQQ__Quantity__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_line_items</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>accumulate legacy amount</description>
+        <name>AccumulateLegacy</name>
+        <label>AccumulateLegacy</label>
+        <locationX>1062</locationX>
+        <locationY>935</locationY>
+        <assignmentItems>
+            <assignToReference>LegacyAmount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_through_line_items.SBQQ__Quantity__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_line_items</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>accumulate Standard success level</description>
+        <name>AccumulateStandard</name>
+        <label>AccumulateStandard</label>
+        <locationX>798</locationX>
+        <locationY>827</locationY>
+        <assignmentItems>
+            <assignToReference>StandardAmount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_through_line_items.SBQQ__Quantity__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_line_items</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>set is mixed success level to false</description>
+        <name>set_is_mixed_success_level</name>
+        <label>set is mixed success level to false</label>
+        <locationX>314</locationX>
+        <locationY>1571</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Has_Mixed_Success_Level__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>set is mixed success level to true</description>
+        <name>set_is_mixed_success_level_to_true</name>
+        <label>set is mixed success level to true</label>
+        <locationX>50</locationX>
+        <locationY>1571</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Has_Mixed_Success_Level__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <constants>
+        <description>Zero value</description>
+        <name>Zero</name>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </constants>
+    <decisions>
+        <description>if more than one variable with positive value then we have mixed values</description>
+        <name>Check_Amount_of_Success_Level</name>
+        <label>Check Amount of Success Level</label>
+        <locationX>182</locationX>
+        <locationY>1463</locationY>
+        <defaultConnector>
+            <targetReference>set_is_mixed_success_level</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>More_Than_One_Success_Level</name>
+            <conditionLogic>Not ( ( (1 AND Not (2 Or 3 Or 4)) Or (2 AND Not (1 Or 3 Or 4)) Or (3 AND Not (1 Or 2 Or 4)) Or (4 AND Not (1 Or 2 Or 3)) ) Or ( 5 And 6 And 7 And 8))</conditionLogic>
+            <conditions>
+                <leftValueReference>GoldAmount</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <elementReference>Zero</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>PlatinumAmount</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <elementReference>Zero</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>LegacyAmount</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <elementReference>Zero</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>StandardAmount</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <elementReference>Zero</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>GoldAmount</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Zero</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>PlatinumAmount</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Zero</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>LegacyAmount</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Zero</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>StandardAmount</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Zero</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>set_is_mixed_success_level_to_true</targetReference>
+            </connector>
+            <label>More Than One Success Level</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>check if success level is legacy</description>
+        <name>is_Legacy</name>
+        <label>is Legacy</label>
+        <locationX>1194</locationX>
+        <locationY>827</locationY>
+        <defaultConnector>
+            <targetReference>Loop_through_line_items</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Legacy_Success_Level</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_through_line_items.SBQQ__Product__r.Success_Level__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Legacy</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AccumulateLegacy</targetReference>
+            </connector>
+            <label>Legacy Success Level</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>check if success level is platinum</description>
+        <name>is_Platinum</name>
+        <label>is Platinum</label>
+        <locationX>517</locationX>
+        <locationY>503</locationY>
+        <defaultConnector>
+            <targetReference>isGold</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Platinum_Success_Level</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_through_line_items.SBQQ__Product__r.Success_Level__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Platinum</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Accumulate_Platinum</targetReference>
+            </connector>
+            <label>Platinum Success Level</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>check that the success level is Gold</description>
+        <name>isGold</name>
+        <label>is Gold</label>
+        <locationX>765</locationX>
+        <locationY>611</locationY>
+        <defaultConnector>
+            <targetReference>isStandard</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Gold_Success_Level</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_through_line_items.SBQQ__Product__r.Success_Level__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Gold</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AccumulateGold</targetReference>
+            </connector>
+            <label>Gold Success Level</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>check if success level is standard</description>
+        <name>isStandard</name>
+        <label>isStandard</label>
+        <locationX>996</locationX>
+        <locationY>719</locationY>
+        <defaultConnector>
+            <targetReference>is_Legacy</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Standard_Success_Level</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_through_line_items.SBQQ__Product__r.Success_Level__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Standard</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AccumulateStandard</targetReference>
+            </connector>
+            <label>Standard Success Level</label>
+        </rules>
+    </decisions>
+    <description>check that the Quote do not have mixed success level or update a check box that trigger validation error on save or update
+
+Enable custom setting: Automation Setting Disable All Flow in entry criteria</description>
+    <interviewLabel>OnCreateOrUpdateQuote_CheckMixedSuccessLevel {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>OnCreateOrUpdateQuote_CheckMixedSuccessLevel</label>
+    <loops>
+        <description>loop through line items to examine each row</description>
+        <name>Loop_through_line_items</name>
+        <label>Loop through line items</label>
+        <locationX>182</locationX>
+        <locationY>395</locationY>
+        <collectionReference>Get_Line_Items</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>is_Platinum</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Check_Amount_of_Success_Level</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>get line items of the quote</description>
+        <name>Get_Line_Items</name>
+        <label>Get Line Items</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_through_line_items</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SBQQ__Quote__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>SBQQ__QuoteLine__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Line_Items</targetReference>
+        </connector>
+        <object>SBQQ__Quote__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>GoldAmount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+        <value>
+            <elementReference>Zero</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <description>accumulate legacy quantity</description>
+        <name>LegacyAmount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+        <value>
+            <elementReference>Zero</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <description>amount of Platinum Items</description>
+        <name>PlatinumAmount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <elementReference>Zero</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <description>accumulate standard success level quantity</description>
+        <name>StandardAmount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+        <value>
+            <elementReference>Zero</elementReference>
+        </value>
+    </variables>
+</Flow>

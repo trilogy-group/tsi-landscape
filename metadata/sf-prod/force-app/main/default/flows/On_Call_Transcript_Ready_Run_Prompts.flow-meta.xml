@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Run TSI AI &quot;/v1/record/prompt-async&quot; method to run prompts and write result back to SF</description>
+        <name>Run_Prompts</name>
+        <label>Run Prompts</label>
+        <locationX>352</locationX>
+        <locationY>384</locationY>
+        <actionName>TSIAI.postV1RecordPrompt-async</actionName>
+        <actionType>externalService</actionType>
+        <connector>
+            <targetReference>Get_Platinum_Offer_Feedback</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>recId</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Run TSI AI &quot;/v1/record/prompt-async&quot; method to run prompts and write result back to SF</description>
+        <name>Run_Prompts_1</name>
+        <label>Run Prompts for POF</label>
+        <locationX>440</locationX>
+        <locationY>816</locationY>
+        <actionName>TSIAI.postV1RecordPrompt-async</actionName>
+        <actionType>externalService</actionType>
+        <connector>
+            <targetReference>Iterate_POF</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>recId</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>57.0</apiVersion>
+    <assignments>
+        <name>Init_Record_Id</name>
+        <label>Init Record Id</label>
+        <locationX>352</locationX>
+        <locationY>276</locationY>
+        <assignmentItems>
+            <assignToReference>recId.recordId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Run_Prompts</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Init_Record_Id_1</name>
+        <label>Init Record Id</label>
+        <locationX>440</locationX>
+        <locationY>708</locationY>
+        <assignmentItems>
+            <assignToReference>recId.recordId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Iterate_POF.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Run_Prompts_1</targetReference>
+        </connector>
+    </assignments>
+    <description>Run prompts for a Task (and platinum offers if linked to the task) when the transcript for the call is ready
+
+30/08/2023 LAMBDA-64763 enable Automation Setting in entry criteria</description>
+    <interviewLabel>On Call Transcript Ready - Run Prompts {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>On Call Transcript Ready - Run Prompts</label>
+    <loops>
+        <description>Iterate platinum offers and run prompt(s) for each</description>
+        <name>Iterate_POF</name>
+        <label>Iterate POF</label>
+        <locationX>352</locationX>
+        <locationY>600</locationY>
+        <collectionReference>Get_Platinum_Offer_Feedback</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Init_Record_Id_1</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get POF to iterate and run prompt for each</description>
+        <name>Get_Platinum_Offer_Feedback</name>
+        <label>Get Platinum Offer Feedback</label>
+        <locationX>352</locationX>
+        <locationY>492</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Iterate_POF</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>TaskId__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Platinum_Offer_Item_Feedback__c</object>
+        <queriedFields>Id</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <object>Task</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <scheduledPaths>
+            <connector>
+                <targetReference>Init_Record_Id</targetReference>
+            </connector>
+            <pathType>AsyncAfterCommit</pathType>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <triggerOrder>1600</triggerOrder>
+    <variables>
+        <name>recId</name>
+        <apexClass>ExternalService__TSIAI_postV1RecordPromptx2dasync_IN_body</apexClass>
+        <dataType>Apex</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

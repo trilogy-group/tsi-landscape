@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <outboundMessages>
+        <fullName>Outbound_message_to_ZD</fullName>
+        <apiVersion>52.0</apiVersion>
+        <description>Send a number of Account object fields to Zendesk (ref LAMBDA-14619)</description>
+        <endpointUrl>https://4t93g7kotc.execute-api.us-east-1.amazonaws.com/prod/api/account/sync</endpointUrl>
+        <fields>Central_Account_ID__c</fields>
+        <fields>Channel__c</fields>
+        <fields>Id</fields>
+        <fields>Name</fields>
+        <fields>OwnerId</fields>
+        <fields>Product_Families__c</fields>
+        <fields>Success_Level__c</fields>
+        <fields>Support_Expiration_Date__c</fields>
+        <fields>Type</fields>
+        <fields>Zendesk_Id__c</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>sales.integration@trilogy.com</integrationUser>
+        <name>Outbound message to ZD</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <outboundMessages>
+        <fullName>TrayOnAccountCreateUpdate_u7dpE</fullName>
+        <apiVersion>55.0</apiVersion>
+        <endpointUrl>https://bf72c2f7-b9f0-4bab-85f1-4ce56ea60470-e23952dc8834e08.trayapp.io</endpointUrl>
+        <fields>Id</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>sales.integration@trilogy.com</integrationUser>
+        <name>TrayOnAccountCreateUpdate_u7dpE</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <outboundMessages>
+        <fullName>TrayOnAccountCreateUpdate_vtToH</fullName>
+        <apiVersion>37.0</apiVersion>
+        <endpointUrl>https://d8fbae02-d85a-483e-a6b6-bbc0cc324cb8-f949c5f1ca2cff3.trayapp.io</endpointUrl>
+        <fields>Id</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>hussein.kahloul--tsi@trilogy.com</integrationUser>
+        <name>TrayOnAccountCreateUpdate_vtToH</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <rules>
+        <fullName>TrayOnAccountCreateUpdate_vtToH</fullName>
+        <actions>
+            <name>TrayOnAccountCreateUpdate_vtToH</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <formula>!ISBLANK(Id) &amp;&amp; $Organization.Id = &apos;00D2x000000qNQa&apos;</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>zd-account-sync</fullName>
+        <actions>
+            <name>Outbound_message_to_ZD</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.Name</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>It will send details to the sf-zd sync service when an account is created or updated.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

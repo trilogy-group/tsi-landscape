@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__AWSIsOpportunityFromMarketingActivity__c</fullName>
+    <deprecated>false</deprecated>
+    <description>When the Opportunity is from Marketing Activity, the field ‘Is AWS Marketing Development Funded?’ is required to be populated. When the Opportunity is not from Marketing Activity, the fields ‘Is AWS Marketing Development Funded’, ‘Marketing Activity Channel, Marketing Activity Use Case’, and ‘AWS Marketing Salesforce Campaign Name’ will be automatically nulled out and left blank.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>To check if the Opportunity or Contact sourced from a Marketing Activity</inlineHelpText>
+    <label>Is Opportunity From Marketing Activity?</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>workspan__YesNo</valueSetName>
+    </valueSet>
+</CustomField>

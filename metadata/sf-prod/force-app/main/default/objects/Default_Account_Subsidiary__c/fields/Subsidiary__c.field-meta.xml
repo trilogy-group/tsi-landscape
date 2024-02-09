@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Subsidiary__c</fullName>
+    <description>Default subsidiary that will be used when creating quotes and subscriptions</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Default subsidiary that will be used when creating quotes and subscriptions</inlineHelpText>
+    <label>Subsidiary</label>
+    <referenceTo>Subsidiary__c</referenceTo>
+    <relationshipLabel>Default Account Subsidiaries</relationshipLabel>
+    <relationshipName>Default_Account_Subsidiaries</relationshipName>
+    <relationshipOrder>1</relationshipOrder>
+    <reparentableMasterDetail>true</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>XO_Prime_Q4_only_if_Q1_is_No_or_IDK</fullName>
+    <active>false</active>
+    <description>Ask XO Prime Q4 only if Q1 answer was a NO or I DON&apos;t KNOW.</description>
+    <errorConditionFormula>ISPICKVAL(XO_Prime_Q1__c, &quot;Yes&quot;) &amp;&amp;  NOT(ISBLANK(TEXT(XO_Prime_Q4__c)))</errorConditionFormula>
+    <errorDisplayField>XO_Prime_Q4__c</errorDisplayField>
+    <errorMessage>Only ask Q4 if Q1 is a NO or I DON&apos;T KNOW. If Q1 is a YES, then Q4 must be empty.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,312 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "description": "Check this box to inactivate this numbering sequence."
+    },
+    "lastModifiedDate": {
+      "title": "Last Modified Date",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "closedOnDate": {
+      "title": "Date Closed",
+      "type": "string",
+      "format": "date",
+      "nullable": true
+    },
+    "startDate": {
+      "title": "Start Date",
+      "type": "string",
+      "description": "Enter or pick the date this period starts here. This is a required field.",
+      "format": "date",
+      "nullable": true
+    },
+    "isQuarter": {
+      "title": "Period is a Quarter",
+      "type": "boolean",
+      "description": "Check this box if this period is a quarter."
+    },
+    "allLocked": {
+      "title": "All Locked",
+      "type": "boolean"
+    },
+    "allowNonGLChanges": {
+      "title": "Allow Non-G/L Changes",
+      "type": "boolean",
+      "description": "Allows users with the Allow Non-G/L Changes permission to enter non-posting transactions to this period after it has been closed. Users who do not have the Allow Non-G/L Changes permission cannot enter non-posting transactions to a period even if the Allow Non-G/L Changes option for a period is checked."
+    },
+    "endDate": {
+      "title": "End Date",
+      "type": "string",
+      "description": "Enter or pick this period&apos;s end date here. This is a required field.",
+      "format": "date",
+      "nullable": true
+    },
+    "arLocked": {
+      "title": "A/R Locked",
+      "type": "boolean"
+    },
+    "isAdjust": {
+      "title": "Period is Adjustment",
+      "type": "boolean",
+      "description": "This field identifies if an accounting period is an adjustment period. Adjustment periods are sometimes used for making adjustments at the end of a period, quarter, or year. For example, you can use adjustment periods to: * Make special tax adjustments without impacting a base period * Post year-end impairment for assets * Make adjustments for management reporting You can only enter journal entries in adjustment periods. Adjustment periods do not appear in the Posting Period field on other transaction types such as invoices, vendor bills, or sales orders."
+    },
+    "periodName": {
+      "title": "Period Name",
+      "type": "string",
+      "description": "The name of the selected period. You can enter this name when you first set up the period. Period names should be unique within a fiscal calendar. Since base periods are shared across all fiscal calendars, base period names must all be unique across all periods in all fiscal calendars If you accessed the page from Transactions &gt; Management &gt; GL Audit Numbering &gt; Setup, you can select the open period. This is a required field.",
+      "nullable": true
+    },
+    "closed": {
+      "title": "Closed",
+      "type": "boolean"
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "apLocked": {
+      "title": "A/P Locked",
+      "type": "boolean"
+    },
+    "isYear": {
+      "title": "Period is a Year",
+      "type": "boolean",
+      "description": "Check this box if this period is a year."
+    },
+    "isPosting": {
+      "title": "Is Posting",
+      "type": "boolean"
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "fiscalCalendars": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "fullName": {
+                "title": "Full Name",
+                "type": "string",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "parent": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "fiscalCalendar": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "userNotes": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "fiscalCalendar": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "lastModifiedDate",
+    "closedOnDate",
+    "startDate",
+    "isQuarter",
+    "allLocked",
+    "allowNonGLChanges",
+    "endDate",
+    "arLocked",
+    "isAdjust",
+    "periodName",
+    "closed",
+    "id",
+    "apLocked",
+    "isYear",
+    "isPosting"
+  ]
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>XO_Qualified_accounts_without_Netsuite</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.TYPE</columns>
+    <columns>ACCOUNT.RATING</columns>
+    <columns>ARR__c</columns>
+    <columns>XO_Hire_Score__c</columns>
+    <columns>Job_Openings__c</columns>
+    <columns>Central_Vertical__c</columns>
+    <columns>ACCOUNT.EMPLOYEES</columns>
+    <columns>LinkedIn_Profile__c</columns>
+    <columns>ACCOUNT.URL</columns>
+    <columns>ACCOUNT.INDUSTRY</columns>
+    <columns>ACCOUNT.LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACCOUNT.RATING</field>
+        <operation>equals</operation>
+        <value>Warm</value>
+    </filters>
+    <filters>
+        <field>ARR__c</field>
+        <operation>greaterThan</operation>
+        <value>USD 10000</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.EMPLOYEES</field>
+        <operation>greaterThan</operation>
+        <value>2</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.EMPLOYEES</field>
+        <operation>lessOrEqual</operation>
+        <value>5000</value>
+    </filters>
+    <label>XO Prime - Hot/Warm Accounts</label>
+    <sharedTo>
+        <group>XO_Hire_Team</group>
+    </sharedTo>
+</ListView>

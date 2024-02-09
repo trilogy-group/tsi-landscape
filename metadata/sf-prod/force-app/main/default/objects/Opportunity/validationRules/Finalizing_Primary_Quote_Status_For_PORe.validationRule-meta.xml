@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Finalizing_Primary_Quote_Status_For_PORe</fullName>
+    <active>true</active>
+    <description>Primary quote status should be `Out for Signature` for the `Win Type=PO Received`</description>
+    <errorConditionFormula>TEXT(StageName) = &apos;Finalizing&apos; &amp;&amp; TEXT(Win_Type__c) = &apos;PO Received&apos; &amp;&amp; TEXT(SBQQ__PrimaryQuote__r.SBQQ__Status__c) != &apos;Out for Signature&apos; &amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)</errorConditionFormula>
+    <errorDisplayField>SBQQ__PrimaryQuote__c</errorDisplayField>
+    <errorMessage>Primary quote status should be `Out for Signature` for the `Win Type=PO Received`</errorMessage>
+</ValidationRule>

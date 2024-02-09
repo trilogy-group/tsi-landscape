@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Restriction_on_moving_cont_to_affiliate__c</fullName>
+    <description>Restriction on moving contract to an affiliate</description>
+    <externalId>false</externalId>
+    <formula>(!ISBLANK(TEXT(Transfer_of_rights_by_provider__c)) &amp;&amp; !ISPICKVAL(Transfer_of_rights_by_provider__c, &apos;Unrestricted&apos;)) ||
+ISPICKVAL(Use_of_foreign_entities_as_affiliates__c, &apos;Not Allowed&apos;) || ISPICKVAL(Use_of_foreign_entities_as_affiliates__c, &apos;Allowed w/ notice&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Restriction on moving contract to an affiliate</inlineHelpText>
+    <label>Restriction on moving cont. to affiliate</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partner_Account__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>LAMBDA-53934 Capture primary Var/Reseller, Distributor Partner on the Opportunity</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Primary Partner on the Opportunity</inlineHelpText>
+    <label>Partner Account</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Partner Contracts</relationshipLabel>
+    <relationshipName>Partner_Contracts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,1953 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "9431c97d-19c0-42f5-997d-d3afc3fa5b2f",
+      "created": "2024-01-04T18:27:47.877491Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "project_id": "228d6ee9-0240-4a1e-a98d-152f0f8c2b81",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "e11bc3e3-f09e-435d-aafe-2ca72269b435",
+        "created": "2024-01-09T12:08:41.023275Z"
+      },
+      "title": "On Opportunity Netsuite Id changed",
+      "description": "Executes when the opportunity netsuite id is changed",
+      "enabled": true,
+      "tags": [
+        "SF Trigger"
+      ],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "terminate-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "loop-1",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "salesforce-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-2",
+                "type": "branch",
+                "content": {
+                  "true": [],
+                  "false": [
+                    {
+                      "name": "break-loop-1",
+                      "type": "break",
+                      "content": {},
+                      "target": "loop-1"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "netsuite-1",
+                "type": "branch",
+                "content": {
+                  "error": [
+                    {
+                      "name": "break-loop-2",
+                      "type": "break",
+                      "content": {},
+                      "target": "loop-1"
+                    }
+                  ],
+                  "success": []
+                }
+              },
+              {
+                "name": "script-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-3",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "netsuite-2",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "storage-2",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": [
+                    {
+                      "name": "storage-1",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "storage-3",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-4",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "salesforce-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "steps": {
+        "salesforce-3": {
+          "title": "Update Status",
+          "description": "Update Subscription Status field in the opportunity",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Subscription_Status__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-3.value"
+                    }
+                  }
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.loop-1.value.Id"
+            }
+          }
+        },
+        "script-1": {
+          "title": "Get current status",
+          "description": "Get the current status based on the price lines.\nIf has one Active item, it's Activated.\nIf doesn't have active item, and has one terminated item, its Terminated.\nOtherwise it's Draft.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "priceLines"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.priceInterval.items"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  // Sort items by startdate\n  const sortedItems = input.priceLines.sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());\n\n  // Keep only the last occurrence of each linenumber\n  const linenumberSet = new Set();\n  let latestItems = sortedItems.filter(item => {\n    if (!linenumberSet.has(item.lineNumber)) {\n      linenumberSet.add(item.lineNumber);\n      return true;\n    }\n    return false;\n  });\n\n  // if one item is active, it means the subscription is active\n  const activeItem = latestItems.find(i => i.status.id === 'ACTIVE');\n  if (activeItem) {\n    return 'Activated';\n  }\n  \n  // if no item is active and one item is terminated, it means the subscription is terminated\n  const terminatedItem = latestItems.find(i => i.status.id === 'TERMINATED');\n  if (terminatedItem) {\n    return 'Terminated';\n  }\n\n  // if subscription is not active or terminated, still in draft, pending activation without activation or termination order also means that is draft\n  return 'Draft';\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-2": {
+          "title": "Save status",
+          "description": "Save subscription status to be sync to salesforce",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "status"
+            },
+            "value": {
+              "type": "string",
+              "value": "Terminated - {$.steps.netsuite-2.items[0].name}"
+            }
+          }
+        },
+        "netsuite-2": {
+          "title": "Get reason",
+          "description": "Get the reason for the latest termination change order",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "execute_suiteql",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/917247fd-0fa6-4f4c-b085-3ccbdc273c4d.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "limit": {
+              "type": "number",
+              "value": 100
+            },
+            "offset": {
+              "type": "number",
+              "value": 0
+            },
+            "raw_query": {
+              "type": "string",
+              "value": "SELECT r.name FROM subscriptionchangeorder sco\nINNER JOIN CUSTOMRECORDSUB_STATUS_CHANGE_REASON r on sco.custrecord_st_change_reason = r.id\nWHERE sco.subscription = {$.steps.salesforce-2.records[0].NetSuite_ID__c} and sco.action = 'TERMINATE' and sco.subscriptionchangeorderstatus = 'ACTIVE'\nORDER BY sco.effectivedate desc, sco.id desc"
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Process opportunity?",
+          "description": "If netsuite id is empty or opportunity is already closed, we are not going to do anything",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].NetSuite_ID__c",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].IsClosed"
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": false
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "storage-3": {
+          "title": "Get status",
+          "description": "get subscription status to be sync to salesforce",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "status"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Event Org Id Match?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Id"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.organization_id"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "Org Id Does Not Match",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "Event is from another org ('{$.steps.trigger.organization_id}' instead of '{$.steps.salesforce-1.records[0].Id}'). Please fix the sandbox outbound messages list."
+            }
+          }
+        },
+        "break-loop-2": {
+          "title": "Continue Loop",
+          "connector": {
+            "name": "break-loop",
+            "version": "1.1"
+          },
+          "operation": "continue",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "salesforce-1": {
+          "title": "Get Org Id",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "query",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "query": {
+              "type": "string",
+              "value": "SELECT Id FROM Organization"
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Save status",
+          "description": "Save subscription status to be sync to salesforce",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "status"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result"
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get Subscription",
+          "description": "Get the subscription to check what is the status of this subscription",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "links": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "rel": {
+                      "type": "string"
+                    },
+                    "href": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "advanceRenewalPeriodNumber": {
+                "type": "number"
+              },
+              "advanceRenewalPeriodUnit": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "autoRenewal": {
+                "type": "boolean"
+              },
+              "billingAccount": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "billingAccountStartDate": {
+                "type": "string"
+              },
+              "billingSchedule": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "billingSubscriptionStatus": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "class": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "currency": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "customer": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "customForm": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custrecord_base_amount": {
+                "type": "number"
+              },
+              "custrecord_contract_docs": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custrecord_isautorenewal": {
+                "type": "boolean"
+              },
+              "custrecord_istrial": {
+                "type": "boolean"
+              },
+              "custrecord_parent_subscription": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custrecord_sales_team": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custrecord_subs_end_user": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custrecord_subscription_salesrep": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "defaultRenewalMethod": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "defaultRenewalPlan": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "defaultRenewalPriceBook": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "defaultRenewalTerm": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "department": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "endDate": {
+                "type": "string"
+              },
+              "frequency": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "id": {
+                "type": "string"
+              },
+              "idNumber": {
+                "type": "string"
+              },
+              "initialTerm": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "lastBillCycleDate": {
+                "type": "string"
+              },
+              "lastBillDate": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "nextBillCycleDate": {
+                "type": "string"
+              },
+              "nextRenewalStartDate": {
+                "type": "string"
+              },
+              "priceBook": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "priceInterval": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "links": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "rel": {
+                                "type": "string"
+                              },
+                              "href": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "rel",
+                              "href"
+                            ]
+                          }
+                        },
+                        "catalogType": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "chargeType": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "discount": {
+                          "type": "number"
+                        },
+                        "frequency": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "id": {
+                          "type": "number"
+                        },
+                        "item": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "rel": {
+                                    "type": "string"
+                                  },
+                                  "href": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "rel",
+                                  "href"
+                                ]
+                              }
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "lineNumber": {
+                          "type": "number"
+                        },
+                        "pricePlan": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "rel": {
+                                    "type": "string"
+                                  },
+                                  "href": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "rel",
+                                  "href"
+                                ]
+                              }
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "prorateBy": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "proratebyoption": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "quantity": {
+                          "type": "number"
+                        },
+                        "recurringAmount": {
+                          "type": "number"
+                        },
+                        "repeatEvery": {
+                          "type": "number"
+                        },
+                        "startDate": {
+                          "type": "string"
+                        },
+                        "startOffsetValue": {
+                          "type": "number"
+                        },
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "subscriptionPlanLineNumber": {
+                          "type": "number"
+                        },
+                        "totalintervalvalue": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "links",
+                        "catalogType",
+                        "chargeType",
+                        "discount",
+                        "frequency",
+                        "id",
+                        "item",
+                        "lineNumber",
+                        "pricePlan",
+                        "prorateBy",
+                        "proratebyoption",
+                        "quantity",
+                        "recurringAmount",
+                        "repeatEvery",
+                        "startDate",
+                        "startOffsetValue",
+                        "status",
+                        "subscriptionPlanLineNumber",
+                        "totalintervalvalue"
+                      ]
+                    }
+                  },
+                  "totalResults": {
+                    "type": "number"
+                  }
+                }
+              },
+              "renewalNumber": {
+                "type": "number"
+              },
+              "startDate": {
+                "type": "string"
+              },
+              "subscriptionLine": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "links": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "rel": {
+                                "type": "string"
+                              },
+                              "href": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "rel",
+                              "href"
+                            ]
+                          }
+                        },
+                        "billingMode": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "catalogType": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "class": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "rel": {
+                                    "type": "string"
+                                  },
+                                  "href": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "rel",
+                                  "href"
+                                ]
+                              }
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "department": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "rel": {
+                                    "type": "string"
+                                  },
+                                  "href": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "rel",
+                                  "href"
+                                ]
+                              }
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "discount": {
+                          "type": "number"
+                        },
+                        "endDate": {
+                          "type": "string"
+                        },
+                        "includeInRenewal": {
+                          "type": "boolean"
+                        },
+                        "isIncluded": {
+                          "type": "boolean"
+                        },
+                        "isRequired": {
+                          "type": "boolean"
+                        },
+                        "item": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "rel": {
+                                    "type": "string"
+                                  },
+                                  "href": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "rel",
+                                  "href"
+                                ]
+                              }
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "lineNumber": {
+                          "type": "number"
+                        },
+                        "planItem": {
+                          "type": "number"
+                        },
+                        "prorateEndDate": {
+                          "type": "boolean"
+                        },
+                        "prorateStartDate": {
+                          "type": "boolean"
+                        },
+                        "quantity": {
+                          "type": "number"
+                        },
+                        "recurrenceStartDate": {
+                          "type": "string"
+                        },
+                        "revRecOption": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "startDate": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "subscriptionLine": {
+                          "type": "number"
+                        },
+                        "subscriptionLineType": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "terminationDate": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "links",
+                        "billingMode",
+                        "catalogType",
+                        "class",
+                        "department",
+                        "discount",
+                        "endDate",
+                        "includeInRenewal",
+                        "isIncluded",
+                        "isRequired",
+                        "item",
+                        "lineNumber",
+                        "planItem",
+                        "prorateEndDate",
+                        "prorateStartDate",
+                        "quantity",
+                        "recurrenceStartDate",
+                        "revRecOption",
+                        "startDate",
+                        "status",
+                        "subscriptionLine",
+                        "subscriptionLineType",
+                        "terminationDate"
+                      ]
+                    }
+                  },
+                  "totalResults": {
+                    "type": "number"
+                  }
+                }
+              },
+              "subscriptionPlan": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "subscriptionPlanName": {
+                "type": "string"
+              },
+              "subscriptionRevision": {
+                "type": "number"
+              },
+              "subsidiary": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {
+            "strategy": "manual"
+          },
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/917247fd-0fa6-4f4c-b085-3ccbdc273c4d.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "Subscription"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-2.records[0].NetSuite_ID__c"
+            },
+            "expand_sub_resources": {
+              "value": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "Status is different?",
+          "description": "Only update the status if is different",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].Subscription_Status__c"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-3.value"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop Opportunities",
+          "description": "Loop through all the changed opportunities",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "Id"
+                ]
+              },
+              "count": {
+                "type": "number"
+              },
+              "index": {
+                "type": "number"
+              },
+              "is_first": {
+                "type": "boolean"
+              },
+              "is_last": {
+                "type": "boolean"
+              },
+              "branch_name": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.events"
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Get Opportunity",
+          "description": "Get the opportunity changed",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Opportunities",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Opportunity",
+                  "properties": {
+                    "NetSuite_ID__c": {
+                      "name": "NetSuite_ID__c",
+                      "type": "string",
+                      "title": "NetSuite ID"
+                    },
+                    "IsClosed": {
+                      "name": "IsClosed",
+                      "type": "boolean",
+                      "title": "Closed"
+                    },
+                    "Subscription_Status__c": {
+                      "name": "Subscription_Status__c",
+                      "type": "string",
+                      "title": "Subscription Status"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "NetSuite_ID__c"
+                },
+                {
+                  "type": "string",
+                  "value": "IsClosed"
+                },
+                {
+                  "type": "string",
+                  "value": "Subscription_Status__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Id"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-1.value.Id"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "break-loop-1": {
+          "title": "Continue Loop",
+          "connector": {
+            "name": "break-loop",
+            "version": "1.1"
+          },
+          "operation": "continue",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "boolean-condition-3": {
+          "title": "Terminated status?",
+          "description": "For Terminated Status we need to get the latest change order to check the reason because we have different status in salesforce depending on the reason.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Terminated"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Salesforce",
+          "connector": {
+            "name": "salesforce-notification",
+            "version": "3.1"
+          },
+          "operation": "record_field_change",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object_prefix": {
+              "type": "string",
+              "value": "Tray"
+            },
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "include_created_records": {
+              "type": "boolean",
+              "value": false
+            },
+            "public_url": {
+              "type": "jsonpath",
+              "value": "$.env.public_url"
+            },
+            "field": {
+              "type": "string",
+              "value": "NetSuite_ID__c"
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <assignments>
+        <description>Set Stage to Closed-Lost
+Set Loss Reason to No Decision / Non-Responsice
+Set Description to {!$Record.Description} + &apos; &apos; + {!$Flow.CurrentDate}:Automation: No activity reported for more than 30 day, moving to Closed-Lost</description>
+        <name>Set_Stage</name>
+        <label>Set Opportunity Fields</label>
+        <locationX>707</locationX>
+        <locationY>419</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.StageName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Closed Lost</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Loss_Reason__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>No Decision / Non-Responsive</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Description</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>DescriptionAppendUpdateTemplate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Save_Lost_Opportunities</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Opportunity with last activity more than 30 days ago 
+with stage = engaged, types = upsell or new business</description>
+        <name>Is_Unresponsive</name>
+        <label>Is Unresponsive</label>
+        <locationX>437</locationX>
+        <locationY>258</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Activity_Outdated</name>
+            <conditionLogic>((4 AND 1) OR 5) AND (2 OR 3) AND 6</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.LastActivityDate</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference>TodayMinus30Days</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Upsell</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>New Business</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.LastActivityDate</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CreatedDate</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference>TodayMinus30Days</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Product_Configuration__r.Exclude_from_30_Day_Auto_Closure__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Stage</targetReference>
+            </connector>
+            <label>Activity Outdated</label>
+        </rules>
+    </decisions>
+    <description>Move New Business opportunities that have not had any new Activities for more than 1 month (30 days) to Close-Lost.</description>
+    <formulas>
+        <name>TodayMinus30Days</name>
+        <dataType>Date</dataType>
+        <expression>{!$Flow.CurrentDate} - 30</expression>
+    </formulas>
+    <interviewLabel>Close Unresponsive Opportunities {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Close Unresponsive New Business and Upsell Opportunities</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Save_Lost_Opportunities</name>
+        <label>Save Lost Opportunities</label>
+        <locationX>972</locationX>
+        <locationY>578</locationY>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>48</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Is_Unresponsive</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>StageName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Engaged</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Active__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2020-10-12</startDate>
+            <startTime>00:00:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>DescriptionAppendUpdateTemplate</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{!$Record.Description}
+{!$Flow.CurrentDate}: Automation: No activity reported for more than 30 days, moving to Closed-Lost</text>
+    </textTemplates>
+</Flow>

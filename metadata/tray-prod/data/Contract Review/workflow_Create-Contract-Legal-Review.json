@@ -1,0 +1,2107 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "cbbca3ff-ff81-44a4-9329-8c67513be8a8",
+      "created": "2023-07-06T03:04:47.385189Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "project_id": "2974a216-c661-40f7-a26d-984a5a49fdf9",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "5b368d34-95ce-4739-ab60-6729b3e55483",
+        "created": "2023-09-01T04:01:39.561190Z"
+      },
+      "title": "Create Contract Legal Review",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {
+          "spreadsheetId": ""
+        },
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-1",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "storage-3",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "netsuite-1",
+                "type": "normal",
+                "content": {},
+                "target": "loop-1"
+              },
+              {
+                "name": "boolean-condition-1",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "storage-4",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-7",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "storage-10",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": []
+                      }
+                    }
+                  ],
+                  "false": []
+                }
+              },
+              {
+                "name": "storage-12",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-8",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "storage-13",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": [
+                    {
+                      "name": "storage-14",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "boolean-condition-2",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "storage-5",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": [
+                    {
+                      "name": "break-loop-1",
+                      "type": "break",
+                      "content": {},
+                      "target": "loop-1"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "storage-6",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "drive-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-2",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "script-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "netsuite-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "loop-3",
+                "type": "loop",
+                "content": {
+                  "_loop": [
+                    {
+                      "name": "storage-7",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-3",
+                      "type": "branch",
+                      "content": {
+                        "true": [],
+                        "false": [
+                          {
+                            "name": "call-workflow-1",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "boolean-condition-4",
+                            "type": "branch",
+                            "content": {
+                              "true": [
+                                {
+                                  "name": "drive-2",
+                                  "type": "normal",
+                                  "content": {}
+                                }
+                              ],
+                              "false": []
+                            }
+                          },
+                          {
+                            "name": "storage-8",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "netsuite-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-5",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "call-workflow-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "storage-9",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-6",
+                "type": "branch",
+                "content": {
+                  "true": [],
+                  "false": [
+                    {
+                      "name": "drive-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "drive-4",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "math-helpers-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-4",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-11",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-15",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "sheets-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "script-1": {
+          "title": "Get Instance",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "workflowTitle"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.env.workflow_title"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Get instance name (e.g. 4914352-sb1)\nexports.step = function(input) {\n  return input.workflowTitle.startsWith('[full]') ? '4914352-sb2' : '4914352';\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "netsuite-2": {
+          "title": "Get File Ids",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "p3p": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "content": {
+                        "type": "object",
+                        "properties": {
+                          "result": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "fileId": {
+                                  "type": "string"
+                                },
+                                "fileName": {
+                                  "type": "string"
+                                },
+                                "fileType": {
+                                  "type": "object",
+                                  "properties": {
+                                    "value": {
+                                      "type": "string"
+                                    },
+                                    "text": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "fileUrl": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "full_url": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-2.result.url"
+                }
+              }
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-2.result.payload"
+                }
+              }
+            }
+          }
+        },
+        "storage-12": {
+          "title": "Gets last subscription AR",
+          "description": "Returns if the last subscription was Auto-Renew. Last subscription in the loop is the child subscription for the current one, so the current subscription precedes the last. If it’s not set, it means that last is Auto-Renew or this is the first parent and then we can use the default value as true.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "lastSubscriptionAutoRenew"
+            },
+            "default_value": {
+              "type": "boolean",
+              "value": true
+            }
+          }
+        },
+        "drive-3": {
+          "title": "Upload to opportunity folder",
+          "connector": {
+            "name": "drive",
+            "version": "3.0"
+          },
+          "operation": "upload_file",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "dcffe647-7bd9-4c19-bbe7-3c3bfe885e7c",
+            "title": "TSI Service User google drive account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/4d576e9893e22ef962c9d95c13c521f7.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/drive",
+              "https://www.googleapis.com/auth/drive.appdata",
+              "https://www.googleapis.com/auth/drive.file",
+              "https://www.googleapis.com/auth/drive.metadata"
+            ],
+            "service_name": "google-drive",
+            "service_version": 2
+          },
+          "properties": {
+            "access_token": {
+              "type": "jsonpath",
+              "value": "$.auth.access_token"
+            },
+            "name": {
+              "type": "jsonpath",
+              "value": "$.steps.call-workflow-2.response.file.name"
+            },
+            "parents": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "jsonpath",
+                  "value": "$.steps.drive-1.id"
+                }
+              ]
+            },
+            "file": {
+              "type": "jsonpath",
+              "value": "$.steps.call-workflow-2.response.file"
+            }
+          }
+        },
+        "script-3": {
+          "title": "Get Column Letter",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "columnIndex"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.columnIndex"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  let n = input.columnIndex;\n\tlet string = '';\n  while (n > 0) {\n      n--;  // Decrement n to make it 0-indexed.\n      string = String.fromCharCode((n % 26) + 'A'.charCodeAt(0)) + string;\n      n = Math.floor(n / 26);  // Update n.\n  }\n  return string;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Download Reseller Agreement",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "f8fc7209-7911-402c-8a23-613eecc9a35f"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "netsuiteAccountId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-3.items[0].customer"
+                },
+                "netsuiteSubsidiaryId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-3.items[0].subsidiary"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Download file from NS",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "c6af6bca-ca60-4a38-ba67-4531f0095ed6"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "id": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-3.value.fileId"
+                },
+                "fail": {
+                  "type": "boolean",
+                  "value": false
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "check if contractual doc exist",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "property_exists",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "property": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.items[0].custrecord_contract_docs"
+            }
+          }
+        },
+        "storage-15": {
+          "title": "Gets Auto-Renew start date",
+          "description": "Gets the start date for the first Auto-Renew in the chain, if it’s not set is because it was not Auto-Renew and then the value will be empty.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "AutoRenewStartDate"
+            },
+            "default_value": {
+              "type": "string",
+              "value": ""
+            }
+          }
+        },
+        "math-helpers-1": {
+          "title": "Get Contract Number Sequence",
+          "connector": {
+            "name": "math-helpers",
+            "version": "2.0"
+          },
+          "operation": "subtract",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "first_value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.columnIndex"
+            },
+            "second_value": {
+              "value": 2,
+              "type": "integer"
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Set NS Id to Query",
+          "description": "Saves the first netsuiteId to get inside the loop to get the information from the subscription",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {}
+          },
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "idToQuery"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.opportunity.Parent_Subscription_ID__c"
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get Subscription",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "execute_suiteql",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "links": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "rel": {
+                      "type": "string"
+                    },
+                    "href": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "count": {
+                "type": "number"
+              },
+              "hasMore": {
+                "type": "boolean"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "links": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "custrecord_contract_docs": {
+                      "type": "string"
+                    },
+                    "custrecord_isautorenewal": {
+                      "type": "string"
+                    },
+                    "custrecord_parent_subscription": {
+                      "type": "string"
+                    },
+                    "custrecord_sub_doc_is_master_contract": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "startdate": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "offset": {
+                "type": "number"
+              },
+              "totalResults": {
+                "type": "number"
+              }
+            }
+          },
+          "error_handling": {
+            "target": "loop-1",
+            "strategy": "breakLoop"
+          },
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "limit": {
+              "type": "number",
+              "value": 1
+            },
+            "offset": {
+              "type": "number",
+              "value": 0
+            },
+            "raw_query": {
+              "type": "string",
+              "value": "SELECT s.id, s.custrecord_contract_docs, cd.custrecord_sub_doc_is_master_contract, \n  CASE WHEN hist.subscription IS NULL THEN s.custrecord_parent_subscription ELSE hist.subscription END custrecord_parent_subscription,\n  s.custrecord_isautorenewal, s.startdate\nFROM Subscription s\nLEFT JOIN subscriptionRenewalHistory hist on hist.newsubscription = s.id\nLEFT JOIN customrecord697 cd on cd.id = s.custrecord_contract_docs\nWHERE s.id = {$.steps.storage-3.value}"
+            }
+          }
+        },
+        "drive-2": {
+          "title": "Upload to opportunity folder",
+          "connector": {
+            "name": "drive",
+            "version": "3.0"
+          },
+          "operation": "upload_file",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "dcffe647-7bd9-4c19-bbe7-3c3bfe885e7c",
+            "title": "TSI Service User google drive account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/4d576e9893e22ef962c9d95c13c521f7.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/drive",
+              "https://www.googleapis.com/auth/drive.appdata",
+              "https://www.googleapis.com/auth/drive.file",
+              "https://www.googleapis.com/auth/drive.metadata"
+            ],
+            "service_name": "google-drive",
+            "service_version": 2
+          },
+          "properties": {
+            "access_token": {
+              "type": "jsonpath",
+              "value": "$.auth.access_token"
+            },
+            "name": {
+              "type": "jsonpath",
+              "value": "$.steps.call-workflow-1.response.file.name"
+            },
+            "parents": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "jsonpath",
+                  "value": "$.steps.drive-1.id"
+                }
+              ]
+            },
+            "file": {
+              "type": "jsonpath",
+              "value": "$.steps.call-workflow-1.response.file"
+            }
+          }
+        },
+        "loop-3": {
+          "title": "loop file results",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "fileId": {
+                    "type": "string"
+                  },
+                  "fileName": {
+                    "type": "string"
+                  },
+                  "fileType": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "fileUrl": {
+                    "type": "string"
+                  }
+                }
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-2.response.body.content.result"
+            }
+          }
+        },
+        "storage-2": {
+          "title": "Initialize DocumentList",
+          "description": "Setting it as null to initialize to collect values in the loop below",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "contractualDocumentsToQuery"
+            },
+            "value": {
+              "type": "array",
+              "value": []
+            }
+          }
+        },
+        "storage-5": {
+          "title": "set NS ID cust parent",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "idToQuery"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.items[0].custrecord_parent_subscription"
+            }
+          }
+        },
+        "boolean-condition-5": {
+          "title": "Reseller/Distributor?",
+          "description": "if end user and customer are different, it's sold through reseller or distributor",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.items[0].customer",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.items[0].enduser",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "storage-9": {
+          "title": "Get fileIdsProcessed",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "default_value": {
+              "type": "array",
+              "value": []
+            },
+            "key": {
+              "type": "string",
+              "value": "fileIdsProcessed"
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Check parent existed",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "property_exists",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "property": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.items[0].custrecord_parent_subscription"
+            }
+          }
+        },
+        "storage-3": {
+          "title": "Get Ns Id to Query",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            },
+            "key": {
+              "type": "string",
+              "value": "idToQuery"
+            }
+          }
+        },
+        "storage-8": {
+          "title": "Add fileId to fileIdsProcessed",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "append_to_list",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "fileIdsProcessed"
+            },
+            "create_if_missing": {
+              "value": true,
+              "type": "boolean"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.loop-3.value.fileId"
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "File downloaded?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-1.response.success"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Query Hierarchy",
+          "description": "This loop starts with the parent subscription and will continue with the parent of the subscription in the loop until no more parent is found",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_forever",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "properties": {
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {}
+        },
+        "storage-4": {
+          "title": "add to contract docs list",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "append_to_list",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "contractualDocumentsToQuery"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.items[0].custrecord_contract_docs"
+            },
+            "create_if_missing": {
+              "value": false,
+              "type": "boolean"
+            },
+            "append_array_as_single_item": {
+              "value": false,
+              "type": "boolean"
+            }
+          }
+        },
+        "storage-11": {
+          "title": "Gets masterAgreementFound",
+          "description": "Gets the information if a master agreement is found. The variable is only set if it’s true and then if it’s not set it’s because it’s not found and then the default value is used.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "masterAgreementFound"
+            },
+            "default_value": {
+              "type": "string",
+              "value": "False"
+            }
+          }
+        },
+        "script-4": {
+          "title": "Get urls based on env",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "workflowTitle"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.env.workflow_title"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "parentSubscription"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.items[0].parent_subscription",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  let nsAccountId = \"4914352\";\n  let sfSandbox = '';\n\tif (input.workflowTitle.startsWith(\"[full]\")) {\n    nsAccountId += \"-sb2\";\n    sfSandbox = \"--full.sandbox\";\n  }\n  //PRODUCTION\n  return {\n    subscriptionUrl: `https://${nsAccountId}.app.netsuite.com/app/accounting/subscription/subscription.nl?id=${input.parentSubscription}`,\n    opportunityBaseUrl: `https://trilogy-sales${sfSandbox}.my.salesforce.com/`\n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-8": {
+          "title": "Check if it's in AR chain",
+          "description": "If the last subscription was Auto-Renew and this is also Auto-Renew, it's necessary to save the start date to be set in the spreadsheet.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-12.value"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.items[0].custrecord_isautorenewal",
+                      "fallback": {
+                        "value": "F",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "T"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "drive-4": {
+          "title": "Google Drive",
+          "connector": {
+            "name": "drive",
+            "version": "3.0"
+          },
+          "operation": "get_file",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "dcffe647-7bd9-4c19-bbe7-3c3bfe885e7c",
+            "title": "TSI Service User google drive account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/4d576e9893e22ef962c9d95c13c521f7.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/drive",
+              "https://www.googleapis.com/auth/drive.appdata",
+              "https://www.googleapis.com/auth/drive.file",
+              "https://www.googleapis.com/auth/drive.metadata"
+            ],
+            "service_name": "google-drive",
+            "service_version": 2
+          },
+          "properties": {
+            "access_token": {
+              "type": "jsonpath",
+              "value": "$.auth.access_token"
+            },
+            "file_id": {
+              "type": "jsonpath",
+              "value": "$.steps.drive-1.id"
+            }
+          }
+        },
+        "storage-7": {
+          "title": "Get fileIdsProcessed",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "default_value": {
+              "type": "array",
+              "value": []
+            },
+            "key": {
+              "type": "string",
+              "value": "fileIdsProcessed"
+            }
+          }
+        },
+        "boolean-condition-7": {
+          "title": "Check if is master agreement",
+          "description": "Checking if it's a master agreement, because we need to set in the spreadsheet that the master agreement was automatically found.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.items[0].custrecord_sub_doc_is_master_contract",
+                      "fallback": {
+                        "value": "F",
+                        "type": "string"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "T"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "storage-10": {
+          "title": "Save masterAgreementFound info",
+          "description": "Saves the information that a master agreement is found to use later when filling the spreadsheet",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "masterAgreementFound"
+            },
+            "value": {
+              "type": "string",
+              "value": "True"
+            }
+          }
+        },
+        "netsuite-3": {
+          "title": "Get Info",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "execute_suiteql",
+          "output_schema": {},
+          "error_handling": {
+            "strategy": "automatic"
+          },
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "limit": {
+              "type": "number",
+              "value": 1
+            },
+            "offset": {
+              "type": "number",
+              "value": 0
+            },
+            "raw_query": {
+              "type": "string",
+              "value": "SELECT s.id as parent_subscription,\n  c.altname as customer_name, ct.name as customer_type, s.customer, s.custrecord_subs_end_user AS enduser, s.subsidiary\nFROM subscription s\nINNER JOIN customer c on c.id = s.customer\nLEFT JOIN customlist_channel_sales_tiers ct on ct.id = c.custentity_customer_channel_tier\nWHERE s.id = {$.steps.trigger.opportunity.Parent_Subscription_ID__c}"
+            }
+          }
+        },
+        "storage-14": {
+          "title": "Saves if last subscription AR",
+          "description": "Saves the information that last subscription was not Auto-Renew",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "lastSubscriptionAutoRenew"
+            },
+            "value": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "drive-1": {
+          "title": "Create Oppy Folder",
+          "connector": {
+            "name": "drive",
+            "version": "3.0"
+          },
+          "operation": "create_folder",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "dcffe647-7bd9-4c19-bbe7-3c3bfe885e7c",
+            "title": "TSI Service User google drive account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/4d576e9893e22ef962c9d95c13c521f7.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/drive",
+              "https://www.googleapis.com/auth/drive.appdata",
+              "https://www.googleapis.com/auth/drive.file",
+              "https://www.googleapis.com/auth/drive.metadata"
+            ],
+            "service_name": "google-drive",
+            "service_version": 2
+          },
+          "properties": {
+            "access_token": {
+              "type": "jsonpath",
+              "value": "$.auth.access_token"
+            },
+            "name": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.opportunity.Name"
+            },
+            "parents": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.driveId"
+                }
+              ]
+            }
+          }
+        },
+        "boolean-condition-6": {
+          "title": "Not downloaded or processed?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-2.response.success"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": false
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "in"
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-2.response.netsuiteFileId",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-9.value"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "storage-13": {
+          "title": "Save Auto-Renew startdate",
+          "description": "Saves the auto-renew start date to be inserted in the spreadsheet",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "AutoRenewStartDate"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.items[0].startdate"
+            }
+          }
+        },
+        "sheets-1": {
+          "title": "add column data to sheet",
+          "description": "Adds all the information from the opportunity/subscription to the respective column in the spreadsheet. The list of values are in order starting from row 1 until row 15.",
+          "connector": {
+            "name": "sheets",
+            "version": "8.1"
+          },
+          "operation": "add_values_to_spreadsheet",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "TSI Service User google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/51312ff204893a2751b6788b914f9b78.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "spreadsheet_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.spreadsheetId"
+            },
+            "major_dimension": {
+              "type": "string",
+              "value": "COLUMNS"
+            },
+            "value_input_option": {
+              "type": "string",
+              "value": "RAW"
+            },
+            "include_values_in_response": {
+              "type": "boolean",
+              "value": false
+            },
+            "worksheet_name": {
+              "value": "Contracts",
+              "type": "string"
+            },
+            "cell_range": {
+              "type": "string",
+              "value": "{$.steps.script-3.result}1:{$.steps.script-3.result}15"
+            },
+            "values": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "array",
+                  "value": [
+                    {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.opportunity.Name"
+                    },
+                    {
+                      "type": "string",
+                      "value": ""
+                    },
+                    {
+                      "type": "string",
+                      "value": ""
+                    },
+                    {
+                      "type": "string",
+                      "value": "{$.steps.script-4.result.opportunityBaseUrl}{$.steps.trigger.opportunity.Id}"
+                    },
+                    {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.items[0].parent_subscription",
+                      "fallback": {
+                        "value": "Id {$.steps.trigger.opportunity.Parent_Subscription_ID__c} Not Found in Netsuite",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-4.result.subscriptionUrl"
+                    },
+                    {
+                      "type": "jsonpath",
+                      "value": "$.steps.drive-4.webViewLink"
+                    },
+                    {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-11.value"
+                    },
+                    {
+                      "type": "string",
+                      "value": ""
+                    },
+                    {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.items[0].customer_name",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.items[0].customer_type",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.opportunity.Product__c"
+                    },
+                    {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.opportunity.Current_ARR__c"
+                    },
+                    {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.opportunity.Current_TCV__c"
+                    },
+                    {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-15.value"
+                    }
+                  ]
+                }
+              ]
+            },
+            "insert_data_option": {
+              "type": "string",
+              "value": "OVERWRITE"
+            }
+          }
+        },
+        "loop-2": {
+          "title": "loop contractual documents",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": [
+                  "object",
+                  "array",
+                  "string",
+                  "number",
+                  "boolean",
+                  "null"
+                ],
+                "title": "Value",
+                "id": "http://jsonschema.net/value"
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.storage-6.value"
+            }
+          }
+        },
+        "break-loop-1": {
+          "title": "break query hiearchy loop",
+          "connector": {
+            "name": "break-loop",
+            "version": "1.1"
+          },
+          "operation": "break",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "storage-6": {
+          "title": "get contract documents list",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            },
+            "key": {
+              "type": "string",
+              "value": "contractualDocumentsToQuery"
+            }
+          }
+        },
+        "script-2": {
+          "title": "Prepare TSI API Payload",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "recordType"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "customrecord697"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "id"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "instance"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "{$.steps.script-1.result}"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  const request = {\n    url: `https://${input.instance}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=customscript_si_main_main_restlet&deploy=customdeploy_si_main_main`,\n    payload: {\n      op: \"search.internalAttachedFields\",\n      recordType: input.recordType,\n      id: input.id,\n    }\n  };\n  return request;\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "Is file already processed?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-3.value.fileId"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "in"
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-7.value"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "c6af6bca-ca60-4a38-ba67-4531f0095ed6",
+          "name": "Download NS file"
+        },
+        {
+          "id": "f8fc7209-7911-402c-8a23-613eecc9a35f",
+          "name": "Download Reseller Agreement"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

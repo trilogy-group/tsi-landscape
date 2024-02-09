@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WinTypeAR_AWSMarketplaceWithIDs</fullName>
+    <active>true</active>
+    <description>AWS Marketplace Offer ID and Agreement ID must be set to set the Win Type to AWS Marketplace</description>
+    <errorConditionFormula>TEXT(Win_Type__c) = &apos;AWS Marketplace&apos; &amp;&amp;
+(ISBLANK(AWS_Marketplace_Offer_ID__c) || ISBLANK(AWS_Marketplace_Agreement_ID__c)) &amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorMessage>AWS Marketplace Offer ID and Agreement ID must be set to set the Win Type to AWS Marketplace</errorMessage>
+</ValidationRule>

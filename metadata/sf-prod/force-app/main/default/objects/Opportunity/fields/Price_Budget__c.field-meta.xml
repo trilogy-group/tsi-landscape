@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Price_Budget__c</fullName>
+    <description>Green: Alignment on Price &amp; Business case (savings report)
+||
+Yellow: Budget challenges &amp;/or murky business case due to savings report
+||
+Red: No business case - price Not In Range based on savings</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Green: Alignment on Price &amp; Business case (savings report)
+||
+Yellow: Budget challenges &amp;/or murky business case due to savings report
+||
+Red: No business case - price Not In Range based on savings</inlineHelpText>
+    <label>Price &amp; Budget</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Opportunity_Progression</valueSetName>
+    </valueSet>
+</CustomField>

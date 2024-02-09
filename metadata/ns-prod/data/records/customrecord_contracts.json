@@ -1,0 +1,926 @@
+{
+  "type": "object",
+  "properties": {
+    "custrecord_contract_renewal_terms": {
+      "title": "Renewal Terms",
+      "type": "number",
+      "format": "float",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swv_cont_earliest_ci_start": {
+      "title": "Earliest Contract Item Start Date",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_contract_value_clr_cont": {
+      "title": "Contract Value (CLR Contract Currency)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_contract_value_olr_base": {
+      "title": "Contract Value (OLR Base Currency)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_annual_renew_val_net": {
+      "title": "Annual Renew Value (Net)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_cv_clr2_custom_base": {
+      "title": "Contract Value (CLR2-Custom Base Curr)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_contract_value_olr": {
+      "title": "Contract Value (OLR Contract Currency)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_contract_uplift": {
+      "title": "Contract Uplift",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_contracts_renewals_exclusion": {
+      "title": "Renewals Exclusion",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_annual_cv_net_olr": {
+      "title": "Annual Contract Value - Net (OLR)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_annual_contract_val_gross": {
+      "title": "Annual Contract Value (Gross)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_contract_value_clr": {
+      "title": "Contract Value (CLR Base Currency)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_annual_cv_net_clr": {
+      "title": "Annual Contract Value - Net (CLR)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_term_renew_val_net": {
+      "title": "Renewal Term Renew Value (Net)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_term_renew_val_gross": {
+      "title": "Renewal Term Renew Value (Gross)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_contract_value_clr2": {
+      "title": "Contract Value (CLR2 Base Currency)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_cv_clr2_custom_cont": {
+      "title": "Contract Value (CLR2-Custom Cont Curr)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_annual_contract_val_net": {
+      "title": "Annual Contract Value (Net)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_contract_is_updated": {
+      "title": "Is Updated (hidden)",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_annual_renew_val_gross": {
+      "title": "Annual Renew Value (Gross)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_contract_value": {
+      "title": "Contract Value (Base Curr)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_annual_cv_gross_clr2_cust": {
+      "title": "Annual Contract Value - Gross(CLR2 Cust)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_annual_cv_net_clr2_cust": {
+      "title": "Annual Contract Value - Net(CLR2 Cust)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_contracts_start_date": {
+      "title": "Contract Start Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_contract_days_before_renewal": {
+      "title": "Contract Days Before Renewal",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_annual_cv_gross_olr": {
+      "title": "Annual Contract Value - Gross (OLR)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_annual_cv_gross_clr": {
+      "title": "Annual Contract Value - Gross (CLR)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_contract_value_base": {
+      "title": "Contract Value (Customer Primary Curr)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_contract_date_renewed": {
+      "title": "Contract Renewed On",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_contracts_end_date": {
+      "title": "Contract End Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_target_renewal_date": {
+      "title": "Target Renewal Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_annual_cv_gross_clr2": {
+      "title": "Annual Contract Value - Gross (CLR2)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_contracts_queued_for_renew": {
+      "title": "Queued For Renewal",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_contract_value_clr2_cont": {
+      "title": "Contract Value (CLR2 Contract Currency)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_contract_document": {
+      "title": "Contract Document",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_swe_annual_cv_net_clr2": {
+      "title": "Annual Contract Value - Net (CLR2)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_swe_contract_currency": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_contract_renewal_opp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_contract_ship_to_tier": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_contract_bill_to_tier": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_swe_original_contract": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_contract_subsidiary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_swe_contract_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_contracts_end_user": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_contract_reseller": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_jj_item_internal_id_report": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/inventoryitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/assemblyitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/kititem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/groupitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/discountitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/expenseitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/markupitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/subtotalitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/descriptionitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/paymentitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/salestaxitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/taxgroup"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/shipitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/downloaditem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/giftcertificateitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/subscriptionplan"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/noninventorysaleitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/noninventoryresaleitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/noninventorypurchaseitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/servicesaleitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/serviceresaleitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/servicepurchaseitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/otherchargesaleitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/otherchargeresaleitem"
+              },
+              {
+                "$ref": "/services/rest/record/v1/metadata-catalog/otherchargepurchaseitem"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "custrecord_swe_days_b4_renewal": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_contract_status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_contract_distributor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_swe_orig_so": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_contracts_bill_to_customer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_swe_renewals_pricing_model": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_contract_renewal_tran": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_swe_contract_perp_cntrct_itms": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/customrecord_contract_item"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [],
+  "x-ns-custom-record": true
+}

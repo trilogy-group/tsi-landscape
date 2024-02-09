@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Usage_Status__c</fullName>
+    <description>Field migrated from IgniteTech: Usage Status</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Field migrated from IgniteTech: Usage Status</inlineHelpText>
+    <label>Usage Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Onboarding Requested</fullName>
+                <default>false</default>
+                <label>Onboarding Requested</label>
+            </value>
+            <value>
+                <fullName>Installed</fullName>
+                <default>false</default>
+                <label>Installed</label>
+            </value>
+            <value>
+                <fullName>Using</fullName>
+                <default>false</default>
+                <label>Using</label>
+            </value>
+            <value>
+                <fullName>Not Using</fullName>
+                <default>false</default>
+                <label>Not Using</label>
+            </value>
+            <value>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+                <label>Cancelled</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

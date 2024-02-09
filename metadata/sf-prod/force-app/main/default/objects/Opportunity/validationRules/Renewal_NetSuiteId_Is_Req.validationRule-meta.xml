@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_NetSuiteId_Is_Req</fullName>
+    <active>true</active>
+    <description>Products processed via O2C (NetSuite products) must have the NetSuite ID set. Can&apos;t push the opportunity to Final Quote or Finalizing without the NetSuiteID.  Legacy opportunities that are already closed can have empty NetSuite IDs.</description>
+    <errorConditionFormula>ISPICKVAL(Type, &apos;Renewal&apos;)
+&amp;&amp; Product_Configuration__r.NetSuite_Product__c 
+&amp;&amp; (ISPICKVAL(StageName , &apos;Final Quote&apos;) || ISPICKVAL(StageName , &apos;Finalizing&apos;))
+&amp;&amp; ISBLANK(NetSuite_ID__c)
+&amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorDisplayField>NetSuite_ID__c</errorDisplayField>
+    <errorMessage>Renewal opportunity must link to a Renewal subscription in NetSuite, &apos;NetSuite Id&apos; is required.</errorMessage>
+</ValidationRule>

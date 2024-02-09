@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <decisions>
+        <name>If_Opp_is_Assigned_from_One_ISR_to_Another</name>
+        <label>If Opp is Assigned from One ISR to Another</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Opp_Reassigned</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>MeetsOwnerChangeCriteria</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Task</targetReference>
+            </connector>
+            <label>Opp Reassigned</label>
+        </rules>
+    </decisions>
+    <description>This flow create a Task for New Opportunity Owner.
+If the Opp is Renewal, Stage is in Outreach or Quote Follow-Up and if the new owner is ISR</description>
+    <formulas>
+        <description>Check if the Opportunity Owner for Renewal Opportunity is assigned from One ISR to Another ISR</description>
+        <name>MeetsOwnerChangeCriteria</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT({!$Setup.Automation_Settings__c.Disable_All_Flows__c}) &amp;&amp;
+ISCHANGED({!$Record.OwnerId}) &amp;&amp;
+ISPICKVAL({!$Record.Type}, &apos;Renewal&apos;) &amp;&amp;
+{!$Record.RecordType.Name} = &apos;Sales&apos; &amp;&amp;
+(ISPICKVAL({!$Record.StageName}, &apos;Outreach&apos;) ||
+ISPICKVAL({!$Record.StageName}, &apos;Quote Follow-Up&apos;)) &amp;&amp;
+{!$Record__Prior.Owner.UserRole.Name} = &apos;ISR Renewals&apos; &amp;&amp;
+{!$Record.Owner.UserRole.Name} = &apos;ISR Renewals&apos;</expression>
+    </formulas>
+    <interviewLabel>OnOpportunityOwnerUpdate_CreateTask {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>OnOpportunityOwnerUpdate_CreateTask</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Task</name>
+        <label>Create Task</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>ActivityDate</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <stringValue>Please check if the Primary Contact of the Opportunity is currently active in Sequence. If yes, then follow the playbook to change the Sequencer - https://docs.google.com/document/d/1P326QCC9oTNKvHDz7zL333ya1zzM-Y4mBv9YLUycWnw/edit</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <stringValue>Change the Mailbox/Sequencer in Outreach</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type</field>
+            <value>
+                <stringValue>Other</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>If_Opp_is_Assigned_from_One_ISR_to_Another</targetReference>
+        </connector>
+        <object>Opportunity</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

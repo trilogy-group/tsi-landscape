@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Win_Back_For_required_if_Win_Back_type</fullName>
+    <active>true</active>
+    <description>The Win Back For field is required if the opportunity type is Win Back</description>
+    <errorConditionFormula>AND(
+ISPICKVAL(Type,&apos;Win Back&apos;),
+ISBLANK( Win_Back_For__c ),
+NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c),
+!IsOpportunityBypassed__c
+)</errorConditionFormula>
+    <errorDisplayField>Win_Back_For__c</errorDisplayField>
+    <errorMessage>Win Back For field is required for Win Back opportunity. Please go to the Closed Lost opportunity and use the Win Back button to create a Win Back opportunity and these 2 opportunities will be linked automatically.</errorMessage>
+</ValidationRule>

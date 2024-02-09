@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transfer_of_rights_by_provider__c</fullName>
+    <description>Transfer of rights or obligations to an affiliate/subcontractor by Provider</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Transfer of rights or obligations to an affiliate/subcontractor by Provider</inlineHelpText>
+    <label>Transfer of rights by provider</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Unrestricted</fullName>
+                <default>false</default>
+                <label>Unrestricted</label>
+            </value>
+            <value>
+                <fullName>With consent</fullName>
+                <default>false</default>
+                <label>With consent</label>
+            </value>
+            <value>
+                <fullName>Disallowed</fullName>
+                <default>false</default>
+                <label>Disallowed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

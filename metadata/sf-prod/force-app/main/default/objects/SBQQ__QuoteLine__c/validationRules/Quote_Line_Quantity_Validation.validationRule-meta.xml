@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quote_Line_Quantity_Validation</fullName>
+    <active>true</active>
+    <description>This rule validates that the line item quantity is within the minimum and maximum quantity as configured on the related product. Product rule was not used because it requires creation of formula field and more complex logic implementation</description>
+    <errorConditionFormula>(SBQQ__Quantity__c &lt; SBQQ__Product__r.Min_Quantity__c || SBQQ__Quantity__c &gt; SBQQ__Product__r.Max_Quantity__c) &amp;&amp;
+SBQQ__Quote__r.SBQQ__Opportunity2__r.RecordType.DeveloperName !=&apos;New_Business&apos; &amp;&amp; SBQQ__Quote__r.SBQQ__Opportunity2__r.RecordType.DeveloperName !=&apos;Professional_Services&apos;
+&amp;&amp; TEXT(SBQQ__Quote__r.SBQQ__Opportunity2__r.Type) !=&apos;Upsell&apos;
+&amp;&amp; NOT( $Setup.Quality_Bars_Configuration__c.Disabled_Quote_QBs__c )</errorConditionFormula>
+    <errorMessage>Quantity must be between the configured minimum and maximum.</errorMessage>
+</ValidationRule>

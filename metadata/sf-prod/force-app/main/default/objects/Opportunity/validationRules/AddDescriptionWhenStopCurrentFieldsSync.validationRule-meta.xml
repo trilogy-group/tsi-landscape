@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AddDescriptionWhenStopCurrentFieldsSync</fullName>
+    <active>true</active>
+    <description>Enforces the description to be changed when the Current Fields Sync is stopped</description>
+    <errorConditionFormula>ISCHANGED(Dont_Update_from_Netsuite__c) &amp;&amp; Dont_Update_from_Netsuite__c &amp;&amp; NOT(ISCHANGED(Description))&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorDisplayField>Dont_Update_from_Netsuite__c</errorDisplayField>
+    <errorMessage>When stopping Current Fields sync, it’s necessary to add a comment in the description</errorMessage>
+</ValidationRule>

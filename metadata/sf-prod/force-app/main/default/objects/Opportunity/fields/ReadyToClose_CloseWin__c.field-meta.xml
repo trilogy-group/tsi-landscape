@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ReadyToClose_CloseWin__c</fullName>
+    <description>When subscription is Activated, it should match all requirements in order to Closed Won.</description>
+    <externalId>false</externalId>
+    <formula>(ISPICKVAL(Subscription_Status__c,&apos;Activated&apos;) ||
+!Product_Configuration__r.NetSuite_Product__c ||
+(TEXT(Type) = &apos;Professional Services&apos; &amp;&amp; (Business_Unit__c = &apos;Skyvera&apos; || Business_Unit__c = &apos;IgniteTech&apos;)) ||
+ISPICKVAL(Type, &apos;xBR&apos;) || TEXT(Type) = &apos;Prime&apos;) &amp;&amp;
+(ISPICKVAL(StageName,&apos;Finalizing&apos;) || ISPICKVAL(StageName,&apos;Closed Won&apos;)) &amp;&amp;
+ReadyToClose_O2CRecord__c &amp;&amp;
+ReadyToClose_WinType__c &amp;&amp;
+ReadyToClose_PurchaseOrder__c &amp;&amp;
+ReadyToClose_PrimaryQuote__c &amp;&amp;
+ReadyToClose_ARScenario__c &amp;&amp;
+ReadyToClose_AutoRenewClause__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>True if subscription status is Activated or has Win Type Set when is not a netsuite product and all requirements to Close Won are fulfilled.</inlineHelpText>
+    <label>ReadyToClose_CloseWin</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

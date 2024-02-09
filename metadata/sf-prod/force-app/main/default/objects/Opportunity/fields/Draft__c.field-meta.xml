@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Draft__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This field excludes the opportunity from process automation. It&apos;s used when we import new opportunity and its renewal date is too close. It should be reviewed by the Sales Manager before we start sending automated emails to customers.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Excludes the opportunity from the renewal process automation. It was likely imported too close to the Renewal Date. Review the opportunity, adjust the stage appropriately, and then uncheck this field.</inlineHelpText>
+    <label>Draft</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,687 @@
+{
+  "type": "object",
+  "properties": {
+    "custrecord_cfdi_email_send_test": {
+      "title": "Email Envio Testing",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_entity_testing": {
+      "title": "Entity Testing",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_usrcfdi_externa": {
+      "title": "URL Externa del CFDi",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_sucursal_testing": {
+      "title": "Sucursal Testing",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_user_testing": {
+      "title": "Usuario Testing",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_url_regmasivo": {
+      "title": "URL del Registro Masivo",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_textopie_1": {
+      "title": "Texto Pie 1",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_textopie_2": {
+      "title": "Texto Pie 2",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_textopie_3": {
+      "title": "Texto Pie 3",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_rfctesting": {
+      "title": "RFC Pruebas",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_suc_pagos": {
+      "title": "Sucursal Pagos",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_massive": {
+      "title": "Massive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_nomina_version": {
+      "title": "Version Nomina",
+      "type": "number",
+      "format": "float",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_testrequestor": {
+      "title": "Requestor Test",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_confirmacion": {
+      "title": "Confirmacion Monto Alto",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_claveunidad": {
+      "title": "ClaveUnidad Pago",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_location_testing": {
+      "title": "Locations",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_pdf_files": {
+      "title": "Id Folder de Impresion",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_entity_rfc": {
+      "title": "ID del RFC del Cliente",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_versionpago": {
+      "title": "Version Pago",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_cuenta_pago": {
+      "title": "ID Cuenta de Pago Cliente",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_url_externa": {
+      "title": "URL Externa",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_descripcion_pago": {
+      "title": "Descripcion Pago",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_claveprodserv": {
+      "title": "ClaveProdServ Pago",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_idieps": {
+      "title": "Id IEPS",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_registropatronal": {
+      "title": "Registro Patronal",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_formapago_customer": {
+      "title": "ID Forma de Pago del Cliente",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_testing_masiva": {
+      "title": "Masiva",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_esquema": {
+      "title": "Esquema CFDi",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_mailalcliente": {
+      "title": "Se envia al cliente",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_encabezado1": {
+      "title": "Nota Encabezado 1",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_encabezado3": {
+      "title": "Nota Encabezado 3",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_desc_publico_general": {
+      "title": "Descripcion Articulo Publico General",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_encabezado2": {
+      "title": "Nota Encabezado 2",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_nota1": {
+      "title": "Nota 1",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_nota3": {
+      "title": "Nota 3",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_nota2": {
+      "title": "Nota 2",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_tiporelacion": {
+      "title": "Tipo de Relacion",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_textopie_enc2": {
+      "title": "Texto de Pie Encabezado 2",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_textopie_enc1": {
+      "title": "Texto de Pie Encabezado 1",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_textopie_enc3": {
+      "title": "Texto de Pie Encabezado 3",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_generarxml": {
+      "title": "Generar XML del Timbrado",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_version": {
+      "title": "Version",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_oneworld": {
+      "title": "One World",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_testing": {
+      "title": "Testing",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_metodopago_customer": {
+      "title": "Id Metodo de Pago del Cliente",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cfdi_username_testing": {
+      "title": "User Name Testing",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "custrecord_cfdi_tax16": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_cfdi_tax11": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_cfdi_retencion_class": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_cfdi_idieps_compra": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_cfdi_customer_entity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_cfdi_taxcero": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_cfdi_taxexento": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_cfdi_woolworth": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_cfdi_masive_item": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "custrecord_cfdi_email_send_test",
+    "custrecord_cfdi_entity_testing",
+    "externalId",
+    "lastmodifiedby",
+    "custrecord_cfdi_usrcfdi_externa",
+    "custrecord_cfdi_sucursal_testing",
+    "custrecord_cfdi_user_testing",
+    "custrecord_cfdi_url_regmasivo",
+    "custrecord_cfdi_textopie_1",
+    "custrecord_cfdi_textopie_2",
+    "custrecord_cfdi_textopie_3",
+    "scriptId",
+    "id",
+    "custrecord_cfdi_rfctesting",
+    "custrecord_cfdi_suc_pagos",
+    "custrecord_cfdi_massive",
+    "custrecord_cfdi_tax11",
+    "custrecord_cfdi_customer_entity",
+    "custrecord_cfdi_retencion_class",
+    "custrecord_cfdi_nomina_version",
+    "custrecord_cfdi_testrequestor",
+    "custrecord_cfdi_masive_item",
+    "custrecord_cfdi_confirmacion",
+    "created",
+    "custrecord_cfdi_claveunidad",
+    "custrecord_cfdi_location_testing",
+    "custrecord_cfdi_pdf_files",
+    "custrecord_cfdi_entity_rfc",
+    "custrecord_cfdi_versionpago",
+    "lastmodified",
+    "name",
+    "custrecord_cfdi_tax16",
+    "custrecord_cfdi_idieps_compra",
+    "isInactive",
+    "custrecord_cfdi_cuenta_pago",
+    "custrecord_cfdi_url_externa",
+    "custrecord_cfdi_descripcion_pago",
+    "custrecord_cfdi_claveprodserv",
+    "custrecord_cfdi_idieps",
+    "custrecord_cfdi_registropatronal",
+    "custrecord_cfdi_formapago_customer",
+    "custrecord_cfdi_testing_masiva",
+    "custrecord_cfdi_esquema",
+    "custrecord_cfdi_mailalcliente",
+    "custrecord_cfdi_taxexento",
+    "custrecord_cfdi_taxcero",
+    "owner",
+    "custrecord_cfdi_encabezado1",
+    "custrecord_cfdi_encabezado3",
+    "custrecord_cfdi_desc_publico_general",
+    "custrecord_cfdi_encabezado2",
+    "custrecord_cfdi_nota1",
+    "custrecord_cfdi_nota3",
+    "custrecord_cfdi_nota2",
+    "custrecord_cfdi_tiporelacion",
+    "abbreviation",
+    "custrecord_cfdi_textopie_enc2",
+    "custrecord_cfdi_textopie_enc1",
+    "custrecord_cfdi_textopie_enc3",
+    "custrecord_cfdi_generarxml",
+    "custrecord_cfdi_woolworth",
+    "custrecord_cfdi_version",
+    "custrecord_cfdi_oneworld",
+    "custrecord_cfdi_testing",
+    "custrecord_cfdi_metodopago_customer",
+    "custrecord_cfdi_username_testing"
+  ],
+  "x-ns-custom-record": true
+}

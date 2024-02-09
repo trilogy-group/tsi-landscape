@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_FilterOut_Condition__c</fullName>
+    <description>A SOQL condition to filter out Opportunities from task creation. It will be used as it is in the WHERE clause. Example: Product__c = &apos;FogBugz&apos; will act as if all the Task report have no records for FogBugz.</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Opportunity Filter Out Condition</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

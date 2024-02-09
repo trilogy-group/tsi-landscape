@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__MyOutgoingReferrals</fullName>
+    <columns>NAME</columns>
+    <columns>workspan__Opportunity__c</columns>
+    <columns>workspan__CustomerName__c</columns>
+    <columns>workspan__ReferralStatus__c</columns>
+    <columns>workspan__SourcedToPartner__c</columns>
+    <columns>workspan__NextStep__c</columns>
+    <columns>workspan__SalesStage__c</columns>
+    <columns>workspan__ReferralSentOn__c</columns>
+    <columns>workspan__ReferralExpirationDate__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>workspan__ReferralType__c</field>
+        <operation>equals</operation>
+        <value>Outgoing</value>
+    </filters>
+    <filters>
+        <field>workspan__IsDeleted__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>My Outgoing Referrals</label>
+</ListView>

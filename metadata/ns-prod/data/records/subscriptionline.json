@@ -1,0 +1,428 @@
+{
+  "type": "object",
+  "properties": {
+    "lineNumber": {
+      "title": "Line Number",
+      "type": "integer",
+      "description": "Unique integer value assigned to this line item in the subscription.",
+      "format": "int64",
+      "nullable": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "description": "Unique identification number assigned to the item. This is a system-generated read-only field.",
+      "nullable": true
+    },
+    "startDate": {
+      "title": "Start Date",
+      "type": "string",
+      "description": "The scheduled start date for this line item on the subscription. ",
+      "format": "date",
+      "nullable": true
+    },
+    "alignChargeWithSub": {
+      "title": "Align Charge amounts with Subscription",
+      "type": "boolean"
+    },
+    "revRecOption": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "ONE_TIME",
+            "OVER_TERM"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "total": {
+      "title": "Total",
+      "type": "number",
+      "format": "double",
+      "nullable": true
+    },
+    "billingMode": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "IN_ARREARS",
+            "IN_ADVANCE",
+            "IMMEDIATE"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "catalogType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "ADD_ON",
+            "OPTIONAL",
+            "REQUIRED"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "subscriptionLineStatus": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "NOT_INCLUDED",
+            "ACTIVE",
+            "CLOSED",
+            "PENDING_ACTIVATION",
+            "DRAFT",
+            "TERMINATED",
+            "SUSPENDED"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "isIncluded": {
+      "title": "Include",
+      "type": "boolean"
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "includeInRenewal": {
+      "title": "Include In Renewal Subscription",
+      "type": "boolean"
+    },
+    "subscriptionLineType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "terminationDate": {
+      "title": "Termination Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true
+    },
+    "subscriptionPlanLine": {
+      "title": "Subscription Plan Line",
+      "type": "string",
+      "nullable": true
+    },
+    "salesOrderLineNumber": {
+      "title": "Sales Order Line Number",
+      "type": "integer",
+      "description": "The line number of the subscription line on the associated sales order.",
+      "format": "int64",
+      "nullable": true
+    },
+    "recurrenceStartDate": {
+      "title": "Recurrence Start Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true
+    },
+    "prorateStartDate": {
+      "title": "Prorate Start Date",
+      "type": "boolean"
+    },
+    "endDate": {
+      "title": "End Date",
+      "type": "string",
+      "description": "The scheduled end date for this line item on the subscription.",
+      "format": "date",
+      "nullable": true
+    },
+    "estimatedRevRecEndDate": {
+      "title": "Estimated Revenue Recognition End Date",
+      "type": "string",
+      "description": "For recurring subscriptions with an evergreen term, chose a forecasted end date for revenue and billing. NetSuite generates revenue elements and charges until this date, and periodically updates this field based on your preferences. If this field is left blank on activation, NetSuite automatically sets it to 3 years from the activation date.",
+      "format": "date",
+      "nullable": true
+    },
+    "customForm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "-916"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "poNumber": {
+      "title": "PO #",
+      "type": "string",
+      "nullable": true
+    },
+    "prorateEndDate": {
+      "title": "Prorate End Date",
+      "type": "boolean"
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "subscription": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "department": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "class": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "salesOrder": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "subscriptionPlan": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "lineNumber",
+    "externalId",
+    "subscriptionPlan",
+    "subscription",
+    "startDate",
+    "salesOrder",
+    "alignChargeWithSub",
+    "revRecOption",
+    "total",
+    "billingMode",
+    "catalogType",
+    "subscriptionLineStatus",
+    "isIncluded",
+    "id",
+    "includeInRenewal",
+    "department",
+    "class",
+    "subscriptionLineType",
+    "item",
+    "terminationDate",
+    "subscriptionPlanLine",
+    "salesOrderLineNumber",
+    "recurrenceStartDate",
+    "prorateStartDate",
+    "endDate",
+    "estimatedRevRecEndDate",
+    "poNumber",
+    "location",
+    "prorateEndDate"
+  ]
+}

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Interest__c</fullName>
+    <description>LAMBDA-53172 Capture the interest that customer might exhibit for the</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Capture Customer interest in the Platinum Offer item</inlineHelpText>
+    <label>Customer Interest</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Interested</fullName>
+                <default>false</default>
+                <label>Interested</label>
+            </value>
+            <value>
+                <fullName>Not relevant</fullName>
+                <default>false</default>
+                <label>Not relevant</label>
+            </value>
+            <value>
+                <fullName>Doesn&apos;t add significant value</fullName>
+                <default>false</default>
+                <label>Doesn&apos;t add significant value</label>
+            </value>
+            <value>
+                <fullName>Not a priority, maybe in the future</fullName>
+                <default>false</default>
+                <label>Not a priority, maybe in the future</label>
+            </value>
+            <value>
+                <fullName>Too expensive</fullName>
+                <default>false</default>
+                <label>Too expensive</label>
+            </value>
+            <value>
+                <fullName>Using third-party service - won&apos;t consider</fullName>
+                <default>false</default>
+                <label>Using third-party service - won&apos;t consider</label>
+            </value>
+            <value>
+                <fullName>Doing it in-house - won&apos;t consider</fullName>
+                <default>false</default>
+                <label>Doing it in-house - won&apos;t consider</label>
+            </value>
+            <value>
+                <fullName>Reseller offers the service</fullName>
+                <default>false</default>
+                <label>Reseller offers the service</label>
+            </value>
+            <value>
+                <fullName>Unhappy with past delivery</fullName>
+                <default>false</default>
+                <label>Unhappy with past delivery</label>
+            </value>
+            <value>
+                <fullName>Previously included in subscription</fullName>
+                <default>false</default>
+                <label>Previously included in subscription</label>
+            </value>
+            <value>
+                <fullName>Not qualified to answer</fullName>
+                <default>false</default>
+                <label>Not qualified to answer</label>
+            </value>
+            <value>
+                <fullName>Unclear feedback</fullName>
+                <default>false</default>
+                <label>Unclear feedback</label>
+            </value>
+            <value>
+                <fullName>Customer won&apos;t engage</fullName>
+                <default>false</default>
+                <label>Customer won&apos;t engage</label>
+            </value>
+            <value>
+                <fullName>Not Discussed</fullName>
+                <default>false</default>
+                <label>Not Discussed</label>
+            </value>
+            <value>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+                <label>Unknown</label>
+            </value>
+            <value>
+                <fullName>Negative</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Negative</label>
+            </value>
+            <value>
+                <fullName>Neutral</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Neutral</label>
+            </value>
+            <value>
+                <fullName>Positive</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Positive</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

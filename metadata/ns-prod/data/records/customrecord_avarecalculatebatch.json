@@ -1,0 +1,291 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_salesorder": {
+      "title": "RecordType-SalesOrders",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_recalctype": {
+      "title": "Recalculation Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_cashsale": {
+      "title": "RecordType-CashSale",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_recalctodate": {
+      "title": "To Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_recalcdesc": {
+      "title": "Batch Description",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_invoice": {
+      "title": "RecordType-Invoice",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_recalcbatchname": {
+      "title": "Batch Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_returnauth": {
+      "title": "RecordType-Return Authorization",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_estimate": {
+      "title": "RecordType-Estimates",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_recalcfromdate": {
+      "title": "From Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_cashrefund": {
+      "title": "RecordType-CashRefund",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_creditmemo": {
+      "title": "RecordType-CreditMemo",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "recordId": {
+      "title": "Record ID",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_lasttranid": {
+      "title": "Last Tran Id",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_recalcstatus": {
+      "title": "Recalculation Status",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_all": {
+      "title": "RecordType-All",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "custrecord_ava_customer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ava_recalcsubsidiary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "custrecord_ava_salesorder",
+    "externalId",
+    "lastmodifiedby",
+    "custrecord_ava_recalctype",
+    "scriptId",
+    "custrecord_ava_cashsale",
+    "custrecord_ava_recalcsubsidiary",
+    "custrecord_ava_recalctodate",
+    "id",
+    "custrecord_ava_recalcdesc",
+    "custrecord_ava_invoice",
+    "owner",
+    "custrecord_ava_recalcbatchname",
+    "custrecord_ava_returnauth",
+    "created",
+    "custrecord_ava_estimate",
+    "custrecord_ava_recalcfromdate",
+    "abbreviation",
+    "custrecord_ava_cashrefund",
+    "custrecord_ava_customer",
+    "custrecord_ava_creditmemo",
+    "recordId",
+    "lastmodified",
+    "name",
+    "custrecord_ava_lasttranid",
+    "custrecord_ava_recalcstatus",
+    "custrecord_ava_all"
+  ],
+  "x-ns-custom-record": true
+}

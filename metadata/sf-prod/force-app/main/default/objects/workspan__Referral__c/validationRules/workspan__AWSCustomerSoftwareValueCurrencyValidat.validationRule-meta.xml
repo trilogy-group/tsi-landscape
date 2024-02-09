@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__AWSCustomerSoftwareValueCurrencyValidat</fullName>
+    <active>true</active>
+    <description>Customer Software Value Currency must have exactly three letters</description>
+    <errorConditionFormula>AND(
+            NOT(ISBLANK(workspan__AWSCustomerSoftwareValueCurrency__c)),
+            OR(LEN(workspan__AWSCustomerSoftwareValueCurrency__c)&lt;&gt;3,NOT(REGEX(workspan__AWSCustomerSoftwareValueCurrency__c,&quot;([a-zA-Z])*&quot;)))
+        )
+        &amp;&amp; !workspan__SkipValidationRules__c</errorConditionFormula>
+    <errorDisplayField>workspan__AWSCustomerSoftwareValueCurrency__c</errorDisplayField>
+    <errorMessage>Must have exactly three letters</errorMessage>
+</ValidationRule>

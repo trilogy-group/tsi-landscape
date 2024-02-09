@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Priority_Score__c</fullName>
+    <description>Priority score calculated based on Health Score, Account ARR and days to end contract.</description>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(Success_Level__c, &apos;Platinum&apos;),1/4,0) +
+(1 - Health_Score__c) / 4 +
+IF(Account.ARR__c &gt; 10000, 1/4, 0) +
+IF(ISBLANK(ContractId),0, IF(Contract.EndDate - TODAY() &lt;= 0,1,MAX(0,(1 - (Contract.EndDate -  TODAY())/(365 * Contract.ContractTerm / 12))))) / 4</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Priority Score</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Percent</type>
+</CustomField>

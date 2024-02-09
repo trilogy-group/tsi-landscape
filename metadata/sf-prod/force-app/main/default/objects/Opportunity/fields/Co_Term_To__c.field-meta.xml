@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Co_Term_To__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Links to the primary opportunity that this opp is co-termed to.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If this is a co-termed opportunity then link to the opportunity you are co-terming to. It should point to the lead opportunity that will be processed via O2C.</inlineHelpText>
+    <label>Co-Term To</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>The Co-Termed opportunity must come from the same account.</errorMessage>
+        <filterItems>
+            <field>$Source.AccountId</field>
+            <operation>equals</operation>
+            <valueField>$Source.AccountId</valueField>
+        </filterItems>
+        <infoMessage>The Co-Termed opportunity must come from the same account.</infoMessage>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Opportunity</referenceTo>
+    <relationshipLabel>Cotermed Opps</relationshipLabel>
+    <relationshipName>Cotermed_Opps</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

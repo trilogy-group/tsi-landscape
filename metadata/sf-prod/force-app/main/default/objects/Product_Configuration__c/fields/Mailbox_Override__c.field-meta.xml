@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mailbox_Override__c</fullName>
+    <description>Email domain to use for Outreach sequences, system emails to customers sent via Salesforce, and for PostGrid to send AR warning letters to customers. NetSuite adds a CC recipient automatically for all agreements of renewal Quotes (CC to &quot;renewals@OutboundEmailDomain&quot;). This value can ONLY be changed from NetSuite and it&apos;s automatically synchronized here!</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Email domain to use for Outreach sequences, system emails to customers sent via Salesforce, and for PostGrid to send AR warning letters to customers. NetSuite adds a CC recipient automatically for all agreements of renewal Quotes (CC to &quot;renewals@OutboundEmailDomain&quot;). This value can ONLY be changed from NetSuite and it&apos;s automatically synchronized here!</inlineHelpText>
+    <label>Outbound Email Domain</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

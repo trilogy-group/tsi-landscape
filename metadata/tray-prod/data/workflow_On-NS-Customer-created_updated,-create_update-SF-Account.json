@@ -1,0 +1,3487 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "98338c07-89c2-4f47-bc5c-76f0f9fe6be1",
+      "created": "2022-05-11T05:46:18.680172Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "group": "d5aa5ab7-87a4-4b7a-8aac-e8567d887eab",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "26c24c9c-6b72-4331-931d-6408b2d67db5",
+        "created": "2022-12-30T14:14:53.855510Z"
+      },
+      "title": "On NS Customer created/updated, create/update SF Account",
+      "description": "Transfer information from NS Customer+Contact to SF Account+Contact",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "CustomerId": {
+              "title": "CustomerId",
+              "description": "NetSuite Customer identifier",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "Result": {
+              "type": "string",
+              "title": "Result"
+            },
+            "accountId": {
+              "title": "Account Id",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-3",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "callable-workflow-response-2",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-4",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-2",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "netsuite-3",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "script-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "salesforce-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "call-workflow-3",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "netsuite-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-1",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "call-workflow-2",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "netsuite-4",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-2",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "call-workflow-4",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "script-1": {
+          "title": "Account Type Map",
+          "description": "Maps Customer Tier to Accout Type",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "tier"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.custentity_customer_channel_tier.refName"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  switch (input.tier) {\n    case \"End User\":\n      return \"Customer\";\n    case \"Reseller\":\n    case \"Distributor\":\n      return \"Reseller\";\n    default:\n      return \"Other\";\n  }\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Has Address",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-4.result"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Sync Contact",
+          "description": "Call a Subflow to update the contact if needed",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "208d4bf4-9607-45cd-a9d9-d20c83eea969"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "contactId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.id"
+                },
+                "syncEnabled": {
+                  "type": "boolean",
+                  "value": true
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Check if sync is Enabled",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "0cb24f1b-e393-4b2e-ada6-8c20956d0865"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "objectName": {
+                  "type": "string",
+                  "value": "customer"
+                },
+                "object": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-1"
+                }
+              }
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Contacts Loop",
+          "connector": {
+            "name": "loop",
+            "version": "1.1"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "required": true,
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-2.items"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Has something changed?",
+          "description": "We need to update the object only if there are changes. This is needed to prevent circular updates between NS and SF.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Name",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-3.result"
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Website",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.url",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Phone",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.phone",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].ShippingCountry",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.shippingAddress.country.refName",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].ShippingCity",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.shippingAddress.city",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].ShippingStreet",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.shippingAddress.addr1",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].ShippingState",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.shippingAddress.state",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].ShippingPostalCode",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.shippingAddress.zip",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].BillingCountry",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.billingAddress.country.refName",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].BillingCity",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.billingAddress.city",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].BillingStreet",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.billingAddress.addr1",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].BillingState",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.billingAddress.state",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].BillingPostalCode",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.billingAddress.zip",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Type",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Fax",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.fax",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "script-4": {
+          "title": "Get States SQL",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "addressBook"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.addressBook"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Get country codes to load provinces/states\nexports.step = function(input) {\n\t// Countries\n  let res = input.addressBook.items.map(m => m.addressBookAddress.country.id);\n  // Unique and quoted\n  res = res.filter((v,i,a)=>a.indexOf(v) === i).map(m=>`'${m}'`); \n  if(res && res.length > 0) {\n    return {\n      q:`SELECT * FROM state WHERE country IN (${res.join(',')})`\n    };\n  } else {\n    return null;\n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "callable-workflow-response-2": {
+          "title": "Not Enabled for the Subsidiary",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "type": "object",
+              "value": {
+                "opportunityId": {
+                  "type": "string",
+                  "value": ""
+                },
+                "message": {
+                  "type": "string",
+                  "value": "Not enabled for the product."
+                },
+                "Result": {
+                  "type": "string",
+                  "value": "Not enabled for the subsidiary"
+                },
+                "accountId": {
+                  "type": "string",
+                  "value": ""
+                }
+              }
+            }
+          }
+        },
+        "netsuite-4": {
+          "title": "Get Default Customer Subsidiar",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "x-netsuite-jobid": {
+                        "type": "string"
+                      },
+                      "preference-applied": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "p3p": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "hasMore": {
+                        "type": "boolean"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "addr1": {
+                              "type": "string"
+                            },
+                            "city": {
+                              "type": "string"
+                            },
+                            "country": {
+                              "type": "string"
+                            },
+                            "currency": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "iselimination": {
+                              "type": "string"
+                            },
+                            "isinactive": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "offset": {
+                        "type": "number"
+                      },
+                      "totalResults": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "object",
+                  "value": {
+                    "q": {
+                      "type": "string",
+                      "value": "SELECT custrecord_default_subsidiary_customer, BUILTIN.DF(custrecord_default_subsidiary_class) AS custrecord_default_subsidiary_class_display, custrecord_default_subsidiary_subsidiary \nFROM customrecord_default_customer_subsidiary WHERE custrecord_default_subsidiary_customer = {$.steps.netsuite-1.id}"
+                    }
+                  }
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            }
+          }
+        },
+        "netsuite-3": {
+          "title": "Load States",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-4.result"
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get Existing Account",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.2"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Accounts",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Account",
+                  "properties": {
+                    "Name": {
+                      "name": "Name",
+                      "type": "string",
+                      "title": "Account Name"
+                    },
+                    "Website": {
+                      "name": "Website",
+                      "type": "string",
+                      "title": "Website"
+                    },
+                    "Description": {
+                      "name": "Description",
+                      "type": "string",
+                      "title": "Account Description"
+                    },
+                    "Phone": {
+                      "name": "Phone",
+                      "type": "string",
+                      "title": "Account Phone"
+                    },
+                    "BillingCountry": {
+                      "name": "BillingCountry",
+                      "type": "string",
+                      "title": "Billing Country"
+                    },
+                    "BillingCity": {
+                      "name": "BillingCity",
+                      "type": "string",
+                      "title": "Billing City"
+                    },
+                    "BillingStreet": {
+                      "name": "BillingStreet",
+                      "type": "string",
+                      "title": "Billing Street"
+                    },
+                    "BillingState": {
+                      "name": "BillingState",
+                      "type": "string",
+                      "title": "Billing State/Province"
+                    },
+                    "BillingPostalCode": {
+                      "name": "BillingPostalCode",
+                      "type": "string",
+                      "title": "Billing Zip/Postal Code"
+                    },
+                    "ShippingCountry": {
+                      "name": "ShippingCountry",
+                      "type": "string",
+                      "title": "Shipping Country"
+                    },
+                    "ShippingCity": {
+                      "name": "ShippingCity",
+                      "type": "string",
+                      "title": "Shipping City"
+                    },
+                    "ShippingStreet": {
+                      "name": "ShippingStreet",
+                      "type": "string",
+                      "title": "Shipping Street"
+                    },
+                    "ShippingState": {
+                      "name": "ShippingState",
+                      "type": "string",
+                      "title": "Shipping State/Province"
+                    },
+                    "ShippingPostalCode": {
+                      "name": "ShippingPostalCode",
+                      "type": "string",
+                      "title": "Shipping Zip/Postal Code"
+                    },
+                    "Type": {
+                      "name": "Type",
+                      "type": "string",
+                      "title": "Account Type"
+                    },
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Account ID"
+                    },
+                    "Fax": {
+                      "name": "Fax",
+                      "type": "string",
+                      "title": "Account Fax"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Name"
+                },
+                {
+                  "type": "string",
+                  "value": "Website"
+                },
+                {
+                  "type": "string",
+                  "value": "Description"
+                },
+                {
+                  "type": "string",
+                  "value": "Phone"
+                },
+                {
+                  "type": "string",
+                  "value": "BillingCountry"
+                },
+                {
+                  "type": "string",
+                  "value": "BillingCity"
+                },
+                {
+                  "type": "string",
+                  "value": "BillingStreet"
+                },
+                {
+                  "type": "string",
+                  "value": "BillingState"
+                },
+                {
+                  "type": "string",
+                  "value": "BillingPostalCode"
+                },
+                {
+                  "type": "string",
+                  "value": "ShippingCountry"
+                },
+                {
+                  "type": "string",
+                  "value": "ShippingCity"
+                },
+                {
+                  "type": "string",
+                  "value": "ShippingStreet"
+                },
+                {
+                  "type": "string",
+                  "value": "ShippingState"
+                },
+                {
+                  "type": "string",
+                  "value": "ShippingPostalCode"
+                },
+                {
+                  "type": "string",
+                  "value": "Type"
+                },
+                {
+                  "type": "string",
+                  "value": "Id"
+                },
+                {
+                  "type": "string",
+                  "value": "Fax"
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "Account"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.CustomerId"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "loop-2": {
+          "title": "Loop Collection",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "addr1": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "iselimination": {
+                    "type": "string"
+                  },
+                  "isinactive": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-4.response.body.items"
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get NS Customer",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "links": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "rel": {
+                      "type": "string"
+                    },
+                    "href": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "addressBook": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "links": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "rel": {
+                                "type": "string"
+                              },
+                              "href": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "rel",
+                              "href"
+                            ]
+                          }
+                        },
+                        "addressBookAddress": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "rel": {
+                                    "type": "string"
+                                  },
+                                  "href": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "rel",
+                                  "href"
+                                ]
+                              }
+                            },
+                            "addr1": {
+                              "type": "string"
+                            },
+                            "addressee": {
+                              "type": "string"
+                            },
+                            "addrText": {
+                              "type": "string"
+                            },
+                            "city": {
+                              "type": "string"
+                            },
+                            "country": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                },
+                                "refName": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "override": {
+                              "type": "boolean"
+                            },
+                            "state": {
+                              "type": "string"
+                            },
+                            "addr2": {
+                              "type": "string"
+                            },
+                            "zip": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "addressBookAddress_text": {
+                          "type": "string"
+                        },
+                        "addressId": {
+                          "type": "string"
+                        },
+                        "defaultBilling": {
+                          "type": "boolean"
+                        },
+                        "defaultShipping": {
+                          "type": "boolean"
+                        },
+                        "id": {
+                          "type": "number"
+                        },
+                        "internalId": {
+                          "type": "number"
+                        },
+                        "isResidential": {
+                          "type": "boolean"
+                        },
+                        "label": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "links",
+                        "addressBookAddress",
+                        "addressBookAddress_text",
+                        "addressId",
+                        "defaultBilling",
+                        "defaultShipping",
+                        "id",
+                        "internalId",
+                        "isResidential",
+                        "label"
+                      ]
+                    }
+                  },
+                  "totalResults": {
+                    "type": "number"
+                  }
+                }
+              },
+              "alcoholRecipientType": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "balance": {
+                "type": "number"
+              },
+              "comments": {
+                "type": "string"
+              },
+              "companyName": {
+                "type": "string"
+              },
+              "contact": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "contactList": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "count": {
+                    "type": "number"
+                  },
+                  "hasMore": {
+                    "type": "boolean"
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "offset": {
+                    "type": "number"
+                  },
+                  "totalResults": {
+                    "type": "number"
+                  }
+                }
+              },
+              "creditHoldOverride": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "currency": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "currencyList": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "links": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "rel": {
+                                "type": "string"
+                              },
+                              "href": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "balance": {
+                          "type": "number"
+                        },
+                        "currency": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "depositBalance": {
+                          "type": "number"
+                        },
+                        "displaySymbol": {
+                          "type": "string"
+                        },
+                        "overdueBalance": {
+                          "type": "number"
+                        },
+                        "overrideCurrencyFormat": {
+                          "type": "boolean"
+                        },
+                        "symbolPlacement": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "unbilledOrders": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  },
+                  "totalResults": {
+                    "type": "number"
+                  }
+                }
+              },
+              "custentity2": {
+                "type": "boolean"
+              },
+              "custentity3": {
+                "type": "boolean"
+              },
+              "custentity_2663_customer_refund": {
+                "type": "boolean"
+              },
+              "custentity_2663_direct_debit": {
+                "type": "boolean"
+              },
+              "custentity_2663_email_address_notif": {
+                "type": "string"
+              },
+              "custentity_3805_dunning_letters_toemail": {
+                "type": "boolean"
+              },
+              "custentity_3805_dunning_letters_toprint": {
+                "type": "boolean"
+              },
+              "custentity_3805_dunning_manager": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custentity_3805_dunning_paused": {
+                "type": "boolean"
+              },
+              "custentity_3805_dunning_procedure": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custentity_3805_exclude_comp_email": {
+                "type": "boolean"
+              },
+              "custentity_budget_approved": {
+                "type": "boolean"
+              },
+              "custentity_collection_status": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custentity_continue_providing_support": {
+                "type": "boolean"
+              },
+              "custentity_cr_ms_active": {
+                "type": "boolean"
+              },
+              "custentity_cust_require_po": {
+                "type": "boolean"
+              },
+              "custentity_customer_channel_tier": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custentity_decision_maker_id": {
+                "type": "boolean"
+              },
+              "custentity_dl_sales_rep_bcc": {
+                "type": "boolean"
+              },
+              "custentity_echosign_fix_link_is_processe": {
+                "type": "boolean"
+              },
+              "custentity_echosign_verified": {
+                "type": "boolean"
+              },
+              "custentity_erpff_p2p_auto_send_document": {
+                "type": "boolean"
+              },
+              "custentity_marquee_customer": {
+                "type": "boolean"
+              },
+              "custentity_multi_locations": {
+                "type": "boolean"
+              },
+              "custentity_naw_trans_need_approval": {
+                "type": "boolean"
+              },
+              "custentity_nsts_ci_email_attachment": {
+                "type": "boolean"
+              },
+              "custentity_nsts_ci_exclude_ci": {
+                "type": "boolean"
+              },
+              "custentity_nsts_ci_fax_attachment": {
+                "type": "boolean"
+              },
+              "custentity_nsts_ci_in_process": {
+                "type": "boolean"
+              },
+              "custentity_nsts_ci_lock_inui": {
+                "type": "boolean"
+              },
+              "custentity_nsts_swva_blockcolemail": {
+                "type": "boolean"
+              },
+              "custentity_sta_einvoice_factoring": {
+                "type": "boolean"
+              },
+              "custentity_sta_einvoicing_delivery_metho": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custentity_sta_ep_charge_bearer": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custentity_sta_factoring_inv_not_to_cust": {
+                "type": "boolean"
+              },
+              "custentity_sta_use_en16931_2017_a1_2019": {
+                "type": "boolean"
+              },
+              "custentity_stripe_customer_account_link": {
+                "type": "string"
+              },
+              "custentityzuoraautopay": {
+                "type": "boolean"
+              },
+              "custentityzuorabatch": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custentityzuorabillcycleday": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custentityzuorasendtozuora": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custentityzuorataxexemptstatus": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "customForm": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "dateCreated": {
+                "type": "string"
+              },
+              "defaultAddress": {
+                "type": "string"
+              },
+              "depositBalance": {
+                "type": "number"
+              },
+              "drAccount": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "email": {
+                "type": "string"
+              },
+              "emailPreference": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "emailTransactions": {
+                "type": "boolean"
+              },
+              "entityId": {
+                "type": "string"
+              },
+              "entityStatus": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "faxTransactions": {
+                "type": "boolean"
+              },
+              "globalSubscriptionStatus": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "groupPricing": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "totalResults": {
+                    "type": "number"
+                  }
+                }
+              },
+              "id": {
+                "type": "string"
+              },
+              "isAutogeneratedRepresentingEntity": {
+                "type": "boolean"
+              },
+              "isBudgetApproved": {
+                "type": "boolean"
+              },
+              "isInactive": {
+                "type": "boolean"
+              },
+              "isPerson": {
+                "type": "boolean"
+              },
+              "itemPricing": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "totalResults": {
+                    "type": "number"
+                  }
+                }
+              },
+              "language": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "lastModifiedDate": {
+                "type": "string"
+              },
+              "overdueBalance": {
+                "type": "number"
+              },
+              "printTransactions": {
+                "type": "boolean"
+              },
+              "receivablesAccount": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "shipComplete": {
+                "type": "boolean"
+              },
+              "shippingCarrier": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "subscriptionMessageHistory": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "totalResults": {
+                    "type": "number"
+                  }
+                }
+              },
+              "subscriptions": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "links": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "rel": {
+                                "type": "string"
+                              },
+                              "href": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "rel",
+                              "href"
+                            ]
+                          }
+                        },
+                        "subscribed": {
+                          "type": "boolean"
+                        },
+                        "subscription": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "links",
+                        "subscribed",
+                        "subscription"
+                      ]
+                    }
+                  },
+                  "totalResults": {
+                    "type": "number"
+                  }
+                }
+              },
+              "subsidiary": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "taxRegistration": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "totalResults": {
+                    "type": "number"
+                  }
+                }
+              },
+              "terms": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "unbilledOrders": {
+                "type": "number"
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "customer"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.CustomerId"
+            },
+            "expand_sub_resources": {
+              "type": "boolean",
+              "value": true
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Upsert SF Account",
+          "description": "Copy NS Customer to SF Account",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.2"
+          },
+          "operation": "upsert_record_by_id",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "Account"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Name"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-3.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Website"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.url",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Phone"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.phone",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "value": "BillingCountry",
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.billingAddress.country.refName",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "BillingCity"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.billingAddress.city",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "BillingStreet"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.billingAddress.addr1",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "BillingState"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.billingAddress.state",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "BillingPostalCode"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.billingAddress.zip",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "value": "ShippingCountry",
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.shippingAddress.country.refName",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "ShippingCity"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.shippingAddress.city",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "ShippingStreet"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.shippingAddress.addr1",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "ShippingState"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.shippingAddress.state",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "ShippingPostalCode"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.shippingAddress.zip",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Type"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Fax"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.fax",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "lookup_value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.CustomerId"
+            },
+            "lookup_field": {
+              "type": "string",
+              "value": "NetSuite_ID__c"
+            }
+          }
+        },
+        "call-workflow-4": {
+          "title": "Sync Default Customer Subsidia",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "f8f6f36d-9619-4049-83ee-9c886e98ad83"
+            },
+            "trigger_input": {
+              "type": "jsonpath",
+              "value": "$.steps.loop-2.value"
+            }
+          }
+        },
+        "call-workflow-3": {
+          "title": "Log Message to Description",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "e96c1f66-536a-4e5c-8bd3-8a2375110837"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "Account information is updated."
+                },
+                "chatter_post": {
+                  "type": "boolean",
+                  "value": false
+                },
+                "objectType": {
+                  "type": "string",
+                  "value": "Account"
+                },
+                "objectId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-2.id"
+                }
+              }
+            }
+          }
+        },
+        "netsuite-2": {
+          "title": "Get Contacts List",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "find_records",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "contact"
+            },
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "offset": {
+              "type": "number",
+              "value": 0
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "company"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "EQUAL"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.id"
+                    }
+                  }
+                }
+              ]
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "limit": {
+              "type": "number",
+              "value": 100
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "Result": {
+                  "type": "string",
+                  "value": "Success"
+                },
+                "accountId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-1.records[0].Id",
+                  "fallback": {
+                    "type": "jsonpath",
+                    "value": "$.steps.salesforce-2.id"
+                  }
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "script-3": {
+          "title": "Get Account Name",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "customer"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// We should use company name for companies\n// and alternative name for individuals\nexports.step = function(input) {\n\treturn input.customer.isPerson ? \n    [input.customer.firstName, input.customer.middleName, input.customer.lastName]\n\t\t.filter(f=>Boolean(f)) // filter out empty fields\n\t\t.join(' ')\n  \t: input.customer.companyName;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-2": {
+          "title": "Get Addresses",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "object",
+                "properties": {
+                  "billingAddress": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "addressBookAddress": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "addr1": {
+                            "type": "string"
+                          },
+                          "addr2": {
+                            "type": "string"
+                          },
+                          "addressee": {
+                            "type": "string"
+                          },
+                          "addrText": {
+                            "type": "string"
+                          },
+                          "city": {
+                            "type": "string"
+                          },
+                          "country": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "refName": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "override": {
+                            "type": "boolean"
+                          },
+                          "state": {
+                            "type": "string"
+                          },
+                          "zip": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "addressBookAddress_text": {
+                        "type": "string"
+                      },
+                      "addressId": {
+                        "type": "string"
+                      },
+                      "defaultBilling": {
+                        "type": "boolean"
+                      },
+                      "defaultShipping": {
+                        "type": "boolean"
+                      },
+                      "id": {
+                        "type": "number"
+                      },
+                      "internalId": {
+                        "type": "number"
+                      },
+                      "isResidential": {
+                        "type": "boolean"
+                      },
+                      "label": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "shippingAddress": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "addressBookAddress": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "addr1": {
+                            "type": "string"
+                          },
+                          "addressee": {
+                            "type": "string"
+                          },
+                          "addrText": {
+                            "type": "string"
+                          },
+                          "city": {
+                            "type": "string"
+                          },
+                          "country": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "refName": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "override": {
+                            "type": "boolean"
+                          },
+                          "state": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "addressBookAddress_text": {
+                        "type": "string"
+                      },
+                      "addressId": {
+                        "type": "string"
+                      },
+                      "defaultBilling": {
+                        "type": "boolean"
+                      },
+                      "defaultShipping": {
+                        "type": "boolean"
+                      },
+                      "id": {
+                        "type": "number"
+                      },
+                      "internalId": {
+                        "type": "number"
+                      },
+                      "isResidential": {
+                        "type": "boolean"
+                      },
+                      "label": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "console": {
+                "type": "array",
+                "items": {}
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "addressBook"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.addressBook.items"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "states"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.response.body.items",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  const billingAddress = input.addressBook.find((f) => f.defaultBilling === true);\n  const shippingAddress = input.addressBook.find((f) => f.defaultShipping === true);\n  let res = {};\n  if(billingAddress){\n    if(input.states \n       && billingAddress.addressBookAddress.country\n       && billingAddress.addressBookAddress.state){\n      const state = input.states.find(f => f.country === billingAddress.addressBookAddress.country.id\n                                       && f.shortname === billingAddress.addressBookAddress.state);\n      if(state){\n        billingAddress.addressBookAddress.state = state.fullname;\n      }\n    }\n    res.billingAddress = billingAddress.addressBookAddress;\n  }\n  if(shippingAddress){\n    if(input.states \n       && shippingAddress.addressBookAddress.country\n       && shippingAddress.addressBookAddress.state){\n      const state = input.states.find(f => f.country === shippingAddress.addressBookAddress.country.id\n                                       && f.shortname === shippingAddress.addressBookAddress.state);\n      if(state){\n        shippingAddress.addressBookAddress.state = state.fullname;\n      }\n    }\n    res.shippingAddress = shippingAddress.addressBookAddress;\n  }\n    return res;\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "Need Sync?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-1.response.enabled"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "0cb24f1b-e393-4b2e-ada6-8c20956d0865",
+          "name": "Check if Sync is Enabled for the Object"
+        },
+        {
+          "id": "208d4bf4-9607-45cd-a9d9-d20c83eea969",
+          "name": "On NS Contact created/updated, create/update SF Contact"
+        },
+        {
+          "id": "e96c1f66-536a-4e5c-8bd3-8a2375110837",
+          "name": "Subflow Append Message to Description"
+        },
+        {
+          "id": "f8f6f36d-9619-4049-83ee-9c886e98ad83",
+          "name": "Subflow sync NS Default Customer Subsidiary to SF"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

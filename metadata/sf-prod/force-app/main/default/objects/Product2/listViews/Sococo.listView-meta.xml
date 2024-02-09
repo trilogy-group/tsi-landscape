@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sococo</fullName>
+    <columns>PRODUCT2.NAME</columns>
+    <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+    <columns>PRODUCT2.DESCRIPTION</columns>
+    <columns>Min_Quantity__c</columns>
+    <columns>PRODUCT2.ACTIVE</columns>
+    <columns>Success_Level__c</columns>
+    <columns>SBQQ__BillingType__c</columns>
+    <columns>SBQQ__ChargeType__c</columns>
+    <columns>SBQQ__BillingFrequency__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>PRODUCT2.FAMILY</field>
+        <operation>equals</operation>
+        <value>Sococo</value>
+    </filters>
+    <label>Sococo</label>
+</ListView>

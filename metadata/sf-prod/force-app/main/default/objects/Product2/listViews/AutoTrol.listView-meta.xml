@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AutoTrol</fullName>
+    <columns>PRODUCT2.ACTIVE</columns>
+    <columns>PRODUCT2.NAME</columns>
+    <columns>PRODUCT2.DESCRIPTION</columns>
+    <columns>NetSuite_ID__c</columns>
+    <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+    <columns>SBQQ__Component__c</columns>
+    <columns>SBQQ__PricingMethod__c</columns>
+    <columns>Product__c</columns>
+    <columns>Success_Level__c</columns>
+    <columns>SBQQ__SubscriptionType__c</columns>
+    <columns>Deployment_Type__c</columns>
+    <columns>Product_Edition__c</columns>
+    <columns>Subscription_Terms__c</columns>
+    <columns>SBQQ__SubscriptionPricing__c</columns>
+    <columns>Floor_Price__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>PRODUCT2.FAMILY</field>
+        <operation>equals</operation>
+        <value>Autotrol</value>
+    </filters>
+    <filters>
+        <field>PRODUCT2.ACTIVE</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>AutoTrol</label>
+    <sharedTo>
+        <role>System_Administrator</role>
+    </sharedTo>
+</ListView>

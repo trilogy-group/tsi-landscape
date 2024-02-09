@@ -1,0 +1,304 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "ec3fd583-3966-4b1b-8398-0fb191b10091",
+      "created": "2023-12-04T10:50:11.624775Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "project_id": "228d6ee9-0240-4a1e-a98d-152f0f8c2b81",
+      "creator": "0c145cd5-0a3a-480f-bd7e-2cc8a66fd232",
+      "version": {
+        "id": "eb6bf04e-70c3-4fc1-aacc-eae2dce4e26e",
+        "created": "2023-12-04T10:51:01.080979Z"
+      },
+      "title": "On SF Opportunity Contact Role created",
+      "description": "This flow is triggered when a contact is attached to an opportunity (i.e. a contact role is created) and initiates the sync of this SF opportunity contact into NetSuite.",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "terminate-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "loop-1",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "call-workflow-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        }
+      ],
+      "steps": {
+        "call-workflow-1": {
+          "title": "Sync SF contact roles",
+          "description": "Calls asynchronously the subflow syncing the contact roles of the SF opportunity into NS.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "3ae2d416-acb6-4f5f-8235-e1e4e08818f9"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "opportunityContactRoleId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.Id"
+                }
+              }
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop records",
+          "description": "Loops all opportunity contact roles.",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "Id"
+                ]
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.events"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Event Org ID match?",
+          "description": "Continues only if the organization of the event matches the organization for the current credentials.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.organization_id"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Id"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "FAIL - unexpected Org ID",
+          "description": "The organization of the event doesn't match the organization for the current credentials. Fails the process.",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "Event is from another org ('{$.steps.trigger.organization_id}' instead of '{$.steps.salesforce-1.records[0].Id}'). Please fix the sandbox outbound messages list."
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get Org ID",
+          "description": "Retrieves the identifier of the organization for the current credentials.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "query",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "number"
+              },
+              "next_page_offset": {
+                "type": "null"
+              },
+              "records": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "Id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "query": {
+              "type": "string",
+              "value": "SELECT Id FROM Organization"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Salesforce trigger",
+          "description": "This flow is triggered when a contact is attached to an opportunity (i.e. a contact role is created) and initiates the sync of this SF opportunity contact into NetSuite.",
+          "connector": {
+            "name": "salesforce-notification",
+            "version": "3.0"
+          },
+          "operation": "record_create",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object_prefix": {
+              "type": "string",
+              "value": "Tray"
+            },
+            "object": {
+              "type": "string",
+              "value": "OpportunityContactRole"
+            },
+            "public_url": {
+              "type": "jsonpath",
+              "value": "$.env.public_url"
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "3ae2d416-acb6-4f5f-8235-e1e4e08818f9",
+          "name": "Trigger Sync SF Opportunity Contact Role to NS"
+        },
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

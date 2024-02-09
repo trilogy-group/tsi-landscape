@@ -1,0 +1,619 @@
+{
+  "type": "object",
+  "properties": {
+    "endDateBaseline": {
+      "title": "End Date Baseline",
+      "type": "string",
+      "description": "The date in the End Date field when the baseline was set.",
+      "format": "date-time",
+      "nullable": true
+    },
+    "eventId": {
+      "title": "Project Task ID",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "title": {
+      "title": "Name",
+      "type": "string",
+      "description": "Enter a name for the project task.",
+      "nullable": true
+    },
+    "estimatedwork": {
+      "title": "Estimated Work",
+      "type": "number",
+      "description": "Estimated Work for a project task is the total of all completed and planned work for this task. NetSuite calculates this field by summing the estimated work entered for the resources. If you enter a value in this field, then NetSuite distributes the amount equally to all resources assigned to this task. If you also use Resource Allocations and the Allow Allocated Resources to Enter Time to All Tasks preference is enabled for this project, the estimated work field is updated to add any time tracked against tasks by allocated resources. When task status is marked Completed, this number is set to equal Actual Work.",
+      "format": "float",
+      "nullable": true
+    },
+    "estimatedworkbaseline": {
+      "title": "Estimated Work Baseline",
+      "type": "number",
+      "description": "The value in the Estimated Work field when the baseline was set.",
+      "format": "float",
+      "nullable": true
+    },
+    "msprojresources": {
+      "title": "MS Project Resource Names",
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "msprojschedwork": {
+      "title": "MS Project Scheduled Work",
+      "type": "string",
+      "nullable": true
+    },
+    "constraintType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "actualWork": {
+      "title": "Actual Work",
+      "type": "string",
+      "description": "Indicates the actual time entered against the task.",
+      "nullable": true
+    },
+    "msprojpreds": {
+      "title": "MS Project Predecessors",
+      "type": "string",
+      "nullable": true
+    },
+    "priority": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "message": {
+      "title": "Comments",
+      "type": "string",
+      "description": "Enter any comments for the task.",
+      "nullable": true
+    },
+    "finishByDate": {
+      "title": "Finish No Later Than",
+      "type": "string",
+      "description": "Select the date this task must be finished by. This constraint takes precedence over task relationships and start dates are adjusted according to the fixed end date of a task with a Finish No Later Than constraint.",
+      "format": "date",
+      "nullable": true
+    },
+    "percentTimeComplete": {
+      "title": "Percent Complete",
+      "type": "number",
+      "description": "Shows the percent of planned project task time that has been completed. Percent Complete is calculated as follows: [Actual Work / Estimated Work] Percent Complete is 100% when the task status is Completed and Estimated Work is set to Actual Work.",
+      "format": "double",
+      "nullable": true
+    },
+    "endDate": {
+      "title": "End Date",
+      "type": "string",
+      "description": "Indicates the estimated date when work for this task will be completed. NetSuite derives this date from the estimated work and other task dependencies. This date can change over the life of the project if the amount of work, resources assigned, or task dependencies change. When the task status is Completed, the end date is the date of the last time entry entered against the task.",
+      "format": "date-time",
+      "nullable": true
+    },
+    "customForm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "msprojuid": {
+      "title": "MS Project UID",
+      "type": "string",
+      "nullable": true
+    },
+    "startDateBaseline": {
+      "title": "Start Date Baseline",
+      "type": "string",
+      "description": "The date in the State Date field when the baseline was set.",
+      "format": "date-time",
+      "nullable": true
+    },
+    "remainingWork": {
+      "title": "Remaining Work",
+      "type": "string",
+      "description": "Remaining Work is calculated as: [Estimated Work - Actual Work] Before work starts on a task, Remainng Work is the same as Estimated Work. When a task is marked Completed, Estimated Work is set to equal Actual Work and Remaining Work is 0.",
+      "nullable": true
+    },
+    "msprojoutlinenum": {
+      "title": "MS Project Outline Number",
+      "type": "string",
+      "nullable": true
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "NOTSTART",
+            "PROGRESS",
+            "COMPLETE"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "startDateTime": {
+      "title": "Start Date",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "parent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "assignee": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "cost": {
+                "title": "Cost",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "unitCost": {
+                "title": "Unit Cost",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "estimatedWork": {
+                "title": "Estimated Work",
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "price": {
+                "title": "Price",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "units": {
+                "title": "Units",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "id": {
+                "title": "Internal ID",
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "unitPrice": {
+                "title": "Unit Price",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "serviceItem": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "resource": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "insertBefore": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "predecessor": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "endDate": {
+                "title": "End Date",
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "lagdays": {
+                "title": "Lag Time",
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "startDate": {
+                "title": "Start Date",
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "type": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string",
+                    "enum": [
+                      "FS",
+                      "SS",
+                      "FF",
+                      "SF"
+                    ]
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  }
+                }
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "predecessor": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "msprojserviceitem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": []
+}

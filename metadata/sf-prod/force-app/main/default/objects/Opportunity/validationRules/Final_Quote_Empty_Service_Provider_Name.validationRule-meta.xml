@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Final_Quote_Empty_Service_Provider_Name</fullName>
+    <active>true</active>
+    <errorConditionFormula>TEXT(StageName) = &apos;Final Quote&apos;
+&amp;&amp;
+NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+&amp;&amp;
+OR(
+ISBLANK(SBQQ__PrimaryQuote__r.Service_Provider_Name__c),
+ISBLANK(SBQQ__PrimaryQuote__r.Service_Provider_Street__c),
+ISBLANK(SBQQ__PrimaryQuote__r.Service_Provider_City__c),
+ISBLANK(SBQQ__PrimaryQuote__r.Service_Provider_Country__c)
+)</errorConditionFormula>
+    <errorDisplayField>SBQQ__PrimaryQuote__c</errorDisplayField>
+    <errorMessage>Service provider details on the quote should not be null when moving Opportunity to &apos;Final Quote&apos;</errorMessage>
+</ValidationRule>

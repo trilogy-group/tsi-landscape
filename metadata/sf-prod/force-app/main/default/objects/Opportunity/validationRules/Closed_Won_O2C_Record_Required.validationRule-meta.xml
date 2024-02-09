@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_Won_O2C_Record_Required</fullName>
+    <active>true</active>
+    <description>Don&apos;t allow advancing a Sales Opportunity to Stage=Closed-Won, unless O2C Record is set. Exceptions - non-NetSuite products, Self-serve win type and for the opportunities of type CSM as well</description>
+    <errorConditionFormula>AND(
+NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c),
+TEXT(StageName) = &apos;Closed Won&apos;,
+OR(TEXT(Type) = &apos;Renewal&apos;, TEXT(Type) = &apos;New Business&apos;, TEXT(Type) = &apos;Upsell&apos;),
+Product_Configuration__r.NetSuite_Product__c, 
+NOT(ISPICKVAL(Win_Type__c,&apos;Self-Serve&apos;)), 
+NOT(ISPICKVAL(Type,&apos;CSM&apos;)),
+ISBLANK(O2C_Record__c),
+ISCHANGED(StageName)
+)
+&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorDisplayField>O2C_Record__c</errorDisplayField>
+    <errorMessage>You must set O2C Record prior to moving the opportunity to Closed Won.</errorMessage>
+</ValidationRule>

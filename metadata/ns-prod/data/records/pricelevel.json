@@ -1,0 +1,73 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "description": "Check this box to remove all references to this record from your account. You can reactivate the record at any time."
+    },
+    "updateExistingPrices": {
+      "title": "Update Existing Prices",
+      "type": "boolean",
+      "description": "Check this box to update all items using this price level with what you entered in the Markup/Discount % field."
+    },
+    "lastModifiedDate": {
+      "title": "Last Modified Date",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "discountPct": {
+      "title": "Markup/Discount %",
+      "type": "number",
+      "description": "If you like, enter a positive or negative percentage to mark up or discount prices for this price level. Prices for this level are calculated by applying the positive or negative percentage to the Base Price level. If you want to update all items using this price level, you must also check the Update Existing Prices box. After you click Save, your prices automatically update. Note: Any value you enter is rounded to the nearest 0.01%",
+      "format": "double",
+      "nullable": true
+    },
+    "name": {
+      "title": "Price Level",
+      "type": "string",
+      "description": "Enter the name for this record. This name appears in lists that include this record.",
+      "nullable": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "tname": {
+      "type": "string",
+      "nullable": true
+    },
+    "longitemtype": {
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "lastModifiedDate",
+    "discountPct",
+    "name",
+    "externalId",
+    "id"
+  ]
+}

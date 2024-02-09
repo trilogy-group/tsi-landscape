@@ -1,0 +1,30 @@
+<apex:page id="OpportunityReadyToClose" standardController="Opportunity">
+    <style>
+        p {
+            font-size: 16px;
+            color: red;
+        }
+    </style>
+    <apex:outputPanel layout="block" rendered="{!Opportunity.StageName = 'Finalizing' && Opportunity.Ready_To_Close__c = false}">
+        <p>
+            <apex:outputText value="<b>To close this opportunity:</b>" escape="false" />
+            <apex:outputText value="<br />- Complete all open tasks for this opportunity." rendered="{!Opportunity.All_Tasks_Completed__c = false}" escape="false" />
+            <apex:outputText value="<br />- Set the Purchase Order field." rendered="{!Opportunity.Purchase_Order__c = null && Opportunity.Win_Type__c = 'Quote Signed'}" escape="false" />
+            <apex:outputText value="<br />- Set all fields in the Customer Sentiment section." rendered="{!(Opportunity.Type = 'Renewal' && (Opportunity.Customer_Business_Value__c = null || Opportunity.Customer_Moving_Off_Product__c = null || Opportunity.Customer_Sentiment_Details__c = null || (Opportunity.Win_Type__c = 'Auto-Renew' && Opportunity.AR_Scenario__c = null)))}" escape="false" />
+            <apex:outputText value="<br />- If this opportunity is in the Finalizing stage more than one day, check if the Final O2C ticket was processed yesterday." rendered="{!(Opportunity.Subscription_Status__c = 'Draft' || Opportunity.Subscription_Status__c = null) && Opportunity.Product_Configuration__r.NetSuite_Product__c && (Opportunity.Type = 'Renewal' || Opportunity.Loss_Reason__c = null)}" escape="false" />
+            <apex:outputText value="<br />  If it was processed today, automation will close the opportunity after the daily sync that happens each day 10PM UTC." rendered="{!(Opportunity.Subscription_Status__c = 'Draft' || Opportunity.Subscription_Status__c = null) && Opportunity.Product_Configuration__r.NetSuite_Product__c && (Opportunity.Type = 'Renewal' || Opportunity.Loss_Reason__c = null)}" escape="false" />
+            <apex:outputText value="<br />- Check if the Provisioning Ticket is created and set the Provisioning Ticket to close the opportunity." rendered="{!(Opportunity.ReadyToClose_CloseWin__c || Opportunity.ReadyToClose_CloseLose__c) && Opportunity.Provisioning_Ticket_Required__c && Opportunity.Provisioning_Ticket__c = null}" escape="false" />
+            <apex:outputText value="<br />- Set the Final O2C Record field." rendered="{!Opportunity.ReadyToClose_ShouldCloseWin__c && Opportunity.ReadyToClose_O2CRecord__c = false}" escape="false" />
+            <apex:outputText value="<br />- Set the Win Type for Quote Signed, Auto-Renew or PO Received." rendered="{!Opportunity.ReadyToClose_ShouldCloseWin__c && Opportunity.ReadyToClose_WinType__c = false}" escape="false" />
+            <apex:outputText value="<br />- Set the Primary Quote field." rendered="{!Opportunity.ReadyToClose_ShouldCloseWin__c && Opportunity.ReadyToClose_PrimaryQuote__c = false && Opportunity.SBQQ__PrimaryQuote__c = null}" escape="false" />
+            <apex:outputText value="<br />- Primary Quote status need to be Accepted, Generated or Signed." rendered="{!Opportunity.ReadyToClose_ShouldCloseWin__c && Opportunity.ReadyToClose_PrimaryQuote__c = false && Opportunity.SBQQ__PrimaryQuote__c != null && Opportunity.Win_Type__c != 'Auto-Renew'}" escape="false" />
+            <apex:outputText value="<br />- Primary Quote status need to be Accepted, Generated, Out for Signature or Signed." rendered="{!Opportunity.ReadyToClose_ShouldCloseWin__c && Opportunity.ReadyToClose_PrimaryQuote__c = false && Opportunity.SBQQ__PrimaryQuote__c != null && Opportunity.Win_Type__c = 'Auto-Renew'}" escape="false" />
+            <apex:outputText value="<br />- Set Has Auto-Renewal Clause field." rendered="{!Opportunity.ReadyToClose_ShouldCloseWin__c && Opportunity.ReadyToClose_AutoRenewClause__c = false}" escape="false" />
+        </p>
+    </apex:outputPanel>
+    <apex:outputPanel layout="block" rendered="{!Opportunity.Ready_To_Close__c && Opportunity.IsClosed = false}">
+        <p>
+            <apex:outputText value="This Opportunity is ready to close, but for some reason it was not closed. Please, close manually." />
+        </p>
+    </apex:outputPanel>
+</apex:page>

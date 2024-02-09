@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Champion_Creation__c</fullName>
+    <description>Green: Willing to shepherd and proactive about next steps &amp; aligned with CloudFix mission
+||
+Yellow: Unable to shepherd or not proactive about next steps
+||
+Red: Unwilling to move forward</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Green: Willing to shepherd and proactive about next steps &amp; aligned with CloudFix mission
+||
+Yellow: Unable to shepherd or not proactive about next steps
+||
+Red: Unwilling to move forward</inlineHelpText>
+    <label>Champion Creation</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Opportunity_Progression</valueSetName>
+    </valueSet>
+</CustomField>

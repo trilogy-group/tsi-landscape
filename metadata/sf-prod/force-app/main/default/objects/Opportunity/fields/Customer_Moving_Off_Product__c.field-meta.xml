@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Moving_Off_Product__c</fullName>
+    <description>Customer Sentiment question - Is customer moving off the product? To be filled in for closed-won renewals.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>AT RISK - Customer indicated their intent to look for alternatives before next renewal or desire to stop using the product.
+STARTED MOVING OFF PRODUCT- Customer has started actual steps to get off of our software (not just a threat).
+STOPPED USING PRODUCT - Customer is no longer using our product or service.
+NO - Customer is still using product and has NOT started moving off.</inlineHelpText>
+    <label>Customer Moving Off Product</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No</fullName>
+                <default>false</default>
+                <label>No</label>
+            </value>
+            <value>
+                <fullName>At risk</fullName>
+                <default>false</default>
+                <label>At risk</label>
+            </value>
+            <value>
+                <fullName>Started moving off product</fullName>
+                <default>false</default>
+                <label>Started moving off product</label>
+            </value>
+            <value>
+                <fullName>No longer using product</fullName>
+                <default>false</default>
+                <label>No longer using product</label>
+            </value>
+            <value>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+                <label>Unknown</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

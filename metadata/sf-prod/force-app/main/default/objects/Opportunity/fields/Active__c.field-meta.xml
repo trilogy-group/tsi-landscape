@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active__c</fullName>
+    <description>The field is checked when automation is enabled for the opportunity. Opportunity is active when it&apos;s not marked as Draft and the service for that opportunity type is enabled in Product Configuration. i.e. It&apos;s active when Renewal service is enabled and it&apos;s a Renewal opportunity.</description>
+    <externalId>false</externalId>
+    <formula>IF( Text(Type) = &apos;Renewal&apos; ,
+      AND(Product_Configuration__r.Renewal_Enabled__c, NOT(Draft__c)),
+      IF(OR(Text(Type) = &apos;New Business&apos;, Text(Type) = &apos;Upsell&apos;), 
+           AND(Product_Configuration__r.New_Business_Enabled__c , NOT(Draft__c)), 
+             False))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>The field is checked when automation is enabled for the opportunity. It depends on the Draft field and if a specific type of service is enabled in the Product Configuration.</inlineHelpText>
+    <label>Active</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

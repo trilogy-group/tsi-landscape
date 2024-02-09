@@ -1,0 +1,89 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "102e1378-1e99-4db3-895f-9739f0f3594c",
+      "created": "2023-09-23T04:50:16.317743Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "0c145cd5-0a3a-480f-bd7e-2cc8a66fd232",
+      "version": {
+        "id": "53aa48ce-4d37-4102-9b51-969492068214",
+        "created": "2023-09-23T04:50:57.066776Z"
+      },
+      "title": "Trigger Sync NS Quote to SF Quote",
+      "description": "This flow encapsulates the synchronization from an NS Quote to an SF Quote. It is called asynchronously with the \"Fire and Forget\" operation. It only supports the quote creation for the Self-Serve scenario.",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-2",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "trigger": {
+          "title": "Async call",
+          "description": "This flow encapsulates the synchronization from an NS Quote to an SF Quote. It is called asynchronously with the \"Fire and Forget\" operation. It only supports the quote creation for the Self-Serve scenario.",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "call-workflow-2": {
+          "title": "Call subflow synchronously",
+          "description": "Calls synchronously the subflow syncing the NS Quote to SF Quote.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "1c422b5a-98b5-4a9a-8a80-56d7aedbca6b"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "newRecord": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.newRecord"
+                }
+              }
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "1c422b5a-98b5-4a9a-8a80-56d7aedbca6b",
+          "name": "Sync NS Quote to SF Quote"
+        },
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

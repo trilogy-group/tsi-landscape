@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>of_Platinum_Delivery_Service_Records__c</fullName>
+    <description>LAMBDA-60084 Count of Platinum Service Delivery Status records related to this opportunity</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Count of Platinum Service Delivery records related to this opportunity</inlineHelpText>
+    <label># of Platinum Delivery Service Records</label>
+    <summaryForeignKey>Platinum_Service_Delivery__c.Opportunity__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

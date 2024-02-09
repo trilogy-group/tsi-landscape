@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__AWSAccountID__c</fullName>
+    <deprecated>false</deprecated>
+    <description>AWS requires that Account ID is populated before referral moves to Stage = &quot;Launched&quot;. We do not enforce it, so technically it&apos;s possible to move to &quot;Launched&quot; with this field being blanked, but it might not be propagated from WorkSpan to AWS.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>12 digit AWS Account number associated with the opportunity. Populate this before moving to Stage = &quot;Launched&quot;.</inlineHelpText>
+    <label>AWS Account ID</label>
+    <length>12</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

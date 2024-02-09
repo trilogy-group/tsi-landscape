@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>send fullfilment email</description>
+        <name>OnOpportunityCloseSendFullfilmentEmail</name>
+        <label>OnOpportunityCloseSendFullfilmentEmail</label>
+        <locationX>640</locationX>
+        <locationY>464</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>FulfillmentEmailBody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>emailList</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>emailSubject</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <description>send to Additional_Notification_Party__c</description>
+        <name>OnOpportunityCloseSendFullfilmentEmailTest</name>
+        <label>OnOpportunityCloseSendFullfilmentEmailTest</label>
+        <locationX>640</locationX>
+        <locationY>647</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>FulfillmentEmailBody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Get_Product_Configuration.Additional_Notification_Party__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>emailSubject</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>53.0</apiVersion>
+    <assignments>
+        <description>append product line to the variable and increment the counter</description>
+        <name>Append_Product_Line</name>
+        <label>Append Product Line</label>
+        <locationX>880</locationX>
+        <locationY>315</locationY>
+        <assignmentItems>
+            <assignToReference>productsBuilder</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>{!vEmpty}Product {!productLoopCounter}:{!vEmpty}Name: {!Loop_Opportunity_Products.Product2.Name}{!vEmpty}Product Code: {!Loop_Opportunity_Products.Product2.ProductCode}{!vEmpty}Quantity: {!Loop_Opportunity_Products.Quantity}{!vEmpty}Sales price: {!Loop_Opportunity_Products.UnitPrice}{!vEmpty}Subscription Term: {!Loop_Opportunity_Products.Subscription_Term__c}{!vEmpty}</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>productLoopCounter</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Opportunity_Products</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Does account contains TEST?</description>
+        <name>IsTestAccount</name>
+        <label>IsTestAccount</label>
+        <locationX>452</locationX>
+        <locationY>555</locationY>
+        <defaultConnector>
+            <targetReference>OnOpportunityCloseSendFullfilmentEmail</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>iVarR_Opportunity.Account.Name</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Test</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>iVarR_Opportunity.Account.Name</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>TEST</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>iVarR_Opportunity.Account.Name</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>test</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>OnOpportunityCloseSendFullfilmentEmailTest</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Send fulfillment email once an opportunity stage is Closed won or Closed Lost. 
+The flow is triggered from OnOpportunityCreateOrUpdate.
+Note: the flow is triggered from process due to limitation related to approval process and invocation of flows
+
+-----------------------------------------------------------------------------------
+27th May:
+Deleted product owner field from Product configuration, in ticket https://ws-lambda.atlassian.net/browse/LAMBDA-26944
+16th March:
+Updated the flow to replace owner email id with BU notification group email id in send email action. In the scope of ticket: https://ws-lambda.atlassian.net/browse/LAMBDA-24789</description>
+    <formulas>
+        <description>get the base_url</description>
+        <name>base_url</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Api.Partner_Server_URL_340},FIND(&quot;.&quot;,{!$Api.Partner_Server_URL_340}))</expression>
+    </formulas>
+    <formulas>
+        <description>generate email list to send the fulfillment email</description>
+        <name>emailList</name>
+        <dataType>String</dataType>
+        <expression>IF(CONTAINS(TEXT({!iVarR_Opportunity.StageName}), &apos;Process&apos;) &amp;&amp; {!iVarR_Opportunity.IsClosed} == TRUE, &apos;rp-si@trilogy.com&apos;,
+IF(
+    ISBLANK({!iVarR_Opportunity.Owner.ManagerId}),
+    &apos;&apos;,
+    {!iVarR_Opportunity.Owner.Manager.Email}&amp;&apos;,&apos;)
+&amp;{!Get_Product_Configuration.Additional_Notification_Party__c}
+&amp;IF(
+  OR(
+        AND(
+            TEXT({!iVarR_Opportunity.StageName})=&apos;Closed Won&apos;,
+            TEXT({!iVarR_Opportunity.Win_Type__c})!=&apos;Self-Serve&apos;
+        ),
+        AND(
+                TEXT({!iVarR_Opportunity.StageName})=&apos;Closed Lost&apos;,
+                TEXT({!iVarR_Opportunity.Type})=&apos;Renewal&apos;
+        )
+    )
+,
+IF(ISBLANK({!Get_Product_Configuration.Fulfillment_Email__c}),&apos;&apos;,&apos;,&apos;&amp;{!Get_Product_Configuration.Fulfillment_Email__c}),&apos;&apos;)
+&amp;&apos;,&apos;&amp;{!iVarR_Opportunity.Owner.Email}
+&amp;&apos;,&apos;&amp;{!Get_Product_Configuration.BU_Notification_Party__c})</expression>
+    </formulas>
+    <formulas>
+        <description>generate email subjcet</description>
+        <name>emailSubject</name>
+        <dataType>String</dataType>
+        <expression>   IF({!$Organization.Id} == &quot;00D2x000000qNQa&quot;,&quot;&quot;,&quot;[TESTING, DISREGARD] &quot;)+
+    IF( TEXT({!iVarR_Opportunity.StageName}) = &apos;Closed Lost&apos;, 
+        IF({!iVarR_Opportunity.High_Value_Opp__c}, &apos;HIGH-VALUE &apos;,&apos;&apos;) +
+        IF(TEXT({!iVarR_Opportunity.Success_Level__c}) = &apos;Platinum&apos;, &apos;PLATINUM &apos;,&apos;&apos;) +
+        &apos;OPPORTUNITY LOST: &apos; +
+        {!iVarR_Opportunity.Name} +
+        CASE(TEXT({!iVarR_Opportunity.Loss_Reason__c}),&apos;Inactive Account&apos;,&apos; - INACTIVE ACCOUNT&apos;,&apos;Unpaid&apos;,&apos; - UNPAID&apos;,&apos;&apos;),
+        IF({!iVarR_Opportunity.IsWon}, 
+            IF({!iVarR_Opportunity.High_Value_Opp__c}, &apos;HIGH-VALUE &apos;,&apos;&apos;) +
+            IF(TEXT({!iVarR_Opportunity.Success_Level__c}) = &apos;Platinum&apos;, &apos;PLATINUM &apos;,&apos;&apos;) +
+            &apos;OPPORTUNITY WON: &apos; +
+            {!iVarR_Opportunity.Name},
+            {!iVarR_Opportunity.Name} + &apos; &apos; + TEXT({!iVarR_Opportunity.StageName})
+        )
+    )</expression>
+    </formulas>
+    <formulas>
+        <description>get the ARR value from the input opportunity</description>
+        <name>getARRValue</name>
+        <dataType>String</dataType>
+        <expression>if (AND( ISPICKVAL({!iVarR_Opportunity.Type}, &apos;Renewal&apos;), OR( ISPICKVAL({!iVarR_Opportunity.StageName}, &apos;Closed Lost&apos;), ISPICKVAL({!iVarR_Opportunity.StageName},&quot;Won&apos;t Process&quot;))), &apos;Lost ARR:&apos; &amp; TEXT({!iVarR_Opportunity.Current_ARR__c}), &apos;ARR:&apos; &amp; TEXT({!iVarR_Opportunity.ARR__c}))</expression>
+    </formulas>
+    <formulas>
+        <description>get loss reason string based on input opportunity stage name</description>
+        <name>lossReasonString</name>
+        <dataType>String</dataType>
+        <expression>IF(AND({!iVarR_Opportunity.IsClosed},!{!iVarR_Opportunity.IsWon}),&apos;Loss Reason: &apos;&amp;TEXT({!iVarR_Opportunity.Loss_Reason__c})
+&amp;{!vEmpty}&amp;&apos;Primary Loss Reason: &apos;&amp;TEXT({!iVarR_Opportunity.Primary_Loss_Reason__c})
+&amp;{!vEmpty}&amp;&apos;Secondary Loss Reason: &apos; &amp; {!secondaryLossReason}
+,&apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <description>generate parent subscription text</description>
+        <name>parentSubscriptionText</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!iVarR_Opportunity.Parent_Subscription_ID__c}),&quot;&quot;,(&quot;Parent Subscription ID:&quot;&amp;{!iVarR_Opportunity.Parent_Subscription_ID__c}&amp;{!vEmpty}))</expression>
+    </formulas>
+    <formulas>
+        <description>get renewal date as a string</description>
+        <name>renewalDate</name>
+        <dataType>String</dataType>
+        <expression>IF(TEXT({!iVarR_Opportunity.Type}) = &apos;Renewal&apos;,&apos;Renewal date: &apos;&amp;TEXT({!iVarR_Opportunity.Renewal_Date__c})&amp;{!vEmpty},&apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <description>use the template as a new line separator by removing the ~</description>
+        <name>vEmpty</name>
+        <dataType>String</dataType>
+        <expression> SUBSTITUTE({!tEmptyTemplate}, &quot;~&quot;, &quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <description>win type as string obtained from input opportunity record stage name</description>
+        <name>winTypeString</name>
+        <dataType>String</dataType>
+        <expression>IF(TEXT({!iVarR_Opportunity.StageName})=&apos;Closed Won&apos;,&apos;Win Type: &apos;&amp;TEXT({!iVarR_Opportunity.Win_Type__c}),&apos;&apos;)</expression>
+    </formulas>
+    <interviewLabel>OnOpportunityCreateOrUpdate_OnOpportunityCloseSendFullfilmentEmail {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>OnOpportunityCreateOrUpdate_OnOpportunityCloseSendFullfilmentEmail</label>
+    <loops>
+        <description>Loop through all opportunity line items.</description>
+        <name>Loop_Opportunity_Products</name>
+        <label>Loop Opportunity Products</label>
+        <locationX>459</locationX>
+        <locationY>315</locationY>
+        <collectionReference>Get_Opportunity_Product</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Append_Product_Line</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>IsTestAccount</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get Opportunity line item product</description>
+        <name>Get_Opportunity_Product</name>
+        <label>Get Opportunity Product</label>
+        <locationX>212</locationX>
+        <locationY>231</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Product_Configuration</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>OpportunityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>iVarR_Opportunity.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>OpportunityLineItem</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get opportunity owner&apos;s user data</description>
+        <name>Get_Owner</name>
+        <label>Get Owner</label>
+        <locationX>212</locationX>
+        <locationY>580</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Opportunity_Products</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>iVarR_Opportunity.OwnerId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get product configuration of the line item product</description>
+        <name>Get_Product_Configuration</name>
+        <label>Get Product Configuration</label>
+        <locationX>212</locationX>
+        <locationY>408</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Owner</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Product__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>iVarR_Opportunity.Product__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Product_Configuration__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Fulfillment_Email__c</queriedFields>
+        <queriedFields>Additional_Notification_Party__c</queriedFields>
+        <queriedFields>BU_Notification_Party__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>586</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Get_Opportunity_Product</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <description>email body text template</description>
+        <name>FulfillmentEmailBody</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Product Family: {!iVarR_Opportunity.Product__c}
+Opportunity Type: {!iVarR_Opportunity.Type}
+{!winTypeString}
+Account: {!iVarR_Opportunity.Account.Name}
+Opportunity Owner: {!Get_Owner.Name}
+Owner Email: {!Get_Owner.Email}
+MRR: {!iVarR_Opportunity.MRR__c}
+{!getARRValue}
+{!renewalDate}{!parentSubscriptionText}{!lossReasonString}{!productsBuilder}
+Opportunity: {!base_url}lightning.force.com/lightning/r/Opportunity/{!iVarR_Opportunity.Id}/view</text>
+    </textTemplates>
+    <textTemplates>
+        <description>empty template</description>
+        <name>tEmptyTemplate</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>~
+~</text>
+    </textTemplates>
+    <variables>
+        <description>Opportunity record input to the flow</description>
+        <name>iVarR_Opportunity</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <description>Loop Counter variable</description>
+        <name>productLoopCounter</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>1.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Variable to build products string</description>
+        <name>productsBuilder</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>secondaryLossReason</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>iVarR_Opportunity.Secondary_Loss_Reason__c</elementReference>
+        </value>
+    </variables>
+</Flow>

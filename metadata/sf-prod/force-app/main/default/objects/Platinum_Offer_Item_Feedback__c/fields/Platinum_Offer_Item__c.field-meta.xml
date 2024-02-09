@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Platinum_Offer_Item__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>LAMBDA-53172 Capture lookup to Platinum offer item record</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Related Platinum offer item record</inlineHelpText>
+    <label>Platinum Offer Item</label>
+    <referenceTo>Platinum_Offer_Item__c</referenceTo>
+    <relationshipName>Platinum_Offer_Item_Feedbacks</relationshipName>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>XO_Prime_Q2_and_Q3_only_if_Q1_is_Yes</fullName>
+    <active>false</active>
+    <description>Ask XO Prime Q2 and Q3 only if Q1 answer was a yes.</description>
+    <errorConditionFormula>ISPICKVAL(XO_Prime_Q1__c, &quot;No&quot;) &amp;&amp;  (NOT(ISBLANK(TEXT(XO_Prime_Q2__c))) || NOT(ISBLANK(TEXT(XO_Prime_Q3__c))))</errorConditionFormula>
+    <errorDisplayField>XO_Prime_Q1__c</errorDisplayField>
+    <errorMessage>Only ask Q2 or Q3 if Q1 is a Yes. If Q1 is a Yes, then both Q2 and Q3 must be empty.</errorMessage>
+</ValidationRule>

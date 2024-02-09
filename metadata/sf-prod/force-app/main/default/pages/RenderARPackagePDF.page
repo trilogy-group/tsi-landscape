@@ -1,0 +1,61 @@
+<apex:page standardController="Opportunity" renderAs="pdf" extensions="ARPackageController" showHeader="false" sidebar="false" readOnly="true" applyBodyTag="false"
+    standardStylesheets="false"  applyHtmlTag="false" title="{!Opportunity.Name}_docs" >
+<html>
+    <body style="font-family: Arial, sans-serif; font-size: 12px;">
+        <apex:form >
+            <div style="background-color: #f4f4f4; padding: 10px; margin-bottom: 10px;">
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="font-weight: bold;">Opportunity Name</td>
+                        <td><apex:outputField value="{!Opportunity.Name}"/></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Owner</td>
+                        <td><apex:outputField value="{!Opportunity.Owner.Name}"/></td>
+                    </tr>
+                </table>
+            </div>
+
+            <h2 style="font-size: 16px;">Related Activities</h2>
+            <apex:repeat value="{!relatedActivities}" var="activity">
+                <p style="border-top: 1px solid #ddd; margin-top: 10px;"></p>
+                <div style="border: 1px solid #ddd; padding: 10px;page-break-inside: avoid;">
+                    <div style="background-color: #e8e8e8; padding: 5px; border-bottom: 1px solid #ddd; font-weight: bold;">
+                        <strong>Subject:</strong> {!activity.Subject}
+                    </div>
+                    <div style="padding: 5px;">
+                        <p><strong>Date:</strong> {!activity.ActivityDate}</p>
+                        <p><strong>Type:</strong> {!activity.ActivityType}</p>
+                        <p><strong>Subtype:</strong> {!activity.ActivitySubtype}</p>
+                        <p><strong>Status:</strong> {!activity.Status}</p>
+                        <p><strong>Description:</strong> <span style="max-height: 100px; overflow-y: auto;white-space: pre-line;"><apex:outputText escape="false" >{!activity.Description}</apex:outputText></span></p>
+                        <p><strong>Contact:</strong> {!activity.PrimaryWho.Name}</p>
+                        <p><strong>Related To:</strong> {!activity.What.Name}</p>
+                        <p><strong>Call Result:</strong> {!activity.CallDisposition}</p>
+                        <p><strong>Owner:</strong> {!activity.Owner.Name}</p>
+                    </div>
+                </div>
+            </apex:repeat>
+            <h2 style="font-size: 16px;border-top: 1px solid #ddd; margin: 10px;">Related Emails</h2>
+            <apex:repeat value="{!relatedEmails}" var="email">
+                <p style="border-top: 1px solid #ddd; margin-top: 10px;"></p>
+                <div style="border: 1px solid #ddd; padding: 10px;page-break-inside: avoid;">
+                    <div style="background-color: #e8e8e8; padding: 5px; border-bottom: 1px solid #ddd; font-weight: bold;">
+                        <strong>Subject:</strong> {!email.Subject}
+                    </div>
+                    <div style="padding: 5px;">
+                        <p><strong>Date:</strong> {!email.CreatedDate}</p>
+                        <p><strong>From Name:</strong> {!email.FromName}</p>
+                        <p><strong>From Address:</strong> {!email.FromAddress}</p>
+                        <p><strong>To Address:</strong> {!email.ToAddress}</p>
+                        <p><strong>CC Address:</strong> {!email.CCAddress}</p>
+                        <p><strong>Body:</strong> <span style="max-height: 100px; overflow-y: auto;">
+                            <apex:outputText escape="false" >{!email.textBody}</apex:outputText>
+                        </span></p>
+                    </div>
+                </div>
+            </apex:repeat>
+        </apex:form>
+    </body>
+</html>
+</apex:page>

@@ -1,0 +1,1939 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "0cb24f1b-e393-4b2e-ada6-8c20956d0865",
+      "created": "2022-04-04T06:54:39.883576Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "group": "1d09680e-cd1e-4950-9574-c88f4b1e2144",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "215587e2-37f3-4428-8fc4-f8a454a8d492",
+        "created": "2023-01-03T04:12:29.574239Z"
+      },
+      "title": "Check if Sync is Enabled for the Object",
+      "description": "This subflow is used to check if the synchronization is enabled for the object given",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "objectName": {
+              "type": "string",
+              "title": "Object Name",
+              "description": "NetSuite object name. E.g. 'customer', 'subscription', 'subscriptionPlan'",
+              "enum": [
+                {
+                  "text": "Customer/Contact",
+                  "value": "customer"
+                },
+                {
+                  "text": "Opportunity",
+                  "value": "opportunity"
+                },
+                {
+                  "text": "Subscription",
+                  "value": "subscription"
+                },
+                {
+                  "text": "Subscription Plan",
+                  "value": "subscriptionPlan"
+                }
+              ]
+            },
+            "object": {
+              "title": "Object",
+              "description": "The NetSuite object",
+              "type": "object",
+              "properties": {
+                "new_property": {
+                  "type": "string",
+                  "title": "New property"
+                }
+              },
+              "additionalProperties": false,
+              "required": [],
+              "advanced": []
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "object",
+            "objectName"
+          ],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "title": "Enabled",
+              "description": "True if sync is enabled for the object",
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "branch-1",
+          "type": "branch",
+          "content": {
+            "branch1": [
+              {
+                "name": "script-3",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "salesforce-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-1",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "callable-workflow-response-2",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ],
+            "branch2": [
+              {
+                "name": "salesforce-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "netsuite-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-2",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "callable-workflow-response-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ],
+            "__default__": []
+          }
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "branch-1": {
+          "title": "Object Type",
+          "description": "Make separate checks for different object types",
+          "connector": {
+            "name": "branch",
+            "version": "1.2"
+          },
+          "operation": "simple",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.objectName"
+            },
+            "branches": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "subscription"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "Subscription"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "customer"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "Customer/Contact"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "script-1": {
+          "title": "SuiteQL get NS Classes",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "customerId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.object.company.id",
+                      "fallback": {
+                        "type": "jsonpath",
+                        "value": "$.steps.trigger.data.object.id"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  return {\n    q:\n      `\n  SELECT distinct c.name\n  FROM subscription s \n  INNER JOIN classification c on c.id = s.class\n  WHERE (s.customer = ${input.customerId} OR s.custrecord_subs_end_user = ${input.customerId})\n  AND s.billingsubscriptionstatus in ('DRAFT','ACTIVE')` \n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Class enabled?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result",
+                      "fallback": {
+                        "type": "string"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Enabled for the product?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Processed_via_OTC__c",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "callable-workflow-response-2": {
+          "title": "Return True",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "enabled": {
+                  "value": true,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get product configuration",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Product Configurations",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Product Configuration",
+                  "properties": {
+                    "Manual_Quote__c": {
+                      "name": "Manual_Quote__c",
+                      "type": "boolean",
+                      "title": "Manual O2C"
+                    },
+                    "Processed_via_OTC__c": {
+                      "name": "Processed_via_OTC__c",
+                      "type": "boolean",
+                      "title": "Processed via O2C"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Manual_Quote__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Processed_via_OTC__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Product_Configuration__c"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Product__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-3.result"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get classes",
+          "description": "Run the SQL to get the subscription term",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.6"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "x-netsuite-jobid": {
+                        "type": "string"
+                      },
+                      "preference-applied": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "p3p": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "hasMore": {
+                        "type": "boolean"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "id": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "offset": {
+                        "type": "number"
+                      },
+                      "totalResults": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Get Enabled Product Configs",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Product Configurations",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Product Configuration",
+                  "properties": {
+                    "Product__c": {
+                      "name": "Product__c",
+                      "type": "string",
+                      "title": "Product Family"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Product__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Product_Configuration__c"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Processed_via_OTC__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Return False",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "enabled": {
+                  "value": false,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "script-3": {
+          "title": "Get product family",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "class"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.object.class.refName"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  const class_name = input.class.split(':').pop().trim();\n  const product_name = class_name.replace(' Product','');\n  return product_name;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-2": {
+          "title": "Match classes",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "sfProducts"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsClasses"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  const sfProducts = input.sfProducts.map(i => i.Product__c);\n  for (const cls of input.nsClasses) {\n    const productName = cls.name.replace(' Product','');\n    if (sfProducts.includes(productName)) {\n      return true;\n    }\n  }\n  return false;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "callable-workflow-response-3": {
+          "title": "Return True",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "enabled": {
+                  "value": true,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "trigger": {
+          "title": "NetSuite Object Input",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "objectName": {
+                    "type": "string"
+                  },
+                  "object": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "addressBook": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "links": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "rel": {
+                                        "type": "string"
+                                      },
+                                      "href": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                },
+                                "addressBookAddress": {
+                                  "type": "object",
+                                  "properties": {
+                                    "links": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "rel": {
+                                            "type": "string"
+                                          },
+                                          "href": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "addr1": {
+                                      "type": "string"
+                                    },
+                                    "addressee": {
+                                      "type": "string"
+                                    },
+                                    "addrPhone": {
+                                      "type": "string"
+                                    },
+                                    "addrText": {
+                                      "type": "string"
+                                    },
+                                    "city": {
+                                      "type": "string"
+                                    },
+                                    "country": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "string"
+                                        },
+                                        "refName": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "override": {
+                                      "type": "boolean"
+                                    },
+                                    "state": {
+                                      "type": "string"
+                                    },
+                                    "zip": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "addressBookAddress_text": {
+                                  "type": "string"
+                                },
+                                "addressId": {
+                                  "type": "string"
+                                },
+                                "defaultBilling": {
+                                  "type": "boolean"
+                                },
+                                "defaultShipping": {
+                                  "type": "boolean"
+                                },
+                                "id": {
+                                  "type": "number"
+                                },
+                                "internalId": {
+                                  "type": "number"
+                                },
+                                "isResidential": {
+                                  "type": "boolean"
+                                },
+                                "label": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "totalResults": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "aging": {
+                        "type": "number"
+                      },
+                      "aging1": {
+                        "type": "number"
+                      },
+                      "aging2": {
+                        "type": "number"
+                      },
+                      "aging3": {
+                        "type": "number"
+                      },
+                      "aging4": {
+                        "type": "number"
+                      },
+                      "alcoholRecipientType": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "balance": {
+                        "type": "number"
+                      },
+                      "campaigns": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "totalResults": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "companyName": {
+                        "type": "string"
+                      },
+                      "contactList": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "count": {
+                            "type": "number"
+                          },
+                          "hasMore": {
+                            "type": "boolean"
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "offset": {
+                            "type": "number"
+                          },
+                          "totalResults": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "creditHoldOverride": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "currency": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "currencyList": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "links": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "rel": {
+                                        "type": "string"
+                                      },
+                                      "href": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                },
+                                "balance": {
+                                  "type": "number"
+                                },
+                                "currency": {
+                                  "type": "object",
+                                  "properties": {
+                                    "links": {
+                                      "type": "array",
+                                      "items": {}
+                                    },
+                                    "id": {
+                                      "type": "string"
+                                    },
+                                    "refName": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "depositBalance": {
+                                  "type": "number"
+                                },
+                                "displaySymbol": {
+                                  "type": "string"
+                                },
+                                "overdueBalance": {
+                                  "type": "number"
+                                },
+                                "overrideCurrencyFormat": {
+                                  "type": "boolean"
+                                },
+                                "symbolPlacement": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string"
+                                    },
+                                    "refName": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "unbilledOrders": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          "totalResults": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "custentity1": {
+                        "type": "boolean"
+                      },
+                      "custentity2": {
+                        "type": "boolean"
+                      },
+                      "custentity3": {
+                        "type": "boolean"
+                      },
+                      "custentity_2663_customer_refund": {
+                        "type": "boolean"
+                      },
+                      "custentity_2663_direct_debit": {
+                        "type": "boolean"
+                      },
+                      "custentity_3805_dunning_letters_toemail": {
+                        "type": "boolean"
+                      },
+                      "custentity_3805_dunning_letters_toprint": {
+                        "type": "boolean"
+                      },
+                      "custentity_3805_dunning_paused": {
+                        "type": "boolean"
+                      },
+                      "custentity_3805_exclude_comp_email": {
+                        "type": "boolean"
+                      },
+                      "custentity_budget_approved": {
+                        "type": "boolean"
+                      },
+                      "custentity_continue_providing_support": {
+                        "type": "boolean"
+                      },
+                      "custentity_cr_ms_active": {
+                        "type": "boolean"
+                      },
+                      "custentity_cust_require_po": {
+                        "type": "boolean"
+                      },
+                      "custentity_customer_channel_tier": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "custentity_decision_maker_id": {
+                        "type": "boolean"
+                      },
+                      "custentity_dl_sales_rep_bcc": {
+                        "type": "boolean"
+                      },
+                      "custentity_echosign_fix_link_is_processe": {
+                        "type": "boolean"
+                      },
+                      "custentity_echosign_verified": {
+                        "type": "boolean"
+                      },
+                      "custentity_marquee_customer": {
+                        "type": "boolean"
+                      },
+                      "custentity_multi_locations": {
+                        "type": "boolean"
+                      },
+                      "custentity_naw_trans_need_approval": {
+                        "type": "boolean"
+                      },
+                      "custentity_nsts_ci_email_attachment": {
+                        "type": "boolean"
+                      },
+                      "custentity_nsts_ci_exclude_ci": {
+                        "type": "boolean"
+                      },
+                      "custentity_nsts_ci_fax_attachment": {
+                        "type": "boolean"
+                      },
+                      "custentity_nsts_ci_in_process": {
+                        "type": "boolean"
+                      },
+                      "custentity_nsts_ci_lock_inui": {
+                        "type": "boolean"
+                      },
+                      "custentity_nsts_swva_blockcolemail": {
+                        "type": "boolean"
+                      },
+                      "custentity_sta_einvoice_factoring": {
+                        "type": "boolean"
+                      },
+                      "custentity_sta_einvoicing_delivery_metho": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "custentity_sta_ep_charge_bearer": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "custentity_sta_factoring_inv_not_to_cust": {
+                        "type": "boolean"
+                      },
+                      "custentity_sta_use_en16931_2017_a1_2019": {
+                        "type": "boolean"
+                      },
+                      "custentityzuoraautopay": {
+                        "type": "boolean"
+                      },
+                      "custentityzuorabatch": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "custentityzuorabillcycleday": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "custentityzuorasendtozuora": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "custentityzuorataxexemptstatus": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "customForm": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "dateCreated": {
+                        "type": "string"
+                      },
+                      "defaultAddress": {
+                        "type": "string"
+                      },
+                      "depositBalance": {
+                        "type": "number"
+                      },
+                      "drAccount": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "emailPreference": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "emailTransactions": {
+                        "type": "boolean"
+                      },
+                      "entityId": {
+                        "type": "string"
+                      },
+                      "entityStatus": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "faxTransactions": {
+                        "type": "boolean"
+                      },
+                      "firstName": {
+                        "type": "string"
+                      },
+                      "globalSubscriptionStatus": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "groupPricing": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "totalResults": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "isAutogeneratedRepresentingEntity": {
+                        "type": "boolean"
+                      },
+                      "isBudgetApproved": {
+                        "type": "boolean"
+                      },
+                      "isInactive": {
+                        "type": "boolean"
+                      },
+                      "isPerson": {
+                        "type": "boolean"
+                      },
+                      "itemPricing": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "totalResults": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "language": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "lastModifiedDate": {
+                        "type": "string"
+                      },
+                      "lastName": {
+                        "type": "string"
+                      },
+                      "overdueBalance": {
+                        "type": "number"
+                      },
+                      "phone": {
+                        "type": "string"
+                      },
+                      "printTransactions": {
+                        "type": "boolean"
+                      },
+                      "receivablesAccount": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "shipComplete": {
+                        "type": "boolean"
+                      },
+                      "shippingCarrier": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "subscriptionMessageHistory": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "totalResults": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "subscriptions": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "links": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "rel": {
+                                        "type": "string"
+                                      },
+                                      "href": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "rel",
+                                      "href"
+                                    ]
+                                  }
+                                },
+                                "lastModifiedDate": {
+                                  "type": "string"
+                                },
+                                "subscribed": {
+                                  "type": "boolean"
+                                },
+                                "subscription": {
+                                  "type": "object",
+                                  "properties": {
+                                    "links": {
+                                      "type": "array",
+                                      "items": {}
+                                    },
+                                    "id": {
+                                      "type": "string"
+                                    },
+                                    "refName": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "required": [
+                                "links",
+                                "lastModifiedDate",
+                                "subscribed",
+                                "subscription"
+                              ]
+                            }
+                          },
+                          "totalResults": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "subsidiary": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "taxRegistration": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "rel": {
+                                  "type": "string"
+                                },
+                                "href": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "totalResults": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "terms": {
+                        "type": "object",
+                        "properties": {
+                          "links": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "refName": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "unbilledOrders": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              },
+              "#calling_workflow": {
+                "type": "string"
+              },
+              "#calling_execution": {
+                "type": "string"
+              },
+              "#calling_execution_log_url": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": []
+    }
+  ],
+  "projects": []
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CustomName__c</fullName>
+    <businessStatus>Active</businessStatus>
+    <description>Generate document name
+CustomerName-Year_Month-QuoteNumber-Product-SuccessLevel-Xm
+and preserve that it wont exceed the 80 character</description>
+    <externalId>false</externalId>
+    <formula>left(SBQQ__Quote__r.SBQQ__Account__r.Name , 80 
+	- if (ISBLANK(Text(SBQQ__Quote__r.SBQQ__Opportunity2__r.Product__c)),0 ,len (TEXT(SBQQ__Quote__r.SBQQ__Opportunity2__r.Product__c)) + 1)
+	- if (ISBLANK(SBQQ__Quote__r.Name),0,len(SBQQ__Quote__r.Name) + 1)
+	- if(ISBLANK(TEXT(SBQQ__Quote__r.SBQQ__Opportunity2__r.Success_Level__c)),0,len(TEXT(SBQQ__Quote__r.SBQQ__Opportunity2__r.Success_Level__c))  + 1)
+	- if(ISBLANK(TEXT(SBQQ__Quote__r.SBQQ__StartDate__c)), 0, len(&apos;-&apos; &amp; TEXT(YEAR(SBQQ__Quote__r.SBQQ__StartDate__c)) &amp; &apos;_&apos; &amp; TEXT(MONTH(SBQQ__Quote__r.SBQQ__StartDate__c))))
+	- if(OR(ISBLANK(TEXT(SBQQ__Quote__r.SBQQ__Opportunity2__r.Opportunity_Term__c)),TEXT(SBQQ__Quote__r.SBQQ__Opportunity2__r.Opportunity_Term__c)=&apos;0&apos;),0, len(&apos;-&apos; &amp; TEXT(SBQQ__Quote__r.SBQQ__Opportunity2__r.Opportunity_Term__c) &amp; &apos;m&apos;))
+	)
+&amp; 
+if (ISBLANK(TEXT(SBQQ__Quote__r.SBQQ__StartDate__c)),&apos;&apos;,&apos;-&apos; &amp; TEXT(YEAR(	SBQQ__Quote__r.SBQQ__StartDate__c)) &amp; &apos;_&apos; &amp; TEXT(MONTH(SBQQ__Quote__r.SBQQ__StartDate__c)))
+&amp; 
+if (ISBLANK(SBQQ__Quote__r.Name), &apos;&apos; , &apos;-&apos; &amp; SBQQ__Quote__r.Name)
+&amp;
+if (ISBLANK(TEXT(SBQQ__Quote__r.SBQQ__Opportunity2__r.Product__c)), &apos;&apos;,&apos;-&apos; &amp; TEXT(SBQQ__Quote__r.SBQQ__Opportunity2__r.Product__c))
+&amp; 
+if (ISBLANK(TEXT(SBQQ__Quote__r.SBQQ__Opportunity2__r.Success_Level__c)),&apos;&apos;,&apos;-&apos; &amp; TEXT(SBQQ__Quote__r.SBQQ__Opportunity2__r.Success_Level__c))
+&amp; 
+if (OR(ISBLANK(TEXT(SBQQ__Quote__r.SBQQ__Opportunity2__r.Opportunity_Term__c)),TEXT(SBQQ__Quote__r.SBQQ__Opportunity2__r.Opportunity_Term__c) = &apos;0&apos;),&apos;&apos;,&apos;-&apos; &amp; TEXT(SBQQ__Quote__r.SBQQ__Opportunity2__r.Opportunity_Term__c) &amp; &apos;m&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Generate document name
+CustomerName-Year_Month-QuoteNumber-Product-SuccessLevel-Xm
+and preserve that it wont exceed the 80 character</inlineHelpText>
+    <label>CustomName</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

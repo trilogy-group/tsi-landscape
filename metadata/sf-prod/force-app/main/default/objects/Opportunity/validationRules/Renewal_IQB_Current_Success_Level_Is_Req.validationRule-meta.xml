@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_IQB_Current_Success_Level_Is_Req</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL(Type , &apos;Renewal&apos;) &amp;&amp; TEXT(StageName) = &apos;Final Quote&apos; &amp;&amp; ISBLANK(TEXT(Current_Success_Level__c )) &amp;&amp;  NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)</errorConditionFormula>
+    <errorDisplayField>Current_Success_Level__c</errorDisplayField>
+    <errorMessage>On the Renewal opportunity, &apos;Current Success Level&apos; is required, when opportunity is moved to &apos;Final Quote&apos; stage.</errorMessage>
+</ValidationRule>

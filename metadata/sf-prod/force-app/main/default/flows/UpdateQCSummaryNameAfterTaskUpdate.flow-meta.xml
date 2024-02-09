@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <description>30/08/2023 LAMBDA-64763 enable Automation Setting in entry criteria</description>
+    <formulas>
+        <name>QC_Summary_Name</name>
+        <dataType>String</dataType>
+        <expression>IF(!ISBLANK(TEXT({!$Record.Work_Unit_Type__c})), TEXT({!$Record.Work_Unit_Type__c}) &amp; &apos; -&apos;,&apos;&apos;) &amp;
+IF(!ISBLANK({!$Record.Owner:User.FirstName}), &apos; &apos; &amp; {!$Record.Owner:User.FirstName}, &apos;&apos;) &amp; 
+IF(!ISBLANK({!$Record.Owner:User.LastName}), &apos; &apos; &amp; {!$Record.Owner:User.LastName}, &apos;&apos;) &amp; 
+IF(!ISBLANK(TEXT({!$Record.ActivityDate})), &apos; - &apos; &amp; TEXT({!$Record.ActivityDate}),&apos;&apos;) &amp; 
+IF(!ISBLANK({!Get_Opportunity.Name}), &apos; - &apos; &amp; {!Get_Opportunity.Name},&apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>QC_Summary_Name_Trimmed</name>
+        <dataType>String</dataType>
+        <expression>IF(LEN({!QC_Summary_Name}) &gt; 80, LEFT({!QC_Summary_Name}, 77) &amp; &quot;...&quot;, {!QC_Summary_Name})</expression>
+    </formulas>
+    <formulas>
+        <name>Task_URL</name>
+        <dataType>String</dataType>
+        <expression>&apos;/lightning/r/Task/&apos; + {!$Record.Id} + &apos;/view&apos;</expression>
+    </formulas>
+    <interviewLabel>UpdateQCSummaryNameAfterTaskUpdate {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>UpdateQCSummaryNameAfterTaskUpdate</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Opportunity</name>
+        <label>Get Opportunity</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_QC_Summary_Name</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_QC_Scorecard_Name</name>
+        <label>Update QC Scorecard Name</label>
+        <locationX>176</locationX>
+        <locationY>539</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>QC_Summary__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.QC_Summary__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>QC_Summary_Name_Trimmed</elementReference>
+            </value>
+        </inputAssignments>
+        <object>QC_Scorecard__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_QC_Summary_Name</name>
+        <label>Update QC Summary Name</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Update_QC_Scorecard_Name</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.QC_Summary__r.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>QC_Summary_Name_Trimmed</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Task_Proof_Of_Work_URL__c</field>
+            <value>
+                <elementReference>$Record.Call_Recording_URL__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Task_Subject__c</field>
+            <value>
+                <elementReference>$Record.Subject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Task_URL_Href__c</field>
+            <value>
+                <elementReference>Task_URL</elementReference>
+            </value>
+        </inputAssignments>
+        <object>QC_Summary__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Opportunity</targetReference>
+        </connector>
+        <object>Task</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

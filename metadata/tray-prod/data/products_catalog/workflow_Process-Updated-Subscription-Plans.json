@@ -1,0 +1,735 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "e0bca22e-5e2d-4cc3-8577-0691f09dd3de",
+      "created": "2023-03-30T17:00:50.146762Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "a563d99a-dfea-4f2e-aba1-9462846d26db",
+        "created": "2024-01-07T17:10:58.784904Z"
+      },
+      "title": "Process Updated Subscription Plans",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "subscriptionPlanId": {
+              "type": "string",
+              "title": "subscriptionPlanId",
+              "description": "Run the flow for one particular plan"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "script-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "storage-2",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-4",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-5",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-1",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "call-workflow-2",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "script-1": {
+          "title": "Updated Plans SQL",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subscriptionPlan"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.subscriptionPlanId",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "lastExecution"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-1.value",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  let whereClause;\n  // E2E limit to process only the target subscription\n  if (input.subscriptionPlan) {\n    whereClause = `id IN (${input.subscriptionPlan})`;\n  } else if (input.lastExecution) {\n    whereClause = `timestamp > '${input.lastExecution}'`;\n  } else {\n    whereClause = `timestamp > TO_CHAR(CURRENT_TIMESTAMP - 1,'yyyy-mm-dd hh24:mi:ss')`;\n  }\n  return {\n    q:\n       `\nSELECT * FROM (SELECT\n    *,\n    TO_CHAR(CASE\n        WHEN planTimestamp > pricebookTimestamp THEN planTimestamp\n        ELSE pricebookTimestamp\n    END,'yyyy-mm-dd hh24:mi:ss') as timestamp\nFROM\n    (\n        SELECT\n            sp.id,\n            sp.displayname,\n            cl.name as classname,\n            sp.lastmodifieddate as planTimestamp,\n            (\n                (\n                    SELECT\n                        MAX(pb.lastmodifieddate)\n                    FROM\n                        pricebook pb\n                    WHERE\n                        pb.subscriptionplan = sp.id AND pb.name NOT LIKE '%DO NOT USE%'\n                )\n            ) AS pricebookTimestamp\n        FROM\n            subscriptionplan sp\n            LEFT JOIN classification cl on cl.id=sp.class\n            LEFT JOIN subscriptionplan spnext ON spnext.isinactive = 'F'\n            AND spnext.displayname = CONCAT(\n                CONCAT(\n                    REGEXP_REPLACE(\n                        sp.displayname,\n                        '(.+)-[0-9]+$',\n                        '\\\\1'\n                    ),\n                    '-'\n                ),\n                TO_CHAR(\n                    TO_NUMBER(\n                        REGEXP_REPLACE(\n                            sp.displayname,\n                            '.+-([0-9]+)$',\n                            '\\\\1'\n                        )\n                    ) + 1,\n                    'FM000'\n                )\n            )\n        WHERE\n            sp.isinactive = 'F'\n            AND spnext.id IS NULL\n            AND REGEXP_LIKE(sp.displayname, '.+-([0-9]+)$')\n    ))\nWHERE ${whereClause}\nORDER BY timestamp`\n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-2": {
+          "title": "Set Last Execution",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Workflow"
+            },
+            "key": {
+              "type": "string",
+              "value": "LastExecutionDate"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.script-2.result",
+              "fallback": {
+                "type": "jsonpath",
+                "value": "$.steps.storage-1.value"
+              }
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Trigger group sync",
+          "description": "Triggers asynchronously the synchronization of a group. The subscription plans in a group are synced sequentially.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "1924e3b0-8832-4e25-8cbb-994dcc84bfe9"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "subscriptionPlanIds": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value"
+                }
+              }
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop groups of plans",
+          "description": "Browses all groups of subscription plan IDs to trigger asynchronously the synchronization of the groups.",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": [
+                  "string",
+                  "number",
+                  "object",
+                  "array",
+                  "boolean",
+                  "null"
+                ],
+                "description": "The script result returned from the function",
+                "title": "Result"
+              },
+              "count": {
+                "type": "number"
+              },
+              "index": {
+                "type": "number"
+              },
+              "is_first": {
+                "type": "boolean"
+              },
+              "is_last": {
+                "type": "boolean"
+              },
+              "branch_name": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.script-5.result"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Is test run?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.subscriptionPlanId",
+                      "fallback": {
+                        "type": "string",
+                        "value": ""
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": ""
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "script-4": {
+          "title": "Group plans by PI",
+          "description": "Groups subscription plans by product integration record, considering the first three parts of the subscription plan code. The groups will be synced asynchronously while the subscription plans in a group will be synced synchronously.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subscriptionPlans"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-3.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n\tconst { subscriptionPlans } = input;\n\treturn subscriptionPlans.reduce((group, sp) => {\n\t\tconst key = sp.displayname.split('-').slice(0, 3).join('-');\n\t\tgroup[key] = group[key] ?? [];\n\t\tgroup[key].push(sp);\n\t\treturn group;\n\t}, {});\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get Supported NS Classes",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Product Configurations",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Product Configuration",
+                  "properties": {
+                    "NetSuite_Class__c": {
+                      "name": "NetSuite_Class__c",
+                      "type": "string",
+                      "title": "NetSuite Class"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "NetSuite_Class__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Product_Configuration__c"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "NetSuite_Product__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Get Last Execution",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Workflow"
+            },
+            "key": {
+              "type": "string",
+              "value": "LastExecutionDate"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "script-3": {
+          "title": "Filter plans",
+          "description": "Filters subscription plans by considering supported class names.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subscriptionPlans"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "supportedClassNames"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n  let { subscriptionPlans, supportedClassNames } = input;\n  supportedClassNames = supportedClassNames.map(c => c.NetSuite_Class__c);\n\treturn subscriptionPlans.filter(sp => supportedClassNames.includes(sp.classname));\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get Plans",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/917247fd-0fa6-4f4c-b085-3ccbdc273c4d.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result"
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            }
+          }
+        },
+        "script-5": {
+          "title": "Map grouped plans to IDs",
+          "description": "Maps grouped subscription plans to an array of subscription plan IDs array.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "groupedSubscriptionPlans"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-4.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n  const { groupedSubscriptionPlans } = input;\n\treturn Object.keys(groupedSubscriptionPlans)\n  \t.map(key => groupedSubscriptionPlans[key].map(sp => sp.id));\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-2": {
+          "title": "Get Last Execution Date",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "plans"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\tconst lastItem = input.plans.pop();\n  return lastItem?.timestamp;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "1924e3b0-8832-4e25-8cbb-994dcc84bfe9",
+          "name": "Subflow Sync Subscription Plans sequentially"
+        },
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

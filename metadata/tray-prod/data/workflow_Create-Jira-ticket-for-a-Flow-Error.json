@@ -1,0 +1,1620 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "0d2c642e-b920-4e47-bf98-9f21c842617c",
+      "created": "2023-03-08T17:23:00.239352Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "ecc56d12-ca3c-4446-8cd8-6b64a8c14904",
+        "created": "2023-07-25T02:45:11.221514Z"
+      },
+      "title": "Create Jira ticket for a Flow Error",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "summary": {
+              "type": "string",
+              "title": "summary",
+              "description": "Ticket title"
+            },
+            "description": {
+              "title": "description",
+              "type": "string",
+              "description": "Ticket description"
+            },
+            "issueType": {
+              "title": "issue type",
+              "type": "string",
+              "enum": [
+                {
+                  "text": "Fix a Bug",
+                  "value": "10063"
+                },
+                {
+                  "text": "Custom Admin Task",
+                  "value": "10176"
+                }
+              ],
+              "default": "10063"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "jira-cloud-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "script-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-2",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "jira-cloud-4",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": [
+                    {
+                      "name": "jira-cloud-2",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              }
+            ],
+            "false": [
+              {
+                "name": "data-mapper-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "jira-cloud-3",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "data-mapper-1": {
+          "title": "Ticket Type to ID",
+          "connector": {
+            "name": "data-mapper",
+            "version": "3.5"
+          },
+          "operation": "map_one_value",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "mappings": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "Fix a Bug"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "10063"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "Custom Admin Task"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "10176"
+                    }
+                  }
+                }
+              ]
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.issueType"
+            },
+            "default_value": {
+              "type": "string",
+              "value": "10063"
+            }
+          }
+        },
+        "script-1": {
+          "title": "Construct JQL",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.summary"
+                    },
+                    "name": {
+                      "type": "string",
+                      "value": "summary"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n\t// Minus sign is a special character\n const summary = input.summary.replace(/-/g,'\\\\\\\\-')\n \t\t.replace(/\\[/g,'\\\\\\\\[')\n    .replace(/\\]/g,'\\\\\\\\]');;\n const jql = `summary ~ \"${summary}\" AND status = Backlog order by created DESC`\n return jql;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Exceeds max length?",
+          "description": "If the description of the issue exceeds the max length, adds the instance description as a comment instead of updating the ticket description.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.updatedTicketDescriptionLength"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": ">"
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 32000
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "jira-cloud-3": {
+          "title": "Create Defect Issue in TSI",
+          "description": "* customfield_10140 - it is a Product custom field that consist of two sub-fields. {\"id\": 10639,\"child\": {\"id\": 11339} } - means \"WS Lambda: Trilogy Sales Infrastructure\" product and \"Sales Automation\" project.\n\n*customfield_10010 - is a \"Request Type\" custom field, and 133 means \"Fix a Bug\".",
+          "connector": {
+            "name": "jira-cloud",
+            "version": "2.0"
+          },
+          "operation": "create_issue",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "expand": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "self": {
+                "type": "string"
+              },
+              "key": {
+                "type": "string"
+              },
+              "fields": {
+                "type": "object",
+                "properties": {
+                  "customfield_10074": {
+                    "type": "null"
+                  },
+                  "customfield_10195": {
+                    "type": "null"
+                  },
+                  "customfield_10196": {
+                    "type": "number"
+                  },
+                  "customfield_10075": {
+                    "type": "null"
+                  },
+                  "customfield_10197": {
+                    "type": "null"
+                  },
+                  "customfield_10198": {
+                    "type": "number"
+                  },
+                  "resolution": {
+                    "type": "null"
+                  },
+                  "customfield_10502": {
+                    "type": "null"
+                  },
+                  "customfield_10504": {
+                    "type": "null"
+                  },
+                  "customfield_10505": {
+                    "type": "null"
+                  },
+                  "customfield_10506": {
+                    "type": "null"
+                  },
+                  "customfield_10507": {
+                    "type": "null"
+                  },
+                  "lastViewed": {
+                    "type": "null"
+                  },
+                  "customfield_10182": {
+                    "type": "null"
+                  },
+                  "labels": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "aggregatetimeoriginalestimate": {
+                    "type": "null"
+                  },
+                  "issuelinks": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "assignee": {
+                    "type": "null"
+                  },
+                  "components": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "customfield_10291": {
+                    "type": "null"
+                  },
+                  "customfield_10173": {
+                    "type": "null"
+                  },
+                  "customfield_10174": {
+                    "type": "null"
+                  },
+                  "customfield_10175": {
+                    "type": "null"
+                  },
+                  "customfield_10177": {
+                    "type": "null"
+                  },
+                  "customfield_10299": {
+                    "type": "null"
+                  },
+                  "customfield_10178": {
+                    "type": "null"
+                  },
+                  "customfield_10179": {
+                    "type": "null"
+                  },
+                  "customfield_10600": {
+                    "type": "null"
+                  },
+                  "customfield_10601": {
+                    "type": "null"
+                  },
+                  "subtasks": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "customfield_10162": {
+                    "type": "null"
+                  },
+                  "customfield_10041": {
+                    "type": "null"
+                  },
+                  "customfield_10163": {
+                    "type": "null"
+                  },
+                  "customfield_10042": {
+                    "type": "null"
+                  },
+                  "reporter": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "accountId": {
+                        "type": "string"
+                      },
+                      "emailAddress": {
+                        "type": "string"
+                      },
+                      "avatarUrls": {
+                        "type": "object",
+                        "properties": {
+                          "48x48": {
+                            "type": "string"
+                          },
+                          "24x24": {
+                            "type": "string"
+                          },
+                          "16x16": {
+                            "type": "string"
+                          },
+                          "32x32": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "displayName": {
+                        "type": "string"
+                      },
+                      "active": {
+                        "type": "boolean"
+                      },
+                      "timeZone": {
+                        "type": "string"
+                      },
+                      "accountType": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customfield_10043": {
+                    "type": "object",
+                    "properties": {
+                      "languageCode": {
+                        "type": "string"
+                      },
+                      "displayName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customfield_10165": {
+                    "type": "null"
+                  },
+                  "customfield_10166": {
+                    "type": "number"
+                  },
+                  "customfield_10167": {
+                    "type": "null"
+                  },
+                  "customfield_10168": {
+                    "type": "null"
+                  },
+                  "customfield_10038": {
+                    "type": "null"
+                  },
+                  "customfield_10039": {
+                    "type": "null"
+                  },
+                  "progress": {
+                    "type": "object",
+                    "properties": {
+                      "progress": {
+                        "type": "number"
+                      },
+                      "total": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "votes": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "votes": {
+                        "type": "number"
+                      },
+                      "hasVoted": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "worklog": {
+                    "type": "object",
+                    "properties": {
+                      "startAt": {
+                        "type": "number"
+                      },
+                      "maxResults": {
+                        "type": "number"
+                      },
+                      "total": {
+                        "type": "number"
+                      },
+                      "worklogs": {
+                        "type": "array",
+                        "items": {}
+                      }
+                    }
+                  },
+                  "issuetype": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "iconUrl": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "subtask": {
+                        "type": "boolean"
+                      },
+                      "avatarId": {
+                        "type": "number"
+                      },
+                      "hierarchyLevel": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "customfield_10151": {
+                    "type": "null"
+                  },
+                  "customfield_10152": {
+                    "type": "null"
+                  },
+                  "project": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "key": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "projectTypeKey": {
+                        "type": "string"
+                      },
+                      "simplified": {
+                        "type": "boolean"
+                      },
+                      "avatarUrls": {
+                        "type": "object",
+                        "properties": {
+                          "48x48": {
+                            "type": "string"
+                          },
+                          "24x24": {
+                            "type": "string"
+                          },
+                          "16x16": {
+                            "type": "string"
+                          },
+                          "32x32": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "projectCategory": {
+                        "type": "object",
+                        "properties": {
+                          "self": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "customfield_10394": {
+                    "type": "null"
+                  },
+                  "customfield_10153": {
+                    "type": "null"
+                  },
+                  "customfield_10154": {
+                    "type": "null"
+                  },
+                  "customfield_10155": {
+                    "type": "null"
+                  },
+                  "customfield_10027": {
+                    "type": "null"
+                  },
+                  "resolutiondate": {
+                    "type": "null"
+                  },
+                  "watches": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "watchCount": {
+                        "type": "number"
+                      },
+                      "isWatching": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "com.jibrok.jira.plugins.calculated-custom-fields__jiraIssueField-47f02a42-5927-4816-8a91-90be3221fd07": {
+                    "type": "null"
+                  },
+                  "customfield_10380": {
+                    "type": "null"
+                  },
+                  "customfield_10381": {
+                    "type": "null"
+                  },
+                  "customfield_10140": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "child": {
+                        "type": "object",
+                        "properties": {
+                          "self": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "customfield_10382": {
+                    "type": "null"
+                  },
+                  "customfield_10383": {
+                    "type": "number"
+                  },
+                  "customfield_10020": {
+                    "type": "null"
+                  },
+                  "customfield_10384": {
+                    "type": "null"
+                  },
+                  "customfield_10021": {
+                    "type": "null"
+                  },
+                  "customfield_10386": {
+                    "type": "number"
+                  },
+                  "customfield_10265": {
+                    "type": "null"
+                  },
+                  "customfield_10387": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "customfield_10024": {
+                    "type": "null"
+                  },
+                  "customfield_10025": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "customfield_10026": {
+                    "type": "null"
+                  },
+                  "customfield_10016": {
+                    "type": "null"
+                  },
+                  "customfield_10017": {
+                    "type": "null"
+                  },
+                  "customfield_10018": {
+                    "type": "object",
+                    "properties": {
+                      "hasEpicLinkFieldDependency": {
+                        "type": "boolean"
+                      },
+                      "showField": {
+                        "type": "boolean"
+                      },
+                      "nonEditableReason": {
+                        "type": "object",
+                        "properties": {
+                          "reason": {
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "customfield_10019": {
+                    "type": "string"
+                  },
+                  "updated": {
+                    "type": "string"
+                  },
+                  "timeoriginalestimate": {
+                    "type": "null"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "customfield_10010": {
+                    "type": "null"
+                  },
+                  "customfield_10254": {
+                    "type": "null"
+                  },
+                  "customfield_10255": {
+                    "type": "null"
+                  },
+                  "customfield_10014": {
+                    "type": "null"
+                  },
+                  "customfield_10015": {
+                    "type": "null"
+                  },
+                  "timetracking": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "summary": {
+                    "type": "string"
+                  },
+                  "customfield_10483": {
+                    "type": "null"
+                  },
+                  "customfield_10120": {
+                    "type": "null"
+                  },
+                  "customfield_10000": {
+                    "type": "string"
+                  },
+                  "customfield_10484": {
+                    "type": "null"
+                  },
+                  "customfield_10001": {
+                    "type": "null"
+                  },
+                  "customfield_10002": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "customfield_10599": {
+                    "type": "null"
+                  },
+                  "customfield_10479": {
+                    "type": "null"
+                  },
+                  "environment": {
+                    "type": "null"
+                  },
+                  "duedate": {
+                    "type": "null"
+                  },
+                  "comment": {
+                    "type": "object",
+                    "properties": {
+                      "comments": {
+                        "type": "array",
+                        "items": {}
+                      },
+                      "self": {
+                        "type": "string"
+                      },
+                      "maxResults": {
+                        "type": "number"
+                      },
+                      "total": {
+                        "type": "number"
+                      },
+                      "startAt": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "statuscategorychangedate": {
+                    "type": "string"
+                  },
+                  "customfield_10590": {
+                    "type": "null"
+                  },
+                  "customfield_10591": {
+                    "type": "null"
+                  },
+                  "customfield_10592": {
+                    "type": "null"
+                  },
+                  "customfield_10593": {
+                    "type": "null"
+                  },
+                  "customfield_10594": {
+                    "type": "null"
+                  },
+                  "fixVersions": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "customfield_10352": {
+                    "type": "null"
+                  },
+                  "customfield_10353": {
+                    "type": "null"
+                  },
+                  "customfield_10595": {
+                    "type": "null"
+                  },
+                  "customfield_10474": {
+                    "type": "null"
+                  },
+                  "customfield_10596": {
+                    "type": "null"
+                  },
+                  "customfield_10354": {
+                    "type": "null"
+                  },
+                  "customfield_10112": {
+                    "type": "null"
+                  },
+                  "customfield_10475": {
+                    "type": "null"
+                  },
+                  "customfield_10355": {
+                    "type": "null"
+                  },
+                  "customfield_10597": {
+                    "type": "null"
+                  },
+                  "customfield_10356": {
+                    "type": "null"
+                  },
+                  "customfield_10598": {
+                    "type": "null"
+                  },
+                  "customfield_10104": {
+                    "type": "null"
+                  },
+                  "customfield_10588": {
+                    "type": "null"
+                  },
+                  "customfield_10589": {
+                    "type": "null"
+                  },
+                  "com.jibrok.jira.plugins.calculated-custom-fields__jiraIssueField-e9608697-37d5-4cc2-a471-a6af4ebfddf9": {
+                    "type": "null"
+                  },
+                  "customfield_10580": {
+                    "type": "null"
+                  },
+                  "customfield_10581": {
+                    "type": "null"
+                  },
+                  "customfield_10582": {
+                    "type": "null"
+                  },
+                  "customfield_10461": {
+                    "type": "null"
+                  },
+                  "customfield_10583": {
+                    "type": "null"
+                  },
+                  "priority": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "iconUrl": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customfield_10100": {
+                    "type": "null"
+                  },
+                  "customfield_10584": {
+                    "type": "null"
+                  },
+                  "customfield_10101": {
+                    "type": "null"
+                  },
+                  "customfield_10585": {
+                    "type": "null"
+                  },
+                  "customfield_10586": {
+                    "type": "null"
+                  },
+                  "customfield_10587": {
+                    "type": "null"
+                  },
+                  "customfield_10577": {
+                    "type": "null"
+                  },
+                  "customfield_10578": {
+                    "type": "null"
+                  },
+                  "customfield_10579": {
+                    "type": "null"
+                  },
+                  "customfield_10459": {
+                    "type": "null"
+                  },
+                  "timeestimate": {
+                    "type": "null"
+                  },
+                  "61de211f-8732-44ee-ace2-490fbca80575__PRODUCTION__compass-jira-integration-custom-field": {
+                    "type": "null"
+                  },
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "iconUrl": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "statusCategory": {
+                        "type": "object",
+                        "properties": {
+                          "self": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "number"
+                          },
+                          "key": {
+                            "type": "string"
+                          },
+                          "colorName": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "customfield_10572": {
+                    "type": "null"
+                  },
+                  "customfield_10210": {
+                    "type": "null"
+                  },
+                  "customfield_10573": {
+                    "type": "null"
+                  },
+                  "customfield_10211": {
+                    "type": "null"
+                  },
+                  "customfield_10574": {
+                    "type": "null"
+                  },
+                  "customfield_10575": {
+                    "type": "null"
+                  },
+                  "customfield_10576": {
+                    "type": "null"
+                  },
+                  "customfield_10566": {
+                    "type": "null"
+                  },
+                  "customfield_10567": {
+                    "type": "null"
+                  },
+                  "customfield_10568": {
+                    "type": "null"
+                  },
+                  "customfield_10206": {
+                    "type": "null"
+                  },
+                  "customfield_10207": {
+                    "type": "number"
+                  },
+                  "aggregatetimeestimate": {
+                    "type": "null"
+                  },
+                  "customfield_10208": {
+                    "type": "null"
+                  },
+                  "customfield_10209": {
+                    "type": "null"
+                  },
+                  "creator": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "accountId": {
+                        "type": "string"
+                      },
+                      "emailAddress": {
+                        "type": "string"
+                      },
+                      "avatarUrls": {
+                        "type": "object",
+                        "properties": {
+                          "48x48": {
+                            "type": "string"
+                          },
+                          "24x24": {
+                            "type": "string"
+                          },
+                          "16x16": {
+                            "type": "string"
+                          },
+                          "32x32": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "displayName": {
+                        "type": "string"
+                      },
+                      "active": {
+                        "type": "boolean"
+                      },
+                      "timeZone": {
+                        "type": "string"
+                      },
+                      "accountType": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "aggregateprogress": {
+                    "type": "object",
+                    "properties": {
+                      "progress": {
+                        "type": "number"
+                      },
+                      "total": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "customfield_10562": {
+                    "type": "null"
+                  },
+                  "customfield_10563": {
+                    "type": "null"
+                  },
+                  "customfield_10443": {
+                    "type": "null"
+                  },
+                  "customfield_10565": {
+                    "type": "null"
+                  },
+                  "customfield_10444": {
+                    "type": "null"
+                  },
+                  "customfield_10436": {
+                    "type": "null"
+                  },
+                  "customfield_10438": {
+                    "type": "null"
+                  },
+                  "customfield_10318": {
+                    "type": "null"
+                  },
+                  "customfield_10319": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "timespent": {
+                    "type": "null"
+                  },
+                  "aggregatetimespent": {
+                    "type": "null"
+                  },
+                  "customfield_10432": {
+                    "type": "null"
+                  },
+                  "customfield_10433": {
+                    "type": "null"
+                  },
+                  "customfield_10423": {
+                    "type": "null"
+                  },
+                  "customfield_10427": {
+                    "type": "null"
+                  },
+                  "customfield_10306": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "workratio": {
+                    "type": "number"
+                  },
+                  "com.jibrok.jira.plugins.calculated-custom-fields__jiraIssueField-5b4b8831-9a06-49ba-a647-e21002d21d8d": {
+                    "type": "null"
+                  },
+                  "issuerestriction": {
+                    "type": "object",
+                    "properties": {
+                      "issuerestrictions": {
+                        "type": "object",
+                        "properties": {}
+                      },
+                      "shouldDisplay": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "created": {
+                    "type": "string"
+                  },
+                  "customfield_10420": {
+                    "type": "null"
+                  },
+                  "customfield_10541": {
+                    "type": "null"
+                  },
+                  "customfield_10421": {
+                    "type": "null"
+                  },
+                  "customfield_10542": {
+                    "type": "null"
+                  },
+                  "customfield_10422": {
+                    "type": "null"
+                  },
+                  "customfield_10533": {
+                    "type": "null"
+                  },
+                  "customfield_10413": {
+                    "type": "null"
+                  },
+                  "customfield_10414": {
+                    "type": "null"
+                  },
+                  "customfield_10416": {
+                    "type": "number"
+                  },
+                  "customfield_10537": {
+                    "type": "null"
+                  },
+                  "customfield_10530": {
+                    "type": "null"
+                  },
+                  "customfield_10532": {
+                    "type": "null"
+                  },
+                  "security": {
+                    "type": "null"
+                  },
+                  "customfield_10404": {
+                    "type": "null"
+                  },
+                  "customfield_10527": {
+                    "type": "null"
+                  },
+                  "customfield_10406": {
+                    "type": "null"
+                  },
+                  "customfield_10407": {
+                    "type": "null"
+                  },
+                  "customfield_10528": {
+                    "type": "null"
+                  },
+                  "customfield_10529": {
+                    "type": "null"
+                  },
+                  "customfield_10409": {
+                    "type": "null"
+                  },
+                  "customfield_10513": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "a604f538-05ab-4a33-b7bc-42853b2be6b7",
+            "title": "JIRA - WS Lambda",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/7b32dbcd474d8c1f71bf9ee60c173096.png"
+            },
+            "scopes": [
+              "offline_access",
+              "write:jira-work",
+              "read:jira-work",
+              "read:jira-user",
+              "manage:jira-configuration",
+              "manage:jira-project",
+              "manage:jira-data-provider"
+            ],
+            "service_name": "jira-cloud",
+            "service_version": 1
+          },
+          "properties": {
+            "project_key": {
+              "type": "string",
+              "value": "LAMBDA"
+            },
+            "summary": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.summary"
+            },
+            "issue_type_id": {
+              "type": "jsonpath",
+              "value": "$.steps.data-mapper-1.result"
+            },
+            "labels": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "auto-generated"
+                }
+              ]
+            },
+            "description": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.description"
+            },
+            "other_fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "object",
+                      "value": {
+                        "id": {
+                          "type": "number",
+                          "value": 10639
+                        },
+                        "child": {
+                          "type": "object",
+                          "value": {
+                            "id": {
+                              "type": "number",
+                              "value": 11339
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "name": {
+                      "type": "string",
+                      "value": "customfield_10140"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "133"
+                    },
+                    "name": {
+                      "type": "string",
+                      "value": "customfield_10010"
+                    }
+                  }
+                }
+              ]
+            },
+            "priority_id": {
+              "type": "string",
+              "value": "3"
+            },
+            "reporter_key": {
+              "type": "string",
+              "value": "618574962097220071c3912d"
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "key": {
+                  "type": "jsonpath",
+                  "value": "$.steps.jira-cloud-3.key",
+                  "fallback": {
+                    "type": "jsonpath",
+                    "value": "$.steps.jira-cloud-1.issues[0].key"
+                  }
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "jira-cloud-2": {
+          "title": "Update the Issue",
+          "connector": {
+            "name": "jira-cloud",
+            "version": "2.0"
+          },
+          "operation": "update_issue",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "a604f538-05ab-4a33-b7bc-42853b2be6b7",
+            "title": "JIRA - WS Lambda",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/7b32dbcd474d8c1f71bf9ee60c173096.png"
+            },
+            "scopes": [
+              "offline_access",
+              "write:jira-work",
+              "read:jira-work",
+              "read:jira-user",
+              "manage:jira-configuration",
+              "manage:jira-project",
+              "manage:jira-data-provider"
+            ],
+            "service_name": "jira-cloud",
+            "service_version": 1
+          },
+          "properties": {
+            "issue_id": {
+              "type": "jsonpath",
+              "value": "$.steps.jira-cloud-1.issues[0].key"
+            },
+            "project_key": {
+              "type": "jsonpath",
+              "value": "$.steps.jira-cloud-1.issues[0].fields.project.key"
+            },
+            "description": {
+              "type": "jsonpath",
+              "value": "$.steps.script-2.result.updatedTicketDescription"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Ticket Exist?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.jira-cloud-1.issues[0].key",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "jira-cloud-1": {
+          "title": "Search Existing Issue",
+          "description": "* customfield_10140 - it is a Product custom field that consist of two sub-fields. {\"id\": 10639,\"child\": {\"id\": 11339} } - means \"WS Lambda: Trilogy Sales Infrastructure\" product and \"Sales Automation\" project.\n\n*customfield_10010 - is a \"Request Type\" custom field, and 133 means \"Fix a Bug\".",
+          "connector": {
+            "name": "jira-cloud",
+            "version": "2.0"
+          },
+          "operation": "search_issues",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "a604f538-05ab-4a33-b7bc-42853b2be6b7",
+            "title": "JIRA - WS Lambda",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/7b32dbcd474d8c1f71bf9ee60c173096.png"
+            },
+            "scopes": [
+              "offline_access",
+              "write:jira-work",
+              "read:jira-work",
+              "read:jira-user",
+              "manage:jira-configuration",
+              "manage:jira-project",
+              "manage:jira-data-provider"
+            ],
+            "service_name": "jira-cloud",
+            "service_version": 1
+          },
+          "properties": {
+            "expand": {
+              "type": "string",
+              "value": "description,lead,projectKeys,url,issueTypes"
+            },
+            "per_page": {
+              "type": "integer",
+              "value": 50
+            },
+            "start_at": {
+              "type": "integer",
+              "value": 0
+            },
+            "jql": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result"
+            }
+          }
+        },
+        "jira-cloud-4": {
+          "title": "Create comment for instance",
+          "description": "Adds the instance description as a comment to the existing issue.",
+          "connector": {
+            "name": "jira-cloud",
+            "version": "2.0"
+          },
+          "operation": "create_issue_comment",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "a604f538-05ab-4a33-b7bc-42853b2be6b7",
+            "title": "JIRA - WS Lambda",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/7b32dbcd474d8c1f71bf9ee60c173096.png"
+            },
+            "scopes": [
+              "offline_access",
+              "write:jira-work",
+              "read:jira-work",
+              "read:jira-user",
+              "manage:jira-configuration",
+              "manage:jira-project",
+              "manage:jira-data-provider"
+            ],
+            "service_name": "jira-cloud",
+            "service_version": 1
+          },
+          "properties": {
+            "issue_id": {
+              "type": "jsonpath",
+              "value": "$.steps.jira-cloud-1.issues[0].key"
+            },
+            "body": {
+              "type": "jsonpath",
+              "value": "$.steps.script-2.result.instanceDescription"
+            }
+          }
+        },
+        "script-2": {
+          "title": "Build updated description",
+          "description": "Builds the updated description for the issue by considering the new issue instance.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "ticketDescription"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.jira-cloud-1.issues[0].fields.description"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "errorDescription"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.description"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n  const instanceDescription = `Another issue instance:\\n${input.errorDescription}`;\n  const updatedTicketDescription = `${input.ticketDescription}\\n\\n\\n${instanceDescription}`;\n\treturn {\n    \"instanceDescription\": instanceDescription,\n  \t\"updatedTicketDescription\": updatedTicketDescription,\n    \"updatedTicketDescriptionLength\": updatedTicketDescription.length\n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": []
+    }
+  ],
+  "projects": []
+}

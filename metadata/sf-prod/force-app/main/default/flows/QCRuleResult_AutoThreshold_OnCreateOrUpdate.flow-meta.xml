@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <decisions>
+        <name>Check_AutoGrading</name>
+        <label>Check_AutoGrading</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>IsAutoGraded</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.QC_Rule__r.Grader_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Auto</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Result__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Result__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Unable To Grade</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Grade_Metric_Value_by_Thresholds</targetReference>
+            </connector>
+            <label>IsAutoGraded</label>
+        </rules>
+    </decisions>
+    <description>Set the Result and QC Rule Thresholds when a QC Rule Result is updated and has no Result yet</description>
+    <formulas>
+        <name>GradedMetricValue</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK($Record.Metric_Value__c), &apos;Unable To Grade&apos;,
+	IF(AND(ISBLANK($Record.Upper_Threshold__c) || ($Record.Metric_Value__c &lt;= $Record.Upper_Threshold__c), 
+		ISBLANK($Record.Lower_Threshold__c) || ($Record.Metric_Value__c &gt;= $Record.Lower_Threshold__c)),
+		&apos;Pass&apos;, &apos;Fail&apos;))</expression>
+    </formulas>
+    <interviewLabel>QCRuleResult_AutoThreshold_OnCreateOrUpdate {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>QCRuleResult_AutoThreshold_OnCreateOrUpdate</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Copy_Rule_Thresholds</name>
+        <label>Copy Rule Thresholds</label>
+        <locationX>182</locationX>
+        <locationY>311</locationY>
+        <connector>
+            <targetReference>Check_AutoGrading</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Lower_Threshold__c</field>
+            <value>
+                <elementReference>$Record.QC_Rule__r.Lower_Threshold__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Upper_Threshold__c</field>
+            <value>
+                <elementReference>$Record.QC_Rule__r.Upper_Threshold__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Grade_Metric_Value_by_Thresholds</name>
+        <label>Grade Metric Value by Thresholds</label>
+        <locationX>50</locationX>
+        <locationY>551</locationY>
+        <inputAssignments>
+            <field>Result__c</field>
+            <value>
+                <elementReference>GradedMetricValue</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Copy_Rule_Thresholds</targetReference>
+        </connector>
+        <object>QC_Rule_Result__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

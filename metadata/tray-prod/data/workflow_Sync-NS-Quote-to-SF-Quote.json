@@ -1,0 +1,1525 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "1c422b5a-98b5-4a9a-8a80-56d7aedbca6b",
+      "created": "2023-09-23T04:48:45.265341Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "0c145cd5-0a3a-480f-bd7e-2cc8a66fd232",
+      "version": {
+        "id": "b45f7f6a-ffa5-4df0-b1d4-7882b49a979d",
+        "created": "2023-10-27T22:53:23.791058Z"
+      },
+      "title": "Sync NS Quote to SF Quote",
+      "description": "This flow synchronizes an NS Quote to an SF Quote. It only supports the quote creation for the Self-Serve scenario.",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "newRecord": {
+              "title": "New Record",
+              "type": "object",
+              "properties": {},
+              "additionalProperties": false,
+              "required": [],
+              "advanced": []
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string",
+              "title": "Message"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "callable-workflow-response-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "call-workflow-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-2",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "storage-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "salesforce-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-5",
+                "type": "branch",
+                "content": {
+                  "true": [],
+                  "false": [
+                    {
+                      "name": "salesforce-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              }
+            ],
+            "false": [
+              {
+                "name": "terminate-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-3",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "salesforce-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-4",
+                "type": "branch",
+                "content": {
+                  "true": [],
+                  "false": [
+                    {
+                      "name": "terminate-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              }
+            ],
+            "false": [
+              {
+                "name": "terminate-2",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "call-workflow-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-6",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "terminate-4",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": [
+              {
+                "name": "salesforce-5",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "delay-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "salesforce-4",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "salesforce-7",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-7",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "boolean-condition-8",
+                      "type": "branch",
+                      "content": {
+                        "true": [],
+                        "false": [
+                          {
+                            "name": "salesforce-8",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "false": [
+                    {
+                      "name": "salesforce-6",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "storage-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "callable-workflow-response-2",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "salesforce-3": {
+          "title": "Set NetSuite ID",
+          "description": "Sets the NetSuite ID on the synced opportunity.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.newRecord.fields.custbody_related_subscription"
+                    }
+                  }
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.call-workflow-1.response.opportunity.Id"
+            }
+          }
+        },
+        "script-1": {
+          "title": "Find primary contact",
+          "description": "Finds the primary contact defined for the customer. It is automatically added to the quote at creation.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "quoteRecord"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.newRecord"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n  const { quoteRecord } = input;\n  \n  // Retrieve the primary contact on the quote as it is automatically set at creation.\n  const contacts = Object.values(quoteRecord.sublists.contacts);\n  if (contacts.length > 0) {\n  \treturn contacts[0].id;\n  }\n  \n  // If there is no primary contact, return null.\n\treturn null;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-2": {
+          "title": "Remove opp ID",
+          "description": "Removes the opportunity ID at the account level for the purpose of the error handler. The process was successful and this key can be removed.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "delete",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Opp_{$.env.execution_uuid}"
+            }
+          }
+        },
+        "boolean-condition-5": {
+          "title": "Has correct NetSuite ID?",
+          "description": "Checks if the NetSuite ID is correctly set on the synced opportunity.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].NetSuite_ID__c",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.newRecord.fields.custbody_related_subscription"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Has synced opp?",
+          "description": "Continues only if there is a synced opportunity related to the subscription.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-1.response.opportunity.Id",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "SKIP - no self-serve quote",
+          "description": "Skips the process. The quote is not a self-serve quote.",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "SKIP - no self-serve quote"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "salesforce-7": {
+          "title": "Find opp contact role",
+          "description": "Finds any opportunity contact role for the primary contact and the opportunity.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Opportunity Contact Role",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Opportunity Contact Role",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Contact Role ID"
+                    },
+                    "IsPrimary": {
+                      "name": "IsPrimary",
+                      "type": "boolean",
+                      "title": "Primary"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                },
+                {
+                  "type": "string",
+                  "value": "IsPrimary"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "OpportunityContactRole"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "ContactId"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "OpportunityId"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-1.response.opportunity.Id"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Get synced opp",
+          "description": "Tries to retrieve the synced opportunity related to the given subscription. The subflow includes a fallback search based on the parent subscription if there is no match for the subscription.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "1cbe4310-e2a7-4a40-8d06-558d5eb630d8"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "subscription_id": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.data.newRecord.fields.custbody_related_subscription"
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "Has SF contact?",
+          "description": "Continues only if there is an SF contact synced from the primary contact.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.total"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Is Self-Serve quote?",
+          "description": "Continues only if the quote is a Self-Serve quote. Otherwise, skips without error.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.newRecord.fields.custbody_self_serve",
+                      "fallback": {
+                        "value": "F",
+                        "type": "string"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "T"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "salesforce-4": {
+          "title": "Update opportunity",
+          "description": "Updates the opportunity to reflect the creation of the Self-Serve quote as the primary quote.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Addresses_Validated__c"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Win_Type__c"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "Self-Serve"
+                    }
+                  }
+                }
+              ]
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.call-workflow-1.response.opportunity.Id"
+            }
+          }
+        },
+        "boolean-condition-7": {
+          "title": "Opp contact role exists?",
+          "description": "Checks if the opportunity contact role already exists or not.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "string",
+                      "value": ""
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": ""
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "callable-workflow-response-2": {
+          "title": "SUCCESS",
+          "description": "The process is successful.",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "SUCCESS"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "salesforce-5": {
+          "title": "Set the primary quote",
+          "description": "Sets the quote as the primary quote.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "SBQQ__Primary__c"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "SBQQ__Quote__c"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.call-workflow-2.response.quoteId"
+            }
+          }
+        },
+        "terminate-2": {
+          "title": "FAIL - no primary contact",
+          "description": "Fails the process, leading to the creation of a Jira ticket. There is no primary contact set on the customer.",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "The Self-Serve quote '{$.steps.trigger.data.newRecord.id}' cannot be synced because there is no primary contact set on the customer '{$.steps.trigger.newRecord.fields.custbody_ava_customerentityid}' (entity ID)."
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Find SF contact",
+          "description": "Finds the SF contact synced from the primary contact.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Contacts",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Contact",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Contact ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Contact"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "boolean-condition-6": {
+          "title": "Is opp closed or finalizing?",
+          "description": "Continues only if the opportunity is not closed and not in Finalizing stage.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].IsClosed"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].StageName"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Finalizing"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Convert NS Quote to SF",
+          "description": "Calls the subflow converting the NS quote to SF quote.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "ca5daec3-b981-44a5-977a-aa77295bb059"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "quoteRecord": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.data.newRecord"
+                },
+                "opportunityId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.call-workflow-1.response.opportunity.Id"
+                },
+                "contactId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-1.records[0].Id"
+                }
+              }
+            }
+          }
+        },
+        "salesforce-8": {
+          "title": "Update primary opp contact",
+          "description": "Updates the opportunity contact role for flagging it as primary.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "OpportunityContactRole"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "IsPrimary"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-7.records[0].Id"
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "FAIL - no synced opp",
+          "description": "Fails the process, leading to the creation of a Jira ticket. There is no synced opp related to the subscription.",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "The Self-Serve quote '{$.steps.trigger.data.newRecord.id}' cannot be synced because there is no synced opportunity related to the subscription '{$.steps.trigger.data.newRecord.fields.custbody_related_subscription}'."
+            }
+          }
+        },
+        "boolean-condition-8": {
+          "title": "Is primary?",
+          "description": "Checks if the existing opportunity contact role is primary or not.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "string",
+                      "value": ""
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": ""
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Store opp ID",
+          "description": "Stores the opportunity ID at the account level for the purpose of the error handler.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Opp_{$.env.execution_uuid}"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.call-workflow-1.response.opportunity.Id"
+            }
+          }
+        },
+        "salesforce-6": {
+          "title": "Create primary opp contact",
+          "description": "Creates the opportunity contact role for setting the primary contact on the opportunity.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "create_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "OpportunityContactRole"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "ContactId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "IsPrimary"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "OpportunityId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-1.response.opportunity.Id"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "terminate-4": {
+          "title": "FAIL - opp is closed or final.",
+          "description": "Fails the process, leading to the creation of a Jira ticket. The opportunity is closed or is in Finalizing stage. The quote is created but the current process cannot continue properly.",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "The Self-Serve quote '{$.steps.trigger.data.newRecord.id}' was synced to quote '{$.steps.call-workflow-2.response.quoteId}' but was not set as the primary quote because the opportunity '{$.steps.call-workflow-1.response.opportunity.Id}' was closed or in Finalizing stage."
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Get opportunity",
+          "description": "Retrieves the synced opportunity.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Opportunities",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Opportunity",
+                  "properties": {
+                    "NetSuite_ID__c": {
+                      "name": "NetSuite_ID__c",
+                      "type": "string",
+                      "title": "NetSuite ID"
+                    },
+                    "IsClosed": {
+                      "name": "IsClosed",
+                      "type": "boolean",
+                      "title": "Closed"
+                    },
+                    "StageName": {
+                      "name": "StageName",
+                      "type": "string",
+                      "title": "Stage"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "NetSuite_ID__c"
+                },
+                {
+                  "type": "string",
+                  "value": "IsClosed"
+                },
+                {
+                  "type": "string",
+                  "value": "StageName"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Id"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-1.response.opportunity.Id"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "terminate-3": {
+          "title": "FAIL - no SF contact",
+          "description": "Fails the process, leading to the creation of a Jira ticket. There is no SF contact related to the primary contact.",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "The Self-Serve quote '{$.steps.trigger.data.newRecord.id}' cannot be synced because there is no SF contact related to the primary contact '{$.steps.script-1.result}'."
+            }
+          }
+        },
+        "delay-1": {
+          "title": "Wait opp sync",
+          "description": "Waits the opportunity to be synced with the new primary quote before updating it. This sync includes the update of the opportunity products and, consequently, the setting of the Manual O2C flag. This flag is an important value in the automation process.",
+          "connector": {
+            "name": "delay",
+            "version": "1.0"
+          },
+          "operation": "delay",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "time_unit": {
+              "type": "string",
+              "value": "minutes"
+            },
+            "delay_value": {
+              "type": "integer",
+              "value": 1
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "Has primary contact?",
+          "description": "Continues only if there is a primary contact set on the customer.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Sync call",
+          "description": "This flow synchronizes an NS Quote to an SF Quote. It only supports the quote creation for the Self-Serve scenario.",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "1cbe4310-e2a7-4a40-8d06-558d5eb630d8",
+          "name": "Get Synced Opportunity"
+        },
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "ca5daec3-b981-44a5-977a-aa77295bb059",
+          "name": "Convert NS Quote to SF Quote"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

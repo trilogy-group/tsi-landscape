@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__MicrosoftSolutionsCount__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The number of Microsoft Solutions added to this Referral.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The number of Microsoft Solutions added to this Referral.</inlineHelpText>
+    <label>Microsoft Solutions Count</label>
+    <summaryForeignKey>workspan__ReferralMicrosoftSolution__c.workspan__Referral__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

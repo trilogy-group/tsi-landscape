@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AR_Scenario__c</fullName>
+    <description>Only used when auto-renewed. Record the status of the auto-renewal.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>INVOLUNTARY: Did not want to renew, but forced by AR clause.
+ VOLUNTARY - TERMS: Wanted to renew, did AR to keep old Terms &amp; Conditions.
+ VOLUNTARY - UNKNOWN: Wanted to renew, no issues or disputes, but couldn&apos;t get them to sign the new quote.
+ VOLUNTARY - PRICE: Wanted to renew, but there was a price dispute.
+ UNRESPONSIVE: No meaningful engagement with the customer (despite our efforts).
+ GHOSTED: Conducted the Renewal call, but then lost contact with customer so don&apos;t understand the reason for AR.</inlineHelpText>
+    <label>AR Scenario</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Involuntary</fullName>
+                <default>false</default>
+                <label>Involuntary</label>
+            </value>
+            <value>
+                <fullName>Voluntary - Terms</fullName>
+                <default>false</default>
+                <label>Voluntary - Terms</label>
+            </value>
+            <value>
+                <fullName>Voluntary - Unknown</fullName>
+                <default>false</default>
+                <label>Voluntary - Unknown</label>
+            </value>
+            <value>
+                <fullName>Voluntary - Price</fullName>
+                <default>false</default>
+                <label>Voluntary - Price</label>
+            </value>
+            <value>
+                <fullName>Unresponsive</fullName>
+                <default>false</default>
+                <label>Unresponsive</label>
+            </value>
+            <value>
+                <fullName>Ghosted</fullName>
+                <default>false</default>
+                <label>Ghosted</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

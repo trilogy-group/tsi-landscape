@@ -1,0 +1,517 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "8887f6e2-c9df-4096-a93b-0305b2202af1",
+      "created": "2023-11-09T18:15:56.356335Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "project_id": "e55580c2-6335-4b55-8b8f-288590a5b90a",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "3fec13bb-e4c8-406c-bc32-f4f1478e8094",
+        "created": "2024-01-31T02:05:52.126866Z"
+      },
+      "title": "Sync Active and Platinum Customer from Netsuite to Zendesk",
+      "description": "This flow syncs the Has Active Subscription and Platinum Customer fields from Netsuite to Zendesk",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "terminate-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "zendesk-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-1",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "script-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "zendesk-2",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        }
+      ],
+      "steps": {
+        "boolean-condition-1": {
+          "title": "Fields changed?",
+          "description": "Checks if the Has Active Subscription or Platinum Subscription changed",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.hasActiveSubscription"
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.oldHasActiveSubscription"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.platinumCustomer"
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.oldPlatinumCustomer"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.ARR",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.oldARR",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop ZD organizations",
+          "description": "A loop was used because in theory it can return more than one record and if that is the case, then we are going to update all organizations that were returned.",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "value": {},
+              "count": {
+                "type": "number"
+              },
+              "index": {
+                "type": "number"
+              },
+              "is_first": {
+                "type": "boolean"
+              },
+              "is_last": {
+                "type": "boolean"
+              },
+              "branch_name": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.zendesk-1.results",
+              "fallback": {
+                "value": [],
+                "type": "array"
+              }
+            }
+          }
+        },
+        "script-1": {
+          "title": "Format values",
+          "description": "Format the values to compare and insert in zendesk. Netsuite returns T/F/null and zendesk requires true/false in the api.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "object",
+                "properties": {
+                  "hasActiveSubscription": {
+                    "type": "boolean"
+                  },
+                  "platinumCustomer": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "console": {
+                "type": "array",
+                "items": {}
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "newRecord"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.newRecord"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "oldRecord"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.oldRecord"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// For field updates, netsuite only sends in the context of the new record the field changed\n// so if the value is undefined in the new record, is because didn't change and thus we use\n// the old value as the value for the new record\nexports.step = function(input) {\n  const oldHasActiveSubscription = input.oldRecord?.custentity_has_active_subscription === 'T';\n  const hasActiveSubscription = input.newRecord.custentity_has_active_subscription === undefined ?\n    oldHasActiveSubscription : input.newRecord.custentity_has_active_subscription === 'T';\n  const oldPlatinumCustomer = input.oldRecord?.custentity_platinum_customer === 'T';\n  const platinumCustomer = input.newRecord.custentity_platinum_customer === undefined ?\n    oldPlatinumCustomer : input.newRecord.custentity_platinum_customer === 'T';\n  const oldARR = input.oldRecord?.custentity_arr === undefined ?\n    null : input.oldRecord.custentity_arr;\n  const ARR = input.newRecord.custentity_arr === undefined ?\n    oldARR : input.newRecord.custentity_arr;\n\treturn {\n    hasActiveSubscription,\n    platinumCustomer,\n    ARR,\n    oldHasActiveSubscription,\n    oldPlatinumCustomer,\n    oldARR\n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-2": {
+          "title": "Convert ARR to integer",
+          "description": "ARR in zendesk is a integer and we need to convert to integer before sending",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "arr"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.ARR",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  return input.arr === null ? null : Math.round(parseFloat(input.arr));\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "Terminate",
+          "description": "No change, skip update",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "terminate_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "zendesk-1": {
+          "title": "Get ZD organization",
+          "description": "Zendesk Organization is the equivalent to netsuite customers. The netsuite id being used in zendesk is the entityid and not the internalid.",
+          "connector": {
+            "name": "zendesk",
+            "version": "7.1"
+          },
+          "operation": "search",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {}
+              },
+              "facets": {
+                "type": "null"
+              },
+              "next_page": {
+                "type": "null"
+              },
+              "previous_page": {
+                "type": "null"
+              },
+              "count": {
+                "type": "number"
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "3289028a-124f-4f56-b504-7c55e644c47e",
+            "title": "Central Zendesk",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/360aeaf0-42aa-49c1-bda5-d04f69ee7ac4.png"
+            },
+            "scopes": [
+              "organizations:write",
+              "apps:read",
+              "hc:read",
+              "tickets:read",
+              "auditlogs:read",
+              "automations:read",
+              "users:read",
+              "read",
+              "organizations:read",
+              "tickets:write"
+            ],
+            "service_name": "zendesk",
+            "service_version": 2
+          },
+          "properties": {
+            "query": {
+              "type": "string",
+              "value": "type:organization netsuite_customer_id:{$.steps.trigger.newRecord.entityid or:$.steps.trigger.oldRecord.entityid}"
+            },
+            "sort_by": {
+              "type": "string",
+              "value": "relevance"
+            },
+            "sort_order": {
+              "type": "string",
+              "value": "asc"
+            },
+            "page": {
+              "type": "integer",
+              "value": 1
+            },
+            "per_page": {
+              "type": "integer",
+              "value": 100
+            }
+          }
+        },
+        "zendesk-2": {
+          "title": "Update Organization",
+          "description": "Update the fields in the organization in zendesk",
+          "connector": {
+            "name": "zendesk",
+            "version": "7.1"
+          },
+          "operation": "update_organization",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3289028a-124f-4f56-b504-7c55e644c47e",
+            "title": "Central Zendesk",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/360aeaf0-42aa-49c1-bda5-d04f69ee7ac4.png"
+            },
+            "scopes": [
+              "organizations:write",
+              "apps:read",
+              "hc:read",
+              "tickets:read",
+              "auditlogs:read",
+              "automations:read",
+              "users:read",
+              "read",
+              "organizations:read",
+              "tickets:write"
+            ],
+            "service_name": "zendesk",
+            "service_version": 2
+          },
+          "properties": {
+            "organization_id": {
+              "type": "jsonpath",
+              "value": "$.steps.loop-1.value.id"
+            },
+            "organization_fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "active_subscription_in_netsuite"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.hasActiveSubscription"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "platinum_customer"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.platinumCustomer"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "arr_value"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

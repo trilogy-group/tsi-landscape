@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Account_Number</fullName>
+    <active>false</active>
+    <description>Validate the account number format for Kayako or Chargebee (to avoid account id entered instead)</description>
+    <errorConditionFormula>NOT(REGEX(Product_Billing_System_ID__c , &apos;^$|^A\\d{8}$&apos;)) &amp;&amp; NOT(REGEX(Product_Billing_System_ID__c , &apos;^[a-zA-Z0-9]{13,}$&apos;))</errorConditionFormula>
+    <errorDisplayField>Product_Billing_System_ID__c</errorDisplayField>
+    <errorMessage>Please specify Zuora Account Number (e.g. A00000123) or Chargebee Customer Id (e.g. 612381a8ba907c10b9094865)</errorMessage>
+</ValidationRule>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Contact</fullName>
+    <active>true</active>
+    <description>LAMBDA-52272 Validate the contact is related to Opportunity Account or Partner Or Not</description>
+    <errorConditionFormula>Invalid_Primary_Contact__c &amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Quote_QBs__c)</errorConditionFormula>
+    <errorMessage>The Primary Contact must be associated with the opportunity&apos;s account or partner. We have duplicate accounts and contacts in the system due to multiple subsidiaries, please check that you&apos;ve picked the right contact from the right account.</errorMessage>
+</ValidationRule>

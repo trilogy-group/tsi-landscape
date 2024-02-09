@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Previous_Quote_with_AR_clause__c</fullName>
+    <description>This field must be populated when the win type is Auto-Renewal with the previously signed quote containing the AR clause.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>In order to Auto-Renew we must have a previous signed contract/quote with an AR clause. Please provide a link to it. 
+If attached to an opportunity (could be a previous opportunity), copy the salesforce document URL and paste in this field.
+e.g. https://trilogy-sales.lightning.force.com/lightning/r/ContentDocument/0692x00000CD3PAAA1/view</inlineHelpText>
+    <label>Previously Signed Quote with AR Clause</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Url</type>
+</CustomField>

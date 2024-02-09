@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Price_increase_notice_requirement__c</fullName>
+    <externalId>false</externalId>
+    <formula>!ISBLANK(Provider_Price_Change_Notice_Period__c) || !ISBLANK(Provider_Price_Change_Notice_Requirement__c)</formula>
+    <label>Price increase notice requirement</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

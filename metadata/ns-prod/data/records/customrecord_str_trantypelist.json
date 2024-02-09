@@ -1,0 +1,252 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "recordId": {
+      "title": "Record ID",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_trantypelist_parent_type": {
+      "title": "Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_trantypelist_desc": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "VendPymt",
+            "CustCred",
+            "ItemShip",
+            "Check",
+            "RevContr",
+            "Journal",
+            "CustChrg",
+            "OrdResv",
+            "RevArrng",
+            "GLAdj",
+            "InvReval",
+            "Opprtnty",
+            "CustRfnd",
+            "CashRfnd",
+            "TrnfrOrd",
+            "Build",
+            "Unbuild",
+            "RevComm",
+            "SalesOrd",
+            "Rfq",
+            "VPrepApp",
+            "TegPybl",
+            "Deposit",
+            "WOIssue",
+            "FinChrg",
+            "PurchOrd",
+            "FftReq",
+            "StatChng",
+            "ExpRept",
+            "DepAppl",
+            "Wave",
+            "OwnTrnsf",
+            "StPickUp",
+            "TegRcvbl",
+            "WOCompl",
+            "NettStlm",
+            "InvAdjst",
+            "Transfer",
+            "Paycheck",
+            "BalJrnal",
+            "VendBill",
+            "YtdAdjst",
+            "XChgJrnl",
+            "ItemRcpt",
+            "Estimate",
+            "PChkJrnl",
+            "VPrep",
+            "SysJrnl",
+            "Commissn",
+            "TaxPymt",
+            "RtnAuth",
+            "CustInvc",
+            "FxReval",
+            "WorkOrd",
+            "PurchCon",
+            "BinTrnfr",
+            "LiaAdjst",
+            "InvDistr",
+            "VendRfq",
+            "LiabPymt",
+            "RevComRv",
+            "TaxLiab",
+            "InvcGrp",
+            "CuTrPrch",
+            "CustAuth",
+            "VendAuth",
+            "InvCount",
+            "InvWksht",
+            "CardRfnd",
+            "VendCred",
+            "PEJrnl",
+            "BinWksht",
+            "Custom",
+            "CustPymt",
+            "CustDep",
+            "PurchReq",
+            "WOClose",
+            "InbShip",
+            "CashSale",
+            "BlankOrd",
+            "CuTrSale",
+            "DeprCust",
+            "CardChrg",
+            "InvTrnfr"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "custrecord_str_tranlist_text_desc": {
+      "title": "Text Description",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "owner",
+    "isInactive",
+    "created",
+    "externalId",
+    "lastmodifiedby",
+    "abbreviation",
+    "recordId",
+    "scriptId",
+    "lastmodified",
+    "name",
+    "custrecord_str_trantypelist_parent_type",
+    "id",
+    "custrecord_str_trantypelist_desc",
+    "custrecord_str_tranlist_text_desc"
+  ],
+  "x-ns-custom-record": true
+}

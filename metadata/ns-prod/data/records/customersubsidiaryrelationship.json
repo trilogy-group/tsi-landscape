@@ -1,0 +1,153 @@
+{
+  "type": "object",
+  "properties": {
+    "isPrimarySub": {
+      "title": "Is Primary Subsidiary",
+      "type": "boolean"
+    },
+    "balance": {
+      "title": "Balance",
+      "type": "number",
+      "description": "The customer&apos;s current accounts receivable balance due appears here. If you use the Multiple Currencies feature, the amount in this field is shown in the customer&apos;s currency.",
+      "format": "double",
+      "nullable": true
+    },
+    "lastModifiedDate": {
+      "title": "Last Modified Date",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "depositBalance": {
+      "title": "Deposit Balance",
+      "type": "number",
+      "description": "The Customer Deposit Balance field displays the total amount of unapplied deposits for the customer. Deposits are recorded in the general ledger, as a liability, when the customer makes an advance payment before delivery of goods or services. A deposit balance exists until the goods or services are delivered. Deposits do not affect the customer&apos;s accounts receivable balance. If you use the Multiple Currencies feature, the amount in this field is shown in the customer&apos;s currency.",
+      "format": "double",
+      "nullable": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "description": "The internal ID for this record is shown here. If you do not want to show internal IDs, clear the Show Internal IDs box at Home &gt; Set Preferences.",
+      "nullable": true
+    },
+    "unbilledOrders": {
+      "title": "Unbilled Orders",
+      "type": "number",
+      "description": "This field displays the total amount of orders that have been entered but not yet billed. If you have enabled the preference Customer Credit Limit Includes Orders, then this total is included in credit limit calculations. Set this preference at Setup &gt; Accounting &gt; Preferences &gt; Accounting Preferences &gt; General. If you use the Multiple Currencies feature, the amount in this field is shown in the customer&apos;s currency.",
+      "format": "double",
+      "nullable": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "primaryCurrency": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "entity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "subsidiary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "primaryCurrency",
+    "isPrimarySub",
+    "balance",
+    "lastModifiedDate",
+    "depositBalance",
+    "name",
+    "externalId",
+    "id",
+    "unbilledOrders",
+    "entity",
+    "subsidiary"
+  ]
+}

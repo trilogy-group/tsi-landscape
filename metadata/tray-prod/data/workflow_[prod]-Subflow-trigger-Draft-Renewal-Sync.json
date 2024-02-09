@@ -1,0 +1,144 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "f82d454f-a68f-432a-b867-dafe79f14721",
+      "created": "2022-05-11T06:26:42.773929Z",
+      "workspace_id": "ddb7dc60-0c96-4280-b59f-517d94a74202",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "7b283e79-f8c8-4144-8178-92d900d2a7d7",
+        "created": "2022-05-23T11:44:41.951334Z"
+      },
+      "title": "[prod] Subflow trigger Draft Renewal Sync",
+      "description": "This flow triggers draft renewal synchronization for a single subscription",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "input_schema": {},
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "statusCode": {
+              "title": "StatusCode",
+              "type": "number"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "trigger-reply-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "trigger-reply-1": {
+          "title": "Trigger Event Reply",
+          "connector": {
+            "name": "trigger-reply",
+            "version": "1.1"
+          },
+          "operation": "trigger-reply",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "status": {
+              "type": "number",
+              "value": 200
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "id": {
+                  "type": "jsonpath",
+                  "value": "$.steps.call-workflow-1.response.opportunityId"
+                },
+                "message": {
+                  "type": "jsonpath",
+                  "value": "$.steps.call-workflow-1.response.opportunityId"
+                }
+              }
+            }
+          }
+        },
+        "trigger": {
+          "title": "Webhook",
+          "connector": {
+            "name": "webhook",
+            "version": "2.3"
+          },
+          "operation": "webhook",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "token": {
+              "type": "string",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQSflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+            },
+            "allow_cors": {
+              "value": false,
+              "type": "boolean"
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Call Workflow",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "7b5f5cef-c6b1-4c57-b9f1-61e1fd593f2a"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "subId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.id"
+                },
+                "forceUpdate": {
+                  "type": "boolean",
+                  "value": false
+                },
+                "row": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.row"
+                }
+              }
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "7b5f5cef-c6b1-4c57-b9f1-61e1fd593f2a",
+          "name": "[prod] On Draft NS Renewal Subscription Created/Updated, Create/Update SF Renewal Opportunity"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

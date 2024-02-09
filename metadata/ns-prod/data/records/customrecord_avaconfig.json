@@ -1,0 +1,580 @@
+{
+  "type": "object",
+  "properties": {
+    "custrecord_ava_disabletaxsalesorder": {
+      "title": "Disable Tax Calculation for Sales Order",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_adduppercase": {
+      "title": "Address in Upper Case",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_enableusetax": {
+      "title": "Enable Use Tax Assessment",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_enablevatin": {
+      "title": "Enable VAT In",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_entityusecode": {
+      "title": "Enable Entity/Use Code",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_additionalinfo": {
+      "title": "Additional Info",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_enablelogentries": {
+      "title": "Enable LogEntries",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_disabletaxvendorcredit": {
+      "title": "Disable Tax Calculation for Vendor Credits",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_abortworkflowscripts": {
+      "title": "Workflow Action Scripts",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_usetaxcredit": {
+      "title": "UseTax Credit Account",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_accountvalue": {
+      "title": "Account Value",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_disabletaxvendorbill": {
+      "title": "Disable Tax Calculation for Vendor Bills",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_enablediscount": {
+      "title": "Enable Discount Mechanism",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_usetaxdebit": {
+      "title": "UseTax Debit Account",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_disableloccode": {
+      "title": "Disable Location Code",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_netsuitetype": {
+      "title": "NetSuite Account Type",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_configflag": {
+      "title": "Config flag",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_state": {
+      "title": "Default State/Province",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_enableupccode": {
+      "title": "Enable UPC Code",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_abortsuitelets": {
+      "title": "Suitelets",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_servicetypes": {
+      "title": "Service Types",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_decimalplaces": {
+      "title": "Decimal Places",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_taxrate": {
+      "title": "Show Tax Rate",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_additionalinfo1": {
+      "title": "Additional Info1",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_additionalinfo2": {
+      "title": "Additional Info2",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_abortscheduledscripts": {
+      "title": "Scheduled Scripts",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_abortuserinterfaces": {
+      "title": "User Interfaces",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_vendortaxitem": {
+      "title": "Item for Vendor Charged Tax",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_address2": {
+      "title": "Default Address 2",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_disableline": {
+      "title": "Disable line item level Tax Calculation",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_vendorcode": {
+      "title": "Vendor Code",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_defshipcode": {
+      "title": "Default Shipping Code",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_licensekey": {
+      "title": "License Key",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_address1": {
+      "title": "Default Address 1",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_autoassessbill": {
+      "title": "Auto Self Assess on Imported Vendor bills",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_itemaccount": {
+      "title": "Send Item Account to AvaTax",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_zip": {
+      "title": "Default Zip",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_companyid": {
+      "title": "AvaTax Company ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_customercode": {
+      "title": "Customer Code",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_taxinclude": {
+      "title": "Tax Included",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_enableaddvalontran": {
+      "title": "Enable Address Validation on Transaction",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_glaccounts": {
+      "title": "GL Accounts",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_billapproved": {
+      "title": "Vendor Bill Approved",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_enablelogging": {
+      "title": "Enable Logging",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_discountmapping": {
+      "title": "Discount Mapping",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_addressee": {
+      "title": "Default Addressee",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_country": {
+      "title": "Default Country",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_url": {
+      "title": "URL",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_city": {
+      "title": "Default City",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_abortbulkbilling": {
+      "title": "Bulk Billing",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_disabletax": {
+      "title": "Disable Tax Calculation",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_udf2": {
+      "title": "User Defined 2",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_udf1": {
+      "title": "User Defined 1",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_abortcsvimports": {
+      "title": "CSV Imports",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_defaultcompanycode": {
+      "title": "Default AvaTax Company Code",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_showmessages": {
+      "title": "Show Warnings/Errors",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_enableaddvalflag": {
+      "title": "Enable Address Validation Flag",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_discounttaxcode": {
+      "title": "Discount Tax Code",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_abortwebservices": {
+      "title": "Web Services",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_taxcodemapping": {
+      "title": "Enable Tax Code Mapping",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_disabletaxquotes": {
+      "title": "Disable Tax Calculation for Quotes",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_taxaccrualdate": {
+      "title": "Tax Accrual Date",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_addbatchprocessing": {
+      "title": "Address Batch Processing",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_disableaddvalidation": {
+      "title": "Disable Address Validation",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_billtimename": {
+      "title": "Billable Time Name",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_useinvoiceaddress": {
+      "title": "Use Invoice Address on Returns for Tax Calculation",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_usepostingdate": {
+      "title": "Use Posting Date",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_disabletaxpurchaseorder": {
+      "title": "Disable Tax Calculation for Purchase Orders",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "custrecord_ava_disabletaxsalesorder",
+    "custrecord_ava_adduppercase",
+    "custrecord_ava_enableusetax",
+    "custrecord_ava_enablevatin",
+    "custrecord_ava_entityusecode",
+    "custrecord_ava_additionalinfo",
+    "externalId",
+    "lastmodifiedby",
+    "custrecord_ava_enablelogentries",
+    "custrecord_ava_disabletaxvendorcredit",
+    "custrecord_ava_abortworkflowscripts",
+    "custrecord_ava_usetaxcredit",
+    "custrecord_ava_accountvalue",
+    "custrecord_ava_disabletaxvendorbill",
+    "custrecord_ava_enablediscount",
+    "custrecord_ava_usetaxdebit",
+    "scriptId",
+    "custrecord_ava_disableloccode",
+    "custrecord_ava_netsuitetype",
+    "id",
+    "custrecord_ava_configflag",
+    "custrecord_ava_state",
+    "custrecord_ava_enableupccode",
+    "custrecord_ava_abortsuitelets",
+    "custrecord_ava_servicetypes",
+    "created",
+    "custrecord_ava_decimalplaces",
+    "custrecord_ava_taxrate",
+    "custrecord_ava_additionalinfo1",
+    "custrecord_ava_additionalinfo2",
+    "custrecord_ava_abortscheduledscripts",
+    "custrecord_ava_abortuserinterfaces",
+    "custrecord_ava_vendortaxitem",
+    "custrecord_ava_address2",
+    "custrecord_ava_disableline",
+    "custrecord_ava_vendorcode",
+    "custrecord_ava_defshipcode",
+    "custrecord_ava_licensekey",
+    "lastmodified",
+    "custrecord_ava_address1",
+    "name",
+    "custrecord_ava_autoassessbill",
+    "custrecord_ava_itemaccount",
+    "custrecord_ava_zip",
+    "custrecord_ava_companyid",
+    "custrecord_ava_customercode",
+    "custrecord_ava_taxinclude",
+    "isInactive",
+    "custrecord_ava_enableaddvalontran",
+    "custrecord_ava_glaccounts",
+    "custrecord_ava_billapproved",
+    "custrecord_ava_enablelogging",
+    "custrecord_ava_discountmapping",
+    "custrecord_ava_addressee",
+    "custrecord_ava_country",
+    "custrecord_ava_url",
+    "custrecord_ava_city",
+    "custrecord_ava_abortbulkbilling",
+    "custrecord_ava_disabletax",
+    "custrecord_ava_udf2",
+    "custrecord_ava_udf1",
+    "custrecord_ava_abortcsvimports",
+    "custrecord_ava_defaultcompanycode",
+    "custrecord_ava_showmessages",
+    "owner",
+    "custrecord_ava_enableaddvalflag",
+    "custrecord_ava_discounttaxcode",
+    "custrecord_ava_abortwebservices",
+    "custrecord_ava_taxcodemapping",
+    "custrecord_ava_disabletaxquotes",
+    "custrecord_ava_taxaccrualdate",
+    "custrecord_ava_addbatchprocessing",
+    "custrecord_ava_disableaddvalidation",
+    "abbreviation",
+    "custrecord_ava_billtimename",
+    "custrecord_ava_useinvoiceaddress",
+    "custrecord_ava_usepostingdate",
+    "custrecord_ava_disabletaxpurchaseorder"
+  ],
+  "x-ns-custom-record": true
+}

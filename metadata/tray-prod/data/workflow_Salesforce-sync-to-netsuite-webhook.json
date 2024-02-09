@@ -1,0 +1,550 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "801f5a59-ad89-464b-a829-7f95416f2d3a",
+      "created": "2023-12-03T14:25:57.607557Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "project_id": "228d6ee9-0240-4a1e-a98d-152f0f8c2b81",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "da84c4a6-07eb-4f43-b98b-5d98fdd7f0cc",
+        "created": "2023-12-03T14:33:56.547435Z"
+      },
+      "title": "Salesforce sync to netsuite webhook",
+      "description": "Webhook to cancel out for signature agreements in netsuite from a salesforce quote that has been canceled",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "terminate-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "branch-1",
+          "type": "branch",
+          "content": {
+            "__default__": [
+              {
+                "name": "trigger-reply-1",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "branch1": [
+              {
+                "name": "call-workflow-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "trigger-reply-2",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "branch2": [
+              {
+                "name": "call-workflow-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "call-workflow-3",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "trigger-reply-3",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        }
+      ],
+      "steps": {
+        "branch-1": {
+          "title": "Path",
+          "description": "Do the action according to the give path",
+          "connector": {
+            "name": "branch",
+            "version": "1.3"
+          },
+          "operation": "simple",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.path"
+            },
+            "branches": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "/v1/agreements/cancel"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "/v1/agreements/cancel"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "/v1/o2cjiraticket/cancel"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "/v1/o2cjiraticket/cancel"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "call-workflow-3": {
+          "title": "Cancel Jira Ticket",
+          "description": "Cancel the o2c jira ticket.\nInforming stage as Proposal as doesn't matter the stage to cancel tickets with type Quote.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "621f40f4-a95c-49b4-97e4-e962f2c0d73b"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "stageName": {
+                  "type": "string",
+                  "value": "Proposal"
+                },
+                "instance": {
+                  "type": "jsonpath",
+                  "value": "$.steps.call-workflow-2.response.account_id"
+                },
+                "o2cTicketLink": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.o2cTicketLink"
+                },
+                "o2cTicketType": {
+                  "type": "string",
+                  "value": "Quote"
+                }
+              }
+            }
+          }
+        },
+        "trigger-reply-1": {
+          "title": "400 - Unsupported",
+          "connector": {
+            "name": "trigger-reply",
+            "version": "1.1"
+          },
+          "operation": "trigger-reply",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "body": {
+              "type": "string",
+              "value": "Unsupported"
+            },
+            "status": {
+              "value": 400,
+              "type": "integer"
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Content-Type"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "application/json"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Get NS Metadata",
+          "description": "Calling this subflow to get the instance to use in the next step",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "8cd05cfc-a86e-4be8-8e66-4a05cf6550c5"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {}
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Cancel out for signature agree",
+          "description": "Cancel out for signature agreements from the quote informed",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "eefcff2e-b6c4-4599-96c9-87a826c0b2a1"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "quoteId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.quoteId"
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Matches Event Org ID?",
+          "description": "If the organization ID of the event doesn't match the organization ID of the current context, stop the process and fail the run.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.inputOrgId"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.envOrgId"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "FAIL Org IDs don't match",
+          "description": "Fails the run due to a mismatch between the organization ID for the current context and the organization ID of the event.",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "he event is from another organization ('{$.steps.script-1.result.inputOrgId}' instead of '{$.steps.script-1.result.envOrgId}'). Please fix the sandbox outbound messages list."
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get Organization ID",
+          "description": "Gets the organization ID for the current authentication.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "query",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "number"
+              },
+              "next_page_offset": {
+                "type": "null"
+              },
+              "records": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "Id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "query": {
+              "type": "string",
+              "value": "SELECT Id FROM Organization"
+            }
+          }
+        },
+        "trigger-reply-3": {
+          "title": "Trigger Event Reply",
+          "connector": {
+            "name": "trigger-reply",
+            "version": "1.1"
+          },
+          "operation": "trigger-reply",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "status": {
+              "value": 200,
+              "type": "integer"
+            },
+            "body": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result"
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Content-Type"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "application/json"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "trigger": {
+          "title": "Webhook",
+          "description": "This webhook is used when a user clicks the Cancel Button in salesforce",
+          "connector": {
+            "name": "webhook",
+            "version": "2.3"
+          },
+          "operation": "webhook_with_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "allow_cors": {
+              "value": false,
+              "type": "boolean"
+            },
+            "token": {
+              "type": "string",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQSflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+            }
+          }
+        },
+        "trigger-reply-2": {
+          "title": "Trigger Event Reply",
+          "connector": {
+            "name": "trigger-reply",
+            "version": "1.1"
+          },
+          "operation": "trigger-reply",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "status": {
+              "value": 200,
+              "type": "integer"
+            },
+            "body": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result"
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Content-Type"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "application/json"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "script-1": {
+          "title": "Fix org Ids",
+          "description": "Removed the last 3 digits from the id returned by salesforce, because in the tests the organization id returned by SF flow is without them.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "inputOrgId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.orgId"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "envOrgId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Id"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\treturn {\n    inputOrgId: getIdWithoutCheckSum(input.inputOrgId),\n    envOrgId: getIdWithoutCheckSum(input.envOrgId)\n  }\n};\n\nfunction getIdWithoutCheckSum(id) {\n  if (id.length === 18) {\n    return id.substring(0, 15);\n  }\n  return id;\n}"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "621f40f4-a95c-49b4-97e4-e962f2c0d73b",
+          "name": "Cancel O2C ticket"
+        },
+        {
+          "id": "8cd05cfc-a86e-4be8-8e66-4a05cf6550c5",
+          "name": "Get NS metadata"
+        },
+        {
+          "id": "eefcff2e-b6c4-4599-96c9-87a826c0b2a1",
+          "name": "Cancel Out for Signature Agreements"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

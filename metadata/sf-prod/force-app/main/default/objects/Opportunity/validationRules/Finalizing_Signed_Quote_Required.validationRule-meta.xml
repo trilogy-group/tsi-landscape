@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Finalizing_Signed_Quote_Required</fullName>
+    <active>true</active>
+    <description>Signed Quote is required for the `Win Type=Quote Signed`</description>
+    <errorConditionFormula>TEXT(StageName) = &apos;Finalizing&apos; &amp;&amp; TEXT(Win_Type__c) = &apos;Quote Signed&apos; &amp;&amp; ISBLANK(Signed_Quote__c) &amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)</errorConditionFormula>
+    <errorDisplayField>Signed_Quote__c</errorDisplayField>
+    <errorMessage>`Signed Quote` field should be populated with a doc URL for the Win Type=’Quote Signed’</errorMessage>
+</ValidationRule>

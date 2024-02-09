@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Uptick__c</fullName>
+    <description>125% for Standard, 135% for Gold, 145% for Platinum success</description>
+    <externalId>false</externalId>
+    <formula>Current_ARR__c *
+IF(TEXT(Success_Level__c)=&apos;Platinum&apos;,1.45,
+IF(TEXT(Success_Level__c)=&apos;Gold&apos;, 1.35,
+1.25))</formula>
+    <label>Uptick</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

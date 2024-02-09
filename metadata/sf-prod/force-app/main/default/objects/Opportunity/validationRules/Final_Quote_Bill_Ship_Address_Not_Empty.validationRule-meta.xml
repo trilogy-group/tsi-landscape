@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Final_Quote_Bill_Ship_Address_Not_Empty</fullName>
+    <active>true</active>
+    <description>LAMBDA-40548 adding validations for</description>
+    <errorConditionFormula>TEXT(StageName) = &apos;Final Quote&apos; 
+&amp;&amp; 
+NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+&amp;&amp; 
+OR(
+ISBLANK( SBQQ__PrimaryQuote__r.SBQQ__BillingStreet__c ),
+ISBLANK( SBQQ__PrimaryQuote__r.SBQQ__BillingCity__c ),
+ISBLANK( SBQQ__PrimaryQuote__r.SBQQ__BillingName__c ),
+ISBLANK( SBQQ__PrimaryQuote__r.SBQQ__BillingCountry__c ),
+ISBLANK( SBQQ__PrimaryQuote__r.SBQQ__ShippingStreet__c ),
+ISBLANK( SBQQ__PrimaryQuote__r.SBQQ__ShippingCity__c  ),
+ISBLANK( SBQQ__PrimaryQuote__r.SBQQ__ShippingName__c ),
+ISBLANK( SBQQ__PrimaryQuote__r.SBQQ__ShippingCountry__c )
+)</errorConditionFormula>
+    <errorDisplayField>SBQQ__PrimaryQuote__c</errorDisplayField>
+    <errorMessage>The billing/shipping address on Quote cannot be empty when Opportunity is moved to &apos;Final Quote&apos;</errorMessage>
+</ValidationRule>

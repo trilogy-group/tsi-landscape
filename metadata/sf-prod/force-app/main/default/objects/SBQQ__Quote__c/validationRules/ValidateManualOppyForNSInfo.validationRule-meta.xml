@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidateManualOppyForNSInfo</fullName>
+    <active>false</active>
+    <description>LAMBDA-49514 Validation rule to not allow an opportunity to move to Quote Followup or Finalizing if Quote.NetSuite ID and O2C Ticket link are empty and prevent reuse of generated SF Quote</description>
+    <errorConditionFormula>AND(SBQQ__Opportunity2__r.Product_Configuration__r.Processed_via_OTC__c,
+SBQQ__Opportunity2__r.Manual_O2C__c=TRUE,
+OR(ISPICKVAL(SBQQ__Opportunity2__r.StageName ,&quot;Quote Follow-Up&quot;),ISPICKVAL(SBQQ__Opportunity2__r.StageName ,&quot;Finalizing&quot;)),
+OR(ISBLANK(NetSuite_ID__c),ISBLANK(O2C_Ticket_Link__c)),
+ISPICKVAL(SBQQ__Status__c,&quot;Accepted&quot;),
+SBQQ__Primary__c,
+NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+)</errorConditionFormula>
+    <errorMessage>Netsuite Id and O2C Ticket Link cannot be blank of Manual Opportunity in finalizing or Quote Follow up stage</errorMessage>
+</ValidationRule>

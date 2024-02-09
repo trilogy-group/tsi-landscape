@@ -1,0 +1,2179 @@
+{
+  "type": "object",
+  "properties": {
+    "custitem_emea_country_of_origin": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "PR",
+            "PS",
+            "PT",
+            "PW",
+            "PY",
+            "QA",
+            "AD",
+            "AE",
+            "AF",
+            "AG",
+            "AI",
+            "AL",
+            "AM",
+            "AN",
+            "AO",
+            "AQ",
+            "AR",
+            "AS",
+            "AT",
+            "RE",
+            "AU",
+            "AW",
+            "AX",
+            "AZ",
+            "RO",
+            "BA",
+            "BB",
+            "RS",
+            "BD",
+            "BE",
+            "RU",
+            "BF",
+            "BG",
+            "RW",
+            "BH",
+            "BI",
+            "BJ",
+            "BL",
+            "BM",
+            "BN",
+            "BO",
+            "SA",
+            "BQ",
+            "SB",
+            "BR",
+            "SC",
+            "BS",
+            "SD",
+            "BT",
+            "SE",
+            "SG",
+            "BV",
+            "BW",
+            "SH",
+            "SI",
+            "BY",
+            "SJ",
+            "BZ",
+            "SK",
+            "SL",
+            "SM",
+            "SN",
+            "SO",
+            "CA",
+            "SR",
+            "CC",
+            "SS",
+            "ST",
+            "CD",
+            "CF",
+            "SV",
+            "CG",
+            "SX",
+            "CH",
+            "SY",
+            "CI",
+            "SZ",
+            "CK",
+            "CL",
+            "CM",
+            "CN",
+            "CO",
+            "CR",
+            "TC",
+            "TD",
+            "CS",
+            "TF",
+            "CU",
+            "CV",
+            "TG",
+            "CW",
+            "TH",
+            "CX",
+            "CY",
+            "TJ",
+            "TK",
+            "CZ",
+            "TL",
+            "TM",
+            "TN",
+            "TO",
+            "TR",
+            "TT",
+            "DE",
+            "TV",
+            "TW",
+            "DJ",
+            "TZ",
+            "DK",
+            "DM",
+            "DO",
+            "UA",
+            "UG",
+            "DZ",
+            "UM",
+            "EA",
+            "US",
+            "EC",
+            "EE",
+            "EG",
+            "EH",
+            "UY",
+            "UZ",
+            "VA",
+            "ER",
+            "VC",
+            "ES",
+            "VE",
+            "ET",
+            "VG",
+            "VI",
+            "VN",
+            "VU",
+            "FI",
+            "FJ",
+            "FK",
+            "FM",
+            "FO",
+            "FR",
+            "WF",
+            "GA",
+            "GB",
+            "WS",
+            "GD",
+            "GE",
+            "GF",
+            "GG",
+            "GH",
+            "GI",
+            "GL",
+            "GM",
+            "GN",
+            "GP",
+            "GQ",
+            "GR",
+            "GS",
+            "GT",
+            "GU",
+            "GW",
+            "GY",
+            "XK",
+            "HK",
+            "HM",
+            "HN",
+            "HR",
+            "YE",
+            "HT",
+            "HU",
+            "IC",
+            "ID",
+            "YT",
+            "IE",
+            "IL",
+            "IM",
+            "IN",
+            "IO",
+            "ZA",
+            "IQ",
+            "IR",
+            "IS",
+            "IT",
+            "ZM",
+            "JE",
+            "ZW",
+            "JM",
+            "JO",
+            "JP",
+            "KE",
+            "KG",
+            "KH",
+            "KI",
+            "KM",
+            "KN",
+            "KP",
+            "KR",
+            "KW",
+            "KY",
+            "KZ",
+            "LA",
+            "LB",
+            "LC",
+            "LI",
+            "LK",
+            "LR",
+            "LS",
+            "LT",
+            "LU",
+            "LV",
+            "LY",
+            "MA",
+            "MC",
+            "MD",
+            "ME",
+            "MF",
+            "MG",
+            "MH",
+            "MK",
+            "ML",
+            "MM",
+            "MN",
+            "MO",
+            "MP",
+            "MQ",
+            "MR",
+            "MS",
+            "MT",
+            "MU",
+            "MV",
+            "MW",
+            "MX",
+            "MY",
+            "MZ",
+            "NA",
+            "NC",
+            "NE",
+            "NF",
+            "NG",
+            "NI",
+            "NL",
+            "NO",
+            "NP",
+            "NR",
+            "NU",
+            "NZ",
+            "OM",
+            "PA",
+            "PE",
+            "PF",
+            "PG",
+            "PH",
+            "PK",
+            "PL",
+            "PM",
+            "PN"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "custitem_ava_grossweight": {
+      "title": "Gross Weight",
+      "type": "number",
+      "format": "float",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "isOnline": {
+      "title": "Display in Website",
+      "type": "boolean",
+      "description": "Check this box to make this item available online in your Web site. You cannot sell this item online unless you check this box. If the item is of the Other Charge for Sale or Resale subtype, checking this box does not make it available in the web store catalog. However, it becomes available during web store checkout."
+    },
+    "custitem_str_supplementary_unit_code": {
+      "title": "Supplementary code",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitem_clave_unidad_medida": {
+      "title": "Clave UM Fraccion Arancelaria",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitem_str_commodity_code": {
+      "title": "Commodity Code",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "custitem_zc_rate_tlrnce_percentage": {
+      "title": "Rate tolerance percentage",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "salesDescription": {
+      "title": "Sales Description",
+      "type": "string",
+      "description": "Enter a sales description for this item. You can enter letters and numbers. There is a 999 character limit. The sales description displays on transactions such as sales orders, cash sales and invoices. If you use the Web Store feature, the sales description displays immediately under the item&apos;s store display name on item list pages in your store or site, if you have not entered a store description for an item. Enter the store description on the Store subtab of the item record. The sales description also displays by default when the item is in the Web store shopping cart.",
+      "nullable": true
+    },
+    "custitemzuorasyncdate": {
+      "title": "Zuora Sync Date",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitem_end_of_life_date": {
+      "title": "End Of Life Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitem_zc_amt_tlrnce_amount": {
+      "title": "Amount tolerance fixed amount",
+      "type": "number",
+      "format": "float",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitemzuorataxcode": {
+      "title": "Zuora Tax Code",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "includeChildren": {
+      "title": "Include Children",
+      "type": "boolean",
+      "description": "Check the Include Children box to share the item with all the sub-subsidiaries associated with each subsidiary selected in the Subsidiary field. Note: When sharing items across subsidiaries, all of the options selected on the item record must be compatible across subsidiaries. For example, when entering an inventory item to be shared across subsidiaries, you should select Income and Asset accounts on the item record that are also shared across the same subsidiaries."
+    },
+    "internalId": {
+      "title": "Internal ID",
+      "type": "integer",
+      "description": "Use this ID number to create smart tags for your item templates, site templates, and custom Web site that you host with NetSuite.",
+      "format": "int64",
+      "nullable": true
+    },
+    "custitem_end_of_mtce_date": {
+      "title": "End Of M/S Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitem1": {
+      "title": "Z - ACS flag",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custitemzuoraproductrateplanname": {
+      "title": "Zuora Product Rate Plan Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitemzuorataxable": {
+      "title": "Zuora Taxable",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "description": "When you check this box, this item will no longer appear on a list unless you check the Show All box at the bottom of the list page."
+    },
+    "custitemzuoratype": {
+      "title": "Zuora Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitemzuorachargetype": {
+      "title": "Zuora Charge Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitem_ava_taxcode": {
+      "title": "AvaTax Taxcode",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitem_zc_rate_tlrnce_amount": {
+      "title": "Rate tolerance fixed amount",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitem_nso_is_ieps": {
+      "title": "Es IEPS",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "createdDate": {
+      "title": "Date Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "custitem_opt_out_ms": {
+      "title": "Opt-Out M/S",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custitem_zc_qty_tlrnce_percentage": {
+      "title": "Quantity tolerance percentage",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitemzuoracreateddate": {
+      "title": "Zuora Created Date",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "description": {
+      "title": "Description",
+      "type": "string",
+      "description": "Enter a description for this item. This description will appear in the Description column of sales forms.",
+      "nullable": true
+    },
+    "custitemzuoraid": {
+      "title": "Zuora ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "daysBeforeExpiration": {
+      "title": "Days Before Expiration",
+      "type": "integer",
+      "description": "If you want this item to expire, enter the number of days it should remain active after purchase. If this item is downloadable and the same customer purchases this item more than once, the countdown to expiration restarts with each purchase. Note: If this item is a gift certificate and the buyer lives in California, Connecticut, Louisiana, Massachusetts, New Hampshire, Rhode Island or Washington, by law the gift certificate cannot expire.",
+      "format": "int64",
+      "nullable": true
+    },
+    "itemId": {
+      "title": "Item Name/Number",
+      "type": "string",
+      "description": "Enter up to 250 characters for the name of this item. This name appears in lists on transactions. If you have the option of entering a display name and do not, the item name prints in the Item column of sales forms when Basic printing is used. If you have the option to enter a vendor name and do not, the item name prints in the Item column of purchase forms. If you have entered a display name, it will print on purchases instead of the item name when Basic printing is used.",
+      "nullable": true
+    },
+    "offerSupport": {
+      "title": "Offer Support",
+      "type": "boolean",
+      "description": "Check this box to offer support for this particular item. By offering support for items, customers can select on case records which item they are having trouble with."
+    },
+    "custitem_ava_udf2": {
+      "title": "UDF2",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitem_ava_udf1": {
+      "title": "UDF1",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitem_ste_taxschedule_coachingtext": {
+      "title": "Tax Schedule Coaching Text",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "subtype": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "Sale",
+            "Purchase",
+            "Resale"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "custitem_m_s_percentage": {
+      "title": "Maintenance/Support %",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "isFulfillable": {
+      "title": "Can be Fulfilled",
+      "type": "boolean",
+      "description": "Check the Can be Fulfilled/Received box to enable this item to be received and fulfilled during order processing. Clear this box if this item does not require being received and fulfilled. Note: Once this item has been added to transactions, this setting cannot be changed. This field is used when the Advanced Billing and Advanced Shipping features are both enabled."
+    },
+    "custitemzuorachargemodel": {
+      "title": "Zuora Charge Model",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitem_clave_prod_serv": {
+      "title": "Clave Producto Servicio",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitem_base_price_for_ms": {
+      "title": "Base Price for M/S Items Help",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitemzuoraproductname": {
+      "title": "Zuora Product Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitem_zc_amt_tlrnce_percentage": {
+      "title": "Amount tolerance percentage",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastModifiedDate": {
+      "title": "Last Modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "custitem_ava_netweight": {
+      "title": "Net Weight",
+      "type": "number",
+      "format": "float",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custitem_maximum_quantity": {
+      "title": "Maximum Quantity (hidden)",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "isGCoCompliant": {
+      "title": "Google Checkout Compliant",
+      "type": "boolean"
+    },
+    "custitem_renewals_exclusion": {
+      "title": "Renewals Exclusion",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custitemzuoraproductrateplanchargename": {
+      "title": "Zuora Product Rate Plan Charge Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "itemType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "Group",
+            "Discount",
+            "Description",
+            "EndGroup",
+            "GiftCert",
+            "Subtotal",
+            "Service",
+            "ShipItem",
+            "InvtPart",
+            "TaxItem",
+            "Payment",
+            "Expense",
+            "NonInvtPart",
+            "TaxGroup",
+            "Kit",
+            "Markup",
+            "OthCharge",
+            "DwnLdItem",
+            "Assembly",
+            "SubscriPlan"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "customForm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "-210",
+            "81",
+            "84",
+            "75",
+            "164",
+            "76"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "displayName": {
+      "title": "Display Name/Code",
+      "type": "string",
+      "description": "Enter an optional name of up to 250 characters for this item in addition to the Item Name. If you are integrating with a Yahoo! store, this field is imported from Yahoo!. The display name prints in the Item column of sales forms when Basic printing is used. If this item is a member of a kit, this name appears in the Item column when the Print Items box is checked. If you do not enter a display name, the item name appears on printed forms.",
+      "nullable": true
+    },
+    "custitem_zc_qty_tlrnce_amount": {
+      "title": "Quantity tolerance fixed amount",
+      "type": "number",
+      "format": "float",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "custitem_renew_with": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "incomeAccount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_nspbcs_item_planning_cat": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_str_supplementary_units": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "department": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_quantity_cap": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_zc_3wm_tlrnce_type_qty": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitemzuorabillingperiod": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_product_tier": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_zc_prevailing_quantity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_ste_item_taxitem_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "class": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_mtce_support_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_product_line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_ste_oss_taxschedule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_item_category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_support_level": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "translations": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "displayName": {
+                "title": "Display Name",
+                "type": "string",
+                "nullable": true
+              },
+              "language": {
+                "title": "Language",
+                "type": "string",
+                "nullable": true
+              },
+              "locale": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string",
+                    "enum": [
+                      "it_CH",
+                      "en_TC",
+                      "af_ZA",
+                      "es_EA",
+                      "es_EC",
+                      "pt_BR",
+                      "en_CY",
+                      "fr_LU",
+                      "nl_AN",
+                      "es_UY",
+                      "en_TT",
+                      "es_ES",
+                      "pt_ST",
+                      "en_DM",
+                      "en_TZ",
+                      "es_ES_EURO",
+                      "fr_ML",
+                      "de_DE_onLQA",
+                      "es_VE",
+                      "nl_BE",
+                      "da_DK",
+                      "pt_AO",
+                      "to_TO",
+                      "en_UG",
+                      "am_ET",
+                      "ss_SZ",
+                      "nl_BQ",
+                      "ar",
+                      "pt_AW",
+                      "ko_KR",
+                      "en_US",
+                      "fr_BE_EURO",
+                      "ko_KP",
+                      "si_AQ",
+                      "fr_MG",
+                      "el_GR",
+                      "be_BY",
+                      "en_AU",
+                      "he_IL",
+                      "en_AW",
+                      "es_SV",
+                      "en_BB",
+                      "ar_YE",
+                      "es_CO",
+                      "es_CL",
+                      "en_BM",
+                      "es_CR",
+                      "pa_IN",
+                      "en_SC",
+                      "en_BS",
+                      "sm_WS",
+                      "it_IT_EURO",
+                      "fr_KM",
+                      "es_CU",
+                      "en_SB",
+                      "en_SG",
+                      "en_BW",
+                      "en_SH",
+                      "en_BZ",
+                      "en_SL",
+                      "az_AZ",
+                      "fi_FI",
+                      "en_SS",
+                      "sr_YU",
+                      "en_CD",
+                      "en_CA",
+                      "ka_GE",
+                      "lv_LV",
+                      "uk_UA",
+                      "es_DO",
+                      "ur_PK",
+                      "ar_IQ",
+                      "fr_LU_EURO",
+                      "pt_PT",
+                      "fr_FR_EURO",
+                      "en_PH",
+                      "th_TH",
+                      "bn_BD",
+                      "si_LK",
+                      "en_PG",
+                      "hu_HU",
+                      "ar_SA",
+                      "ar_SD",
+                      "ru_KZ",
+                      "ar_BH",
+                      "nl_BE_EURO",
+                      "ro_MD",
+                      "en_QA",
+                      "ru_KG",
+                      "es_AR",
+                      "ta_IN",
+                      "sr_RS",
+                      "aa_ER",
+                      "en",
+                      "de_DE_EURO",
+                      "zh_MO",
+                      "en_AE",
+                      "ar_SY",
+                      "es_BO",
+                      "en_AI",
+                      "no_NO",
+                      "en_AG",
+                      "nl_SR",
+                      "fr_VU",
+                      "en_MW",
+                      "gu_AQ",
+                      "ar_TN",
+                      "nl_SX",
+                      "hi_IN",
+                      "en_NA",
+                      "mn_MN",
+                      "en_NG",
+                      "fr_FR",
+                      "ms_MY",
+                      "nl_CW",
+                      "uz_UZ",
+                      "ar_DJ",
+                      "sr_CS",
+                      "de_AT_EURO",
+                      "en_NZ",
+                      "es_PE",
+                      "es_PA",
+                      "fa_IR",
+                      "ar_DZ",
+                      "fr_GN",
+                      "lb_LU",
+                      "xx_US",
+                      "pt_CV",
+                      "sh_RS",
+                      "ht_HT",
+                      "fr_WF",
+                      "es_AR_onLQA",
+                      "es_PR",
+                      "ar_EG",
+                      "es_PY",
+                      "fr_GA",
+                      "en_KW",
+                      "de_AT",
+                      "ro_RO",
+                      "en_KY",
+                      "fr_FR_onLQA",
+                      "fr_DJ",
+                      "ca_ES_EURO",
+                      "cs_CZ",
+                      "en_LC",
+                      "pl_AQ",
+                      "fr_TD",
+                      "fr_TG",
+                      "es_MX",
+                      "sv_AX",
+                      "sk_SK",
+                      "en_LR",
+                      "en_LS",
+                      "ar_OM",
+                      "dz_BT",
+                      "te_IN",
+                      "de_LU_EURO",
+                      "sq_AL",
+                      "sv_SE",
+                      "sn_ZW",
+                      "es_NI",
+                      "en_IE_EURO",
+                      "my_MM",
+                      "en_MF",
+                      "en_MU",
+                      "it_IT",
+                      "pl_PL",
+                      "fr_BE",
+                      "fr_BF",
+                      "tr_TR",
+                      "fr_BI",
+                      "fr_BJ",
+                      "id_ID",
+                      "fr_RW",
+                      "en_ZM",
+                      "km_KH",
+                      "ja_JP",
+                      "de_DE",
+                      "fr_BL",
+                      "tg_TJ",
+                      "ar_QA",
+                      "de_CH",
+                      "zh_HK",
+                      "pt_PT_EURO",
+                      "en_JO",
+                      "en_JM",
+                      "fr_CA",
+                      "nl_NL_EURO",
+                      "fr_CF",
+                      "fr_CG",
+                      "fr_CD",
+                      "pa_AQ",
+                      "fr_CH",
+                      "xx_US_wthId",
+                      "fr_CI",
+                      "pt_GW",
+                      "vi_VN",
+                      "ru_MD",
+                      "fr_CM",
+                      "fr_SC",
+                      "en_KE",
+                      "ne_NP",
+                      "bs_BA",
+                      "sl_SI",
+                      "en_KN",
+                      "fr_SN",
+                      "ar_AE",
+                      "en_GY",
+                      "tl_PH",
+                      "ca_ES",
+                      "es_IC",
+                      "lo_LA",
+                      "kn_IN",
+                      "so_SO",
+                      "fr_PF",
+                      "ar_JO",
+                      "nl_NL",
+                      "is_IS",
+                      "fi_FI_EURO",
+                      "pt_MZ",
+                      "sk_SK_EURO",
+                      "sl_SI_EURO",
+                      "en_IE",
+                      "ms_BN",
+                      "hr_HR",
+                      "ar_KW",
+                      "de_LU",
+                      "lt_LT",
+                      "en_IN",
+                      "ps_AF",
+                      "en_ZA",
+                      "en_VC",
+                      "ru_RU",
+                      "sh_YU",
+                      "ar_LB",
+                      "mr_IN",
+                      "dv_MV",
+                      "fj_FJ",
+                      "zh_TW",
+                      "tk_TM",
+                      "ar_LY",
+                      "en_VU",
+                      "fr_NE",
+                      "en_FK",
+                      "es_GT",
+                      "fr_NC",
+                      "es_GQ",
+                      "fa_AF",
+                      "bg_BG",
+                      "hy_AM",
+                      "en_CY_EURO",
+                      "mk_MK",
+                      "ar_MA",
+                      "en_GD",
+                      "en_GB",
+                      "es_HN",
+                      "gu_IN",
+                      "en_GH",
+                      "et_EE",
+                      "en_GI",
+                      "zh_CN",
+                      "en_GM",
+                      "ar_MR"
+                    ]
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  }
+                }
+              },
+              "salesDescription": {
+                "title": "Sales Description",
+                "type": "string",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "parent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_zreports_transaction_code": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "correlatedItems": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "liftFld": {
+                "title": "Lift %",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "purchaseRateFld": {
+                "title": "Overall Purchase Rate",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "itemNKeyFld": {
+                "title": "Item",
+                "type": "string",
+                "nullable": true
+              },
+              "countFld": {
+                "title": "Count",
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "correlationFld": {
+                "title": "Correlation %",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "custitem_revenue_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_quantity_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "billingSchedule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_replaced_with": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_zc_3wm_tlrnce_type_rate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_zc_prevailing_rate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_item_pricing_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_swv_cr_item_pricing_option": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_zc_prevailing_amount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "price": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "object",
+          "properties": {
+            "links": {
+              "title": "Links",
+              "type": "array",
+              "readOnly": true,
+              "items": {
+                "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+              }
+            },
+            "isInactive": {
+              "title": "Inactive",
+              "type": "boolean",
+              "description": "When you check this box, this item will no longer appear on a list unless you check the Show All box at the bottom of the list page."
+            },
+            "priceQty": {
+              "title": "Sequence Number",
+              "type": "integer",
+              "format": "int64",
+              "nullable": true
+            },
+            "price": {
+              "title": "Amount",
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "refName": {
+              "title": "Reference Name",
+              "type": "string"
+            },
+            "priceLevel": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "title": "Internal identifier",
+                  "type": "string"
+                },
+                "refName": {
+                  "title": "Reference Name",
+                  "type": "string"
+                },
+                "externalId": {
+                  "title": "External identifier",
+                  "type": "string"
+                },
+                "links": {
+                  "title": "Links",
+                  "type": "array",
+                  "readOnly": true,
+                  "items": {
+                    "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                  }
+                }
+              }
+            }
+          },
+          "x-ns-filterable": []
+        }
+      }
+    },
+    "subsidiary": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/subsidiary"
+          }
+        }
+      }
+    },
+    "custitem_ste_taxschedule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_sta_fin_vat_nature": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_ava_unitofmeasure": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custitem_zc_3wm_tlrnce_type_amt": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "liabilityAccount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "parent",
+    "custitem_zc_3wm_tlrnce_type_amt",
+    "custitem_emea_country_of_origin",
+    "externalId",
+    "custitem_ava_grossweight",
+    "custitem_str_supplementary_units",
+    "isOnline",
+    "custitem_clave_unidad_medida",
+    "custitem_ste_taxschedule",
+    "custitem_mtce_support_type",
+    "custitem_str_commodity_code",
+    "id",
+    "custitem_zc_3wm_tlrnce_type_qty",
+    "custitem_zc_rate_tlrnce_percentage",
+    "custitem_support_level",
+    "custitem_quantity_type",
+    "custitemzuorasyncdate",
+    "custitem_item_pricing_type",
+    "custitem_ste_oss_taxschedule",
+    "custitem_zc_prevailing_quantity",
+    "custitem_swv_cr_item_pricing_option",
+    "custitemzuorabillingperiod",
+    "custitem_revenue_type",
+    "custitem_end_of_life_date",
+    "custitem_sta_fin_vat_nature",
+    "subsidiary",
+    "custitem_zc_amt_tlrnce_amount",
+    "custitemzuorataxcode",
+    "includeChildren",
+    "custitem_end_of_mtce_date",
+    "custitem_zc_3wm_tlrnce_type_rate",
+    "custitem1",
+    "custitemzuoraproductrateplanname",
+    "custitemzuorataxable",
+    "isInactive",
+    "custitemzuoratype",
+    "custitemzuorachargetype",
+    "custitem_ava_taxcode",
+    "custitem_zc_rate_tlrnce_amount",
+    "custitem_nso_is_ieps",
+    "createdDate",
+    "custitem_opt_out_ms",
+    "custitem_renew_with",
+    "custitem_zc_qty_tlrnce_percentage",
+    "custitemzuoracreateddate",
+    "description",
+    "incomeAccount",
+    "custitem_nspbcs_item_planning_cat",
+    "custitemzuoraid",
+    "itemId",
+    "custitem_item_category",
+    "custitem_ava_udf2",
+    "custitem_ava_udf1",
+    "subtype",
+    "custitem_quantity_cap",
+    "isFulfillable",
+    "department",
+    "class",
+    "custitemzuorachargemodel",
+    "custitem_ste_item_taxitem_type",
+    "custitem_replaced_with",
+    "custitem_clave_prod_serv",
+    "custitemzuoraproductname",
+    "custitem_zc_amt_tlrnce_percentage",
+    "custitem_product_line",
+    "lastModifiedDate",
+    "custitem_ava_netweight",
+    "custitem_maximum_quantity",
+    "billingSchedule",
+    "custitem_renewals_exclusion",
+    "custitemzuoraproductrateplanchargename",
+    "itemType",
+    "custitem_product_tier",
+    "custitem_ava_unitofmeasure",
+    "custitem_zc_prevailing_amount",
+    "displayName",
+    "location",
+    "custitem_zreports_transaction_code",
+    "custitem_zc_qty_tlrnce_amount",
+    "custitem_zc_prevailing_rate"
+  ]
+}

@@ -1,0 +1,1787 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "ddd2aa04-5767-4f2a-ba91-7f90b9e52c1c",
+      "created": "2022-11-30T21:55:27.002133Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "group": "afabb9fc-b596-43ee-a29e-e582e7006b34",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "5f602743-49e0-4ec3-8a17-12a3bc72980e",
+        "created": "2023-06-08T16:12:55.397215Z"
+      },
+      "title": "Subflow Sync SF Account to NS",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "accountId": {
+              "type": "string",
+              "title": "Account Id"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "accountId"
+          ],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "updated": {
+              "title": "Updated",
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "updated"
+          ],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "callable-workflow-response-3",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "netsuite-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-4",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-5",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-6",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-7",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-2",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "netsuite-4",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "callable-workflow-response-2",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": [
+              {
+                "name": "callable-workflow-response-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        }
+      ],
+      "steps": {
+        "netsuite-2": {
+          "title": "Get Countries",
+          "description": "Run the SQL to get the subscription term",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.6"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "x-netsuite-jobid": {
+                        "type": "string"
+                      },
+                      "preference-applied": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "p3p": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "hasMore": {
+                        "type": "boolean"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "id": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "offset": {
+                        "type": "number"
+                      },
+                      "totalResults": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "string",
+                  "value": "{\n  \"q\": \"SELECT name, id FROM country\"\n}"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Has something changed?",
+          "description": "We need to update the object only if there are changes. This is needed to prevent circular updates between NS and SF.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.url",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-6.result",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.phone",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-7.result.phone",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.fax",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-7.result.fax",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result.addressChanged"
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "From another system?",
+          "description": "If the NetSuite ID is empty and the Product Billing System ID is filled in, the SF account is from another system and doesn't sync into NetSuite.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].NetSuite_ID__c"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Product_Billing_System_ID__c"
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "script-7": {
+          "title": "fix phones",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "sfPhone"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Phone",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "sfFax"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Fax",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsPhone"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.phone",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsFax"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.fax",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\t// Remove all non-digit characters from the Salesforce numbers\n  const sfPhone = input.sfPhone ? input.sfPhone.replace(/\\D/g, \"\") : undefined;\n  const sfFax = input.sfFax ?  input.sfFax.replace(/\\D/g, \"\") : undefined;\n\n  // netsuite doesn't accept numbers with less than 7 digits\n  return {\n    phone: !sfPhone || sfPhone.length < 7 ? input.nsPhone : input.sfPhone,\n    fax: !sfFax || sfFax.length < 7 ? input.nsFax : input.sfFax\n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-4": {
+          "title": "Get State",
+          "description": "Get short state name",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "string"
+              },
+              "console": {
+                "type": "array",
+                "items": {}
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "account"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0]"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "states"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.response.body.items"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  let account = input.account;\n  // Convert state to short name\n  const mapStates = input.states.reduce((p,c,i)=>\n  {\n   p[c.fullname.toLowerCase()]=c.shortname; // FullName to short name mapping\n   return p;\n  },{});\n  let state = account.ShippingState ? account.ShippingState.toLowerCase() : undefined;\n  if(mapStates[state]){\n    account.ShippingState = mapStates[state]; // We can use short names only\n  }\n  state = account.BillingState ? account.BillingState.toLowerCase() : undefined;\n  if(mapStates[state]){\n    account.BillingState = mapStates[state]; // We can use short names only\n  }\n  return {\n    shippingState: account.ShippingState,\n    billingState: account.BillingState\n  }\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "callable-workflow-response-2": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "updated": {
+                  "value": true,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "netsuite-4": {
+          "title": "Update Customer",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.5"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "customer"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-1.records[0].NetSuite_ID__c"
+            },
+            "writable_record_fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "url"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-6.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "phone"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-7.result.phone",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "fax"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-7.result.fax",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "addressBook"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "netsuite-3": {
+          "title": "Load States",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.5"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "x-netsuite-jobid": {
+                        "type": "string"
+                      },
+                      "preference-applied": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "p3p": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "hasMore": {
+                        "type": "boolean"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "addr1": {
+                              "type": "string"
+                            },
+                            "addressbookaddress": {
+                              "type": "string"
+                            },
+                            "addressee": {
+                              "type": "string"
+                            },
+                            "addrtext": {
+                              "type": "string"
+                            },
+                            "city": {
+                              "type": "string"
+                            },
+                            "country": {
+                              "type": "string"
+                            },
+                            "defaultbilling": {
+                              "type": "string"
+                            },
+                            "defaultshipping": {
+                              "type": "string"
+                            },
+                            "dropdownstate": {
+                              "type": "string"
+                            },
+                            "entity": {
+                              "type": "string"
+                            },
+                            "internalid": {
+                              "type": "string"
+                            },
+                            "label": {
+                              "type": "string"
+                            },
+                            "lastmodifieddate": {
+                              "type": "string"
+                            },
+                            "nkey": {
+                              "type": "string"
+                            },
+                            "override": {
+                              "type": "string"
+                            },
+                            "recordowner": {
+                              "type": "string"
+                            },
+                            "state": {
+                              "type": "string"
+                            },
+                            "zip": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "offset": {
+                        "type": "number"
+                      },
+                      "totalResults": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-3.result"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get Account",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.2"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Accounts",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Account",
+                  "properties": {
+                    "Name": {
+                      "name": "Name",
+                      "type": "string",
+                      "title": "Account Name"
+                    },
+                    "Website": {
+                      "name": "Website",
+                      "type": "string",
+                      "title": "Website"
+                    },
+                    "Description": {
+                      "name": "Description",
+                      "type": "string",
+                      "title": "Account Description"
+                    },
+                    "Phone": {
+                      "name": "Phone",
+                      "type": "string",
+                      "title": "Account Phone"
+                    },
+                    "ShippingCountry": {
+                      "name": "ShippingCountry",
+                      "type": "string",
+                      "title": "Shipping Country"
+                    },
+                    "ShippingCity": {
+                      "name": "ShippingCity",
+                      "type": "string",
+                      "title": "Shipping City"
+                    },
+                    "ShippingStreet": {
+                      "name": "ShippingStreet",
+                      "type": "string",
+                      "title": "Shipping Street"
+                    },
+                    "ShippingState": {
+                      "name": "ShippingState",
+                      "type": "string",
+                      "title": "Shipping State/Province"
+                    },
+                    "Type": {
+                      "name": "Type",
+                      "type": "string",
+                      "title": "Account Type"
+                    },
+                    "NetSuite_ID__c": {
+                      "name": "NetSuite_ID__c",
+                      "type": "string",
+                      "title": "NetSuite ID"
+                    },
+                    "ShippingPostalCode": {
+                      "name": "ShippingPostalCode",
+                      "type": "string",
+                      "title": "Shipping Zip/Postal Code"
+                    },
+                    "Fax": {
+                      "name": "Fax",
+                      "type": "string",
+                      "title": "Account Fax"
+                    },
+                    "BillingCity": {
+                      "name": "BillingCity",
+                      "type": "string",
+                      "title": "Billing City"
+                    },
+                    "BillingCountry": {
+                      "name": "BillingCountry",
+                      "type": "string",
+                      "title": "Billing Country"
+                    },
+                    "BillingState": {
+                      "name": "BillingState",
+                      "type": "string",
+                      "title": "Billing State/Province"
+                    },
+                    "BillingStreet": {
+                      "name": "BillingStreet",
+                      "type": "string",
+                      "title": "Billing Street"
+                    },
+                    "BillingPostalCode": {
+                      "name": "BillingPostalCode",
+                      "type": "string",
+                      "title": "Billing Zip/Postal Code"
+                    },
+                    "Product_Billing_System_ID__c": {
+                      "name": "Product_Billing_System_ID__c",
+                      "type": "string",
+                      "title": "Product Billing System ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Name"
+                },
+                {
+                  "type": "string",
+                  "value": "Website"
+                },
+                {
+                  "type": "string",
+                  "value": "Description"
+                },
+                {
+                  "type": "string",
+                  "value": "Phone"
+                },
+                {
+                  "type": "string",
+                  "value": "ShippingCountry"
+                },
+                {
+                  "type": "string",
+                  "value": "ShippingCity"
+                },
+                {
+                  "type": "string",
+                  "value": "ShippingStreet"
+                },
+                {
+                  "type": "string",
+                  "value": "ShippingState"
+                },
+                {
+                  "type": "string",
+                  "value": "Type"
+                },
+                {
+                  "type": "string",
+                  "value": "NetSuite_ID__c"
+                },
+                {
+                  "type": "string",
+                  "value": "ShippingPostalCode"
+                },
+                {
+                  "type": "string",
+                  "value": "Fax"
+                },
+                {
+                  "type": "string",
+                  "value": "BillingCity"
+                },
+                {
+                  "type": "string",
+                  "value": "BillingCountry"
+                },
+                {
+                  "type": "string",
+                  "value": "BillingState"
+                },
+                {
+                  "type": "string",
+                  "value": "BillingStreet"
+                },
+                {
+                  "type": "string",
+                  "value": "BillingPostalCode"
+                },
+                {
+                  "type": "string",
+                  "value": "Product_Billing_System_ID__c"
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "Account"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Id"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.accountId"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "script-6": {
+          "title": "Fix Website Protocol",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "website"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Website"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  if (!input.website) {\n    return null;\n  }\n  if(/^http:\\/\\/|^https:\\/\\//.test(input.website)){\n  \treturn input.website;\n  } else {\n\t\treturn 'http://'+input.website;\n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-1": {
+          "title": "Get Addresses",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "addressBook"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.addressBook.items"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  return {\n    shippingAddress: input.addressBook.find((f) => f.defaultShipping === true),\n    billingAddress: input.addressBook.find((f) => f.defaultBilling === true)\n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "updated": {
+                  "value": false,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "script-3": {
+          "title": "Get States SQL",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "countries"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\treturn {\n    q: `SELECT state.fullname, state.shortname, country.name\n        FROM state\n        JOIN country on country.id=state.country\n        WHERE country.id in ('${input.countries.shippingCountry}','${input.countries.billingCountry}')\n         OR country.name in ('${input.countries.shippingCountry}','${input.countries.billingCountry}')`};\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get Customer",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.5"
+          },
+          "operation": "get_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-1.records[0].NetSuite_ID__c"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "customer"
+            },
+            "expand_sub_resources": {
+              "type": "boolean",
+              "value": true
+            }
+          }
+        },
+        "script-5": {
+          "title": "Get Updated Addr",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "object",
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "addressBookAddress": {
+                          "type": "object",
+                          "properties": {
+                            "country": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "city": {
+                              "type": "string"
+                            },
+                            "addr1": {
+                              "type": "string"
+                            },
+                            "addrPhone": {
+                              "type": "string"
+                            },
+                            "state": {
+                              "type": "string"
+                            },
+                            "zip": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "defaultBilling": {
+                          "type": "boolean"
+                        },
+                        "id": {
+                          "type": "number"
+                        },
+                        "internalId": {
+                          "type": "number"
+                        },
+                        "addressId": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "somethingHasChanged": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "console": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "addresses"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "account"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0]"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "countries"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "states"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-4.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  let account = input.account;\n  let addressBook = {\n    items: [],\n    addressChanged: false\n  };\n\n  account.ShippingCountry = input.countries.shippingCountry;\n  account.ShippingState = input.states.shippingState;\n  if (account.ShippingCountry && account.ShippingStreet) {\n    const newAdress = {\n      addressee: account.Name,\n      country: { id: account.ShippingCountry },\n      city: account.ShippingCity,\n      addr1: account.ShippingStreet,\n      state: account.ShippingState,\n      zip: account.ShippingPostalCode\n    };\n\n    const itemToAdd = {\n      addressBookAddress: newAdress,\n      defaultShipping: true\n    };\n    if (\n      input.addresses.shippingAddress &&\n      input.addresses.shippingAddress.defaultBilling === false\n    ) {\n      // Update an exisitng address\n      itemToAdd.id = input.addresses.shippingAddress.id;\n      itemToAdd.internalId = input.addresses.shippingAddress.id;\n      itemToAdd.addressId = input.addresses.shippingAddress.id.toString();\n    }\n\n    if (\n      input.addresses.shippingAddress &&\n      input.addresses.shippingAddress.label ===\n      input.addresses.shippingAddress.addressBookAddress.addr1\n    ) {\n      itemToAdd.label = newAdress.addr1;\n    }\n\n    if (isAddressChanged(input.addresses.shippingAddress, newAdress)) {\n      addressBook.items.push(itemToAdd);\n      addressBook.addressChanged = true;\n    }\n  }\n\n  account.BillingCountry = input.countries.billingCountry;\n  account.BillingState = input.states.billingState;\n  if (account.BillingCountry && account.BillingStreet) {\n    const newAdress = {\n      addressee: account.Name,\n      country: { id: account.BillingCountry },\n      city: account.BillingCity,\n      addr1: account.BillingStreet,\n      state: account.BillingState,\n      zip: account.BillingPostalCode\n    };\n\n    const itemToAdd = {\n      addressBookAddress: newAdress,\n      defaultBilling: true\n    };\n\n    if (isAddressChanged(input.addresses.billingAddress, newAdress)) {\n      addressBook.items.push(itemToAdd);\n      addressBook.addressChanged = true;\n    }\n  }\n  return addressBook;\n};\n\nfunction isAddressChanged(nsAddress, newAdress) {\n  return (\n    !nsAddress ||\n    !nsAddress.addressBookAddress.country ||\n    newAdress.country.id != nsAddress.addressBookAddress.country.id ||\n    newAdress.city != nsAddress.addressBookAddress.city ||\n    newAdress.addr1 != nsAddress.addressBookAddress.addr1 ||\n    newAdress.state != nsAddress.addressBookAddress.state ||\n    newAdress.zip != nsAddress.addressBookAddress.zip\n  );\n}"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-2": {
+          "title": "Get Country",
+          "description": "Get country id",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "string"
+              },
+              "console": {
+                "type": "array",
+                "items": {}
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "account"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0]"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "countries"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.response.body.items"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  let account = input.account;\n  //Convert country name to id if possible\n  const mapCountries = input.countries.reduce((p,c,i)=>\n  {\n   p[c.name.toLowerCase()]=c.id; // Name to Id mapping\n   return p;\n  },{});\n  mapCountries['usa'] = 'US';\n  mapCountries['uk'] = 'GB';\n  let country = account.ShippingCountry ? account.ShippingCountry.toLowerCase() : undefined;\n  if(mapCountries[country]){\n    account.ShippingCountry = mapCountries[country];\n  }\n  country = account.BillingCountry ? account.BillingCountry.toLowerCase() : undefined;\n  if(mapCountries[country]){\n    account.BillingCountry = mapCountries[country];\n  }\n  return {\n    shippingCountry: account.ShippingCountry,\n    billingCountry: account.BillingCountry\n  }\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "callable-workflow-response-3": {
+          "title": "Skips without error",
+          "description": "If the SF account is related to another system, skips without error.",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "updated": {
+                  "value": false,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": []
+    }
+  ],
+  "projects": []
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Undesirable_Law_or_Jurisdiction__c</fullName>
+    <externalId>false</externalId>
+    <formula>!CONTAINS(&quot;:US:USA:&quot;,&quot;:&quot; &amp; Contract_Law_Country__c &amp; &quot;:&quot;) || !CONTAINS(&quot;:TX:NV:IL:WA:MD:&quot;,&quot;:&quot; &amp; Contract_Law_State__c &amp; &quot;:&quot;) || (!ISBLANK(Exclusive_Jurisdiction__c) &amp;&amp; !CONTAINS(&quot;:Travis County:TX:USA:US:&quot;,&quot;:&quot; &amp;  Exclusive_Jurisdiction__c &amp; &quot;:&quot;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Undesirable Law or Jurisdiction</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

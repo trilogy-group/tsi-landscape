@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Direct_liability_disclaimer__c</fullName>
+    <description>Direct liability disclaimer</description>
+    <externalId>false</externalId>
+    <formula>ISBLANK(Indemnifiable_losses_liability_limit__c) || !Limitation_of_liability__c</formula>
+    <inlineHelpText>Direct liability disclaimer</inlineHelpText>
+    <label>Direct liability disclaimer</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

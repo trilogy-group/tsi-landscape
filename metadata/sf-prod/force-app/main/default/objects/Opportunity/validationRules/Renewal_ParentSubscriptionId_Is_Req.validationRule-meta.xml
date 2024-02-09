@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_ParentSubscriptionId_Is_Req</fullName>
+    <active>true</active>
+    <description>Updated the VR as per: LAMBDA-23898</description>
+    <errorConditionFormula>ISPICKVAL(Type , &apos;Renewal&apos;)
+&amp;&amp; ISBLANK(Parent_Subscription_ID__c)
+&amp;&amp; (ISNEW() || CreatedDate &gt;= DATETIMEVALUE(&apos;2022-02-18 00:00:00&apos;))
+&amp;&amp; Not (
+   Text(StageName)=&quot;Won&apos;t Process&quot; ||
+   Text(Loss_Reason__c) = &apos;Prime&apos; ||
+   Text(Loss_Reason__c) = &apos;Duplicate&apos; ||
+   Text(Loss_Reason__c) = &apos;Handled by the BU&apos; ||
+   Text(Loss_Reason__c) = &apos;Data Quality&apos; ||
+   Text(Loss_Reason__c) = &apos;Handled by Central Renewals&apos;
+)
+&amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorDisplayField>Parent_Subscription_ID__c</errorDisplayField>
+    <errorMessage>On the Renewal opportunity, &apos;Parent Subscription Id&apos; is required for opportunities created on or after 02/18/22.</errorMessage>
+</ValidationRule>

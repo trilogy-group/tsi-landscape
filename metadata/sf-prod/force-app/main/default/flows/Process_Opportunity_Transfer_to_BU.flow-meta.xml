@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <description>LAMBDA-64838 - Calls Subflow Submit Opportunity for Transfer to BU</description>
+    <interviewLabel>Process Opportunity Transfer to BU {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Process Opportunity Transfer to BU</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <start>
+        <locationX>143</locationX>
+        <locationY>53</locationY>
+        <connector>
+            <targetReference>Submit_for_transfer_to_BU_approval</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Submit_for_transfer_to_BU_approval</name>
+        <label>Submit for transfer to BU approval</label>
+        <locationX>651</locationX>
+        <locationY>69</locationY>
+        <flowName>Subflow_Submit_Opportunity_for_Transfer_to_BU</flowName>
+        <inputAssignments>
+            <name>recordId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

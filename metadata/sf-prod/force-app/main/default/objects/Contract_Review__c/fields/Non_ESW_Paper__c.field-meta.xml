@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_ESW_Paper__c</fullName>
+    <externalId>false</externalId>
+    <formula>!ISPICKVAL(Master_Agreement_Paper__c,&apos;ESW Std&apos;) || !ISPICKVAL(Latest_Signed_Quote_Paper__c, &apos;ESW Std&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Non-ESW Paper</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

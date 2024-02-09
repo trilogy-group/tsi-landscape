@@ -1,0 +1,236 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_pre_code_intra_sale_serv": {
+      "title": "Intra-EU Sales Services",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_pre_code_dom_sale_serv": {
+      "title": "Domestic Sales Services",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_pre_code_intra_pur_goods": {
+      "title": "Intra-EU Purchases Goods",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_pre_code_dom_pur_goods": {
+      "title": "Domestic Purchases Goods",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_pre_code_exports_serv": {
+      "title": "Exports Services",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_pre_code_dom_sale_goods": {
+      "title": "Domestic Sales Goods",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_pre_code_exports_goods": {
+      "title": "Exports Goods",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_pre_code_intra_sale_goods": {
+      "title": "Intra-EU Sales Goods",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_pre_code_state": {
+      "title": "State Code",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_pre_code_imports_goods": {
+      "title": "Imports Goods",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_pre_code_intra_pur_serv": {
+      "title": "Intra-EU Purchases Services",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "recordId": {
+      "title": "Record ID",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_pre_code_imports_serv": {
+      "title": "Imports Services",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_pre_code_dom_pur_serv": {
+      "title": "Domestic Purchases Services",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ste_pre_code_country": {
+      "title": "Country Code",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "custrecord_ste_pre_code_intra_sale_serv",
+    "custrecord_ste_pre_code_dom_sale_serv",
+    "externalId",
+    "lastmodifiedby",
+    "custrecord_ste_pre_code_intra_pur_goods",
+    "custrecord_ste_pre_code_dom_pur_goods",
+    "scriptId",
+    "custrecord_ste_pre_code_exports_serv",
+    "custrecord_ste_pre_code_dom_sale_goods",
+    "id",
+    "custrecord_ste_pre_code_exports_goods",
+    "custrecord_ste_pre_code_intra_sale_goods",
+    "owner",
+    "created",
+    "abbreviation",
+    "custrecord_ste_pre_code_state",
+    "custrecord_ste_pre_code_imports_goods",
+    "custrecord_ste_pre_code_intra_pur_serv",
+    "recordId",
+    "custrecord_ste_pre_code_imports_serv",
+    "custrecord_ste_pre_code_dom_pur_serv",
+    "lastmodified",
+    "name",
+    "custrecord_ste_pre_code_country"
+  ],
+  "x-ns-custom-record": true
+}

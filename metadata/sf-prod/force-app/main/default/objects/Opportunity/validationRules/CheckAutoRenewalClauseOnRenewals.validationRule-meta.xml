@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CheckAutoRenewalClauseOnRenewals</fullName>
+    <active>true</active>
+    <description>LAMBDA-61486 verify that the opportunity when moving to Final Quote or further then Auto renewal clause field needs to filled in</description>
+    <errorConditionFormula>AND(
+    IsPickval(Type,&apos;Renewal&apos;),
+    ISCHANGED(StageName),
+    OR(
+        ISPICKVAL(StageName, &quot;Final Quote&quot;),
+        ISPICKVAL(StageName, &quot;Quote Follow-Up&quot;),
+        ISPICKVAL(StageName, &quot;Finalizing&quot;),
+        ISPICKVAL(StageName, &quot;Closed Won&quot;),
+        ISPICKVAL(StageName, &quot;Co-Term&quot;)
+    ),
+    OR(
+        ISBLANK(TEXT(CurrentContractHasAutoRenewalClause__c)),
+        AND(
+            ISPICKVAL(CurrentContractHasAutoRenewalClause__c, &quot;Yes&quot;),
+            OR(
+                ISBLANK(Previous_Quote_with_AR_clause__c),
+                ISBLANK(Customer_Termination_Notice_Period__c)
+            )
+        )
+    )
+)
+&amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorMessage>Please fill in the &apos;Has Auto-Renewal Clause&apos; field for the opportunity. If the field is set to &apos;yes&apos;, please also fill in the &apos;Previous Quote With AR Clause&apos; and &apos;Customer Termination Notice Period&apos; fields.</errorMessage>
+</ValidationRule>

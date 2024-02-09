@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Proof_of_Work_URL_must_contain_http</fullName>
+    <active>true</active>
+    <description>LAMBDA-58736. accepting text values on the Call_Recording_URL__c  field resulted issue on reporting.</description>
+    <errorConditionFormula>not(CONTAINS( Call_Recording_URL__c , &quot;http&quot;))</errorConditionFormula>
+    <errorMessage>URL must start with &apos;http&apos;</errorMessage>
+</ValidationRule>

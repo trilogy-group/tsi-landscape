@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AR_Quote__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>We have two quotes: 1) Offer quote - what we want the customer to sign. 2) Auto-Renewal quote - what will be the default pricing if the customer doesn&apos;t sign. This field stores a reference to the AR Quote.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Auto-Renewal Quote will be used if customer doesn&apos;t sign the primary quote and includes AR pricing. If we go to auto-renewal this quote will replace the Primary Quote.</inlineHelpText>
+    <label>AR Quote</label>
+    <referenceTo>SBQQ__Quote__c</referenceTo>
+    <relationshipLabel>Opportunities (AR Quote)</relationshipLabel>
+    <relationshipName>Opportunities</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

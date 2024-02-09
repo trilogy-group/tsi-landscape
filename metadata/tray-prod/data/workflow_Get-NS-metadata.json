@@ -1,0 +1,138 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "8cd05cfc-a86e-4be8-8e66-4a05cf6550c5",
+      "created": "2023-06-23T12:21:00.061729Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "0c145cd5-0a3a-480f-bd7e-2cc8a66fd232",
+      "version": {
+        "id": "9380f29c-718c-43eb-b01d-e20a7321d6a6",
+        "created": "2023-10-25T08:19:56.606182Z"
+      },
+      "title": "Get NS metadata",
+      "description": "Returns metadata for the target NS instance.",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "account_id": {
+              "type": "string",
+              "title": "Account ID"
+            },
+            "url": {
+              "title": "URL",
+              "type": "string"
+            },
+            "restlet_url": {
+              "title": "Restlet URL",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "trigger": {
+          "title": "Sync call",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "callable-workflow-response-1": {
+          "title": "Return metadata",
+          "description": "Returns metadata for the target NS instance.",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result"
+            }
+          }
+        },
+        "script-1": {
+          "title": "Build metadata",
+          "description": "Builds metadata for the target NS instance, based on the workflow title.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "workflowTitle"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.env.workflow_title"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n\tconst accountId = \"4914352\" + (input.workflowTitle.startsWith(\"[full]\") ? \"_SB2\" : \"\");\n  const instance = accountId.replace('_', '-').toLowerCase();\n  return {\n  \taccount_id: accountId,\n    url: `https://${instance}.app.netsuite.com`,\n    restlet_url: `https://${instance}.restlets.api.netsuite.com`,\n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

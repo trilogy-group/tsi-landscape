@@ -1,0 +1,77 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "description": "Check this box to remove all references to this record from your account. You can reactivate the record at any time."
+    },
+    "percentCompleteAutomaticRecalculation": {
+      "title": "Percent Complete Automatic Recalculation",
+      "type": "boolean"
+    },
+    "lastModifiedDate": {
+      "title": "Last Modified Date",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "allowCompletelyBilledOnProject": {
+      "title": "Completely billed",
+      "type": "boolean"
+    },
+    "name": {
+      "title": "Status",
+      "type": "string",
+      "description": "Enter the name for this record. This name appears in lists that include this record.",
+      "nullable": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "tname": {
+      "type": "string",
+      "nullable": true
+    },
+    "description": {
+      "title": "Description",
+      "type": "string",
+      "description": "Enter a description of this other list item.",
+      "nullable": true
+    },
+    "longitemtype": {
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "percentCompleteAutomaticRecalculation",
+    "lastModifiedDate",
+    "allowCompletelyBilledOnProject",
+    "name",
+    "externalId",
+    "description",
+    "id"
+  ]
+}

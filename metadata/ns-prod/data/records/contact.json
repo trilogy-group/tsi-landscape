@@ -1,0 +1,561 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Contact is Inactive",
+      "type": "boolean",
+      "description": "When you check this box, this contact no longer appears on the Contacts list unless you check the Show Inactives box at the bottom of the page. Also, you can no longer select this contact from lists on transactions, company records, task records or events records."
+    },
+    "firstName": {
+      "title": "First Name",
+      "type": "string",
+      "description": "Enter the contact&apos;s name. What you enter here automatically appears first in the Contact field. This field is required for the Online Bill Pay feature.",
+      "nullable": true
+    },
+    "homePhone": {
+      "title": "Home Phone",
+      "type": "string",
+      "description": "Enter the contact&apos;s home phone number. This number appears only on this record.",
+      "nullable": true
+    },
+    "custentity_echosign_verified": {
+      "title": "Adobe Acrobat Sign Verified",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custentity_ot_linkedin_profile_link_c": {
+      "title": "TBD:LinkedIn Profile",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "entityId": {
+      "title": "Entity ID",
+      "type": "string",
+      "description": "NetSuite automatically completes this field as you enter first, middle, and last names below. This is how the contact&apos;s name appears in all lists.",
+      "nullable": true
+    },
+    "title": {
+      "title": "Job Title",
+      "type": "string",
+      "description": "Enter this contact&apos;s title at his or her company. On the record for this contact&apos;s company, in the Contacts section, this title appears next to the contacts name.",
+      "nullable": true
+    },
+    "custentity_nslc_num_identificacion": {
+      "title": "Tax Identification Number",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_ot_cust_acccount_id": {
+      "title": "TDB:Account ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "mobilePhone": {
+      "title": "Mobile Phone",
+      "type": "string",
+      "description": "Enter the contact&apos;s mobile or cell phone number. This number appears only on this record.",
+      "nullable": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "description": "The internal ID for this record is shown here. If you do not want to show internal IDs, clear the Show Internal IDs box at Home &gt; Set Preferences.",
+      "nullable": true
+    },
+    "fax": {
+      "title": "Fax",
+      "type": "string",
+      "description": "Enter a fax number for this record. You should enter the fax number exactly as it must be dialed. If a &apos;1&apos; is required to fax to this number, be sure to include it at the beginning of the number. The number you enter automatically appears in the To Be Faxed field of transactions when you select this customer. To fax NetSuite forms, an administrator must first set up fax service at Setup &gt; Set Up Printing, Fax and E-mail &gt; Fax.",
+      "nullable": true
+    },
+    "assistantPhone": {
+      "title": "Assist. Phone",
+      "type": "string",
+      "description": "Enter the phone number for this contact&apos;s assistant. This number appears only on this record.",
+      "nullable": true
+    },
+    "custentity_ot_contact_remarks": {
+      "title": "TBD:Contact Remarks",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "email": {
+      "title": "Email",
+      "type": "string",
+      "description": "Enter the contact&apos;s e-mail address. If you enter an e-mail address, you can e-mail this contact directly from the Contacts list. Also, If you invite this contact to an event, the contact receives e-mail with the event details.",
+      "nullable": true
+    },
+    "custentitylegacy_account_id_c": {
+      "title": "TBD-Legacy Account ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "isPrivate": {
+      "title": "Private",
+      "type": "boolean",
+      "description": "Check this box if this is a private contact. Private contacts can only be viewed by the person that entered the contact record. They are also excluded from the Duplicate Detection process."
+    },
+    "owner": {
+      "type": "integer",
+      "format": "int64",
+      "nullable": true
+    },
+    "comments": {
+      "title": "Comments",
+      "type": "string",
+      "description": "Enter any other information you want to note about this contact. These notes appears only on this record. You can enter up to 999 characters of text.",
+      "nullable": true
+    },
+    "lastModifiedDate": {
+      "title": "Last Modified Date",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "middleName": {
+      "title": "Middle Name",
+      "type": "string",
+      "description": "Enter the contact&apos;s middle name or initial. This field is optional. What you enter here automatically appears second in the Contact field.",
+      "nullable": true
+    },
+    "dateCreated": {
+      "title": "Date Created",
+      "type": "string",
+      "description": "In this field, NetSuite automatically records the date you created this record.",
+      "format": "date-time",
+      "nullable": true
+    },
+    "custentity_ot_provides_cus_reference": {
+      "title": "TBD:Provides Customer References",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "globalSubscriptionStatus": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "lastName": {
+      "title": "Last Name",
+      "type": "string",
+      "description": "Enter the contact&apos;s last name. What you enter here automatically appears last in the Contact field. This field is required for the Online Bill Pay feature.",
+      "nullable": true
+    },
+    "custentity_ot_has_opted_email": {
+      "title": "TBD:Has Opted Out Of Email",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "customForm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "39",
+            "-40"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "altEmail": {
+      "title": "Alt. Email",
+      "type": "string",
+      "description": "&lt;p&gt;Enter an alternate email address for this contact. If you use the Capture Email Replies, email sent with the alternate email address are automatically attached to the contact record.",
+      "nullable": true
+    },
+    "phone": {
+      "title": "Main Phone",
+      "type": "string",
+      "description": "Enter the phone number you primarily use to reach this contact. This number appears in the Contacts list and in the Contact section of company records. This field is required for the Online Bill Pay feature.",
+      "nullable": true
+    },
+    "phoneticName": {
+      "title": "Furigana",
+      "type": "string",
+      "description": "Enter the furigana character you want to use to sort this record.",
+      "nullable": true
+    },
+    "custentity_ot_department": {
+      "title": "TBD:OT Department",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custentity_ot_description": {
+      "title": "TBD:Description",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "salutation": {
+      "title": "Mr./Ms...",
+      "type": "string",
+      "description": "Enter the contact&apos;s salutation. Examples are Mr., Mrs., Ms. and Miss.",
+      "nullable": true
+    },
+    "officePhone": {
+      "title": "Office Phone",
+      "type": "string",
+      "description": "Enter the contact&apos;s work phone number. This number appears only on this record.",
+      "nullable": true
+    },
+    "custentitylegacy_contact_key_c": {
+      "title": "TBD-Legacy Contact Key",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "supervisorPhone": {
+      "title": "Sup. Phone",
+      "type": "string",
+      "description": "Enter the phone number for this contact&apos;s supervisor.",
+      "nullable": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custentity_ot_contact_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "contactCampaignEvent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "assistant": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "company": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "supervisor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "contactSourceCampaignCategory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "contactSource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "subsidiary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "category": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/contactCategory"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "firstName",
+    "homePhone",
+    "custentity_echosign_verified",
+    "externalId",
+    "contactSourceCampaignCategory",
+    "entityId",
+    "contactCampaignEvent",
+    "title",
+    "custentity_nslc_num_identificacion",
+    "mobilePhone",
+    "contactSource",
+    "company",
+    "id",
+    "fax",
+    "assistantPhone",
+    "email",
+    "isPrivate",
+    "comments",
+    "lastModifiedDate",
+    "assistant",
+    "middleName",
+    "dateCreated",
+    "globalSubscriptionStatus",
+    "lastName",
+    "altEmail",
+    "phone",
+    "phoneticName",
+    "salutation",
+    "officePhone",
+    "category",
+    "supervisor",
+    "supervisorPhone"
+  ]
+}

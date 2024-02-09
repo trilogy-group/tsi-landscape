@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Calls</fullName>
+    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+    <columns>DUE_DATE</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <columns>SUBJECT</columns>
+    <columns>WHO_NAME</columns>
+    <columns>STATUS</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>TCAP__Call_Coach_Metrics__c</columns>
+    <columns>Work_Unit_Type__c</columns>
+    <columns>QC_Result__c</columns>
+    <columns>Call_Recording_URL__c</columns>
+    <columns>Proof_Of_Work_URL__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>TYPE</field>
+        <operation>equals</operation>
+        <value>Call</value>
+    </filters>
+    <filters>
+        <field>Proof_Of_Work_URL__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Call_Recording_URL__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>Renewal Calls</label>
+</ListView>

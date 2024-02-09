@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BusinessProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Proactive Win-Back</fullName>
+    <description>Process for BU to proactively save an renewal flagged as in jeopardy of churn</description>
+    <isActive>true</isActive>
+    <values>
+        <fullName>Connect</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Resolution Attempt</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Resolution Fail%2FFutile</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Resolution ID</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Resolution Success</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Review</fullName>
+        <default>false</default>
+    </values>
+</BusinessProcess>

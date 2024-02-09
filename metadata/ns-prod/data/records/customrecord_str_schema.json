@@ -1,0 +1,259 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schema_uuid": {
+      "title": "UUID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schema_original_version": {
+      "title": "Original Version",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schema_report": {
+      "title": "Report",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schema_usecustom": {
+      "title": "Use Custom",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schema_country_default": {
+      "title": "Country Default",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schema_multicurr_compat": {
+      "title": "Nexus-currency compatible",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schema_mba_compatible": {
+      "title": "MBA Compatible",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schema_valid_until": {
+      "title": "Valid Until",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schema_createdby": {
+      "title": "Created By",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schema_effective_from": {
+      "title": "Effective From",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schema_hide": {
+      "title": "Hide",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schema_version": {
+      "title": "Version",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_str_schema_acccontext_compat": {
+      "title": "Accounting Context Compatible",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_str_schema_country": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/country"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "owner",
+    "custrecord_str_schema_uuid",
+    "created",
+    "custrecord_str_schema_original_version",
+    "externalId",
+    "lastmodifiedby",
+    "custrecord_str_schema_report",
+    "abbreviation",
+    "custrecord_str_schema_usecustom",
+    "custrecord_str_schema_country_default",
+    "custrecord_str_schema_multicurr_compat",
+    "custrecord_str_schema_mba_compatible",
+    "custrecord_str_schema_valid_until",
+    "scriptId",
+    "lastmodified",
+    "custrecord_str_schema_createdby",
+    "custrecord_str_schema_effective_from",
+    "custrecord_str_schema_hide",
+    "name",
+    "custrecord_str_schema_country",
+    "id",
+    "custrecord_str_schema_version",
+    "custrecord_str_schema_acccontext_compat"
+  ],
+  "x-ns-custom-record": true
+}

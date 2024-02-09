@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Block_Close_Lost</fullName>
+    <active>true</active>
+    <description>For renewal opportunities, block sending opportunities for closed lost or won&apos;t process if is not an admin or ISR manager.</description>
+    <errorConditionFormula>ISCHANGED(StageName) &amp;&amp; ISPICKVAL(Type,&apos;Renewal&apos;) &amp;&amp; (ISPICKVAL(StageName,&quot;Won&apos;t Process&quot;) || ISPICKVAL(StageName,&apos;Closed Lost&apos;)) &amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+&amp;&amp;
+	((
+		$UserRole.DeveloperName != &apos;System_Administrator&apos; &amp;&amp; $UserRole.DeveloperName != &apos;Manager_Renewals&apos;
+	) 
+	&amp;&amp;
+	(
+		 NOT(ISPICKVAL(PRIORVALUE(StageName),&quot;Finalizing&quot;)) || ISBlank(TEXT(Loss_Reason__c)) || NOT(ISBlank(TEXT(Win_Type__c)) )|| ISNull(O2C_Record__c)
+	))
+&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorMessage>On the Renewal opportunity, opportunity  processed by O2C and in Finalizing stage can be marked closed lost. For other scenarios, click the &quot;Lost&quot; or &quot;Invalid Opp&quot; button to close lost or not process an opportunity.</errorMessage>
+</ValidationRule>

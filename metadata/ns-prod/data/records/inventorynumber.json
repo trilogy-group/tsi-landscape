@@ -1,0 +1,336 @@
+{
+  "type": "object",
+  "properties": {
+    "itemName": {
+      "title": "Item Name",
+      "type": "string",
+      "description": "Type up to 60 characters for the name of this item. This name appears in lists on transactions. If you have the option of entering a display name and do not, the item name prints in the Item column of sales forms. If you have the option to enter a vendor name and do not, the item name prints in the Item column of purchase forms.",
+      "nullable": true
+    },
+    "lastModifiedDate": {
+      "title": "Last Modified Date",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "baseUnit": {
+      "title": "Base Unit",
+      "type": "string",
+      "description": "This field displays the base unit of measure for this item.",
+      "nullable": true
+    },
+    "memo": {
+      "title": "Memo",
+      "type": "string",
+      "description": "Optionally enter a memo. Later, you can search for the text you enter in this field.",
+      "nullable": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "inventoryNumber": {
+      "title": "Serial/Lot Number",
+      "type": "string",
+      "nullable": true
+    },
+    "units": {
+      "title": "Stock Unit",
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "expirationDate": {
+      "title": "Expiration Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true
+    },
+    "status": {
+      "title": "Status",
+      "type": "string",
+      "nullable": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "inventoryBalance": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "quantityOnHand": {
+                "title": "On-Hand Quantity",
+                "type": "string",
+                "nullable": true
+              },
+              "quantityAvailable": {
+                "title": "Available Quantity",
+                "type": "string",
+                "nullable": true
+              },
+              "committedQtyPerSerialLotNumberLocation": {
+                "title": "Committed Quantity (Per Serial/Lot Number & Location)",
+                "type": "string",
+                "nullable": true
+              },
+              "committedQtyPerSerialLotNumber": {
+                "title": "Committed Quantity (Per Serial/Lot Number)",
+                "type": "string",
+                "nullable": true
+              },
+              "quantityPicked": {
+                "title": "Picked Quantity",
+                "type": "string",
+                "nullable": true
+              },
+              "committedQtyPerLocation": {
+                "title": "Committed Quantity (Per Location)",
+                "type": "string",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "item": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "location": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "locations": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "quantityOnHand": {
+                "title": "On Hand",
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "quantityInTransit": {
+                "title": "In Transit",
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "quantityAvailable": {
+                "title": "Available",
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "quantityOnOrder": {
+                "title": "On Order",
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "quantityOnHandBase": {
+                "title": "On Hand (Base Unit)",
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "quantityAvailableBase": {
+                "title": "Available (Base Unit)",
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "location": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "lastModifiedDate",
+    "memo",
+    "externalId",
+    "inventoryNumber",
+    "id",
+    "expirationDate"
+  ]
+}

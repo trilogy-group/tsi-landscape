@@ -1,0 +1,135 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "description": "Check this box to remove all references to this record from your account. You can reactivate the record at any time."
+    },
+    "discountPercentDateDriven": {
+      "title": "Date Driven % Discount",
+      "type": "number",
+      "description": "For date driven terms, enter the percentage discount if the invoice is paid early.",
+      "format": "float",
+      "nullable": true
+    },
+    "lastModifiedDate": {
+      "title": "Last Modified Date",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "tname": {
+      "type": "string",
+      "nullable": true
+    },
+    "discountPercent": {
+      "title": "% Discount",
+      "type": "number",
+      "description": "For standard terms, enter the percentage discount if the invoice is paid early.",
+      "format": "float",
+      "nullable": true
+    },
+    "dateDriven": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "dueNextMonthIfWithinDays": {
+      "title": "Due Next Month If Within Days",
+      "type": "integer",
+      "description": "For date driven terms, enter the number of days before the due date that the invoice can be postponed until the next month&apos;s due date. For example, if invoices are due on the 30th of each month and you enter 5 in this field, then invoices issued between the 25th and 30th are due for payment by the 30th of the following month. For another example, Day of Month Net Due = 15 and Due Next Month if Within Days = 30 Date range within 30 days: 5/16-6/14 move to 7/15 6/15-7/15 move to 8/15 8/16-9/14 move to 10/15 9/15-10/15 move to 11/15 10/16-11/14 move to 12/15 11/15-12/15 move to 1/5",
+      "format": "int64",
+      "nullable": true
+    },
+    "daysUntilExpiry": {
+      "title": "Days Till Discount Expires",
+      "type": "integer",
+      "description": "For standard terms, enter the number of days the early payment discount is available. For example, if the early payment discount is available for 15 days after the bill is issued, enter 15 in this field.",
+      "format": "int64",
+      "nullable": true
+    },
+    "dayOfMonthNetDue": {
+      "title": "Day Of Month Net Due",
+      "type": "integer",
+      "description": "For date driven terms, enter the day of the month when the net amount of the invoice is due. If you enter a date that does not exist in the month the transaction is due, the last day of the month becomes the due date.",
+      "format": "int64",
+      "nullable": true
+    },
+    "name": {
+      "title": "Terms",
+      "type": "string",
+      "description": "Enter the name for this record. This name appears in lists that include this record.",
+      "nullable": true
+    },
+    "daysUntilNetDue": {
+      "title": "Days Till Net Due",
+      "type": "integer",
+      "description": "Enter the number of days until the net amount of the bill becomes due. For example, if you are creating a term of Net 30, enter 30 in this field.",
+      "format": "int64",
+      "nullable": true
+    },
+    "longitemtype": {
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "preferred": {
+      "title": "Preferred",
+      "type": "boolean",
+      "description": "Check this box to make this term or message show by default on sales transactions you create. Note: Terms set on customer records override terms marked as preferred."
+    },
+    "dayDiscountExpires": {
+      "title": "Day Discount Expires",
+      "type": "integer",
+      "description": "If you offer a discount for early payment under date driven terms, enter the last day of the month the early payment discount is available. For example, if the early payment discount is available through the 20th of each month, enter 20 in this field.",
+      "format": "int64",
+      "nullable": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "discountPercentDateDriven",
+    "lastModifiedDate",
+    "externalId",
+    "discountPercent",
+    "dueNextMonthIfWithinDays",
+    "daysUntilExpiry",
+    "dayOfMonthNetDue",
+    "name",
+    "daysUntilNetDue",
+    "id",
+    "preferred",
+    "dayDiscountExpires"
+  ]
+}

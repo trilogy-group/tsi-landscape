@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Final_Quote_Account_NetSuite_ID_Required</fullName>
+    <active>true</active>
+    <description>Ensures that when an opportunity is moved to the &apos;Final Quote&apos; stage and it&apos;s a NetSuite product, the associated account and any opportunity partners (reseller and distributor) from the primary quote must have the NetSuite ID populated.</description>
+    <errorConditionFormula>AND(
+   ISPICKVAL(StageName, &apos;Final Quote&apos;),
+   NOT(OR(ISPICKVAL(Type, &apos;New Business&apos;),ISPICKVAL(Type, &apos;Upsell&apos;))),
+   NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c),
+   Product_Configuration__r.NetSuite_Product__c = TRUE,
+   OR(
+      ISBLANK(Account.NetSuite_ID__c),
+      AND(
+         NOT(ISBLANK(SBQQ__PrimaryQuote__c)),
+         OR(
+            AND(
+               NOT(ISBLANK(SBQQ__PrimaryQuote__r.SBQQ__Partner__c)),
+               ISBLANK(SBQQ__PrimaryQuote__r.SBQQ__Partner__r.NetSuite_ID__c)
+            ),
+            AND(
+               NOT(ISBLANK(SBQQ__PrimaryQuote__r.SBQQ__Distributor__c)),
+               ISBLANK(SBQQ__PrimaryQuote__r.SBQQ__Distributor__r.NetSuite_ID__c)
+            )
+         )
+      )
+   )
+)</errorConditionFormula>
+    <errorMessage>NetSuite ID must be populated for the account and any opportunity partners (reseller and distributor) when moving to &apos;Final Quote&apos; stage for a NetSuite product.</errorMessage>
+</ValidationRule>

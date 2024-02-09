@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Health_Score__c</fullName>
+    <defaultValue>0</defaultValue>
+    <description>No related CSM Opportunities: 0%
+Otherwise: AVG([Related CSM Opportunities].Health Score)</description>
+    <externalId>false</externalId>
+    <label>Health Score</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Percent</type>
+</CustomField>

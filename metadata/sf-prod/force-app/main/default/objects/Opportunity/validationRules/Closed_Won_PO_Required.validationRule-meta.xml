@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_Won_PO_Required</fullName>
+    <active>true</active>
+    <description>Don&apos;t allow advancing a Sales Opportunity to the Closed-Won stage, unless Purchase Order is set.</description>
+    <errorConditionFormula>AND(TEXT(StageName) = &apos;Closed Won&apos;, ISBLANK(TEXT( Purchase_Order__c )), NOT(ISPICKVAL(Type,&apos;CSM&apos;)), NOT(ISPICKVAL(Type,&apos;xBR&apos;)), NOT(ISPICKVAL(Type,&apos;Prime&apos;)), NOT(ISPICKVAL(Win_Type__c,&apos;Auto-Renew&apos;))) 
+&amp;&amp;  NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorDisplayField>Purchase_Order__c</errorDisplayField>
+    <errorMessage>You must set the Purchase Order field prior to moving the opportunity to Closed Won</errorMessage>
+</ValidationRule>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidateQuantityOverProductQuantities</fullName>
+    <active>false</active>
+    <errorConditionFormula>(NOT(ISPICKVAL(Product2.Family,&apos;FogBugz&apos;)) &amp;&amp; NOT(ISPICKVAL(Product2.Family,&apos;Kayako&apos;)) &amp;&amp; Quantity &lt; Product2.Min_Quantity__c)
+|| 
+(NOT(ISPICKVAL(Product2.Family,&apos;FogBugz&apos;)) &amp;&amp; NOT(ISPICKVAL(Product2.Family,&apos;Kayako&apos;)) &amp;&amp; Product2.Max_Quantity__c != null &amp;&amp; Quantity &gt; Product2.Max_Quantity__c)</errorConditionFormula>
+    <errorDisplayField>ServiceDate</errorDisplayField>
+    <errorMessage>Quantity cannot be less than the minimum product quantity or greater than maximum product quantity.</errorMessage>
+</ValidationRule>

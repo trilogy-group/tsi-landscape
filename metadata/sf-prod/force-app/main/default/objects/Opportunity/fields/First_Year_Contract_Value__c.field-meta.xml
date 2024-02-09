@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>First_Year_Contract_Value__c</fullName>
+    <description>ARR + one-time payments scheduled/completed during the first year of the subscription (such as payment for initial setup and etc).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>ARR + one-time payments scheduled/completed during the first year of the subscription (such as payment for initial setup and etc).</inlineHelpText>
+    <label>First Year Contract Value</label>
+    <summarizedField>OpportunityLineItem.First_Year_Line_Value__c</summarizedField>
+    <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

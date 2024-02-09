@@ -1,0 +1,1691 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "2f91c050-b9f8-4f21-8f4d-9758a51d1f8c",
+      "created": "2022-09-14T23:26:55.948924Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "group": "9f643589-4076-4d46-8874-ea1e3e7c4c35",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "270526a5-6ee8-4eae-b83b-cd03a7eb2fd7",
+        "created": "2023-08-16T01:10:32.962037Z"
+      },
+      "title": "Subflow Sync Bundled Product, from NS Subscription to SF Opportunity",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "nsSubscriptionId": {
+              "type": "string",
+              "title": "NetSuite Subscription Id"
+            },
+            "sfOpportunityId": {
+              "title": "SalesForce Opportunity Id",
+              "type": "string"
+            },
+            "currencyIsoCode": {
+              "title": "Currency Iso Code",
+              "type": "string"
+            },
+            "subscriptionTermInMonths": {
+              "title": "Subscription Term In Months",
+              "type": "number"
+            },
+            "nsBundledProductCode": {
+              "title": "NetSuite Bundle Product Code",
+              "type": "string"
+            },
+            "nsMainItemCode": {
+              "title": "NetSuite Main Item Code",
+              "type": "string"
+            },
+            "nsSupportItemCode": {
+              "title": "NetSuite Support Item Code",
+              "type": "string"
+            },
+            "nsSubscriptionPlanId": {
+              "title": "NetSuite Subscription Plan Id",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "IsSuccessful": {
+              "title": "Is successful",
+              "type": "boolean",
+              "default": false
+            },
+            "IsBundledProduct": {
+              "title": "Is a bundled product",
+              "type": "boolean",
+              "default": false
+            },
+            "subscriptionPlanId": {
+              "title": "Subscription Plan ID",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-3",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "call-workflow-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "callable-workflow-response-3",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "salesforce-5",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "netsuite-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "netsuite-3",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-4",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "salesforce-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "loop-2",
+                "type": "loop",
+                "content": {
+                  "_loop": [
+                    {
+                      "name": "salesforce-7",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "loop-1",
+                "type": "loop",
+                "content": {
+                  "_loop": [
+                    {
+                      "name": "salesforce-6",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-2",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "salesforce-1",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": [
+                          {
+                            "name": "storage-1",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "storage-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-4",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "script-1",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "call-workflow-2",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "callable-workflow-response-4",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": []
+                }
+              },
+              {
+                "name": "callable-workflow-response-1",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": [
+              {
+                "name": "callable-workflow-response-2",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        }
+      ],
+      "steps": {
+        "salesforce-3": {
+          "title": "Get bundled product",
+          "description": "Retrieves the active bundle product based on the product code, assuming only the product referencing the latest version of the subscription is active.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Products",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Product",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Product ID"
+                    },
+                    "ProductCode": {
+                      "name": "ProductCode",
+                      "type": "string",
+                      "title": "Product Code"
+                    },
+                    "NetSuite_ID__c": {
+                      "name": "NetSuite_ID__c",
+                      "type": "string",
+                      "title": "NetSuite ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "Product2"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                },
+                {
+                  "type": "string",
+                  "value": "ProductCode"
+                },
+                {
+                  "type": "string",
+                  "value": "NetSuite_ID__c"
+                }
+              ]
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "ProductCode"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.nsBundledProductCode"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "SBQQ__Component__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": false
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "IsActive"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-1": {
+          "title": "Concatenate Codes",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "codes"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-2.value"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n\treturn input.codes.join();\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-2": {
+          "title": "Get Failed Codes",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            },
+            "key": {
+              "type": "string",
+              "value": "failed_items"
+            }
+          }
+        },
+        "netsuite-2": {
+          "title": "Get subscr",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "subscription"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.nsSubscriptionId"
+            },
+            "expand_sub_resources": {
+              "type": "boolean",
+              "value": true
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Is pricebook active?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-6.records[0].IsActive",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "IsSuccessful": {
+                  "value": true,
+                  "type": "boolean"
+                },
+                "IsBundledProduct": {
+                  "value": true,
+                  "type": "boolean"
+                },
+                "subscriptionPlanId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-3.records[0].NetSuite_ID__c"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Log Message to Description",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "e96c1f66-536a-4e5c-8bd3-8a2375110837"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "Subscription in NetSuite was modified, but opportunity products were not updated because some products are inactive or missing: {$.steps.script-1.result}"
+                },
+                "chatter_post": {
+                  "type": "boolean",
+                  "value": true
+                },
+                "objectType": {
+                  "type": "string",
+                  "value": "Opportunity"
+                },
+                "objectId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.data.sfOpportunityId",
+                  "fallback": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "salesforce-7": {
+          "title": "Remove oppo prods",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "delete_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "value": "OpportunityLineItem",
+              "type": "string"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.loop-2.value.Id"
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Log Message to Description",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "e96c1f66-536a-4e5c-8bd3-8a2375110837"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "Subscription in NetSuite was modified, but opportunity products were not updated because there is no active bundle product matching the subscription plan (id={$.steps.trigger.data.nsSubscriptionPlanId}) used by the NetSuite subscription. "
+                },
+                "chatter_post": {
+                  "type": "boolean",
+                  "value": true
+                },
+                "objectType": {
+                  "type": "string",
+                  "value": "Opportunity"
+                },
+                "objectId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.data.sfOpportunityId",
+                  "fallback": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Has product options?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-5.records"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "array",
+                      "value": []
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "script-4": {
+          "title": "Get products data",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "isOptional": {
+                      "type": "boolean"
+                    },
+                    "netSuiteId": {
+                      "type": "string"
+                    },
+                    "quantity": {
+                      "type": "number"
+                    },
+                    "totalPrice": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "isOptional",
+                    "netSuiteId",
+                    "quantity",
+                    "totalPrice"
+                  ]
+                }
+              },
+              "console": {
+                "type": "array",
+                "items": {}
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "currencyIsoCode"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.currencyIsoCode"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsSubscriptionPriceIntervals"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.priceInterval.items"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsSubscriptionLines"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.subscriptionLine.items"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "sfBundledProductOptions"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-5.records"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsSubscriptionPlanId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-3.records[0].NetSuite_ID__c"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsMainItemCode"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.nsMainItemCode"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsSupportItemCode"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.nsSupportItemCode"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n    let mainItem = input.nsSubscriptionLines.filter(\n        (x) => x.isIncluded && x.item.refName.toUpperCase() === input.nsMainItemCode.toUpperCase()\n    )[0];\n    let supportItem = input.nsSubscriptionLines.filter(\n        (x) => x.isIncluded && x.item.refName.toUpperCase() === input.nsSupportItemCode.toUpperCase()\n    )[0];\n\n    if (!mainItem) {\n        // Get a required item with code ended with '-STA', '-PRO' or '-ENT'\n        mainItem = input.nsSubscriptionLines.filter(\n            (x) => x.isRequired && x.item.refName.endsWith('-STA') || x.item.refName.endsWith('-PRO') || x.item.refName.endsWith('-ENT')\n        )[0];\n    }\n    if (!supportItem) {\n        // Get a required item with code ended with '-SIL', '-GOL' or '-PLA'\n        supportItem = input.nsSubscriptionLines.filter(\n            (x) => x.isRequired && x.item.refName.endsWith('-SIL') || x.item.refName.endsWith('-GOL') || x.item.refName.endsWith('-PLA')\n        )[0];\n    }\n\n    let mainPriceInterval = input.nsSubscriptionPriceIntervals.filter(\n        (x) => mainItem && x.lineNumber === mainItem.lineNumber\n    )[0];\n    let supportPriceInterval = input.nsSubscriptionPriceIntervals.filter(\n        (x) => supportItem && x.lineNumber === supportItem.lineNumber\n    )[0];\n\n    const quantity =\n        mainPriceInterval?.quantity ?? supportPriceInterval?.quantity;\n    if (!quantity) {\n        throw new Error(\"Couldn't get main or support item quantity.\");\n    }\n    let bundlePrice = 0;\n    if (mainPriceInterval) {\n        bundlePrice += mainPriceInterval.totalintervalvalue;\n        mainPriceInterval.totalintervalvalue = 0;\n    }\n    if (supportPriceInterval) {\n        bundlePrice += supportPriceInterval.totalintervalvalue;\n        supportPriceInterval.totalintervalvalue = 0;\n    }\n\n    let subscriptionNsProductIds = input.nsSubscriptionLines\n        .filter((x) => x.isIncluded)\n        .map((x) => {\n            let priceInterval = input.nsSubscriptionPriceIntervals.filter(\n                (pi) => pi.lineNumber === x.lineNumber\n            )[0];\n            if (priceInterval?.totalintervalvalue) {\n                const matchPriceInterval = findMatchPriceInterval(\n                    x.item.refName,\n                    input.nsSubscriptionLines,\n                    input.nsSubscriptionPriceIntervals\n                );\n                if (matchPriceInterval) {\n                    const price =\n                        priceInterval.totalintervalvalue +\n                        matchPriceInterval.totalintervalvalue;\n                    if (!isSupportItem(x.item.refName)) {\n                        priceInterval.totalintervalvalue = price;\n                        matchPriceInterval.totalintervalvalue = 0;\n                    } else {\n                        priceInterval.totalintervalvalue = 0;\n                        matchPriceInterval.totalintervalvalue = price;\n                    }\n                }\n            }\n            return {\n                isOption: true,\n                netSuiteId: x.item.id,\n                code: x.item.refName,\n                quantity: priceInterval?.quantity ?? 0,\n                totalPrice: priceInterval?.totalintervalvalue ?? 0\n            };\n        });\n    subscriptionNsProductIds = [\n        {\n            isOption: false,\n            netSuiteId: input.nsSubscriptionPlanId,\n            quantity: quantity,\n            totalPrice: bundlePrice\n        },\n        ...subscriptionNsProductIds\n    ];\n\n    return subscriptionNsProductIds;\n};\n\nfunction findMatchPriceInterval(itemCode, subscriptionLines, priceIntervals) {\n    const matchLineItem = subscriptionLines.find(\n        (i) => isDifferentOnlyInSuffix(itemCode, i.item.refName) && i.isIncluded\n    );\n    if (!matchLineItem) {\n        return undefined;\n    }\n    return priceIntervals.find((i) => i.lineNumber === matchLineItem.lineNumber);\n}\n\nfunction isSupportItem(code) {\n    const supportPart = code.split(\"-\")[3];\n    return [\"SIL\", \"GOL\", \"PLA\"].includes(supportPart);\n}\n\nfunction isDifferentOnlyInSuffix(code1, code2) {\n    //same item\n    if (code1 === code2) {\n        return false;\n    }\n    const mainParts1 = code1.split(\"-\", 3).join(\"-\");\n    const mainParts2 = code2.split(\"-\", 3).join(\"-\");\n    return mainParts1 === mainParts2;\n}"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "callable-workflow-response-2": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "IsSuccessful": {
+                  "value": true,
+                  "type": "boolean"
+                },
+                "IsBundledProduct": {
+                  "value": false,
+                  "type": "boolean"
+                },
+                "subscriptionPlanId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-3.records[0].NetSuite_ID__c"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "netsuite-3": {
+          "title": "Get subscr plan",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "subscriptionplan"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-3.records[0].NetSuite_ID__c"
+            }
+          }
+        },
+        "salesforce-5": {
+          "title": "Get product options",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Product Options",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Product Option",
+                  "properties": {
+                    "SBQQ__OptionalSKU__c": {
+                      "name": "SBQQ__OptionalSKU__c",
+                      "type": "string",
+                      "title": "Optional SKU"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "SBQQ__ProductOption__c"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "SBQQ__OptionalSKU__c"
+                },
+                {
+                  "value": "SBQQ__OptionalSKU__r.ProductCode",
+                  "type": "string"
+                },
+                {
+                  "value": "SBQQ__OptionalSKU__r.NetSuite_ID__c",
+                  "type": "string"
+                }
+              ]
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "SBQQ__ConfiguredSKU__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-3.records[0].Id"
+                    }
+                  }
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Create oppo prod",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "create_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "value": "OpportunityLineItem",
+              "type": "string"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "PricebookEntryId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-6.records[0].Id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Quantity"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-1.value.quantity"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "OpportunityId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.sfOpportunityId"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "TotalPrice"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-1.value.totalPrice"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Subscription_Term__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.subscriptionTermInMonths"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "loop-2": {
+          "title": "Loop oppo products",
+          "connector": {
+            "name": "loop",
+            "version": "1.1"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "required": true,
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "object",
+                "title": "Opportunity Product",
+                "properties": {
+                  "Id": {
+                    "name": "Id",
+                    "type": "string",
+                    "title": "Line Item ID"
+                  }
+                }
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-2.records"
+            }
+          }
+        },
+        "callable-workflow-response-4": {
+          "title": "Report Error",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "IsSuccessful": {
+                  "value": false,
+                  "type": "boolean"
+                },
+                "IsBundledProduct": {
+                  "value": true,
+                  "type": "boolean"
+                },
+                "subscriptionPlanId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-3.records[0].NetSuite_ID__c"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Get existing oppo prods",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Opportunity Product",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Opportunity Product",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Line Item ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "value": "OpportunityLineItem",
+              "type": "string"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "value": "Id",
+                  "type": "string"
+                }
+              ]
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "OpportunityId"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.sfOpportunityId"
+                    }
+                  }
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "Failures?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-2.value"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop subscr products",
+          "connector": {
+            "name": "loop",
+            "version": "1.1"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "required": true,
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "isOptional": {
+                    "type": "boolean"
+                  },
+                  "netSuiteId": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  },
+                  "totalPrice": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "isOptional",
+                  "netSuiteId",
+                  "quantity",
+                  "totalPrice"
+                ]
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.script-4.result"
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Store Failed Code",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "append_to_list",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.loop-1.value.code",
+              "fallback": {
+                "type": "jsonpath",
+                "value": "$.steps.trigger.data.nsBundledProductCode"
+              }
+            },
+            "key": {
+              "type": "string",
+              "value": "failed_items"
+            },
+            "create_if_missing": {
+              "value": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "salesforce-6": {
+          "title": "Get price book entry",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Price Book Entries",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Price Book Entry",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Price Book Entry ID"
+                    },
+                    "IsActive": {
+                      "name": "IsActive",
+                      "type": "boolean",
+                      "title": "Active"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "PricebookEntry"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                },
+                {
+                  "type": "string",
+                  "value": "IsActive"
+                }
+              ]
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "value": "Product2.NetSuite_ID__C",
+                      "type": "string"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-1.value.netSuiteId"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "CurrencyIsoCode"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.currencyIsoCode"
+                    }
+                  }
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "No Product?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-3.total"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "is_case_sensitive": {
+                      "value": true,
+                      "type": "boolean"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "callable-workflow-response-3": {
+          "title": "Report Error",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "IsSuccessful": {
+                  "value": false,
+                  "type": "boolean"
+                },
+                "IsBundledProduct": {
+                  "value": true,
+                  "type": "boolean"
+                },
+                "subscriptionPlanId": {
+                  "type": "string",
+                  "value": ""
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "e96c1f66-536a-4e5c-8bd3-8a2375110837",
+          "name": "Subflow Append Message to Description"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

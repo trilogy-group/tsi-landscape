@@ -1,0 +1,445 @@
+{
+  "type": "object",
+  "properties": {
+    "shipmentStatus": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "toBeShipped",
+            "inTransit",
+            "partiallyReceived",
+            "received",
+            "closed"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "actualDeliveryDate": {
+      "title": "Actual Delivery Date",
+      "type": "string",
+      "description": "Use the picker to input the actual date the shipment arrived at the receiving location. The expected and actual dates can be used for the reporting of variances and setting performance metrics.",
+      "format": "date",
+      "nullable": true
+    },
+    "expectedDeliveryDate": {
+      "title": "Expected Delivery Date",
+      "type": "string",
+      "description": "Use the picker to add the date when the shipment is expected to be delivered to the receiving location.",
+      "format": "date",
+      "nullable": true
+    },
+    "actualShippingDate": {
+      "title": "Actual Shipping Date",
+      "type": "string",
+      "description": "Input a date when the consignment was actually shipped. The expected and actual dates can be used for the reporting of variances and setting performance metrics.",
+      "format": "date",
+      "nullable": true
+    },
+    "externalDocumentNumber": {
+      "title": "External Document Number",
+      "type": "string",
+      "description": "Add the identifying number for the shipment as supplied by your shipping company here. You can customize the Inbound Shipments list page to include this field for easy identification of the shipment.",
+      "nullable": true
+    },
+    "lastModifiedDate": {
+      "title": "Last Modified Date",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "billOfLading": {
+      "title": "Bill Of Lading",
+      "type": "string",
+      "description": "Enter the number from your bill of lading documentation in this field.",
+      "nullable": true
+    },
+    "shipmentCreatedDate": {
+      "title": "Date Created",
+      "type": "string",
+      "description": "This is a read only field.",
+      "format": "date",
+      "nullable": true
+    },
+    "expectedShippingDate": {
+      "title": "Expected Shipping Date",
+      "type": "string",
+      "description": "Use the date picker to insert the date for when the shipment is expected to leave. The field can be edited to reflect changing circumstances.",
+      "format": "date",
+      "nullable": true
+    },
+    "shipmentMemo": {
+      "title": "Memo",
+      "type": "string",
+      "description": "Use this field to highlight key, or frequently used information. It is best practice to add a User Note in the Communications subtab to log call other types of communication relating to the shipment.",
+      "nullable": true
+    },
+    "customForm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "vesselNumber": {
+      "title": "Vessel Number",
+      "type": "string",
+      "description": "Input the vessel&apos;s IMO number, or other identifying reference in this field.",
+      "nullable": true
+    },
+    "shipmentNumber": {
+      "title": "Shipment Number",
+      "type": "string",
+      "description": "This is a system generated number. The format can be customized by updating the Inbound Shipment field at: Setup &gt; Company &gt; Auto-Generated Numbers &gt; Transaction Numbers.",
+      "nullable": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "items": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "shipmentItemExchangeRate": {
+                "title": "Exchange Rate",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "quantityExpected": {
+                "title": "Quantity Expected",
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "shipmentItemAmount": {
+                "title": "Amount",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "quantityRemaining": {
+                "title": "Quantity Remaining",
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "poRate": {
+                "title": "PO Rate",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "shipmentItemDescription": {
+                "title": "Description",
+                "type": "string",
+                "nullable": true
+              },
+              "unit": {
+                "title": "Unit",
+                "type": "string",
+                "nullable": true
+              },
+              "poVendor": {
+                "title": "Vendor",
+                "type": "string",
+                "nullable": true
+              },
+              "quantityReceived": {
+                "title": "Quantity Received",
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "quantityBilled": {
+                "title": "Quantity Billed",
+                "type": "number",
+                "format": "float",
+                "nullable": true
+              },
+              "shipmentItemTransaction": {
+                "title": "PO Transaction Line",
+                "type": "string",
+                "nullable": true
+              },
+              "expectedRate": {
+                "title": "Expected Rate",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "id": {
+                "title": "ID",
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "shipmentItemEffectiveDate": {
+                "title": "Effective Date",
+                "type": "string",
+                "format": "date",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "vendorId": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "shipmentItem": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "purchaseOrder": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "receivingLocation": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "incoterm": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "purchaseOrderTransaction": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "poCurrency": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": []
+}

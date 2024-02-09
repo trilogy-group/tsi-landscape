@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__ClosedLostReason__c</fullName>
+    <deprecated>false</deprecated>
+    <description>AWS requires a reason for every opportunity that is being closed lost.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The reason why the opportunity was closed lost.</inlineHelpText>
+    <label>Closed Lost Reason</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Customer Deficiency</fullName>
+                <default>false</default>
+                <label>Customer Deficiency</label>
+            </value>
+            <value>
+                <fullName>Customer Experience</fullName>
+                <default>false</default>
+                <label>Customer Experience</label>
+            </value>
+            <value>
+                <fullName>Delay / Cancellation of Project</fullName>
+                <default>false</default>
+                <label>Delay / Cancellation of Project</label>
+            </value>
+            <value>
+                <fullName>Financial/Commercial</fullName>
+                <default>false</default>
+                <label>Financial/Commercial</label>
+            </value>
+            <value>
+                <fullName>Legal / Tax / Regulatory</fullName>
+                <default>false</default>
+                <label>Legal / Tax / Regulatory</label>
+            </value>
+            <value>
+                <fullName>Lost to Competitor – Google</fullName>
+                <default>false</default>
+                <label>Lost to Competitor – Google</label>
+            </value>
+            <value>
+                <fullName>Lost to Competitor – Microsoft</fullName>
+                <default>false</default>
+                <label>Lost to Competitor – Microsoft</label>
+            </value>
+            <value>
+                <fullName>Lost to Competitor – SoftLayer</fullName>
+                <default>false</default>
+                <label>Lost to Competitor – SoftLayer</label>
+            </value>
+            <value>
+                <fullName>Lost to Competitor – VMWare</fullName>
+                <default>false</default>
+                <label>Lost to Competitor – VMWare</label>
+            </value>
+            <value>
+                <fullName>Lost to Competitor – Other</fullName>
+                <default>false</default>
+                <label>Lost to Competitor – Other</label>
+            </value>
+            <value>
+                <fullName>No Opportunity</fullName>
+                <default>false</default>
+                <label>No Opportunity</label>
+            </value>
+            <value>
+                <fullName>On Premises Deployment</fullName>
+                <default>false</default>
+                <label>On Premises Deployment</label>
+            </value>
+            <value>
+                <fullName>Partner Gap</fullName>
+                <default>false</default>
+                <label>Partner Gap</label>
+            </value>
+            <value>
+                <fullName>People/Relationship/Governance</fullName>
+                <default>false</default>
+                <label>People/Relationship/Governance</label>
+            </value>
+            <value>
+                <fullName>Price</fullName>
+                <default>false</default>
+                <label>Price</label>
+            </value>
+            <value>
+                <fullName>Product/Technology</fullName>
+                <default>false</default>
+                <label>Product/Technology</label>
+            </value>
+            <value>
+                <fullName>Security / Compliance</fullName>
+                <default>false</default>
+                <label>Security / Compliance</label>
+            </value>
+            <value>
+                <fullName>Technical Limitations</fullName>
+                <default>false</default>
+                <label>Technical Limitations</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>1</fullName>
+                <default>false</default>
+                <label>1 - Project budget isn’t adequate</label>
+            </value>
+            <value>
+                <fullName>2</fullName>
+                <default>false</default>
+                <label>2 - Customer didn’t respond</label>
+            </value>
+            <value>
+                <fullName>3</fullName>
+                <default>false</default>
+                <label>3 - Customer chose another vendor</label>
+            </value>
+            <value>
+                <fullName>4</fullName>
+                <default>false</default>
+                <label>4 - Customer requirement not met</label>
+            </value>
+            <value>
+                <fullName>5</fullName>
+                <default>false</default>
+                <label>5 - Not a customer</label>
+            </value>
+            <value>
+                <fullName>6</fullName>
+                <default>false</default>
+                <label>6 - Proposed time line was too short</label>
+            </value>
+            <value>
+                <fullName>7</fullName>
+                <default>false</default>
+                <label>7 - Report as abuse, spam, or phishing</label>
+            </value>
+            <value>
+                <fullName>8</fullName>
+                <default>false</default>
+                <label>8 - Others</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

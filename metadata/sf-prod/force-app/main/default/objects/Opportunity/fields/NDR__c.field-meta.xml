@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NDR__c</fullName>
+    <description>Net Dollar Retention of this opportunity.</description>
+    <externalId>false</externalId>
+    <formula>ARR__c/Current_ARR__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Net Dollar Retention: out goal is 125% for Standard, 135% for Gold, 145% for Platinum success.</inlineHelpText>
+    <label>NDR</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Percent</type>
+</CustomField>

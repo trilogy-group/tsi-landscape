@@ -1,0 +1,5 @@
+<apex:page standardController="Opportunity">
+    <flow:interview Name="SendOpportunityForSignature" finishLocation="/{!Opportunity.Id}">
+        <apex:param name="varRecordId" value="{!Opportunity.Id}"/>
+    </flow:interview>
+</apex:page>

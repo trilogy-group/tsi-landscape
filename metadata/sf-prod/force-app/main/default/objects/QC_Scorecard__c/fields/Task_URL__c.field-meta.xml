@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Task_URL__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(QC_Summary__r.Task_URL_Href__c &lt;&gt; null, HYPERLINK( QC_Summary__r.Task_URL_Href__c , &apos;&lt;- Go to the related Task&apos;, &apos;_self&apos;), null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Navigate to the related task</inlineHelpText>
+    <label>Task URL</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

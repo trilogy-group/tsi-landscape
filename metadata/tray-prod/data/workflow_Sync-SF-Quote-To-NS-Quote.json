@@ -1,0 +1,3529 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "f3cfd4fb-8147-42bf-9870-e0d76bd75b4b",
+      "created": "2023-08-07T20:59:44.384869Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "6c0cfdba-e9e5-48e7-8bb8-ed17422b4b04",
+        "created": "2024-01-16T13:31:43.708422Z"
+      },
+      "title": "Sync SF Quote To NS Quote",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {
+          "restlet": "script=customscript_si_main_main_restlet&deploy=customdeploy_si_main_main"
+        },
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "sfQuoteId": {
+              "type": "string",
+              "title": "Sf Quote Id"
+            },
+            "organizationId": {
+              "title": "Organization Id",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-6",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-12",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "terminate-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "callable-workflow-response-2",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-2",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "callable-workflow-response-5",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "branch-1",
+          "type": "branch",
+          "content": {
+            "__default__": [],
+            "branch1": [
+              {
+                "name": "storage-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-15",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "boolean-condition-7",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "call-workflow-3",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "send-email-1",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": []
+                      }
+                    },
+                    {
+                      "name": "callable-workflow-response-4",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": [
+                    {
+                      "name": "boolean-condition-4",
+                      "type": "branch",
+                      "content": {
+                        "true": [],
+                        "false": [
+                          {
+                            "name": "callable-workflow-response-6",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "salesforce-4",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "date-time-helpers-1",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-18",
+                      "type": "branch",
+                      "content": {
+                        "true": [],
+                        "false": [
+                          {
+                            "name": "terminate-3",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "boolean-condition-8",
+                      "type": "branch",
+                      "content": {
+                        "true": [],
+                        "false": [
+                          {
+                            "name": "terminate-2",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "salesforce-5",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-1",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "boolean-condition-9",
+                            "type": "branch",
+                            "content": {
+                              "true": [
+                                {
+                                  "name": "call-workflow-10",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "call-workflow-9",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "boolean-condition-10",
+                                  "type": "branch",
+                                  "content": {
+                                    "true": [
+                                      {
+                                        "name": "call-workflow-11",
+                                        "type": "normal",
+                                        "content": {}
+                                      }
+                                    ],
+                                    "false": []
+                                  }
+                                }
+                              ],
+                              "false": []
+                            }
+                          },
+                          {
+                            "name": "boolean-condition-16",
+                            "type": "branch",
+                            "content": {
+                              "true": [
+                                {
+                                  "name": "call-workflow-6",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "boolean-condition-17",
+                                  "type": "branch",
+                                  "content": {
+                                    "true": [
+                                      {
+                                        "name": "call-workflow-7",
+                                        "type": "normal",
+                                        "content": {}
+                                      }
+                                    ],
+                                    "false": []
+                                  }
+                                }
+                              ],
+                              "false": []
+                            }
+                          },
+                          {
+                            "name": "call-workflow-2",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "call-workflow-1",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "storage-3",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": [
+                          {
+                            "name": "salesforce-3",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "boolean-condition-3",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "boolean-condition-6",
+                            "type": "branch",
+                            "content": {
+                              "true": [
+                                {
+                                  "name": "script-1",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "netsuite-2",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "call-workflow-12",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "netsuite-3",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "storage-4",
+                                  "type": "normal",
+                                  "content": {}
+                                }
+                              ],
+                              "false": []
+                            }
+                          },
+                          {
+                            "name": "storage-5",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "boolean-condition-13",
+                            "type": "branch",
+                            "content": {
+                              "true": [
+                                {
+                                  "name": "salesforce-7",
+                                  "type": "normal",
+                                  "content": {}
+                                }
+                              ],
+                              "false": []
+                            }
+                          },
+                          {
+                            "name": "boolean-condition-5",
+                            "type": "branch",
+                            "content": {
+                              "true": [
+                                {
+                                  "name": "call-workflow-4",
+                                  "type": "normal",
+                                  "content": {}
+                                }
+                              ],
+                              "false": [
+                                {
+                                  "name": "jira-cloud-1",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "script-4",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "jira-cloud-3",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "jira-cloud-2",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "text-helpers-1",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "salesforce-2",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "netsuite-8",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "call-workflow-5",
+                                  "type": "normal",
+                                  "content": {}
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "false": []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "storage-2",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "branch2": [
+              {
+                "name": "netsuite-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "loop-1",
+                "type": "loop",
+                "content": {
+                  "_loop": [
+                    {
+                      "name": "call-workflow-8",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "boolean-condition-1": {
+          "title": "Create NS Quote?",
+          "description": "Creates the NS Quote only if it was not already created, based on the NetSuite ID.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].NetSuite_ID__c",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-10": {
+          "title": "has primary partner?",
+          "description": "check if has primary partner",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-5.total"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": ">"
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-12": {
+          "title": "Event Org Id Match?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-6.records[0].Id"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.organizationId"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-13": {
+          "title": "has partner?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-5.value.sfPartnerId"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-15": {
+          "title": "Manual O2C?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].SBQQ__Opportunity2__r.Manual_O2C__c"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-16": {
+          "title": "Are addressed validated?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].SBQQ__Opportunity2__r.Addresses_Validated__c"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-17": {
+          "title": "has primary partner?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-5.total"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": ">"
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-18": {
+          "title": "Is expiration date in future?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].SBQQ__ExpirationDate__c"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": ">"
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.date-time-helpers-1.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Handled by automation?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].SBQQ__Opportunity2__r.Product_Configuration__r.NetSuite_Product__c"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "Create O2C ticket?",
+          "description": "Creates the O2C ticket only if it was not already created for the SF quote.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].O2C_Ticket_Link__c",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "Processed via O2C?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].SBQQ__Opportunity2__r.Product_Configuration__r.Processed_via_OTC__c",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-5": {
+          "title": "Sandbox?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.env.workflow_title"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "starts with"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "[full]"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "boolean-condition-6": {
+          "title": "Load data?",
+          "description": "Loads data for creating the O2C ticket only if the quote was not created in the current process.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].NetSuite_ID__c",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-7": {
+          "title": "Processed via O2C?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].SBQQ__Opportunity2__r.Product_Configuration__r.Processed_via_OTC__c"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-8": {
+          "title": "Sales rep Netsuite Id set?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].SBQQ__SalesRep__r.NetSuite_ID__c",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-9": {
+          "title": "New Business/Upsell?",
+          "description": "If is new business or upsell we need to create the accounts in netsuite if doesn't exist yet.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].SBQQ__Opportunity2__r.Type"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "New Business"
+                    },
+                    "is_case_sensitive": {
+                      "value": false,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].SBQQ__Opportunity2__r.Type"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Upsell"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "branch-1": {
+          "title": "Quote Status?",
+          "description": "Flow is triggered when the status changes, here only checking the quote status to know what will be next steps",
+          "connector": {
+            "name": "branch",
+            "version": "1.3"
+          },
+          "operation": "simple",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-1.records[0].SBQQ__Status__c"
+            },
+            "branches": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "Accepted"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "Accepted"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "Signed"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "Signed"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Create NS Quote",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "a2689ca7-7276-4ad0-b118-f7ac85399f93"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "quoteId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.data.sfQuoteId"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-10": {
+          "title": "Get subscription plan",
+          "description": "Get the subscription plan from the quote lines",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "c9810494-9f62-41ce-a159-3bca69d3227e"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "quoteId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.data.sfQuoteId"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-11": {
+          "title": "Create NS Customer for Partner",
+          "description": "Call subflow that will create a NS Customer for the partner if doesn't exist",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "3a4d4d7f-b50c-419b-b5ba-dc6182c3f116"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "accountId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-5.records[0].AccountToId"
+                },
+                "subscriptionPlanId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.call-workflow-10.response.subscriptionPlan.id"
+                },
+                "type": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-5.records[0].Role",
+                  "fallback": {
+                    "value": "VAR/Reseller",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-12": {
+          "title": "Get NS metadata",
+          "description": "Retrieves the NS metadata for the subsequent NS call.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "8cd05cfc-a86e-4be8-8e66-4a05cf6550c5"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {}
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Sync Quote Primary Contact",
+          "description": "Syncs SF contact on the primary quote to NS contact, creating it if needed.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "f4caf52a-e9f8-440e-aad5-561164209ce8"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "SfContactId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-1.records[0].SBQQ__PrimaryContact__c"
+                },
+                "opportunityId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-1.records[0].SBQQ__Opportunity2__c"
+                },
+                "isPrimaryContact": {
+                  "value": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-3": {
+          "title": "Append Message to Description",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "e96c1f66-536a-4e5c-8bd3-8a2375110837"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "This opportunity is marked for manual O2C processing, please manually raise the Quote and Invoice Request O2C tickets for this opportunity"
+                },
+                "chatter_post": {
+                  "value": true,
+                  "type": "boolean"
+                },
+                "objectType": {
+                  "type": "string",
+                  "value": "Opportunity"
+                },
+                "objectId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-1.records[0].SBQQ__Opportunity2__c"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-4": {
+          "title": "Append message to description",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "e96c1f66-536a-4e5c-8bd3-8a2375110837"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "O2C quote request generated. O2C ticket link: <ticket link>\nWe don't  generate the jira ticket for sandbox. This message is only a example of what is added to the description field in production."
+                },
+                "chatter_post": {
+                  "type": "boolean",
+                  "value": false
+                },
+                "objectType": {
+                  "type": "string",
+                  "value": "Opportunity"
+                },
+                "objectId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-1.records[0].SBQQ__Opportunity2__c"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-5": {
+          "title": "Append message to description",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "e96c1f66-536a-4e5c-8bd3-8a2375110837"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "O2C quote request generated. O2C ticket link: {$.steps.text-helpers-1.result}"
+                },
+                "chatter_post": {
+                  "type": "boolean",
+                  "value": false
+                },
+                "objectType": {
+                  "type": "string",
+                  "value": "Opportunity"
+                },
+                "objectId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-1.records[0].SBQQ__Opportunity2__c"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-6": {
+          "title": "Update Account",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "ddd2aa04-5767-4f2a-ba91-7f90b9e52c1c"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "accountId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-1.records[0].SBQQ__Opportunity2__r.AccountId"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-7": {
+          "title": "Update Primary Partner",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "ddd2aa04-5767-4f2a-ba91-7f90b9e52c1c"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "accountId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-5.records[0].AccountToId"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-8": {
+          "title": "Cancel out for signature agree",
+          "description": "Call workflow that cancels out for signature agreements related to the informed quote that were not signed by any party.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "eefcff2e-b6c4-4599-96c9-87a826c0b2a1"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "quoteId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.id"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-9": {
+          "title": "Create NS Customer for Account",
+          "description": "Call subflow that will create a NS Customer for the account if doesn't exist",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "3a4d4d7f-b50c-419b-b5ba-dc6182c3f116"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "accountId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-1.records[0].SBQQ__Opportunity2__r.AccountId"
+                },
+                "subscriptionPlanId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.call-workflow-10.response.subscriptionPlan.id"
+                },
+                "type": {
+                  "type": "string",
+                  "value": "End User"
+                }
+              }
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Return",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "callable-workflow-response-2": {
+          "title": "Return",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "callable-workflow-response-4": {
+          "title": "Skip the Quote",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "callable-workflow-response-5": {
+          "title": "Skip the Quote",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "callable-workflow-response-6": {
+          "title": "Skip the Quote",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "date-time-helpers-1": {
+          "title": "Date & Time Helpers",
+          "connector": {
+            "name": "date-time-helpers",
+            "version": "3.0"
+          },
+          "operation": "current_timestamp",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "timezone": {
+              "type": "string",
+              "value": "UTC"
+            },
+            "format": {
+              "type": "object",
+              "value": {
+                "existing_format": {
+                  "type": "string",
+                  "value": "YYYY-MM-DD"
+                }
+              }
+            }
+          }
+        },
+        "jira-cloud-1": {
+          "title": "Search Sales Rep ID in JIRA",
+          "connector": {
+            "name": "jira-cloud",
+            "version": "2.0"
+          },
+          "operation": "search_users",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3698bbfd-cdf2-419a-8e47-a0c47d4445b2",
+            "title": "O2C-Devgraph-APL-auth",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/74f32232-8c6c-44c5-9c3a-796e1952bb6f.png"
+            },
+            "scopes": [
+              "read:jira-work",
+              "read:jira-user",
+              "write:jira-work",
+              "offline_access"
+            ],
+            "service_name": "jira-cloud",
+            "service_version": 1
+          },
+          "properties": {
+            "start_at": {
+              "type": "number",
+              "value": 0
+            },
+            "max_results": {
+              "type": "number",
+              "value": 50
+            },
+            "query": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-1.records[0].SBQQ__SalesRep__r.Email"
+            }
+          }
+        },
+        "jira-cloud-2": {
+          "title": "Update Submitter",
+          "description": "We can't set the submitter on creation, but we can update it afterwards",
+          "connector": {
+            "name": "jira-cloud",
+            "version": "2.0"
+          },
+          "operation": "update_issue",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3698bbfd-cdf2-419a-8e47-a0c47d4445b2",
+            "title": "O2C-Devgraph-APL-auth",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/74f32232-8c6c-44c5-9c3a-796e1952bb6f.png"
+            },
+            "scopes": [
+              "read:jira-work",
+              "read:jira-user",
+              "write:jira-work",
+              "offline_access"
+            ],
+            "service_name": "jira-cloud",
+            "service_version": 1
+          },
+          "properties": {
+            "issue_id": {
+              "type": "jsonpath",
+              "value": "$.steps.jira-cloud-3.key"
+            },
+            "project_key": {
+              "type": "string",
+              "value": "O2C"
+            },
+            "other_fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "customfield_10295"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].SBQQ__SalesRep__r.Name"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "jira-cloud-3": {
+          "title": "Create Ticket",
+          "connector": {
+            "name": "jira-cloud",
+            "version": "2.0"
+          },
+          "operation": "create_issue",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3698bbfd-cdf2-419a-8e47-a0c47d4445b2",
+            "title": "O2C-Devgraph-APL-auth",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/74f32232-8c6c-44c5-9c3a-796e1952bb6f.png"
+            },
+            "scopes": [
+              "read:jira-work",
+              "read:jira-user",
+              "write:jira-work",
+              "offline_access"
+            ],
+            "service_name": "jira-cloud",
+            "service_version": 1
+          },
+          "properties": {
+            "project_key": {
+              "type": "string",
+              "value": "O2C"
+            },
+            "summary": {
+              "type": "jsonpath",
+              "value": "$.steps.script-4.result.subject"
+            },
+            "issue_type_id": {
+              "type": "string",
+              "value": "11849"
+            },
+            "description": {
+              "type": "jsonpath",
+              "value": "$.steps.script-4.result.description"
+            },
+            "other_fields": {
+              "type": "array",
+              "value": []
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop Quotes",
+          "description": "Loop other quotes to cancel out for signature agreements",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "parentsubscription": {
+                    "type": "string"
+                  }
+                }
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.response.body.items"
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get other quotes linked to sub",
+          "description": "Get other quotes linked to subscription to cancel the Out for signature agreements sent for other quotes",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "x-netsuite-jobid": {
+                        "type": "string"
+                      },
+                      "preference-applied": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "p3p": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "hasMore": {
+                        "type": "boolean"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "parentsubscription": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "offset": {
+                        "type": "number"
+                      },
+                      "totalResults": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/917247fd-0fa6-4f4c-b085-3ccbdc273c4d.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "object",
+                  "value": {
+                    "q": {
+                      "type": "string",
+                      "value": "SELECT id FROM transaction WHERE custbody_related_subscription = {$.steps.salesforce-1.records[0].SBQQ__Opportunity2__r.NetSuite_ID__c} and id != {$.steps.salesforce-1.records[0].NetSuite_ID__c}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "netsuite-2": {
+          "title": "Get customer",
+          "description": "Get the NS customer data.",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/917247fd-0fa6-4f4c-b085-3ccbdc273c4d.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "customer"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result.customer"
+            },
+            "expand_sub_resources": {
+              "value": false,
+              "type": "boolean"
+            }
+          }
+        },
+        "netsuite-3": {
+          "title": "Get quote type",
+          "description": "Retrieves the quote type for the existing NS quote.",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/917247fd-0fa6-4f4c-b085-3ccbdc273c4d.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "full_url": {
+                  "type": "string",
+                  "value": "{$.steps.call-workflow-12.response.restlet_url}/app/site/hosting/restlet.nl?{$.config.restlet}"
+                }
+              }
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "object",
+                  "value": {
+                    "op": {
+                      "type": "string",
+                      "value": "quote.internalGetQuoteType"
+                    },
+                    "quoteId": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].NetSuite_ID__c"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "netsuite-8": {
+          "title": "Update Quote memo",
+          "description": "Used soap api because the quote in rest api is beta  and is not active",
+          "connector": {
+            "name": "netsuite",
+            "version": "1.9"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/917247fd-0fa6-4f4c-b085-3ccbdc273c4d.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "record": {
+              "type": "object",
+              "value": {
+                "xmlns_namespace": {
+                  "type": "string",
+                  "value": "transactionSales"
+                },
+                "type": {
+                  "type": "string",
+                  "value": "Estimate"
+                }
+              }
+            },
+            "internal_id": {
+              "type": "jsonpath",
+              "value": "$.steps.storage-5.value.quoteId"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "memo"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.jira-cloud-3.key"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get Quote",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Quotes",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Quote",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Record ID"
+                    },
+                    "SBQQ__Status__c": {
+                      "name": "SBQQ__Status__c",
+                      "type": "string",
+                      "title": "Status"
+                    },
+                    "SBQQ__Type__c": {
+                      "name": "SBQQ__Type__c",
+                      "type": "string",
+                      "title": "Type"
+                    },
+                    "SBQQ__Opportunity2__c": {
+                      "name": "SBQQ__Opportunity2__c",
+                      "type": "string",
+                      "title": "Opportunity"
+                    },
+                    "SBQQ__PrimaryContact__c": {
+                      "name": "SBQQ__PrimaryContact__c",
+                      "type": "string",
+                      "title": "Primary Contact"
+                    },
+                    "SBQQ__ExpirationDate__c": {
+                      "name": "SBQQ__ExpirationDate__c",
+                      "type": "string",
+                      "title": "Expires On"
+                    },
+                    "NetSuite_ID__c": {
+                      "name": "NetSuite_ID__c",
+                      "type": "string",
+                      "title": "NetSuite ID"
+                    },
+                    "O2C_Ticket_Link__c": {
+                      "name": "O2C_Ticket_Link__c",
+                      "type": "string",
+                      "title": "O2C Ticket Link"
+                    },
+                    "Line_Items_Header_Text__c": {
+                      "name": "Line_Items_Header_Text__c",
+                      "type": "string",
+                      "title": "Line Items Header Text"
+                    },
+                    "Line_Items_Footer_Text__c": {
+                      "name": "Line_Items_Footer_Text__c",
+                      "type": "string",
+                      "title": "Line Items Footer Text"
+                    },
+                    "Service_Provider__c": {
+                      "name": "Service_Provider__c",
+                      "type": "string",
+                      "title": "Service Provider"
+                    },
+                    "SBQQ__PaymentTerms__c": {
+                      "name": "SBQQ__PaymentTerms__c",
+                      "type": "string",
+                      "title": "Payment Terms"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Status__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Opportunity2__r.Product_Configuration__r.Id"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Opportunity2__r.Manual_O2C__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Opportunity2__r.Product_Configuration__r.Processed_via_OTC__c"
+                },
+                {
+                  "value": "SBQQ__SalesRep__r.Name",
+                  "type": "string"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Type__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Opportunity2__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Opportunity2__r.Owner.Email"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__PrimaryContact__r.Email"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__PrimaryContact__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__ExpirationDate__c"
+                },
+                {
+                  "type": "string",
+                  "value": "NetSuite_ID__c"
+                },
+                {
+                  "type": "string",
+                  "value": "O2C_Ticket_Link__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Line_Items_Header_Text__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Line_Items_Footer_Text__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Opportunity2__r.StageName"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__SalesRep__r.NetSuite_ID__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Opportunity2__r.AccountId"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Opportunity2__r.Addresses_Validated__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Service_Provider__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__SalesRep__r.Email"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Opportunity2__r.Product_Configuration__r.NetSuite_Product__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__PaymentTerms__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Opportunity2__r.NetSuite_ID__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Opportunity2__r.AR_Quote__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Opportunity2__r.Type"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Opportunity2__r.Product__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Account__r.NetSuite_ID__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "SBQQ__Quote__c"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Id"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.sfQuoteId"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Update Quote with Link",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "SBQQ__Quote__c"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "O2C_Ticket_Link__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.text-helpers-1.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.sfQuoteId"
+            }
+          }
+        },
+        "salesforce-3": {
+          "title": "Update Quote status",
+          "description": "Updates the status to \"Generated\" as the NS quote is already generated.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "SBQQ__Status__c"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "Generated"
+                    }
+                  }
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "SBQQ__Quote__c"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.sfQuoteId"
+            }
+          }
+        },
+        "salesforce-4": {
+          "title": "Get Quote Lines End Dates",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Quote Lines",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Quote Line",
+                  "properties": {
+                    "SBQQ__ProductCode__c": {
+                      "name": "SBQQ__ProductCode__c",
+                      "type": "string",
+                      "title": "Product Code"
+                    },
+                    "SBQQ__EndDate__c": {
+                      "name": "SBQQ__EndDate__c",
+                      "type": "string",
+                      "title": "End Date"
+                    },
+                    "SBQQ__EffectiveEndDate__c": {
+                      "name": "SBQQ__EffectiveEndDate__c",
+                      "type": "string",
+                      "title": "Effective End Date"
+                    },
+                    "SBQQ__EffectiveStartDate__c": {
+                      "name": "SBQQ__EffectiveStartDate__c",
+                      "type": "string",
+                      "title": "Effective Start Date"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "SBQQ__ProductCode__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__EndDate__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__EffectiveEndDate__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Product__r.Product_Edition__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Product__r.NetSuite_ID__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__EffectiveStartDate__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "SBQQ__QuoteLine__c"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "SBQQ__Quote__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.sfQuoteId"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "salesforce-5": {
+          "title": "Get Primary Partner",
+          "description": "Load Reseller NetSuite ID",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Opportunity Partner",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Opportunity Partner",
+                  "properties": {
+                    "AccountToId": {
+                      "name": "AccountToId",
+                      "type": "string",
+                      "title": "Account ID"
+                    },
+                    "Role": {
+                      "name": "Role",
+                      "type": "string",
+                      "title": "Role"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "AccountToId"
+                },
+                {
+                  "type": "string",
+                  "value": "Role"
+                },
+                {
+                  "type": "string",
+                  "value": "AccountTo.NetSuite_ID__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "OpportunityPartner"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "OpportunityId"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].SBQQ__Opportunity2__c"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "IsPrimary"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "salesforce-6": {
+          "title": "Get Org Id",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "query",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "query": {
+              "type": "string",
+              "value": "SELECT Id FROM Organization"
+            }
+          }
+        },
+        "salesforce-7": {
+          "title": "Get partner reseller agreement",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Reseller Agreements",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Reseller Agreement",
+                  "properties": {
+                    "Reseller_Agreement_Link__c": {
+                      "name": "Reseller_Agreement_Link__c",
+                      "type": "string",
+                      "title": "Reseller Agreement Link"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Reseller_Agreement_Link__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Reseller_Agreement__c"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Account__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-5.value.sfPartnerId"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Subsidiary__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Service_Provider__c"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "script-1": {
+          "title": "Select customer IDs",
+          "description": "Selects the customer out of the end-user, the reseller, and the distributor.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "partners"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-5.records",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "end_user"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].SBQQ__Account__r.NetSuite_ID__c"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\tlet customer = input.end_user;\n  const distributor = input.partners.find(i => i.Role === 'Distributor');\n  const distributorId = distributor ? distributor.AccountTo.NetSuite_ID__c : null;\n  \n  let reseller = input.partners.find(i => i.Role === 'VAR/Reseller');\n  if (!reseller) {\n    reseller = input.partners.find(i => !i.Role);\n  }\n  const resellerId = reseller ? reseller.AccountTo.NetSuite_ID__c : null;\n\n  let sfPartnerId = null;\n  if (distributorId) {\n    customer = distributorId;\n    sfPartnerId = distributor.AccountTo.attributes.url.split('/').pop();\n  } else if(resellerId) {\n    customer = resellerId;\n    sfPartnerId = reseller.AccountTo.attributes.url.split('/').pop();\n  } else {\n  \tcustomer = input.end_user\n  }\n  return {\n    customer: customer,\n    distributor: distributorId,\n    reseller: resellerId,\n    endUser: input.end_user,\n    sfPartnerId: sfPartnerId\n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-4": {
+          "title": "Prepare Jira Ticket Data",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "object",
+                "properties": {
+                  "subject": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              },
+              "console": {
+                "type": "array",
+                "items": {}
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "customer"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-5.value.customer"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsQuoteId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-5.value.quoteId"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "resellerAgreementLink"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-7.records[0].Reseller_Agreement_Link__c",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "isrJiraAccountId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.jira-cloud-1.results[0].accountId",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "isrEmail"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].SBQQ__SalesRep__r.Email"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "footerText"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Line_Items_Footer_Text__c",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsQuoteType"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-5.value.quoteType"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "partnerId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-5.value.sfPartnerId"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  var customerName = input.customer.isPerson ? \n    [input.customer.firstName, input.customer.middleName, input.customer.lastName]\n\t\t.filter(f=>Boolean(f)) // filter out empty fields\n\t\t.join(' ')\n  \t: input.customer.companyName;\n  // Filter out special characters\n  customerName = customerName.replace(/[\\n\\r]/g, ' ');\n  const resellerAgreement = input.resellerAgreementLink ?\n    `Here is the Reseller Agreement: ${input.resellerAgreementLink}\n` :\n    '';\n  \n  var isrTag = `${input.isrEmail}`;\n\tif(input.isrJiraAccountId) {\n    isrTag = `[~accountid:${input.isrJiraAccountId}], email: ${input.isrEmail}`;\n  }\n  const hasPartner = !!input.partnerId;\n  const qcerAction3 = hasPartner ? `QCer Action 3 - EUA: If a non-expired & signed EUA  does not exist on the end user, then QC and send the Generated EUA using the playbook: [SENDING EUA FROM NETSUITE|https://docs.google.com/document/d/119pYniQ4Ttp_LTKhcbyWg4lDLczFLjvJpGqy5uI-nFg/edit]\n` : '';\n  const additionalInstructions = input.footerText?`*Important Note*: ${input.footerText}\\n`:'';\n  let qcerActionExtra1 = '';\n  let masterContractInstructions = '';\n  if (input.nsQuoteType === 'FullTCs') {\n    qcerActionExtra1 = 'If this quote should be without Full T&Cs, please, follow the instructions to set Master Contract at the end of the description of this ticket.';\n    masterContractInstructions = `\nInstructions to set Master Contract:\n1. Go to the Contractual documents for the subscription which already has Full T&Cs.\n2. Edit this Contractual documents:\n   a. LINK TO CONTRACT PDF:  NetSuite link to the Signed Quote PDF.\n   b. REVENUE TYPE: Set it to SaaS, On-Premise, or Professional Services (Can be taken from the main item on the Signed Quote) or set it to Support if the Quote is of type Maintenance (only support item exists in Quote).\n   c. QUOTE: Set it to the signed quote in the format Quote #<Quote ID>.\n   d. IS MASTER CONTRACT: Set to true.\n   e. ESW PAPER: Set to true if the signed quote is ESW standard quote\n   f. VERSION: Set it to the signed T&Cs version found at the footer of signed Full T&Cs if it’s ESW Paper.`;\n  } else if (input.nsQuoteType === 'NoTCs') {\n    qcerActionExtra1 = 'If this quote should be with Full T&Cs, please, follow the instructions to unset Master Contract at the end of the description of this ticket.';\n    masterContractInstructions = `\nInstructions to unset Master Contract:\n1. Find in the chain of parent subscriptions to the Contractual documents that has Is Master Contract set to true.\n2. Edit this Contractual documents and set the IS MASTER CONTRACT to false.\n3. Save this Contractual documents.`;\n  }\n\treturn {\n  \tsubject: `Quote Request - ${customerName}`, // [quote] prefix will be added by Jira\n    description: `The Quote with ID [${input.nsQuoteId}|https://4914352.app.netsuite.com/app/accounting/transactions/estimate.nl?id=${input.nsQuoteId}] was generated by Sales Integration.\n${additionalInstructions}\n${resellerAgreement}\n\n*Sales Rep*: ${isrTag}\n\nPlease perform the following steps.\n1.  QC the Quote as normal Quote unit (No DS file required. The generated quote takes place of the DS).\n2.  Assume the Data which was earlier validated through DS is always correct in this case. \n3.  No Action by Input or RFW worker required.\n4.  You might observe a new subscription plan added to the quote as an item which is a new format and should not be failed for this.\n5.  Open NetSuite quote by clicking the Quote link in the ticket description.\n6.  Click the Agreements tab under NetSuite Quote and open the linked agreement.\n7.  Verify if the NetSuite Agreement has correct recipients in the correct order under Recipients tab.\n8.  Verify if the correct Terms and Conditions files are attached to the NetSuite Agreement under Documents tab as per the QC rules. \n9.  Verify if the Billing and Shipping addresses on the Quote are correct as per the NetSuite Customer's Billing/Shipping addresses. \n10. Verify that the checkbox [PREVIEW DOCUMENT OR POSITION SIGNATURES] is pre-checked.\n11. QCer please run QC checks on the quote PDF.\n12. Click the [Send For Signature] button in NetSuite agreement. It will open the PDF preview of the quote QC. \n\nQCer Action 1- Send out the Quote once all QC checks are met. ${qcerActionExtra1}\nQCer Action 2 - Mention the O2C case reference in the Memo field on the Quote once sent out.\n${qcerAction3}\nNote: \nIf you need to close the quote preview window in NetSuite without sending the quote for signature, please give it at least two minutes to fully load and then close the preview window if needed.\n${masterContractInstructions}`\n\t};\n}"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "send-email-1": {
+          "title": "Send Email",
+          "connector": {
+            "name": "send-email",
+            "version": "4.1"
+          },
+          "operation": "send_text_email",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "tls": {
+              "type": "boolean",
+              "value": false
+            },
+            "subject": {
+              "type": "string",
+              "value": "Opportunity with manual o2c"
+            },
+            "to": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "email": {
+                      "type": "string",
+                      "value": "roger.marquardt@gmail.com"
+                    },
+                    "name": {
+                      "type": "string",
+                      "value": "Roger"
+                    }
+                  }
+                }
+              ]
+            },
+            "content": {
+              "type": "string",
+              "value": "Opportunity Id: {$.steps.salesforce-1.records[0].SBQQ__Opportunity2__c}"
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Store OppId",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Opp_{$.env.execution_uuid}"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-1.records[0].SBQQ__Opportunity2__c"
+            }
+          }
+        },
+        "storage-2": {
+          "title": "Remove OppId",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "delete",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Opp_{$.env.execution_uuid}"
+            }
+          }
+        },
+        "storage-3": {
+          "title": "Set Quote data",
+          "description": "Sets Quote data in storage for the current scenario (NS quote creation).",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "Quote_data"
+            },
+            "value": {
+              "type": "object",
+              "value": {
+                "quoteId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.call-workflow-1.response.quoteId"
+                },
+                "quoteType": {
+                  "type": "jsonpath",
+                  "value": "$.steps.call-workflow-1.response.quoteType"
+                },
+                "customer": {
+                  "type": "jsonpath",
+                  "value": "$.steps.call-workflow-1.response.customer"
+                },
+                "sfPartnerId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.call-workflow-1.response.sfPartnerId"
+                }
+              }
+            }
+          }
+        },
+        "storage-4": {
+          "title": "Set Quote data",
+          "description": "Sets Quote data in storage for the current scenario (NS quote already created).",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "Quote_data"
+            },
+            "value": {
+              "type": "object",
+              "value": {
+                "quoteId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-1.records[0].NetSuite_ID__c"
+                },
+                "quoteType": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-3.response.body.content.quoteType"
+                },
+                "customer": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-2"
+                },
+                "sfPartnerId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result.sfPartnerId"
+                }
+              }
+            }
+          }
+        },
+        "storage-5": {
+          "title": "Get Quote data",
+          "description": "Retrieves the Quote data from the storage.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "Quote_data"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "OrgId Does Not Match",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "Event is from another org ('{$.steps.trigger.organization_id}' instead of '{$.steps.salesforce-6.records[0].Id}'). Please fix the sandbox outbound messages list."
+            }
+          }
+        },
+        "terminate-2": {
+          "title": "Terminate",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "Netsuite id not set for the opportunity owner({$.steps.salesforce-1.records[0].SBQQ__SalesRep__r.Name})."
+            }
+          }
+        },
+        "terminate-3": {
+          "title": "Terminate",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "Quote expiration date is not in future. Expiration date: {$.steps.salesforce-1.records[0].SBQQ__ExpirationDate__c}, Quote Id: {$.steps.salesforce-1.records[0].Id}"
+            }
+          }
+        },
+        "text-helpers-1": {
+          "title": "Construct Ticket Address",
+          "connector": {
+            "name": "text-helpers",
+            "version": "3.0"
+          },
+          "operation": "concatenate",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "separator": {
+              "type": "string",
+              "value": ""
+            },
+            "values": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "https://devgraph-alp.atlassian.net/browse/"
+                },
+                {
+                  "type": "jsonpath",
+                  "value": "$.steps.jira-cloud-3.key"
+                }
+              ]
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "3a4d4d7f-b50c-419b-b5ba-dc6182c3f116",
+          "name": "Create NS Customer from SF Account"
+        },
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "8cd05cfc-a86e-4be8-8e66-4a05cf6550c5",
+          "name": "Get NS metadata"
+        },
+        {
+          "id": "a2689ca7-7276-4ad0-b118-f7ac85399f93",
+          "name": "Convert a SF Quote to a NS Quote"
+        },
+        {
+          "id": "c9810494-9f62-41ce-a159-3bca69d3227e",
+          "name": "Get SF Quote Items"
+        },
+        {
+          "id": "ddd2aa04-5767-4f2a-ba91-7f90b9e52c1c",
+          "name": "Subflow Sync SF Account to NS"
+        },
+        {
+          "id": "e96c1f66-536a-4e5c-8bd3-8a2375110837",
+          "name": "Subflow Append Message to Description"
+        },
+        {
+          "id": "eefcff2e-b6c4-4599-96c9-87a826c0b2a1",
+          "name": "Cancel Out for Signature Agreements"
+        },
+        {
+          "id": "f4caf52a-e9f8-440e-aad5-561164209ce8",
+          "name": "Create NS Contact from SF Contact"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Submit the quote to be approved</description>
+        <name>Submit_Quote_for_Approval</name>
+        <label>Submit Quote for Approval</label>
+        <locationX>264</locationX>
+        <locationY>1392</locationY>
+        <actionName>submit</actionName>
+        <actionType>submit</actionType>
+        <connector>
+            <targetReference>Loop_All_Updated_Quotes</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>objectId</name>
+            <value>
+                <elementReference>Loop_All_Updated_Quotes.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>processDefinitionNameOrId</name>
+            <value>
+                <stringValue>FinalQuoteApproval</stringValue>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <assignments>
+        <description>Adds the quote to the list to be updated</description>
+        <name>Add_Quote_to_Update_List</name>
+        <label>Add Quote to Update List</label>
+        <locationX>264</locationX>
+        <locationY>984</locationY>
+        <assignmentItems>
+            <assignToReference>QuotesToUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_all_quotes</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_all_quotes</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Assigning the AR Quote Id to ARQuoteIds to query all quotes</description>
+        <name>Assign_AR_Quote_Id_to_collection</name>
+        <label>Assign AR Quote Id to collection</label>
+        <locationX>264</locationX>
+        <locationY>468</locationY>
+        <assignmentItems>
+            <assignToReference>ARQuoteIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_all_results.AR_Quote__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_all_results</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Set the expiration date if the expiration date is in the past and the quote approver</description>
+        <name>Set_Quote_fields</name>
+        <label>Set Quote fields</label>
+        <locationX>264</locationX>
+        <locationY>876</locationY>
+        <assignmentItems>
+            <assignToReference>Loop_all_quotes.SBQQ__ExpirationDate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ExpirationDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Loop_all_quotes.Quote_Approver__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>QuoteApprover</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_Quote_to_Update_List</targetReference>
+        </connector>
+    </assignments>
+    <description>Schedule flow to be executed daily that will search for opportunities that passed the Customer Termination Date and will change the AR Quote to status Accepted in order to initiate the Auto-Renew process</description>
+    <formulas>
+        <name>ExpirationDate</name>
+        <dataType>Date</dataType>
+        <expression>IF({!Loop_all_quotes.SBQQ__ExpirationDate__c} &lt; TODAY(), {!Loop_all_quotes.SBQQ__Opportunity2__r.Renewal_Date__c}, {!Loop_all_quotes.SBQQ__ExpirationDate__c})</expression>
+    </formulas>
+    <formulas>
+        <name>QuoteApprover</name>
+        <dataType>String</dataType>
+        <expression>IF(!ISNULL({!Loop_all_quotes.SBQQ__Opportunity2__r.Product_Configuration__c}),IF(ISPICKVAL({!Loop_all_quotes.SBQQ__Opportunity2__r.Type}, &apos;Renewal&apos;),{!Loop_all_quotes.SBQQ__Opportunity2__r.Product_Configuration__r.Renewal_Manager__c},{!Loop_all_quotes.SBQQ__Opportunity2__r.Product_Configuration__r.New_Business_Manager__c}),
+{!Loop_all_quotes.SBQQ__Opportunity2__r.OwnerId})</expression>
+    </formulas>
+    <formulas>
+        <name>Tomorrow</name>
+        <dataType>Date</dataType>
+        <expression>TODAY() + 1</expression>
+    </formulas>
+    <interviewLabel>Daily Process AR Quotes {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Daily Process AR Quotes</label>
+    <loops>
+        <description>Loop all quotes to change the status to accepted</description>
+        <name>Loop_all_quotes</name>
+        <label>Loop all quotes</label>
+        <locationX>176</locationX>
+        <locationY>768</locationY>
+        <collectionReference>Get_all_AR_quotes</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Set_Quote_fields</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_all_AR_quotes</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Is necessary to loop the results to build an collection of ARQuoteIds to be possible to query the quotes</description>
+        <name>Loop_all_results</name>
+        <label>Loop all results</label>
+        <locationX>176</locationX>
+        <locationY>360</locationY>
+        <collectionReference>Get_AR_Quotes_Ids_to_Accept</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_AR_Quote_Id_to_collection</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_all_AR_quotes</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Loop all updated quotes to call the approval process</description>
+        <name>Loop_All_Updated_Quotes</name>
+        <label>Loop All Updated Quotes</label>
+        <locationX>176</locationX>
+        <locationY>1284</locationY>
+        <collectionReference>QuotesToUpdate</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Submit_Quote_for_Approval</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get all AR quotes that are in Draft status</description>
+        <name>Get_all_AR_quotes</name>
+        <label>Get all AR quotes</label>
+        <locationX>176</locationX>
+        <locationY>660</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_all_quotes</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>ARQuoteIds</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>SBQQ__Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Draft</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>SBQQ__Quote__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get AR Quotes Ids from open renewal opportunities which have Auto-Renewal Clause and the the termination notice date is in past.</description>
+        <name>Get_AR_Quotes_Ids_to_Accept</name>
+        <label>Get AR Quotes Ids to Accept</label>
+        <locationX>176</locationX>
+        <locationY>252</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_all_results</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>IsClosed</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CurrentContractHasAutoRenewalClause__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Yes</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Type</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Renewal</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Customer_Termination_Deadline__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Tomorrow</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>AR_Quote__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>AR_Quote__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Update all AR quotes with status Accepted</description>
+        <name>Update_all_AR_quotes</name>
+        <label>Update all AR quotes</label>
+        <locationX>176</locationX>
+        <locationY>1176</locationY>
+        <connector>
+            <targetReference>Loop_All_Updated_Quotes</targetReference>
+        </connector>
+        <inputReference>QuotesToUpdate</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_AR_Quotes_Ids_to_Accept</targetReference>
+        </connector>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2023-08-21</startDate>
+            <startTime>20:00:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>ARQuoteIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>currentItemFromSourceCollection</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>QuotesToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>SBQQ__Quote__c</objectType>
+    </variables>
+</Flow>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NDR_Below_Target__c</fullName>
+    <description>Returns a text value &quot;true&quot; if NDR uplift is below 25/35/45, otherwise returns &quot;false&quot;.  CASE formula does not allow returning boolean true/false.</description>
+    <externalId>false</externalId>
+    <formula>CASE(Success_Level__c,
+&quot;Platinum&quot;, IF(round(NDR__c,2) &lt; 1.45,&quot;true&quot;,&quot;false&quot;),
+&quot;Gold&quot;, IF(round(NDR__c,2) &lt; 1.35,&quot;true&quot;,&quot;false&quot;),
+&quot;Standard&quot;, IF(round(NDR__c,2) &lt; 1.25,&quot;true&quot;,&quot;false&quot;),
+&quot;true&quot;)</formula>
+    <label>NDR Below Target</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

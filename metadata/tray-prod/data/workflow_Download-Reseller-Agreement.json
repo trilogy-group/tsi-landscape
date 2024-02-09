@@ -1,0 +1,520 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "f8fc7209-7911-402c-8a23-613eecc9a35f",
+      "created": "2023-07-06T03:00:28.944032Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "9206802e-9f46-4e3c-8219-2db2161cd534",
+        "created": "2023-07-06T03:01:43.896507Z"
+      },
+      "title": "Download Reseller Agreement",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "netsuiteAccountId": {
+              "type": "string",
+              "title": "Netsuite Account Id"
+            },
+            "netsuiteSubsidiaryId": {
+              "title": "Netsuite Subsidiary Id",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "title": "File",
+              "type": "object",
+              "properties": {},
+              "additionalProperties": false,
+              "required": [],
+              "advanced": []
+            },
+            "success": {
+              "title": "Success",
+              "type": "boolean",
+              "default": false
+            },
+            "netsuiteFileId": {
+              "title": "Netsuite File Id",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "script-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "branch-1",
+                "type": "branch",
+                "content": {
+                  "__default__": [],
+                  "branch1": [
+                    {
+                      "name": "call-workflow-1",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "callable-workflow-response-2",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "branch2": [
+                    {
+                      "name": "call-workflow-2",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "callable-workflow-response-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "branch-1": {
+          "title": "Branch",
+          "connector": {
+            "name": "branch",
+            "version": "1.3"
+          },
+          "operation": "simple",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result.type"
+            },
+            "branches": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "netsuite"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "netsuite"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "salesforce"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "salesforce"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "script-1": {
+          "title": "get agreement type",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "url"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Reseller_Agreement_Link__c"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\tconst netsuiteIdPattern = /netsuite.*media\\.nl\\?id=(\\d+)&/;\n  const netsuiteMatches = input.url.match(netsuiteIdPattern);\n  if (netsuiteMatches && netsuiteMatches[1]) {\n    return {\n      type: 'netsuite',\n      id: netsuiteMatches[1]\n  \t}\n  }\n\n  // Extract ID from a Salesforce URL\n  const salesforceIdPattern = /trilogy-sales.*force.*ContentDocument\\/([a-zA-Z0-9]+)\\//;\n  const salesforceMatches = input.url.match(salesforceIdPattern);\n  if (salesforceMatches && salesforceMatches[1]) {\n    return {\n      type: 'salesforce',\n      id: salesforceMatches[1],\n  \t}\n  }\n\n  return {\n    type: 'url'\n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Response without file",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "success": {
+                  "value": false,
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Download from salesforce",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "7b618e09-ed98-464f-9abd-44d120e665a2"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "contentDocumentUrl": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-1.records[0].Reseller_Agreement_Link__c"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Download from netsuite",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "c6af6bca-ca60-4a38-ba67-4531f0095ed6"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "id": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result.id"
+                },
+                "fail": {
+                  "type": "boolean",
+                  "value": false
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Agreement found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.total"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "callable-workflow-response-2": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "success": {
+                  "type": "jsonpath",
+                  "value": "$.steps.call-workflow-1.response.success"
+                },
+                "file": {
+                  "type": "jsonpath",
+                  "value": "$.steps.call-workflow-1.response.file"
+                },
+                "netsuiteFileId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result.id"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Search Reseller Agreement",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Reseller Agreements",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Reseller Agreement",
+                  "properties": {
+                    "Reseller_Agreement_Link__c": {
+                      "name": "Reseller_Agreement_Link__c",
+                      "type": "string",
+                      "title": "Reseller Agreement Link"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Reseller_Agreement_Link__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Reseller_Agreement__c"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Account__r.NetSuite_ID__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.netsuiteAccountId"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Subsidiary__r.Netsuite_Id__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.netsuiteSubsidiaryId"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "callable-workflow-response-3": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "success": {
+                  "type": "boolean",
+                  "value": true
+                },
+                "file": {
+                  "type": "jsonpath",
+                  "value": "$.steps.call-workflow-2.response.file"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "7b618e09-ed98-464f-9abd-44d120e665a2",
+          "name": "Subflow Download ContentDocument from SF"
+        },
+        {
+          "id": "c6af6bca-ca60-4a38-ba67-4531f0095ed6",
+          "name": "Download NS file"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

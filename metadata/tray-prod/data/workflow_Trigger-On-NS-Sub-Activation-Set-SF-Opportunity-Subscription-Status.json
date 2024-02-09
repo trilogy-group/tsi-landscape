@@ -1,0 +1,98 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "877f4856-100f-44e1-b4fe-a6dea86409f0",
+      "created": "2023-04-25T12:07:10.452939Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "0c145cd5-0a3a-480f-bd7e-2cc8a66fd232",
+      "version": {
+        "id": "9575eb2a-b88d-42e0-bf7d-9bb7458b03a7",
+        "created": "2023-06-22T22:42:29.480286Z"
+      },
+      "title": "Trigger On NS Sub Activation Set SF Opportunity Subscription Status",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "call-workflow-1": {
+          "title": "Call subflow synchronously",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "bac062f9-004a-4358-a783-6d048c433b0b"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "id": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.id"
+                },
+                "requestor": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.requestor"
+                },
+                "changeOrderId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.changeOrderId"
+                },
+                "autoProvisioningConfig": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.autoProvisioningConfig"
+                }
+              }
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "bac062f9-004a-4358-a783-6d048c433b0b",
+          "name": "On NS Sub Activation Set SF Opportunity Subscription Status"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deal_Desk_Substage__c</fullName>
+    <description>Used by Deal Desk to manage their Pending stages</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Used by Deal Desk to manage their Pending stages</inlineHelpText>
+    <label>Deal Desk Substage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pending Deal Desk</fullName>
+                <default>false</default>
+                <label>Pending Deal Desk</label>
+            </value>
+            <value>
+                <fullName>Pending PO</fullName>
+                <default>false</default>
+                <label>Pending PO</label>
+            </value>
+            <value>
+                <fullName>Pending NetSuite</fullName>
+                <default>false</default>
+                <label>Pending NetSuite</label>
+            </value>
+            <value>
+                <fullName>Pending Write Off</fullName>
+                <default>false</default>
+                <label>Pending Write Off</label>
+            </value>
+            <value>
+                <fullName>Closed</fullName>
+                <default>false</default>
+                <label>Closed</label>
+            </value>
+            <value>
+                <fullName>Closed-Won (AWS MarketPlace)</fullName>
+                <default>false</default>
+                <label>Closed-Won (AWS MarketPlace)</label>
+            </value>
+            <value>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+                <label>Duplicate</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

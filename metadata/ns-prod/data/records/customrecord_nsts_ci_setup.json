@@ -1,0 +1,632 @@
+{
+  "type": "object",
+  "properties": {
+    "custrecord_nsts_custom_field2_type": {
+      "title": "Custom Field 2 Field Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_enable_ci": {
+      "title": "Enable Consolidated Invoicing",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_billingaddress": {
+      "title": "Billing Address",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_fax_attachment": {
+      "title": "Fax",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_update_duedate": {
+      "title": "Update Due Date",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_schedule": {
+      "title": "Enable Scheduled Consolidation",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_custom_field1_type": {
+      "title": "Custom Field 1 Field Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_per_page": {
+      "title": "Invoice Per Page (Pagination)",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_result_per_chuck": {
+      "title": "# of Invoices Per Split of Search Result",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_as_file_in_folder": {
+      "title": "Folder in File Cabinet (Internal ID)",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_custom_field1_id": {
+      "title": "Custom Field 1 ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_custom_field3_src": {
+      "title": "Custom Field 3 Field Source",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_project": {
+      "title": "Project",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_send_via_field_note": {
+      "title": "Send Via (field Note)",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "altName": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_include_subcust": {
+      "title": "Include Sub Customers",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_source": {
+      "title": "Source",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_location": {
+      "title": "Location",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_custom_field2_id": {
+      "title": "Custom Field 2 ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_custom_field1_src": {
+      "title": "Custom Field 1 Field Source",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_type": {
+      "title": "Invoice Type",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_min_no": {
+      "title": "Minimum Number of Child Invoices",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_customer_screen": {
+      "title": "Enable Consolidation on Customer Screen",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_filters_note": {
+      "title": "Filters Note",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_custom_field2_src": {
+      "title": "Custom Field 2 Field Source",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_tran_age_by_day": {
+      "title": "Transaction Age (by Day)",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_max_no": {
+      "title": "Maximum Number of Child Invoices",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_create_online": {
+      "title": "Enable Online Consolidation",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_contract": {
+      "title": "Contract",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_duedate": {
+      "title": "Due Date",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_currency": {
+      "title": "Currency",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_custom_field3_id": {
+      "title": "Custom Field 3 ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_admin_email": {
+      "title": "Administrator Emails",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_email_attachment": {
+      "title": "Email",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_custom_field2": {
+      "title": "Additional Field 2(S-124)",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_custom_field1": {
+      "title": "Additional Field 1(S-124)",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_ci_custom_field3": {
+      "title": "Additional Field 3(S-124)",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nsts_custom_field3_type": {
+      "title": "Custom Field 3 Field Type",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_nsts_ci_fax_template": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_nsts_ci_fax_sender": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_nsts_ci_search": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_nsts_ci_layout": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_nsts_ci_email_sender": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_nsts_ci_search_dtl": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_nsts_ci_enable_for": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_nsts_ci_email_template": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_nsts_ci_contact_category": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/contactRole"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "custrecord_nsts_custom_field2_type",
+    "custrecord_nsts_ci_enable_ci",
+    "custrecord_nsts_ci_billingaddress",
+    "externalId",
+    "lastmodifiedby",
+    "custrecord_nsts_ci_fax_template",
+    "custrecord_nsts_ci_fax_attachment",
+    "custrecord_nsts_ci_update_duedate",
+    "scriptId",
+    "custrecord_nsts_ci_schedule",
+    "custrecord_nsts_custom_field1_type",
+    "custrecord_nsts_ci_per_page",
+    "custrecord_nsts_ci_result_per_chuck",
+    "id",
+    "custrecord_nsts_ci_email_sender",
+    "custrecord_nsts_ci_as_file_in_folder",
+    "custrecord_nsts_custom_field1_id",
+    "custrecord_nsts_ci_enable_for",
+    "custrecord_nsts_custom_field3_src",
+    "custrecord_nsts_ci_project",
+    "custrecord_nsts_ci_contact_category",
+    "created",
+    "altName",
+    "custrecord_nsts_ci_search",
+    "lastmodified",
+    "custrecord_nsts_ci_include_subcust",
+    "custrecord_nsts_ci_source",
+    "name",
+    "isInactive",
+    "custrecord_nsts_ci_location",
+    "custrecord_nsts_custom_field2_id",
+    "custrecord_nsts_custom_field1_src",
+    "custrecord_nsts_ci_type",
+    "custrecord_nsts_ci_min_no",
+    "custrecord_nsts_ci_search_dtl",
+    "custrecord_nsts_ci_layout",
+    "custrecord_nsts_ci_customer_screen",
+    "custrecord_nsts_custom_field2_src",
+    "custrecord_nsts_ci_tran_age_by_day",
+    "custrecord_nsts_ci_max_no",
+    "custrecord_nsts_ci_create_online",
+    "custrecord_nsts_ci_contract",
+    "owner",
+    "custrecord_nsts_ci_duedate",
+    "custrecord_nsts_ci_email_template",
+    "custrecord_nsts_ci_fax_sender",
+    "custrecord_nsts_ci_currency",
+    "custrecord_nsts_custom_field3_id",
+    "custrecord_nsts_ci_admin_email",
+    "abbreviation",
+    "custrecord_nsts_ci_email_attachment",
+    "custrecord_nsts_custom_field3_type"
+  ],
+  "x-ns-custom-record": true
+}

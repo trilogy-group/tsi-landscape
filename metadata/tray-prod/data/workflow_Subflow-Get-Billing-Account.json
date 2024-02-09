@@ -1,0 +1,1120 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "ee2424ff-2259-4ee3-90c3-1dc66b8460d3",
+      "created": "2022-10-27T05:59:10.925808Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "group": "78d7d33c-997b-44a9-8fe1-8f65ec278592",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "f536ca04-b11a-4fbf-8958-09ee2bb06b06",
+        "created": "2023-11-27T03:52:46.650831Z"
+      },
+      "title": "Subflow Get Billing Account",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {
+          "restlet": "script=customscript_si_main_main_restlet&deploy=customdeploy_si_main_main"
+        },
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "customerId": {
+              "type": "string",
+              "title": "Customer Id"
+            },
+            "frequency": {
+              "title": "Frequency",
+              "type": "string"
+            },
+            "currency": {
+              "title": "Currency",
+              "type": "string"
+            },
+            "parentSubsidiaryId": {
+              "title": "Parent Subsidiary Id",
+              "type": "string"
+            },
+            "startDate": {
+              "title": "Start Date",
+              "type": "string"
+            },
+            "opportunityId": {
+              "title": "Opportunity Id",
+              "type": "string"
+            },
+            "classId": {
+              "title": "Class Id",
+              "type": "string"
+            },
+            "parentSubscriptionId": {
+              "title": "Parent Subscription Id",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "billingAccountId": {
+              "type": "string",
+              "title": "Billing Account Id"
+            },
+            "isParentSubsidiary": {
+              "title": "Uses parent subsidiary?",
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-4",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "text-helpers-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-8",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "data-mapper-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "storage-1",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": [
+              {
+                "name": "call-workflow-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-7",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "netsuite-4",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-4",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "storage-2",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "storage-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-5",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-10",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "data-mapper-1": {
+          "title": "Billing Schedule Map",
+          "description": "Map between SF and NS billing frequency values",
+          "connector": {
+            "name": "data-mapper",
+            "version": "3.5"
+          },
+          "operation": "map_one_value",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "mappings": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "ANNUALLY"
+                    },
+                    "to": {
+                      "type": "number",
+                      "value": 154
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "MONTHLY"
+                    },
+                    "to": {
+                      "type": "number",
+                      "value": 153
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "QUARTERLY"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "508"
+                    }
+                  }
+                }
+              ]
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.frequency"
+            },
+            "default_value": {
+              "type": "string",
+              "value": "ANNUALLY"
+            }
+          }
+        },
+        "storage-2": {
+          "title": "Save billing account id",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "billingAccountId"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.script-4.result"
+            }
+          }
+        },
+        "call-workflow-3": {
+          "title": "Get NS metadata",
+          "description": "Get NetSuite metadata for the current environment.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "8cd05cfc-a86e-4be8-8e66-4a05cf6550c5"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {}
+            }
+          }
+        },
+        "text-helpers-1": {
+          "title": "Get Subsidiary ID as text",
+          "description": "Transforms the Subsidiary ID as text for subsequent steps.",
+          "connector": {
+            "name": "text-helpers",
+            "version": "3.0"
+          },
+          "operation": "change_type",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.response.body.content.subsidiaryId"
+            },
+            "type2": {
+              "type": "string",
+              "value": "string"
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "billingAccountId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.storage-3.value"
+                },
+                "isParentSubsidiary": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-10.result"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Add subsidiary to customer",
+          "description": "Call subflow that will add the subsidiary to the customer if the customer doesn't have the subsidiary",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "a1b97eab-46b1-4adc-b72e-67c93ee7f26f"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "customerId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.data.customerId"
+                },
+                "subsidiaryId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.text-helpers-1.result"
+                }
+              }
+            }
+          }
+        },
+        "storage-3": {
+          "title": "Get Billing account id",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            },
+            "key": {
+              "type": "string",
+              "value": "billingAccountId"
+            }
+          }
+        },
+        "storage-4": {
+          "title": "Store OppId",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Opp_{$.env.execution_uuid}"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.opportunityId",
+              "fallback": {
+                "value": null,
+                "type": "null"
+              }
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Has billing account?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.count"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "script-7": {
+          "title": "Get billing account start date",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "startDate"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.startDate"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  const startDate = new Date(input.startDate);\n  const today = new Date();\n  const billingStartDate = today < startDate ? today : startDate;\n  return billingStartDate.toISOString().substring(0,10);\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-4": {
+          "title": "Get Billing account id",
+          "description": "After creating a Subscription we get the URL only. We need to extract Id out of it or use the old Id.",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "url"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-4.url",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Either extract id from the url of the created billing account\nexports.step = function(input) {\n  const regex = /\\/billingaccount\\/(?<id>.+)/;\n  return input.url.match(regex).groups.id;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "netsuite-4": {
+          "title": "Create Billing account",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "create_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "billingAccount"
+            },
+            "writable_record_fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "subsidiary"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.text-helpers-1.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "currency"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.currency"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "customer"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.customerId"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "billingSchedule"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.data-mapper-1.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "startDate"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-7.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "class"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.classId"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "department"
+                    },
+                    "value": {
+                      "type": "number",
+                      "value": 2
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "netsuite-3": {
+          "title": "Find NS Billing Account",
+          "description": "Find a Billing Account for this Customer and this Billing Frequency.",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "find_records",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "billingAccount"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "customer"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "EQUAL"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.customerId"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "subsidiary"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "EQUAL"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.text-helpers-1.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "currency"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "EQUAL"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.currency"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "startDate"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "ON_OR_BEFORE"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-8.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "billingSchedule"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "EQUAL"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.data-mapper-1.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "inactive"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "IS"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": false
+                    }
+                  }
+                }
+              ]
+            },
+            "conditions_matching": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "limit": {
+              "type": "number",
+              "value": 1
+            },
+            "offset": {
+              "type": "number",
+              "value": 0
+            }
+          }
+        },
+        "script-8": {
+          "title": "Get startdate in NS format",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "startDate"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.startDate"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];\nexports.step = function(input) {\n  const startDate = new Date(input.startDate);\n  return `${startDate.getUTCDate()}-${months[startDate.getUTCMonth()]}-${startDate.getUTCFullYear()}`;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Save Billing account id",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "billingAccountId"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-3.items[0].id"
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Find Subsidiary via TSI API",
+          "description": "Finds the suitable subsidiary for the given customer, considering the class and the parent subscription.",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "full_url": {
+                  "type": "string",
+                  "value": "{$.steps.call-workflow-3.response.restlet_url}/app/site/hosting/restlet.nl?{$.config.restlet}"
+                }
+              }
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "object",
+                  "value": {
+                    "op": {
+                      "type": "string",
+                      "value": "subscription.internalFindSuitableSubsidiary"
+                    },
+                    "customerId": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.customerId"
+                    },
+                    "classId": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.classId"
+                    },
+                    "parentSubscriptionId": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.parentSubscriptionId"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "storage-5": {
+          "title": "Remove OppId",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "delete",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Opp_{$.env.execution_uuid}"
+            }
+          }
+        },
+        "script-10": {
+          "title": "Is parent subsidiary?",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subsidiaryId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.text-helpers-1.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "parentSubsidiaryId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.parentSubsidiaryId"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\treturn input.subsidiaryId === input.parentSubsidiaryId;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "8cd05cfc-a86e-4be8-8e66-4a05cf6550c5",
+          "name": "Get NS metadata"
+        },
+        {
+          "id": "a1b97eab-46b1-4adc-b72e-67c93ee7f26f",
+          "name": "Add subsidiary to customer if needed"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

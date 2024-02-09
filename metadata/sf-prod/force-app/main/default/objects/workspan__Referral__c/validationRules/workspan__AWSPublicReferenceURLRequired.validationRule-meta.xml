@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__AWSPublicReferenceURLRequired</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL(workspan__AWSIsThisAPublicReference__c , &apos;Yes&apos;)
+        &amp;&amp; ISBLANK(workspan__AWSPublicReferenceURL__c)
+        &amp;&amp; !workspan__SkipValidationRules__c</errorConditionFormula>
+    <errorDisplayField>workspan__AWSPublicReferenceURL__c</errorDisplayField>
+    <errorMessage>Public Reference URL is required since &apos;Is This a Public Reference&apos; field is &apos;Yes&apos;.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,82 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "bfc32cc1-1707-44b5-8c54-3623aa1a699d",
+      "created": "2023-05-16T16:47:29.728084Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "0c145cd5-0a3a-480f-bd7e-2cc8a66fd232",
+      "version": {
+        "id": "411af456-f2ce-4141-8703-f142852a0892",
+        "created": "2023-05-16T16:48:42.804542Z"
+      },
+      "title": "Trigger On SF Renewal Opportunity Stage changed subflow",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "trigger": {
+          "title": "Async trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "call-workflow-1": {
+          "title": "Sync call",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "f555eaa8-ec1c-4d38-8ef4-8dbf672829c4"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "opportunityId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.opportunityId"
+                }
+              }
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "f555eaa8-ec1c-4d38-8ef4-8dbf672829c4",
+          "name": "On SF Renewal Opportunity Stage changed subflow"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

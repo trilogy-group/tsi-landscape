@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Health__c</fullName>
+    <description>Field migrated from IgniteTech: Account Health</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Field migrated from IgniteTech: Account Health</inlineHelpText>
+    <label>Account Health</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Green - Confirmed They Will Renew</fullName>
+                <default>false</default>
+                <label>Green - Confirmed They Will Renew</label>
+            </value>
+            <value>
+                <fullName>Amber - No Confirmation On Renewal</fullName>
+                <default>false</default>
+                <label>Amber - No Confirmation On Renewal</label>
+            </value>
+            <value>
+                <fullName>Red - Confirmed They Will Not Renew</fullName>
+                <default>false</default>
+                <label>Red - Confirmed They Will Not Renew</label>
+            </value>
+            <value>
+                <fullName>Black - Termination Notice Received</fullName>
+                <default>false</default>
+                <label>Black - Termination Notice Received</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

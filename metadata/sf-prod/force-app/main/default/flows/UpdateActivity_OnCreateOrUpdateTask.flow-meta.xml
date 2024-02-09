@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <decisions>
+        <name>Automated_Task</name>
+        <label>Created by Service User?</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Get_Field_Definition_of_Work_Unit_Type</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Aurtomated_Task</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.CreatedBy.Service_Account__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Automated Task</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>WorkUnitTypeFromTaskType_ActiveWorkUnitTypes</name>
+        <label>WorkUnitTypeFromTaskType = ActiveWorkUnitTypes ?</label>
+        <locationX>704</locationX>
+        <locationY>863</locationY>
+        <defaultConnector>
+            <targetReference>Check_WorkUnitTypeFromTaskType_vs_ActiveWorkUnitTypes</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Matching_Work_Unit</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>WorkUnitTypeFromTaskType</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Check_WorkUnitTypeFromTaskType_vs_ActiveWorkUnitTypes.Value</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Work_Unit_Type_0</targetReference>
+            </connector>
+            <label>Matching Work Unit</label>
+        </rules>
+    </decisions>
+    <description>Update Activity fields on Task field changes
+
+30/08/2023 LAMBDA-64763 enable Automation Setting in entry criteria</description>
+    <formulas>
+        <name>WorkUnitTypeFromTaskType</name>
+        <dataType>String</dataType>
+        <expression>IF(TEXT({!$Record.Type})=&apos;Call&apos; &amp;&amp; {!$Record.Call_Type_CAP__c} != &apos;&apos; , IF(FIND(&quot;-&quot;, {!$Record.Subject}) = 0, TRIM({!$Record.Subject}), TRIM(LEFT({!$Record.Subject}, FIND(&quot;-&quot;, {!$Record.Subject}) -1))), &quot;&quot;)</expression>
+    </formulas>
+    <interviewLabel>UpdateActivity OnCreateOrUpdateTask {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>UpdateActivity OnCreateOrUpdateTask</label>
+    <loops>
+        <name>Check_WorkUnitTypeFromTaskType_vs_ActiveWorkUnitTypes</name>
+        <label>Check WorkUnitTypeFromTaskType vs ActiveWorkUnitTypes</label>
+        <locationX>484</locationX>
+        <locationY>755</locationY>
+        <collectionReference>ActivePickListValues</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>WorkUnitTypeFromTaskType_ActiveWorkUnitTypes</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get the DurableId of Work_Unit_Type__c field</description>
+        <name>Get_Field_Definition_of_Work_Unit_Type</name>
+        <label>Get Field Definition of Work Unit Type</label>
+        <locationX>484</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Picklist_Values_Info_of_WorkUnitType</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>QualifiedApiName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Work_Unit_Type__c</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>EntityDefinitionId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Task</stringValue>
+            </value>
+        </filters>
+        <object>FieldDefinition</object>
+        <outputAssignments>
+            <assignToReference>DurableIdofWorkUnitType</assignToReference>
+            <field>DurableId</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Picklist_Values_Info_of_WorkUnitType</name>
+        <label>Get Picklist Value Info of WorkUnitType</label>
+        <locationX>484</locationX>
+        <locationY>539</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Default_Work_Unit_Type_To_Blank</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>EntityParticleId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>DurableIdofWorkUnitType</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>PicklistValueInfo</object>
+        <outputReference>ActivePickListValues</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Value</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <name>Default_Work_Unit_Type_To_Blank</name>
+        <label>Default Work Unit Type To Blank</label>
+        <locationX>484</locationX>
+        <locationY>647</locationY>
+        <connector>
+            <targetReference>Check_WorkUnitTypeFromTaskType_vs_ActiveWorkUnitTypes</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Work_Unit_Type__c</field>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Set Work Unit Type to &apos;Renewal call&apos; if the task type = Call</description>
+        <name>Set_Work_Unit_Type_0</name>
+        <label>Set Work Unit Type</label>
+        <locationX>572</locationX>
+        <locationY>971</locationY>
+        <connector>
+            <targetReference>Check_WorkUnitTypeFromTaskType_vs_ActiveWorkUnitTypes</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Type</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Work_Unit_Type__c</field>
+            <value>
+                <elementReference>WorkUnitTypeFromTaskType</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Automated_Task</targetReference>
+        </connector>
+        <object>Task</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <triggerOrder>500</triggerOrder>
+    <variables>
+        <name>ActivePickListValues</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>PicklistValueInfo</objectType>
+    </variables>
+    <variables>
+        <name>DurableIdofWorkUnitType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

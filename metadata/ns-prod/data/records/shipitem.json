@@ -1,0 +1,421 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "description": "When you check this box, this shipping item will no longer appear on a list unless you check the Show All box at the bottom of the Shipping Items page."
+    },
+    "invt_DispName": {
+      "title": "Display Name",
+      "type": "string",
+      "description": "Enter the translation that you want to display for this item, if shoppers can view your site in a different language.",
+      "nullable": true
+    },
+    "fedexOneRate": {
+      "title": "FedEx One Rate®",
+      "type": "boolean",
+      "description": "Check this box if the package qualifies. FedEx One Rate is flat-rate shipping that doesn&apos;t require you to weigh or measure shipments under 50 lbs."
+    },
+    "upsDiscountRate": {
+      "title": "Discount Rate",
+      "type": "number",
+      "description": "Enter a number to multiply the rate by to receive the correct discount. For example, if you want to offer a 25% discount off the real-time rate USPS returns, enter 0.75.",
+      "format": "float",
+      "nullable": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "edition": {
+      "title": "Edition",
+      "type": "string",
+      "nullable": true
+    },
+    "description": {
+      "title": "Description",
+      "type": "string",
+      "description": "Enter a description for this shipping item.",
+      "nullable": true
+    },
+    "omitPackaging": {
+      "title": "Omit packaging",
+      "type": "boolean",
+      "description": "Check this box to disable the automatic packaging logic that occurs during item fulfillment and create only one package for the order."
+    },
+    "uspsDiscountRate": {
+      "title": "Discount Rate",
+      "type": "number",
+      "format": "float",
+      "nullable": true
+    },
+    "itemId": {
+      "title": "Ship Name",
+      "type": "string",
+      "description": "Enter a name for this shipping item. This name appears on transaction pages, lists and all other internal facing documents.",
+      "nullable": true
+    },
+    "fedexDiscountRate": {
+      "title": "Discount Rate",
+      "type": "number",
+      "description": "To offer a discounted FedEx rate, enter the discount rate in decimal form. This amount is multiplied by the real-time rate to display the total discounted rate. For example, if you want to offer a 25% discount, enter 0.75. Note: To offer free shipping, use promotion codes or create a shipping item with a flat rate of $0.00.",
+      "format": "float",
+      "nullable": true
+    },
+    "itemType": {
+      "title": "stype",
+      "type": "string",
+      "nullable": true
+    },
+    "fedexServiceCode": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "10",
+            "54",
+            "11",
+            "55",
+            "12",
+            "56",
+            "13",
+            "57",
+            "14",
+            "58",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "40",
+            "41",
+            "42",
+            "43"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "upsSaverName": {
+      "title": "UPS Saver Name",
+      "type": "string",
+      "nullable": true
+    },
+    "displayName": {
+      "title": "Display Name/Code",
+      "type": "string",
+      "description": "Enter the name for the shipping item that you want to appear on printed invoices, in your Web store, and centers such as the Customer Center. In all other places, the Ship Name displays.",
+      "nullable": true
+    },
+    "upsServiceCode": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "10",
+            "54",
+            "11",
+            "55",
+            "12",
+            "56",
+            "13",
+            "57",
+            "14",
+            "58",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "40",
+            "41",
+            "42",
+            "43"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "shipItemCurrency": {
+      "title": "Currency",
+      "type": "string",
+      "description": "Identifies the currency for the subsidiary.",
+      "nullable": true
+    },
+    "uspsServiceCode": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "10",
+            "54",
+            "11",
+            "55",
+            "12",
+            "56",
+            "13",
+            "57",
+            "14",
+            "58",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "40",
+            "41",
+            "42",
+            "43"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "subsidiary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "translations": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "displayName": {
+                "title": "Display Name",
+                "type": "string",
+                "nullable": true
+              },
+              "language": {
+                "title": "Language",
+                "type": "string",
+                "nullable": true
+              },
+              "locale": {
+                "type": "string",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": []
+}

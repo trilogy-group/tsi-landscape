@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <assignments>
+        <name>add_Referral_to_referralsToUpdate</name>
+        <label>add Referral to referralsToUpdate</label>
+        <locationX>750</locationX>
+        <locationY>566</locationY>
+        <assignmentItems>
+            <assignToReference>referralsToUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>referrals</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>referrals</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>set_Referral_fields</name>
+        <label>set Referral fields</label>
+        <locationX>751</locationX>
+        <locationY>434</locationY>
+        <assignmentItems>
+            <assignToReference>referrals.workspan__SalesStage__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.StageName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>referrals.workspan__CloseDate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.CloseDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>add_Referral_to_referralsToUpdate</targetReference>
+        </connector>
+    </assignments>
+    <description>Custom copy of the WorkSpan - Update Referral from Opportunity flow template
+
+The referral will be updated (sales stages, contact details if they change, etc) when the opportunity gets updated. This will save time managing ACE opportunities if all info is being updated on the opp record.
+
+2024-01-11 Enabled for CloudFix Opportunity only for now</description>
+    <interviewLabel>Update Referral from Opportunity {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Referral from Opportunity via Workpan</label>
+    <loops>
+        <name>referrals</name>
+        <label>referrals</label>
+        <locationX>536</locationX>
+        <locationY>503</locationY>
+        <collectionReference>get_Referrals</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>set_Referral_fields</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>update_referralsToUpdate</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>get_Referrals</name>
+        <label>get Referrals</label>
+        <locationX>536</locationX>
+        <locationY>383</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>referrals</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>workspan__Opportunity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>workspan__ReferralStatus__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Declined</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>workspan__Referral__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>update_referralsToUpdate</name>
+        <label>update referralsToUpdate</label>
+        <locationX>537</locationX>
+        <locationY>682</locationY>
+        <inputReference>referralsToUpdate</inputReference>
+    </recordUpdates>
+    <sourceTemplate>workspan__UpdateReferralFromOpportunity</sourceTemplate>
+    <start>
+        <locationX>410</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>get_Referrals</targetReference>
+        </connector>
+        <object>Opportunity</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>referralsToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>workspan__Referral__c</objectType>
+    </variables>
+</Flow>

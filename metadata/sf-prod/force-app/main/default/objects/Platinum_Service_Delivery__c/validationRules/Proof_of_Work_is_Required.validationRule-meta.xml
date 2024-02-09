@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Proof_of_Work_is_Required</fullName>
+    <active>true</active>
+    <description>LAMBDA-62078 proof of work is required field for platinum service delivery</description>
+    <errorConditionFormula>AND(ISBLANK(Proof_of_Work__c ), NOT( ISNEW() ),  IsPickval(Delivery_Status__c,&apos;Delivered&apos;))</errorConditionFormula>
+    <errorDisplayField>Proof_of_Work__c</errorDisplayField>
+    <errorMessage>Fill Proof of Work field with evidence of service delivery</errorMessage>
+</ValidationRule>

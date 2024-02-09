@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>List_Total__c</fullName>
+    <description>Sum List Total from Opportunity Products where Total Price &gt; 0</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Sum List Total from Opportunity Products where Total Price &gt; 0</inlineHelpText>
+    <label>List Total</label>
+    <summarizedField>OpportunityLineItem.List_Total__c</summarizedField>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.TotalPrice</field>
+        <operation>greaterThan</operation>
+        <value>0</value>
+    </summaryFilterItems>
+    <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ARR__c</fullName>
+    <description>Is the sum of ARR of all opportunities where the Renewal / Start Date is before TODAY and the Renewal Date / Start Date + Term is after TODAY.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Reflects the ARR of our total relationship with the customer. It is the sum of ARR of all active contracts as of TODAY.</inlineHelpText>
+    <label>ARR</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Currency</type>
+</CustomField>

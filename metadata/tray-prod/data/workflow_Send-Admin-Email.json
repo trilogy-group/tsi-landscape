@@ -1,0 +1,180 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "19a25dd7-1955-4eb6-a36e-32ef321c5fe3",
+      "created": "2023-02-13T11:34:53.344346Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "99fcea69-c393-4b0e-95fd-6004edf60be9",
+        "created": "2023-02-14T19:58:56.072754Z"
+      },
+      "title": "Send Admin Email",
+      "description": "Send an email notification to admins",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {
+          "AdminEmails": [
+            "konstantin.borisov@trilogy.com",
+            "roger.marquardt@trilogy.com",
+            "dmitry.bakaev@trilogy.com",
+            "farhan.raja@trilogy.com"
+          ]
+        },
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "send-email-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "script-1": {
+          "title": "Transform Email Addresses",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "body": {
+                    "type": "string"
+                  },
+                  "to": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "email": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "email"
+                      ]
+                    }
+                  }
+                }
+              },
+              "console": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "emails"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.config.AdminEmails"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  var toList = input.emails.map(x => {\n    return {email: x};\n  });\n\treturn toList;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "send-email-1": {
+          "title": "Send Email",
+          "connector": {
+            "name": "send-email",
+            "version": "3.0"
+          },
+          "operation": "send_text_email",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "from": {
+              "type": "object",
+              "value": {
+                "email": {
+                  "type": "string",
+                  "value": "notifications@m.traymail.io"
+                },
+                "name": {
+                  "type": "string",
+                  "value": "Tray.IO Notification"
+                }
+              }
+            },
+            "public_url": {
+              "type": "jsonpath",
+              "value": "$.env.public_url"
+            },
+            "subject": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.subject"
+            },
+            "content": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.content"
+            },
+            "to": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result"
+            }
+          }
+        }
+      },
+      "dependencies": []
+    }
+  ],
+  "projects": []
+}

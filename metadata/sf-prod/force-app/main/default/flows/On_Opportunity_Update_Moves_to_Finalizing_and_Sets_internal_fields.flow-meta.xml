@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <assignments>
+        <name>Move_Opportunity_to_Finalizing</name>
+        <label>Move Opportunity to Finalizing</label>
+        <locationX>50</locationX>
+        <locationY>803</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.StageName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Finalizing</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_Ready_for_Invoice</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Internal_Finalizing_Field</name>
+        <label>Set Internal Finalizing Field</label>
+        <locationX>182</locationX>
+        <locationY>587</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Internal_Ready_for_Finalizing_Stage__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>OpportunityIsReadyForFInalizing</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>CheckForFinalizing</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Ready_for_Invoice</name>
+        <label>Set Ready for Invoice</label>
+        <locationX>182</locationX>
+        <locationY>995</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Internal_Ready_for_Invoice_Request__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ReadyForInvoiceRequest</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>Set the AR Quote as Primary Quote</description>
+        <name>Set_the_AR_Quote_as_Primary_Quote</name>
+        <label>Set the AR Quote as Primary Quote</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.SBQQ__PrimaryQuote__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.AR_Quote__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_Internal_Finalizing_Field</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>CheckForFinalizing</name>
+        <label>CheckForFinalizing</label>
+        <locationX>182</locationX>
+        <locationY>695</locationY>
+        <defaultConnector>
+            <targetReference>Set_Ready_for_Invoice</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Don&apos;t Move</defaultConnectorLabel>
+        <rules>
+            <name>Move_To_Finalizing</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.IsClosed</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>OpportunityIsReadyForFInalizing</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Finalizing</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Move_Opportunity_to_Finalizing</targetReference>
+            </connector>
+            <label>Move To Finalizing</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks if the opportunity is Auto-Renew and if it has an AR Quote that is in out for signature status to set this AR Quote as the primary quote</description>
+        <name>Is_AR_and_has_AR_Quote_out_for_signature</name>
+        <label>Is AR and has AR Quote out for signature?</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Set_Internal_Finalizing_Field</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Win_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Auto-Renew</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.AR_Quote__r.SBQQ__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Out for Signature</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.AR_Quote__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.SBQQ__PrimaryQuote__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_the_AR_Quote_as_Primary_Quote</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>This flow checks if a formula field is changed using auxiliary fields and sets them accordingly and moves the opportunity to the Finalizing stage if it&apos;s ready to move. Triggers on the formula fields don&apos;t work when the change is done in another object, for example, if the formula becomes true after the Quote is changed. This is the reason for having the auxiliary fields and this flow always running on all updates to check if the formula fields changed.
+
+Enable Disable All Flow custom settings</description>
+    <formulas>
+        <name>isManualQuote</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+    {!$Record.Product_Configuration__r.Manual_Quote__c} 
+    || !(ISPICKVAL({!$Record.Type}, &quot;Renewal&quot;) || ISPICKVAL({!$Record.Type}, &quot;New Business&quot;) || ISPICKVAL({!$Record.Type}, &quot;Upsell&quot;))
+    || ISPICKVAL({!$Record.Win_Type__c}, &quot;Co-Term&quot;) 
+    || {!$Record.Co_Term_Related_Opportunities_Count__c} &gt; 0 
+    || ({!$Record.Product_Bundles_Count__c} != 1 &amp;&amp; !ISBLANK({!$Record.Product_Bundles_Count__c})) 
+    || (
+            ISPICKVAL({!$Record.StageName},&quot;Finalizing&quot;) 
+            &amp;&amp; !ISPICKVAL({!$Record.Win_Type__c},&quot;&quot;) 
+            &amp;&amp; ISBLANK({!$Record.SBQQ__PrimaryQuote__r.NetSuite_ID__c})
+       ) 
+    || !ISPICKVAL({!$Record.SBQQ__PrimaryQuote__r.Billing_Type__c}, &quot;Advance&quot;) 
+    || {!$Record.Process_O2C_Manually__c} 
+    || (
+            !ISBLANK({!$Record.Opportunity_Term__c}) 
+            &amp;&amp; MOD({!$Record.Opportunity_Term__c},12) != 0
+       )
+|| {!$Record.Handled_by_BU__c}
+)</expression>
+    </formulas>
+    <formulas>
+        <description>formula to check if the opportunity has been updated to be transitioned to finalizing stage</description>
+        <name>OpportunityIsReadyForFInalizing</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+(ISPICKVAL({!$Record.StageName}, &apos;Quote Follow-Up&apos;) || ISPICKVAL({!$Record.StageName}, &apos;Finalizing&apos;) || ISPICKVAL({!$Record.StageName}, &apos;Closed Won&apos;)) 
+&amp;&amp; !ISNULL({!$Record.SBQQ__PrimaryQuote__c}) 
+&amp;&amp; 
+(
+    (ISPICKVAL({!$Record.Win_Type__c}, &apos;Quote Signed&apos;) &amp;&amp; ISPICKVAL({!$Record.SBQQ__PrimaryQuote__r.SBQQ__Status__c}, &apos;Signed&apos;) &amp;&amp; !ISBLANK({!$Record.Signed_Quote__c})) 
+    || 
+    (ISPICKVAL({!$Record.Win_Type__c}, &apos;Auto-Renew&apos;) &amp;&amp; ISPICKVAL({!$Record.SBQQ__PrimaryQuote__r.SBQQ__Status__c}, &apos;Out for Signature&apos;) &amp;&amp; ISBLANK(TEXT({!$Record.Purchase_Order__c})) &amp;&amp; !ISBLANK({!$Record.Previous_Quote_with_AR_clause__c})) 
+    || 
+    (ISPICKVAL({!$Record.Win_Type__c}, &apos;PO Received&apos;) &amp;&amp; ISPICKVAL({!$Record.SBQQ__PrimaryQuote__r.SBQQ__Status__c}, &apos;Out for Signature&apos;) &amp;&amp; ISPICKVAL({!$Record.Purchase_Order__c}, &apos;Attached&apos;) &amp;&amp; !ISBLANK({!$Record.Purchase_Order_Link__c}))
+    || 
+    (ISPICKVAL({!$Record.Win_Type__c}, &apos;AWS Marketplace&apos;) &amp;&amp; ISPICKVAL({!$Record.SBQQ__PrimaryQuote__r.SBQQ__Status__c}, &apos;Signed&apos;) &amp;&amp; !ISBLANK({!$Record.AWS_Marketplace_Offer_ID__c}) &amp;&amp; !ISBLANK({!$Record.AWS_Marketplace_Agreement_ID__c}))
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>ReadyForInvoiceRequest</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+(ISPICKVAL({!$Record.StageName}, &apos;Finalizing&apos;) || ISPICKVAL({!$Record.StageName}, &apos;Closed Won&apos;))
+&amp;&amp; {!isManualQuote} = false
+&amp;&amp;
+(
+(
+ISPICKVAL({!$Record.Win_Type__c}, &apos;Quote Signed&apos;)
+&amp;&amp;
+(
+ISPICKVAL({!$Record.Purchase_Order__c},&apos;Not Required&apos;)
+||
+(ISPICKVAL({!$Record.Purchase_Order__c},&apos;Attached&apos;) &amp;&amp; !ISBLANK({!$Record.Purchase_Order_Link__c}))
+)
+)
+||
+(ISPICKVAL({!$Record.Win_Type__c}, &apos;Auto-Renew&apos;) &amp;&amp; {!$Record.AR_Quote__r.SBQQ__Primary__c})
+||
+ISPICKVAL({!$Record.Win_Type__c}, &apos;PO Received&apos;)
+)
+)</expression>
+    </formulas>
+    <interviewLabel>OnOpportunityUpdate_MoveToFinalizing {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>On Opportunity Update, Moves to Finalizing and Sets internal fields</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_AR_and_has_AR_Quote_out_for_signature</targetReference>
+        </connector>
+        <object>Opportunity</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

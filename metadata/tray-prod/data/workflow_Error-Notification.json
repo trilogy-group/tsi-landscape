@@ -1,0 +1,1415 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+      "created": "2022-10-27T06:18:01.411904Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "a729d41c-6fbd-4c8e-8881-d1b314e71760",
+        "created": "2023-07-06T19:21:20.484622Z"
+      },
+      "title": "Error Notification",
+      "description": "This flow sends error information to the administrators",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "branch-1",
+          "type": "branch",
+          "content": {
+            "__default__": [
+              {
+                "name": "storage-3",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "branch1": [
+              {
+                "name": "script-4",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "storage-4",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "branch2": [
+              {
+                "name": "script-5",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "storage-5",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "storage-6",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-4",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "boolean-condition-5",
+                "type": "branch",
+                "content": {
+                  "true": [],
+                  "false": [
+                    {
+                      "name": "script-6",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-6",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "call-workflow-5",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "call-workflow-4",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "sheets-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "boolean-condition-2",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "delay-1",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "call-workflow-1",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": [
+                    {
+                      "name": "call-workflow-2",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "storage-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "storage-9",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-3",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "storage-10",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "call-workflow-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ],
+            "false": []
+          }
+        }
+      ],
+      "steps": {
+        "branch-1": {
+          "title": "Connector",
+          "connector": {
+            "name": "branch",
+            "version": "1.2"
+          },
+          "operation": "simple",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.script-3.result"
+            },
+            "branches": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "salesforce"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "salesforce"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "netsuite"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "netsuite"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "storage-2": {
+          "title": "Remove OppId",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "delete",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Opp_{$.steps.script-2.result}"
+            }
+          }
+        },
+        "call-workflow-3": {
+          "title": "Create Task",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "17d1c1c2-6bbf-44fd-a36f-cf3f302bd282"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "oppId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.storage-1.value"
+                },
+                "message": {
+                  "type": "jsonpath",
+                  "value": "$.steps.storage-9.value.TaskMessage"
+                },
+                "subject": {
+                  "type": "jsonpath",
+                  "value": "$.steps.storage-9.value.TaskSubject"
+                }
+              }
+            }
+          }
+        },
+        "script-3": {
+          "title": "Get Connector Name",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "step_name"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.origin.step_name"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n  const regex = /(?<step>.*)-\\d+/;\n  const stepName = input.step_name.match(regex).groups.step;\n\treturn stepName;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Append message to description",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "e96c1f66-536a-4e5c-8bd3-8a2375110837"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "Error in the workflow {$.steps.trigger.origin.workflow_title}: {$.steps.storage-6.value}"
+                },
+                "chatter_post": {
+                  "type": "boolean",
+                  "value": true
+                },
+                "objectId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.storage-1.value"
+                },
+                "objectType": {
+                  "type": "string",
+                  "value": "Opportunity"
+                }
+              }
+            }
+          }
+        },
+        "storage-3": {
+          "title": "Save Message",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "error_message"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.error.message"
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Append message to description",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "e96c1f66-536a-4e5c-8bd3-8a2375110837"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "Error in the workflow {$.steps.trigger.origin.workflow_title}: Subflow error. Please check errors below or contact Administrator."
+                },
+                "chatter_post": {
+                  "type": "boolean",
+                  "value": true
+                },
+                "objectType": {
+                  "type": "string",
+                  "value": "Opportunity"
+                },
+                "objectId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.storage-1.value"
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Opp Id Is Present?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-1.value",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-1.value"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": ""
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "script-4": {
+          "title": "Extract SF Error",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "message"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.error.response.body[0].message",
+                      "fallback": {
+                        "value": "$.steps.trigger.error.message",
+                        "type": "jsonpath"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\treturn input.message.replace(/\\n/g,' ');\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-10": {
+          "title": "Remove Task Info",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "delete",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Info_{$.steps.script-2.result}"
+            }
+          }
+        },
+        "call-workflow-5": {
+          "title": "Create Defect Issue in TSI",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "0d2c642e-b920-4e47-bf98-9f21c842617c"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "summary": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result.title"
+                },
+                "description": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result.jira"
+                },
+                "issueType": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-6.result.issueType"
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-6": {
+          "title": "Should create Jira Ticket?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-6.result.shouldCreateTicket"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "sheets-1": {
+          "title": "GSheet Log",
+          "connector": {
+            "name": "sheets",
+            "version": "8.0"
+          },
+          "operation": "create_row",
+          "output_schema": {},
+          "error_handling": {
+            "strategy": "automatic"
+          },
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "TSI Service User google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/51312ff204893a2751b6788b914f9b78.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "value_input_option": {
+              "type": "string",
+              "value": "RAW"
+            },
+            "spreadsheet_id": {
+              "type": "string",
+              "value": "1p6r0PYef1wxHS4e9VDo9xKzpihueB6_O3eQ-nEP6Cl4"
+            },
+            "worksheet_name": {
+              "type": "string",
+              "value": "prod log"
+            },
+            "data": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "A"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.error.created"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "B"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.origin.workflow_url"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "C"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.origin.workflow_title"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "D"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.origin.step_name"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "E"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.origin.step_log_url"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "F"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.origin.connector"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "I"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.origin.workflow_uuid"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "H"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-6.value"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "G"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.origin.user_id"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Get OppId",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Opp_{$.steps.script-2.result}"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "script-5": {
+          "title": "Extract NS Error",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "error"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.error.response.body",
+                      "fallback": {
+                        "value": "$.steps.trigger.error.message",
+                        "type": "jsonpath"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  try {\n    const errorObj = JSON.parse(input.error);\n\t\treturn errorObj[\"o:errorDetails\"][0].detail;\n  } catch {\n    if (input.error[\"o:errorDetails\"] && input.error[\"o:errorDetails\"][0]?.detail) {\n      return input.error[\"o:errorDetails\"][0].detail;\n    }\n    if (input.error.error && input.error.error.code && input.error.error.message) {\n      return input.error.error.code + ' - ' + input.error.error.message;\n    }\n  \tif (input.error.readResponse || input.error.writeResponse) {\n    \tconst response = input.error.readResponse || input.error.writeResponse;\n      const statusDetail = response.status.statusDetail[0];\n      if (statusDetail && statusDetail.code && statusDetail.message) {\n        return statusDetail.code + ' - ' + statusDetail.message;\n      }\n    }\n  \treturn input.error;\n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-6": {
+          "title": "Get Message",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "error_message"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "delay-1": {
+          "title": "Flush Subflow Errors",
+          "connector": {
+            "name": "delay",
+            "version": "1.0"
+          },
+          "operation": "delay",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "time_unit": {
+              "type": "string",
+              "value": "seconds"
+            },
+            "delay_value": {
+              "type": "integer",
+              "value": 5
+            }
+          }
+        },
+        "call-workflow-4": {
+          "title": "Notify Admins",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "19a25dd7-1955-4eb6-a36e-32ef321c5fe3"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "subject": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result.title"
+                },
+                "content": {
+                  "type": "string",
+                  "value": "{$.steps.script-1.result.body}\nJira ticket: <a href=\"https://ws-lambda.atlassian.net/browse/{$.steps.call-workflow-5.response.key or:'no-ticket'}\">{$.steps.call-workflow-5.response.key or:'no ticket'}</a>"
+                }
+              }
+            }
+          }
+        },
+        "script-6": {
+          "title": "Get ticket info",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "flowTitle"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.origin.workflow_title"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "stepName"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.origin.step_name"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\tif (input.flowTitle === 'Create Provisioning ZD Ticket'){\n    // Provisioning ticket is not created if sales rep or customer can't be found (e.g. When quote is manually created and not linked to subscription)\n  \t// For these cases a SF task will be created and we don't want to create a Jira ticket\n    if (input.stepName.startsWith('terminate')) {\n      return {\n        shouldCreateTicket: false,\n      }\n    }\n    // for zendesk failures, we should create Custom Admin Tasks\n    return {\n      shouldCreateTicket: true,\n     \tissueType: 'Custom Admin Task' \n    }\n  }\n  return {\n    shouldCreateTicket: true,\n    issueType: 'Fix a Bug' \n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-1": {
+          "title": "Compose Email",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "body": {
+                    "type": "string"
+                  },
+                  "to": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "email": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "email"
+                      ]
+                    }
+                  }
+                }
+              },
+              "console": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "origin"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.origin"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "error"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-6.value"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "created"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.error.created",
+                      "fallback": {
+                        "type": "string",
+                        "value": "Not specified"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  const htmlBody = `Error: ${input.error}<br>\nFlow: <a href='${input.origin.workflow_url}'>${input.origin.workflow_title}</a><br>\nStep: <a href='${input.origin.step_log_url}'>${input.origin.step_name}</a><br>\nCreated At: ${input.created}`;\n  // Transform email body to the Jira format for the ticket\n  // Square brackets ruins formatting, replacing them with parenthesis\n  const jiraBody = htmlBody\n    .replace(/\\[/g,'(')\n  \t.replace(/\\]/g,')')\n    .replace(/<br>/g,'\\n')\n  \t.replace(/<a href='([^']+)'>([^<]+)<\\/a>/g,'[$2|$1]');\n\treturn {\n    title: `[Tray.io Alert] ${input.origin.workflow_title} - step ${input.origin.step_name}`,\n    body: htmlBody,\n    jira: jiraBody,\n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-5": {
+          "title": "Save Message",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "error_message"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.script-5.result"
+            }
+          }
+        },
+        "boolean-condition-5": {
+          "title": "Sandbox flow?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.env.workflow_title"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "starts with"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "[full]"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "storage-9": {
+          "title": "Get Task Creation Info",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Info_{$.steps.script-2.result}"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Subflow Error?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.error.message"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "contains"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Cannot continue because child workflow"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "Subflow Error?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.error.message"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "contains"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Cannot continue because child workflow"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "contains"
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.error.message"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Cannot continue, because child workflow"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "storage-4": {
+          "title": "Save Message",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "error_message"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.script-4.result"
+            }
+          }
+        },
+        "script-2": {
+          "title": "Get Execution UUID",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "url"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.origin.step_log_url"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  const regex = /https:\\/\\/app.tray.io\\/workflow\\/[^\\/]+\\/logs\\/(?<id>.{36})/;\n  return input.url.match(regex).groups.id;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "Task Creation Needed",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-9.value"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Alert",
+          "connector": {
+            "name": "alerting-trigger",
+            "version": "1.1"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "include_raw_response": {
+              "value": true,
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "0d2c642e-b920-4e47-bf98-9f21c842617c",
+          "name": "Create Jira ticket for a Flow Error"
+        },
+        {
+          "id": "17d1c1c2-6bbf-44fd-a36f-cf3f302bd282",
+          "name": "Create ISR Task"
+        },
+        {
+          "id": "19a25dd7-1955-4eb6-a36e-32ef321c5fe3",
+          "name": "Send Admin Email"
+        },
+        {
+          "id": "e96c1f66-536a-4e5c-8bd3-8a2375110837",
+          "name": "Subflow Append Message to Description"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

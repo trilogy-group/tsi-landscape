@@ -1,0 +1,2341 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "884b033f-d796-4b75-9577-620149aecd52",
+      "created": "2022-11-28T14:55:45.951684Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "group": "debc0cd3-99ae-4f34-a83f-9fb9719c3ea4",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "bc4f747c-62e6-4a27-aa48-69707edfb53d",
+        "created": "2023-10-10T23:32:31.068489Z"
+      },
+      "title": "On Ready for Invoice Request changed",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "terminate-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "loop-1",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "salesforce-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-2",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "netsuite-5",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-7",
+                      "type": "branch",
+                      "content": {
+                        "true": [],
+                        "false": [
+                          {
+                            "name": "call-workflow-6",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "boolean-condition-6",
+                            "type": "branch",
+                            "content": {
+                              "true": [],
+                              "false": [
+                                {
+                                  "name": "salesforce-3",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "call-workflow-7",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "break-loop-1",
+                                  "type": "break",
+                                  "content": {},
+                                  "target": "loop-1"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "netsuite-1",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "branch-1",
+                      "type": "branch",
+                      "content": {
+                        "__default__": [],
+                        "branch1": [
+                          {
+                            "name": "call-workflow-2",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "call-workflow-5",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "branch2": [
+                          {
+                            "name": "call-workflow-3",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "boolean-condition-3",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "call-workflow-4",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": []
+                      }
+                    },
+                    {
+                      "name": "script-3",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "call-workflow-1",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-4",
+                      "type": "branch",
+                      "content": {
+                        "true": [],
+                        "false": [
+                          {
+                            "name": "loop-2",
+                            "type": "loop",
+                            "content": {
+                              "_loop": [
+                                {
+                                  "name": "file-helpers-1",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "file-helpers-2",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "netsuite-4",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "storage-1",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "boolean-condition-5",
+                                  "type": "branch",
+                                  "content": {
+                                    "true": [
+                                      {
+                                        "name": "storage-3",
+                                        "type": "normal",
+                                        "content": {}
+                                      }
+                                    ],
+                                    "false": []
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "name": "storage-2",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "storage-4",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "script-1",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "script-2",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "netsuite-2",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "netsuite-3",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "steps": {
+        "storage-2": {
+          "title": "Get nsFileIds list",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "nsFileIds"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "boolean-condition-5": {
+          "title": "Signed Quote?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.signedQuote",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Should create invoice request?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].Ready_for_Invoice_Request__c",
+                      "fallback": {
+                        "type": "string"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].IsClosed"
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": false
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].Product_Configuration__r.Processed_via_OTC__c"
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].Product_Configuration__r.NetSuite_Product__c"
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "script-3": {
+          "title": "Prepare files to input",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "previousQuote"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-2.response.file",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "signedQuote"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-3.response.file",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "purchaseOrder"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-4.response.file",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "unsignedQuote"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-5.response",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  const fileList = [];\n  if (input.signedQuote) {\n    fileList.push({ file: input.signedQuote, signedQuote: true });\n  }\n  if (input.previousQuote) {\n    input.previousQuote.name = `Previous-with-AR-Clause-${input.previousQuote.name}`;\n    fileList.push({ file: input.previousQuote });\n  }\n  if (input.purchaseOrder) {\n    fileList.push({ file: input.purchaseOrder });\n  }\n  if (input.unsignedQuote && input.unsignedQuote.success) {\n    input.unsignedQuote.file.name = `AR-Quote-${input.unsignedQuote.file.name}`;\n    fileList.push({ file: input.unsignedQuote.file });\n  }\n  //remove duplicates\n  const filteredList = fileList.filter((value, index, self) =>\n    index === self.findIndex(t => t.file.name === value.file.name)\n  );\n  filteredList.forEach(i => i.file.name = formatFilename(i.file));\n  return filteredList;\n};\n\n// Method to get the extension based on the MIME type\nfunction getExtensionFromMimeType(mimeType) {\n  switch (mimeType) {\n    case 'application/pdf':\n      return '.pdf';\n    case 'image/jpeg':\n      return '.jpg';\n    case 'image/png':\n      return '.png';\n    case 'application/vnd.ms-excel':\n      return '.xls';\n    default:\n      return '';\n  }\n}\n\n// Method to return the base filename and the extension\nfunction getFilenameParts(file) {\n  if (file.name.match(/\\.\\w{1,4}$/)) {\n    const dotIndex = file.name.lastIndexOf(\".\");\n    return {\n\t\tbaseName: file.name.slice(0, dotIndex),\n\t\textension: file.name.slice(dotIndex)\n\t};\n  }\n\n  return {\n\tbaseName: file.name,\n\textension: getExtensionFromMimeType(file.mime_type)\n  };\n}\n\n// Method to format the filename (add the extension and truncate if necessary)\nfunction formatFilename(file) {\n  const maxLength = 199;\n  let { baseName, extension } = getFilenameParts(file);\n\n  // Check and truncate the filename if it exceeds the maximum length\n  if (baseName.length + extension.length > maxLength) {\n    baseName = baseName.slice(0, maxLength - extension.length);\n  }\n\n  return `${baseName}${extension}`;\n}"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-3": {
+          "title": "Save quoteFileId",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "quoteFileId"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-4.record.internalId"
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Create invoice ticket",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "688a335c-b0ac-4e39-94e9-29fe69841419"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "subscription": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-1"
+                },
+                "opportunity": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-2.records[0]"
+                },
+                "filesList": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-3.result"
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Event Org Id Match?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Id"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.organization_id"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "call-workflow-6": {
+          "title": "Update NS Subscription",
+          "description": "Update the NS subscription according to the SF Primary Quote in the opportunity",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "0d6911b1-ed7c-47cd-957a-3b189e7f8696"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "opportunityId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-2.records[0].SBQQ__PrimaryQuote__c"
+                }
+              }
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "OrgId Does Not Match",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "Event is from another org ('{$.steps.trigger.organization_id}' instead of '{$.steps.salesforce-1.records[0].Id}'). Please fix the sandbox outbound messages list."
+            }
+          }
+        },
+        "boolean-condition-7": {
+          "title": "Quote is hard linked?",
+          "description": "If the quote is hardlinked, it means it was created in the old process and we don't need to regenerate the subscription because the subscription is already correct",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-5.response.body.count"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "netsuite-4": {
+          "title": "Upload to NS Agreement folder",
+          "description": "Agreement folder id: 1168595",
+          "connector": {
+            "name": "netsuite",
+            "version": "1.9"
+          },
+          "operation": "add_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "record": {
+              "type": "object",
+              "value": {
+                "xmlns_namespace": {
+                  "type": "string",
+                  "value": "documentFilecabinet"
+                },
+                "type": {
+                  "type": "string",
+                  "value": "File"
+                }
+              }
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "attachFrom"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "_computer"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "content"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.file-helpers-2.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "name"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.file.name"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "folder"
+                    },
+                    "attributes": {
+                      "type": "object",
+                      "value": {
+                        "internalId": {
+                          "type": "string",
+                          "value": "1168595"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "netsuite-3": {
+          "title": "Update subscription",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "subscription"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.id"
+            },
+            "writable_record_fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "custrecord_contract_docs"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.response.body.content.contractualDocumentsId"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "call-workflow-5": {
+          "title": "Download unsigned quote",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "a5f0ce04-5fb5-4d51-b638-1c5c1a82b794"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "netsuiteQuoteId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-2.records[0].SBQQ__PrimaryQuote__r.NetSuite_ID__c",
+                  "fallback": {
+                    "type": "null",
+                    "value": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-6": {
+          "title": "Subscription updated?",
+          "description": "If the subscription is not updated, we can't create the invoice ticket because the subscription could be with wrong items, values, etc.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-6.response.WasSyncEnabled"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "loop-2": {
+          "title": "Loop Files",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": [
+                  "string",
+                  "number",
+                  "object",
+                  "array",
+                  "boolean",
+                  "null"
+                ],
+                "description": "The script result returned from the function",
+                "title": "Result"
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.script-3.result"
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Add nsId to list",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "append_to_list",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "nsFileIds"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-4.record.internalId"
+            },
+            "create_if_missing": {
+              "value": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get Subscription",
+          "description": "To get data to create Invoice ticket and contractual documents",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "subscription"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.call-workflow-6.response.subscription",
+              "fallback": {
+                "type": "jsonpath",
+                "value": "$.steps.salesforce-2.records[0].NetSuite_ID__c"
+              }
+            },
+            "expand_sub_resources": {
+              "value": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "call-workflow-4": {
+          "title": "Download Purchase Order",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "7b618e09-ed98-464f-9abd-44d120e665a2"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "contentDocumentUrl": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-2.records[0].Purchase_Order_Link__c"
+                }
+              }
+            }
+          }
+        },
+        "salesforce-3": {
+          "title": "Set Manual O2C to true",
+          "description": "Set the opportunity to be processed manually in order to ISRs/SDRs create the invoice ticket.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Process_O2C_Manually__c"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Process_O2C_Manually_Reason__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-6.response.message"
+                    }
+                  }
+                }
+              ]
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.loop-1.value.Id"
+            }
+          }
+        },
+        "branch-1": {
+          "title": "Branch",
+          "connector": {
+            "name": "branch",
+            "version": "1.2"
+          },
+          "operation": "simple",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-2.records[0].Win_Type__c"
+            },
+            "branches": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "Auto-Renew"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "Auto-Renew"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "Quote Signed"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "Quote Signed"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "script-1": {
+          "title": "Get Instance",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "self"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.links[0].href"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Get instance name (e.g. 4914352-sb1) out of the 'self' link in the REST response\nexports.step = function(input) {\n\tconst regex = /^https:\\/\\/(?<instance>[^.]+)\\./;\n\tconst instance = input.self.match(regex).groups.instance;\n  return instance;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "call-workflow-7": {
+          "title": "Add message to description",
+          "description": "To notify ISRs about what happened",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "e96c1f66-536a-4e5c-8bd3-8a2375110837"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "Opportunity couldn't be updated: {$.steps.call-workflow-6.response.message}. Please, process invoice ticket manually."
+                },
+                "chatter_post": {
+                  "type": "boolean",
+                  "value": true
+                },
+                "objectType": {
+                  "type": "string",
+                  "value": "Opportunity"
+                },
+                "objectId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.Id"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-3": {
+          "title": "Download Signed Quote",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "7b618e09-ed98-464f-9abd-44d120e665a2"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "contentDocumentUrl": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-2.records[0].Signed_Quote__c"
+                }
+              }
+            }
+          }
+        },
+        "netsuite-2": {
+          "title": "Create contractual documents",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "p3p": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "content": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "full_url": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-2.result.url"
+                }
+              }
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-2.result.payload"
+                }
+              }
+            }
+          }
+        },
+        "netsuite-5": {
+          "title": "Query hard linked quote",
+          "description": "Run the SQL to check if the quote is hard linked",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "object",
+                  "value": {
+                    "q": {
+                      "type": "string",
+                      "value": "select distinct t.id, tl.subscription from transaction t\ninner join transactionline tl on tl.transaction=t.id and tl.subscription is not null\nwhere t.recordtype='estimate' and t.id = {$.steps.salesforce-2.records[0].SBQQ__PrimaryQuote__r.NetSuite_ID__c}"
+                    }
+                  }
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Download previous quote",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "7b618e09-ed98-464f-9abd-44d120e665a2"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "contentDocumentUrl": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-2.records[0].Previous_Quote_with_AR_clause__c\t"
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "Manual o2c?",
+          "description": "When it’s manual o2c we don’t need to change netsuite because o2c will do it manually",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].Manual_O2C__c",
+                      "fallback": {
+                        "type": "boolean",
+                        "value": false
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop Opportunities",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "Id"
+                ]
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.events"
+            }
+          }
+        },
+        "storage-4": {
+          "title": "Get quoteFileId",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            },
+            "key": {
+              "type": "string",
+              "value": "quoteFileId"
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get Org Id",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "query",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "query": {
+              "type": "string",
+              "value": "SELECT Id FROM Organization"
+            }
+          }
+        },
+        "file-helpers-2": {
+          "title": "File Helpers",
+          "connector": {
+            "name": "file-helpers",
+            "version": "2.5"
+          },
+          "operation": "read_file_contents",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "name": {
+              "type": "jsonpath",
+              "value": "$.steps.loop-2.value.file.name"
+            },
+            "url": {
+              "type": "jsonpath",
+              "value": "$.steps.file-helpers-1.file.url"
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Get Opportunity",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Opportunities",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Opportunity",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Opportunity ID"
+                    },
+                    "IsClosed": {
+                      "name": "IsClosed",
+                      "type": "boolean",
+                      "title": "Closed"
+                    },
+                    "Ready_for_Invoice_Request__c": {
+                      "name": "Ready_for_Invoice_Request__c",
+                      "type": "boolean",
+                      "title": "Ready for Invoice Request?"
+                    },
+                    "Win_Type__c": {
+                      "name": "Win_Type__c",
+                      "type": "string",
+                      "title": "Win Type"
+                    },
+                    "Purchase_Order__c": {
+                      "name": "Purchase_Order__c",
+                      "type": "string",
+                      "title": "Purchase Order"
+                    },
+                    "Purchase_Order_Link__c": {
+                      "name": "Purchase_Order_Link__c",
+                      "type": "string",
+                      "title": "Purchase Order Link"
+                    },
+                    "Signed_Quote__c": {
+                      "name": "Signed_Quote__c",
+                      "type": "string",
+                      "title": "Signed Quote"
+                    },
+                    "Previous_Quote_with_AR_clause__c": {
+                      "name": "Previous_Quote_with_AR_clause__c",
+                      "type": "string",
+                      "title": "Previous Quote with AR clause"
+                    },
+                    "NetSuite_ID__c": {
+                      "name": "NetSuite_ID__c",
+                      "type": "string",
+                      "title": "NetSuite ID"
+                    },
+                    "Manual_O2C__c": {
+                      "name": "Manual_O2C__c",
+                      "type": "boolean",
+                      "title": "Manual O2C"
+                    },
+                    "SBQQ__PrimaryQuote__c": {
+                      "name": "SBQQ__PrimaryQuote__c",
+                      "type": "string",
+                      "title": "Primary Quote"
+                    },
+                    "Type": {
+                      "name": "Type",
+                      "type": "string",
+                      "title": "Opportunity Type"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                },
+                {
+                  "type": "string",
+                  "value": "IsClosed"
+                },
+                {
+                  "type": "string",
+                  "value": "Ready_for_Invoice_Request__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Product_Configuration__r.Processed_via_OTC__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Win_Type__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__PrimaryQuote__r.NetSuite_ID__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__PrimaryQuote__r.SBQQ__SalesRep__r.Name"
+                },
+                {
+                  "type": "string",
+                  "value": "Purchase_Order__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Purchase_Order_Link__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Signed_Quote__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Previous_Quote_with_AR_clause__c"
+                },
+                {
+                  "type": "string",
+                  "value": "NetSuite_ID__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__PrimaryQuote__r.SBQQ__SalesRep__r.Email"
+                },
+                {
+                  "type": "string",
+                  "value": "Manual_O2C__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__PrimaryQuote__r.Line_Items_Footer_Text__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Product_Configuration__r.NetSuite_Product__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__PrimaryQuote__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Type"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Id"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-1.value.Id"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "break-loop-1": {
+          "title": "Continue Loop",
+          "description": "Go to next opportunity since the subscription can't be updated",
+          "connector": {
+            "name": "break-loop",
+            "version": "1.1"
+          },
+          "operation": "continue",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "script-2": {
+          "title": "Prepare TSI API Payload",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "payload": {
+                    "type": "object",
+                    "properties": {
+                      "op": {
+                        "type": "string"
+                      },
+                      "productFamilyCode": {
+                        "type": "string"
+                      },
+                      "productVariantCode": {
+                        "type": "string"
+                      },
+                      "customerId": {
+                        "type": "string"
+                      },
+                      "subscriptionId": {
+                        "type": "string"
+                      },
+                      "content": {
+                        "type": "null"
+                      },
+                      "quoteLineStartDates": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "line": {
+                              "type": "string"
+                            },
+                            "startDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "line",
+                            "startDate"
+                          ]
+                        }
+                      },
+                      "quoteLineEndDates": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "line": {
+                              "type": "string"
+                            },
+                            "endDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "line",
+                            "endDate"
+                          ]
+                        }
+                      },
+                      "orderType": {
+                        "type": "string"
+                      },
+                      "expiry": {
+                        "type": "string"
+                      },
+                      "salesRep": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "recipients": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "email": {
+                              "type": "string"
+                            },
+                            "role": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "email",
+                            "role"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "console": {
+                "type": "array",
+                "items": {}
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "quoteId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].SBQQ__PrimaryQuote__r.NetSuite_ID__c"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subscriptionId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "jiraTicketId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-1.response.jiraTicketId"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "instance"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsFileIds"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-2.value"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "quoteFileId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-4.value"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  const request = {\n    url: `https://${input.instance}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=customscript_si_main_main_restlet&deploy=customdeploy_si_main_main`,\n    payload: {\n      op: \"contractualDocuments.internalCreate\",\n      quoteId: input.quoteId,\n      subscriptionId: input.subscriptionId,\n      jiraTicketId: input.jiraTicketId,\n\t\t\tfileIds: input.nsFileIds,\n      quoteFileId: input.quoteFileId\n    }\n  };\n  return request;\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "Purchase order attached?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].Purchase_Order__c"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Attached"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "file-helpers-1": {
+          "title": "File Helpers",
+          "connector": {
+            "name": "file-helpers",
+            "version": "2.5"
+          },
+          "operation": "convert_file_to_base_64",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "file": {
+              "type": "jsonpath",
+              "value": "$.steps.loop-2.value.file"
+            },
+            "filename": {
+              "type": "jsonpath",
+              "value": "$.steps.loop-2.value.file.name"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Salesforce",
+          "connector": {
+            "name": "salesforce-notification",
+            "version": "3.0"
+          },
+          "operation": "record_field_change",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object_prefix": {
+              "type": "string",
+              "value": "Tray"
+            },
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "include_created_records": {
+              "type": "boolean",
+              "value": false
+            },
+            "public_url": {
+              "type": "jsonpath",
+              "value": "$.env.public_url"
+            },
+            "field": {
+              "type": "string",
+              "value": "Internal_Ready_for_Invoice_Request__c"
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "a5f0ce04-5fb5-4d51-b638-1c5c1a82b794",
+          "name": "Download Adobe Agreement"
+        },
+        {
+          "id": "7b618e09-ed98-464f-9abd-44d120e665a2",
+          "name": "Subflow Download ContentDocument from SF"
+        },
+        {
+          "id": "0d6911b1-ed7c-47cd-957a-3b189e7f8696",
+          "name": "Convert a SF Quote to a NS Subscription"
+        },
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "e96c1f66-536a-4e5c-8bd3-8a2375110837",
+          "name": "Subflow Append Message to Description"
+        },
+        {
+          "id": "688a335c-b0ac-4e39-94e9-29fe69841419",
+          "name": "Subflow Raise Invoice O2C Ticket"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

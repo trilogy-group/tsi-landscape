@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Purchase_Order_Link_Required_If_Attached</fullName>
+    <active>true</active>
+    <description>If the Purchase Order is attached, the Purchase Order url must be inserted on the Purchase Order Link field and must be a ContentDocument link</description>
+    <errorConditionFormula>TEXT(Purchase_Order__c) = &apos;Attached&apos; &amp;&amp; NOT( REGEX(Purchase_Order_Link__c, &quot;^https://trilogy-sales\\S*.lightning.force.com/lightning/r/ContentDocument/\\S*/view&quot;)) &amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorDisplayField>Purchase_Order_Link__c</errorDisplayField>
+    <errorMessage>Purchase Order Link is empty or is not an url from a ContentDocument link (e.g. https://trilogy-sales.lightning.force.com/lightning/r/ContentDocument/0692x00000B9knZAAR/view)</errorMessage>
+</ValidationRule>

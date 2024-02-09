@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CloudFix</fullName>
+    <active>true</active>
+    <businessProcess>CloudFix</businessProcess>
+    <label>CloudFix</label>
+    <picklistValues>
+        <picklist>Conversion_Touch__c</picklist>
+        <values>
+            <fullName>Contact request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Demo request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lead scoring</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Live webinar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RightSpend request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Savings assessment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Self serve</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar on demand</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Email_Invalid_Cause__c</picklist>
+        <values>
+            <fullName>Hard Bounce</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Soft Bounce</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Employee_Range__c</picklist>
+        <values>
+            <fullName>1-10</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10001%2B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1001-2000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>101-200</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11-20</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2001-5000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>201-500</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>21-50</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5001-10000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>501-1000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>51-100</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>First_Touch__c</picklist>
+        <values>
+            <fullName>Contact request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Demo request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lead scoring</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Live webinar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RightSpend request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Savings assessment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Self serve</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar on demand</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>GenderIdentity</picklist>
+        <values>
+            <fullName>Female</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Male</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nonbinary</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Listed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Incoming_Type__c</picklist>
+        <values>
+            <fullName>Lead</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MQL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SQL</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Industry</picklist>
+        <values>
+            <fullName>Agriculture</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Apparel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Banking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Biotechnology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chemicals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Communications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Construction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consulting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Electronics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Energy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Engineering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entertainment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Environmental</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Food %26 Beverage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Government</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Healthcare</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hospitality</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Insurance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Machinery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manufacturing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Media</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not For Profit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recreation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shipping</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Telecommunications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transportation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Utilities</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Job_Level__c</picklist>
+        <values>
+            <fullName>Administrator</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>C-Level</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consultant</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Director</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Executive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IT Professional</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Individual Contributor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unknown</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VP-Level</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Last_Touch__c</picklist>
+        <values>
+            <fullName>Contact request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Demo request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lead scoring</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Live webinar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RightSpend request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Savings assessment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Self serve</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar on demand</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>AWS Summit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AWS re%3AInvent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AWS-generated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Apollo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FinOps X</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LinkedIn Ads</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Organic</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Owned Email Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paid Ads</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paid Email Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Personal Relationships</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prospecting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewals Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ZoomInfo</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Lead_Source_Detail__c</picklist>
+        <values>
+            <fullName>AWS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Badge Scan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CloudFix</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Conference Parties</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Demo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finops Foundation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Google</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Google Display</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Google PMax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Google Search</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IHM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IT Brew</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Install Base</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LinkedIn</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meetup</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Newsletter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>QR Code</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reddit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sponsorship</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tech Advisors</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TechTarget</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>The Channel Company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>The Register</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Twitter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VIB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>YouTube</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Lead_Status_Detail__c</picklist>
+        <values>
+            <fullName>AWS Spend %3C%24100k%2Fyear</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Already engaged with Aurea AE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bad Data</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Do Not Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duplicate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FedRamp Limitations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No AWS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Longer with Company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Show</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Appropriate Contact</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Interested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not a Fit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Opted Out</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partnership</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Student%2FProfessor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Test Lead</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unresponsive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Working with alternative contact</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Name</picklist>
+        <values>
+            <fullName>Dr%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mr%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mrs%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ms%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prof%2E</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Outreach_Stage__c</picklist>
+        <values>
+            <fullName>Bounced</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finished</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meeting Booked</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ready</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Removed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Replied</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sequencing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unresponsive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Untouched</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Working</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product__c</picklist>
+        <values>
+            <fullName>CloudFix</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Influitive</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Pronouns</picklist>
+        <values>
+            <fullName>He%2FHim</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>He%2FThey</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Listed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>She%2FHer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>She%2FThey</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>They%2FThem</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Rating</picklist>
+        <values>
+            <fullName>Cold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hot</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Warm</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Revenue_Range_in_USD__c</picklist>
+        <values>
+            <fullName>%241 bil%2E - %245 bil%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>%241 mil%2E - %245 mil%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>%2410 mil%2E - %2425 mil%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>%24100 mil%2E - %24250 mil%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>%2425 mil%2E - %2450 mil%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>%24250 mil%2E - %24500 mil%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>%245 mil%2E - %2410 mil%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>%2450 mil%2E - %24100 mil%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>%24500 mil%2E - %241 bil%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>%24500%2C000 - %241 mil%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Over %245 bil%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Under %24500%2C000</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

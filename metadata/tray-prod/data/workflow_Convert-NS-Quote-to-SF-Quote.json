@@ -1,0 +1,1724 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "ca5daec3-b981-44a5-977a-aa77295bb059",
+      "created": "2023-09-23T04:46:12.853185Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "0c145cd5-0a3a-480f-bd7e-2cc8a66fd232",
+      "version": {
+        "id": "9a925129-1b8f-4803-9157-df903c3e0318",
+        "created": "2023-10-31T01:17:30.876539Z"
+      },
+      "title": "Convert NS Quote to SF Quote",
+      "description": "This flow converts an NS Quote to an SF Quote. It only supports the quote creation for the Self-Serve scenario.",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "quoteRecord": {
+              "title": "Quote record",
+              "type": "object",
+              "properties": {},
+              "additionalProperties": false,
+              "required": [],
+              "advanced": []
+            },
+            "opportunityId": {
+              "title": "Opportunity ID",
+              "type": "string"
+            },
+            "contactId": {
+              "title": "Contact ID",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "quoteId": {
+              "type": "string",
+              "title": "Quote ID"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "terminate-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "netsuite-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-4",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-5",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-7",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-2",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "storage-3",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-3",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "salesforce-5",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-4",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-2",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "storage-4",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": [
+                    {
+                      "name": "break-loop-1",
+                      "type": "break",
+                      "content": {},
+                      "target": "loop-2"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "delay-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-6",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-6",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-3",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "salesforce-8",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "storage-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "salesforce-3": {
+          "title": "Get bundle options",
+          "description": "Retrieves the product options for the main bundle.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Product Options",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Product Option",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Record ID"
+                    },
+                    "SBQQ__OptionalSKU__c": {
+                      "name": "SBQQ__OptionalSKU__c",
+                      "type": "string",
+                      "title": "Optional SKU"
+                    },
+                    "SBQQ__Bundled__c": {
+                      "name": "SBQQ__Bundled__c",
+                      "type": "boolean",
+                      "title": "Bundled"
+                    },
+                    "SBQQ__Type__c": {
+                      "name": "SBQQ__Type__c",
+                      "type": "string",
+                      "title": "Type"
+                    },
+                    "SBQQ__ProductCode__c": {
+                      "name": "SBQQ__ProductCode__c",
+                      "type": "string",
+                      "title": "Product Code"
+                    },
+                    "SBQQ__ConfiguredSKU__c": {
+                      "name": "SBQQ__ConfiguredSKU__c",
+                      "type": "string",
+                      "title": "Configured SKU"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__OptionalSKU__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Bundled__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Type__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__ProductCode__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__OptionalSKU__r.SBQQ__PricingMethod__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__OptionalSKU__r.SBQQ__PriceEditable__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__ConfiguredSKU__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "SBQQ__ProductOption__c"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "SBQQ__ConfiguredSKU__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0].Id"
+                    }
+                  }
+                }
+              ]
+            },
+            "sort_by": {
+              "type": "string",
+              "value": "SBQQ__Number__c"
+            },
+            "sort_direction": {
+              "type": "string",
+              "value": "ASC"
+            }
+          }
+        },
+        "storage-2": {
+          "title": "Remove opp ID",
+          "description": "Removes the opportunity ID at the account level for the purpose of the error handler. The process was successful and this key can be removed.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "delete",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Opp_{$.env.execution_uuid}"
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Has next iteration?",
+          "description": "Continues only if there are still some quote lines to create.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-4.result.hasNextQuoteLine"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "salesforce-8": {
+          "title": "Update quote lines",
+          "description": "Updates the quote lines in batch.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "batch_update_records",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "error_handling": {
+              "type": "string",
+              "value": "rollback_fail"
+            },
+            "object": {
+              "type": "string",
+              "value": "SBQQ__QuoteLine__c"
+            },
+            "batch_update_list": {
+              "type": "jsonpath",
+              "value": "$.steps.script-6.result.quoteLinesFields"
+            }
+          }
+        },
+        "salesforce-7": {
+          "title": "Get sub-bundle options",
+          "description": "Retrieves the product options for the sub-bundles.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Product Options",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Product Option",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Record ID"
+                    },
+                    "SBQQ__OptionalSKU__c": {
+                      "name": "SBQQ__OptionalSKU__c",
+                      "type": "string",
+                      "title": "Optional SKU"
+                    },
+                    "SBQQ__Bundled__c": {
+                      "name": "SBQQ__Bundled__c",
+                      "type": "boolean",
+                      "title": "Bundled"
+                    },
+                    "SBQQ__Type__c": {
+                      "name": "SBQQ__Type__c",
+                      "type": "string",
+                      "title": "Type"
+                    },
+                    "SBQQ__ProductCode__c": {
+                      "name": "SBQQ__ProductCode__c",
+                      "type": "string",
+                      "title": "Product Code"
+                    },
+                    "SBQQ__ConfiguredSKU__c": {
+                      "name": "SBQQ__ConfiguredSKU__c",
+                      "type": "string",
+                      "title": "Configured SKU"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__OptionalSKU__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Bundled__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__Type__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__ProductCode__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__OptionalSKU__r.SBQQ__PricingMethod__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__OptionalSKU__r.SBQQ__PriceEditable__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__ConfiguredSKU__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "SBQQ__ProductOption__c"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "SBQQ__ConfiguredSKU__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "In"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "sort_by": {
+              "type": "string",
+              "value": "SBQQ__Number__c"
+            },
+            "sort_direction": {
+              "type": "string",
+              "value": "ASC"
+            }
+          }
+        },
+        "storage-3": {
+          "title": "Get next quote lines",
+          "description": "Return the context for the current iteration. The context includes the (parent) quote line ID and the (required) quote lines to create. At the first iteration, the quote line is the main bundle one with no parent.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "nextQuoteLines"
+            },
+            "default_value": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "quoteLineId": {
+                      "type": "null",
+                      "value": null
+                    },
+                    "requiredQuoteLines": {
+                      "type": "array",
+                      "value": [
+                        {
+                          "type": "jsonpath",
+                          "value": "$.steps.script-2.result.mainQuoteLine"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "storage-4": {
+          "title": "Set next quote lines",
+          "description": "Sets the next quote lines in the context for the next iteration.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "nextQuoteLines"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.script-4.result.nextQuoteLines"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Has main bundle product?",
+          "description": "Continues only if the product related to the subscription plan has been retrieved.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "string",
+                      "value": ""
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": ""
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "salesforce-4": {
+          "title": "Set NetSuite ID",
+          "description": "Sets the NetSuite ID to the created quote. It is done in a separate step because the NetSuite cannot be set at creation.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.quoteRecord.id"
+                    }
+                  }
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "SBQQ__Quote__c"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-1.id"
+            }
+          }
+        },
+        "salesforce-5": {
+          "title": "Create quote lines",
+          "description": "Creates the quote lines in batch.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "batch_create_records",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "error_handling": {
+              "type": "string",
+              "value": "rollback_fail"
+            },
+            "object": {
+              "type": "string",
+              "value": "SBQQ__QuoteLine__c"
+            },
+            "batch_create_list": {
+              "type": "jsonpath",
+              "value": "$.steps.script-3.result.quoteLinesFields"
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Create SF quote record",
+          "description": "Creates the SF quote record.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "create_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result"
+            },
+            "object": {
+              "type": "string",
+              "value": "SBQQ__Quote__c"
+            }
+          }
+        },
+        "loop-2": {
+          "title": "Create recursively quote lines",
+          "description": "This loop will create recursively quote lines. All quote lines except the main bundle must refer to the parent quote line with the technical identifier.",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_forever",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "properties": {
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {}
+        },
+        "delay-1": {
+          "title": "Wait quote calculation",
+          "description": "Any updates made to a quote line during the quote calculation do not register. To address this, a 30-second delay is introduced between creating the quote and applying a discount on existing lines.",
+          "connector": {
+            "name": "delay",
+            "version": "1.0"
+          },
+          "operation": "delay",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "time_unit": {
+              "type": "string",
+              "value": "seconds"
+            },
+            "delay_value": {
+              "type": "integer",
+              "value": 30
+            }
+          }
+        },
+        "script-6": {
+          "title": "Calculate discounts if any",
+          "description": "Determines if any discounts must be applied to align the amount with NetSuite. The net unit price is the sum of the regular unit price and the discount amount. Returns the batch update list for the quote lines.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "quoteLines"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-6.records"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "unitPrices"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.unitPrices"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n    const { quoteLines, unitPrices } = input;\n    \n    // Determine the quote lines to update.\n    const quoteLinesFields = [];\n    for (const quoteLine of quoteLines) {\n        \n        // If there is no unit price or if the unit price is the regular unit price, no discount needed.\n        const unitPrice = unitPrices.find(p => p.code === quoteLine.SBQQ__ProductCode__c);\n        if (!unitPrice || unitPrice.amount === quoteLine.SBQQ__RegularPrice__c) {\n            continue;\n        }\n\n        // Else, calculate the discount amount to set and prepare batch update fields.\n        quoteLinesFields.push({\n            object_id: quoteLine.Id,\n            fields: [\n                {\n                    key: \"SBQQ__AdditionalDiscountAmount__c\",\n                    value: quoteLine.SBQQ__RegularPrice__c - unitPrice.amount,\n                }\n            ],\n        });\n    }\n\n    // Returns the quote lines fields and its length.\n    return { quoteLinesFields, length: quoteLinesFields.length };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-1": {
+          "title": "Build SF quote fields",
+          "description": "Builds the fields for creating the SF quote record.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "opportunityId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.opportunityId"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "contactId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.contactId"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "quoteRecord"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.quoteRecord"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "options"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.items"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n  const {\n    contactId,\n    opportunityId,\n    options,\n    quoteRecord,\n  } = input;\n  \n  // Build the SF Quote record.\n  const record = {\n    SBQQ__Primary__c: false,\n    SBQQ__Opportunity2__c: opportunityId,\n    SBQQ__PrimaryContact__c: contactId,\n    NetSuite_ID__c: quoteRecord.id,\n    SBQQ__ExpirationDate__c: convertDateFormat(quoteRecord.fields.duedate),\n    SBQQ__StartDate__c: convertDateFormat(quoteRecord.fields.startdate),\n    SBQQ__PaymentTerms__c: findOptionName('terms', quoteRecord.fields.terms),\n    CurrencyIsoCode: quoteRecord.fields.currencysymbol,\n  };\n  \n  // Build the fields for the SF Quote record.\n  return convertToFields(record);\n  \n  function findOptionName(type, id) {\n    return options.find(i => i.type === type && i.id === id)?.name;\n  }\n};\n  \nfunction convertDateFormat(inputDate) {\n\tconst monthLabels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];\n  const parts = inputDate.split('-');\n  const day = parts[0].padStart(2, '0');\n  const month = (monthLabels.indexOf(parts[1]) + 1).toString().padStart(2, '0');\n  const year = parts[2];\n  return `${year}-${month}-${day}`;\n}\n\nfunction convertToFields(record) {\n  return Object.keys(record).map(key => ({ key, value: record[key] }));\n}\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "SUCCESS",
+          "description": "The process is successful. Returns the identifier of the created quote.",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "quoteId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-1.id"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "script-3": {
+          "title": "Build quote lines fields",
+          "description": "Builds the fields for creating the quote lines and returns them.\n- Set the quote ID and parent quote line ID if any.\n- Delete properties used only for processing.\n- Convert objects to fields.\nIt also returns the list of the next required quote lines.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "quoteId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "quoteLineId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-3.value[0].quoteLineId"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "requiredQuoteLines"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-3.value[0].requiredQuoteLines"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n  const {\n    quoteId,\n    quoteLineId,\n    requiredQuoteLines,\n  } = input;\n\t\n  // Prepare required quote lines, and keep next required quote lines for recursive processing.\n  const nextRequiredQuoteLines = [];  \n  requiredQuoteLines.forEach(l => {\n    \n    // Add the reference to the quote and the quote line if any.\n    l.SBQQ__Quote__c = quoteId;\n    if (quoteLineId) {\n      l.SBQQ__RequiredBy__c = quoteLineId;\n    };\n    \n    // Store the next required quote lines (in all cases).\n    nextRequiredQuoteLines.push(l.requiredQuoteLines);\n    \n    // Delete the properties used for processing only.\n    delete l.requiredQuoteLines;\n    delete l.SBQQ__ProductCode__c;\n  });\n  \n  // Returns the fields for the quote line.\n  return {\n    quoteLinesFields: requiredQuoteLines.map(l => convertToFields(l)),\n    nextRequiredQuoteLines: nextRequiredQuoteLines,\n  };\n};\n\nfunction convertToFields(record) {\n  return Object.keys(record).map(key => ({ key, value: record[key] }));\n}\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "FAIL - no main bundle product",
+          "description": "Fails the process, leading to the creation of a Jira ticket. There is no product related to the subscription plan.",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "The Self-Serve quote '{$.steps.trigger.data.quoteRecord.id}' cannot be created because there is no product related to the subscription plan '{$.steps.trigger.data.quoteRecord.fields.custbody_subscription_plan}'."
+            }
+          }
+        },
+        "script-4": {
+          "title": "Prepare next iterations",
+          "description": "Prepares the next iterations by considering newly created quote lines and their required quote lines, but also the existing backlog. The first item in the backlog is related to the current iteration and has already been successfully processed.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nextRequiredQuoteLines"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-3.result.nextRequiredQuoteLines"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "createdQuoteLines"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-5.results"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nextQuoteLines"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-3.value"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n  const {\n    nextRequiredQuoteLines,\n    createdQuoteLines,\n    nextQuoteLines,\n  } = input;\n\t\n  // Remove the first element, as successfully processed.\n  nextQuoteLines.shift();\n  \n  // Create next iterations if any.\n  nextRequiredQuoteLines.forEach((lines, i) => {\n    if (lines) {\n      nextQuoteLines.push({\n      \tquoteLineId: createdQuoteLines[i].id,\n        requiredQuoteLines: lines,\n      });\n    }\n  });\n\n  // Determine if there is next quote line and returns them.\n  return {\n    hasNextQuoteLine: nextQuoteLines.length > 0,\n    nextQuoteLines: nextQuoteLines,\n  };\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Store opp ID",
+          "description": "Stores the opportunity ID at the account level for the purpose of the error handler.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Opp_{$.env.execution_uuid}"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.opportunityId"
+            }
+          }
+        },
+        "salesforce-6": {
+          "title": "Get created quote lines",
+          "description": "Retrieves the created quote lines to determine if a discount must be applied to the list price based on the amount from NetSuite. The regular unit price includes the list unit price multiplied considering the terms.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Quote Lines",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Quote Line",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Record ID"
+                    },
+                    "SBQQ__ProductCode__c": {
+                      "name": "SBQQ__ProductCode__c",
+                      "type": "string",
+                      "title": "Product Code"
+                    },
+                    "SBQQ__RegularPrice__c": {
+                      "name": "SBQQ__RegularPrice__c",
+                      "type": "number",
+                      "title": "Regular Unit Price"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__ProductCode__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__RegularPrice__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "SBQQ__QuoteLine__c"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "SBQQ__Quote__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.id"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Query list options",
+          "description": "Queries list options with SuiteQL for retrieving the name related to the ID. The name will be used for upserting a record in Salesforce.",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "execute_suiteql",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "limit": {
+              "type": "number",
+              "value": 100
+            },
+            "offset": {
+              "type": "number",
+              "value": 0
+            },
+            "raw_query": {
+              "type": "string",
+              "value": "SELECT id, name, 'terms' AS type FROM term WHERE name IN ('Due on receipt', 'Net 15', 'Net 30', 'Net 45', 'Net 60', 'Net 90')"
+            }
+          }
+        },
+        "script-5": {
+          "title": "Get sub-product IDs",
+          "description": "Returns the list of product IDs from the product options of the main bundle.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "productOptions"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-3.records"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n  const { productOptions } = input;\n  return productOptions.map(o => o.SBQQ__OptionalSKU__c);\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Get main bundle product",
+          "description": "Retrieves the product related to the subscription plan.\nThis step is done before creating the quote to prevent creating an empty quote on failure case.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Products",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Product",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Product ID"
+                    },
+                    "ProductCode": {
+                      "name": "ProductCode",
+                      "type": "string",
+                      "title": "Product Code"
+                    },
+                    "SBQQ__PricingMethod__c": {
+                      "name": "SBQQ__PricingMethod__c",
+                      "type": "string",
+                      "title": "Pricing Method"
+                    },
+                    "SBQQ__PriceEditable__c": {
+                      "name": "SBQQ__PriceEditable__c",
+                      "type": "boolean",
+                      "title": "Price Editable"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                },
+                {
+                  "type": "string",
+                  "value": "ProductCode"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__PricingMethod__c"
+                },
+                {
+                  "type": "string",
+                  "value": "SBQQ__PriceEditable__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Product2"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.quoteRecord.fields.custbody_subscription_plan"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "break-loop-1": {
+          "title": "Break Loop",
+          "description": "Breaks the loop. There are no more quote lines to create.",
+          "connector": {
+            "name": "break-loop",
+            "version": "1.1"
+          },
+          "operation": "break",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "script-2": {
+          "title": "Build SF quote lines",
+          "description": "Returns the main quote line and target unit prices.\n- Define quote lines from the bundle product options.\n- Map quantity, rate, and terms from NS items.\n- Handle bundles by reporting quantity, rate, and terms.\n- Prepare tree structure with nodes having a quote line and required quote lines.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "quoteRecord"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.quoteRecord"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "bundleProduct"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records[0]"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "bundleProductOptions"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-3.records"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subBundleProductOptions"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-7.records"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n  const {\n    bundleProduct,\n    bundleProductOptions,\n    quoteRecord,\n    subBundleProductOptions,\n  } = input;\n\n  // Create default quote lines, including the bundle product and the product options.\n\tlet quoteLines = bundleProductOptions.map(o => ({\n      SBQQ__Product__c: o.SBQQ__OptionalSKU__c,\n      SBQQ__ProductCode__c: o.SBQQ__ProductCode__c,    \n      SBQQ__ProductOption__c: o.Id,\n      SBQQ__PricingMethod__c: o.SBQQ__OptionalSKU__r.SBQQ__PricingMethod__c,\n      SBQQ__PriceEditable__c: o.SBQQ__OptionalSKU__r.SBQQ__PriceEditable__c,\n      SBQQ__Bundled__c: o.SBQQ__Bundled__c,\n      SBQQ__OptionType__c: o.SBQQ__Type__c,\n      SBQQ__OptionLevel__c: 1,\n    }));\n  quoteLines.unshift({\n  \tSBQQ__Product__c: bundleProduct.Id,\n    SBQQ__ProductCode__c: bundleProduct.ProductCode,\n    SBQQ__PricingMethod__c: bundleProduct.SBQQ__PricingMethod__c,\n    SBQQ__PriceEditable__c: bundleProduct.SBQQ__PriceEditable__c,\n  });\n  quoteLines.forEach((l, i) => {\n    l.SBQQ__Bundle__c = l.SBQQ__ProductCode__c.split('-').length > 4\n  });\n  \n  // Map NS quote items to SF quote lines.\n  const nsItems = Object.values(quoteRecord.sublists.item);\n  nsItems.forEach(i => {\n    const quoteLine = quoteLines.find(l => l.SBQQ__ProductCode__c === i.custcol_ava_item);\n    if (quoteLine) {\n      quoteLine.SBQQ__Quantity__c = parseInt(i.quantity);\n      quoteLine.SBQQ__SubscriptionTerm__c = calculateTerms(i.custcol_swe_contract_start_date, i.custcol_swe_contract_end_date);\n      quoteLine.amount = parseFloat(i.amount);\n    }\n  });\n\n  // Handle bundles.\n  quoteLines.filter(l => l.SBQQ__Bundle__c).forEach(l => {\n    const bundleCodeParts = l.SBQQ__ProductCode__c.split('-');\n    const mainBundleItemCode = bundleCodeParts.slice(0, 4).join('-');\n    const supportBundleItemCode = bundleCodeParts.slice(0, 3).join('-') + '-' + bundleCodeParts[4];\n    \n    // Retrieve the main and support products, and update consequently the bundle product.\n    const mainBundleProduct = quoteLines.find(f => f.SBQQ__ProductCode__c === mainBundleItemCode);\n    const supportBundleProduct = quoteLines.find(f => f.SBQQ__ProductCode__c === supportBundleItemCode);\n    if (mainBundleProduct) {\n      l.SBQQ__Quantity__c = mainBundleProduct.SBQQ__Quantity__c;\n      l.SBQQ__SubscriptionTerm__c = mainBundleProduct.SBQQ__SubscriptionTerm__c;\n      l.amount = mainBundleProduct.amount + supportBundleProduct.amount;\n      delete mainBundleProduct.SBQQ__SubscriptionTerm__c;\n      delete mainBundleProduct.amount;\n      delete supportBundleProduct.SBQQ__SubscriptionTerm__c;\n      delete supportBundleProduct.amount;\n    } else {\n      l.SBQQ__Quantity__c = supportBundleProduct.SBQQ__Quantity__c;\n      l.SBQQ__SubscriptionTerm__c = supportBundleProduct.SBQQ__SubscriptionTerm__c;\n      l.amount = supportBundleProduct.amount;\n      delete supportBundleProduct.SBQQ__SubscriptionTerm__c;\n      delete supportBundleProduct.amount;\n    }\n  });\n  \n  // Remove quote lines with no quantity, then number and sort them to create quote lines in the right order.\n  quoteLines = quoteLines.filter(l => l.SBQQ__Quantity__c);\n  quoteLines.filter(l => l.SBQQ__Bundle__c).forEach((l, i) => l.SBQQ__Number__c = i + 1);\n  quoteLines.filter(l => !l.SBQQ__Bundle__c).forEach((l, i) => l.SBQQ__Number__c = 3000 + i);\n  quoteLines.sort((a, b) => a.SBQQ__Number__c - b.SBQQ__Number__c);\n  \n  // Caculate the unit price per product code, required for setting the discount amount later.\n  // The unit price is calculated based on the total amount for the given quantity, to prevent a difference due to rounding issue.\n  const unitPrices = quoteLines.filter(l => 'amount' in l).map(l => {\t\t\n\t\tconst data = {\n    \tcode: l.SBQQ__ProductCode__c,\n      amount: l.amount / l.SBQQ__Quantity__c,\n    };\n    delete l.amount;\n    return data;\n  });\n  \n  // With the main quote line as root, define the required quote lines per bundle.\n  const mainQuoteLine = quoteLines.shift();\n  mainQuoteLine.requiredQuoteLines = quoteLines.filter(l => {\n    // For the main quote lines, required quote lines are the bundles and the lines wich are not included in a sub-bundle product options.\n    return l.SBQQ__Bundle__c || !subBundleProductOptions.some(o => o.SBQQ__OptionalSKU__c === l.SBQQ__Product__c);\n  });\n  mainQuoteLine.requiredQuoteLines.filter(l => l.SBQQ__Bundle__c).forEach(l => {\n    // For the sub-bundles, required quote lines are the lines which are included in the related sub-bundle product options.\n    l.requiredQuoteLines = [];\n    subBundleProductOptions.filter(o => o.SBQQ__ConfiguredSKU__c === l.SBQQ__Product__c).forEach(o => {\n      const quoteLine = quoteLines.find(ql => ql.SBQQ__Product__c === o.SBQQ__OptionalSKU__c);\n      quoteLine.SBQQ__ProductOption__c = o.Id;\n      quoteLine.SBQQ__PricingMethod__c = o.SBQQ__OptionalSKU__r.SBQQ__PricingMethod__c;\n      quoteLine.SBQQ__PriceEditable__c = o.SBQQ__OptionalSKU__r.SBQQ__PriceEditable__c;\n      quoteLine.SBQQ__Bundled__c = o.SBQQ__Bundled__c;\n      quoteLine.SBQQ__OptionType__c = o.SBQQ__Type__c;\n      l.requiredQuoteLines.push(quoteLine);\n    });\n  });\n  \n  // Return the main quote line, including the required quote lines, and the target unit prices.\n  return { mainQuoteLine, unitPrices };\n};\n\nfunction convertDateFormat(inputDate) {\n\tconst monthLabels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];\n  const parts = inputDate.split('-');\n  const day = parts[0].padStart(2, '0');\n  const month = (monthLabels.indexOf(parts[1]) + 1).toString().padStart(2, '0');\n  const year = parts[2];\n  return `${year}-${month}-${day}`;\n}\n\nfunction calculateTerms(startDate, endDate) {\n    const start = new Date(startDate);\n    const end = new Date(endDate);\n    end.setDate(end.getDate() + 1); // add one day for retrieving the effective difference\n\n    const monthsDiff = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());\n    if (end.getDate() < start.getDate()) {\n        return monthsDiff - 1;\n    }\n    return monthsDiff;\n}\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "Quote lines to update?",
+          "description": "Checks if there are some quote lines to update by applying a discount.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-6.result.length"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": ">"
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Sync call",
+          "description": "This flow converts an NS Quote to an SF Quote. It only supports the quote creation for the Self-Serve scenario.",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

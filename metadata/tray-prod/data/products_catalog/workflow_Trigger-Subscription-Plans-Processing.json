@@ -1,0 +1,102 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "46b2ce3b-7965-486c-94e3-7ec0d2c4fdd4",
+      "created": "2023-03-30T17:06:52.773224Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "488097b9-9993-4f66-8ae1-a5b999828ea5",
+        "created": "2023-03-30T17:08:16.321559Z"
+      },
+      "title": "Trigger Subscription Plans Processing",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "call-workflow-1": {
+          "title": "Call Workflow",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "e0bca22e-5e2d-4cc3-8577-0691f09dd3de"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "subscriptionPlanId": {
+                  "type": "string",
+                  "value": ""
+                }
+              }
+            }
+          }
+        },
+        "trigger": {
+          "title": "Scheduled Trigger",
+          "connector": {
+            "name": "scheduled",
+            "version": "3.5"
+          },
+          "operation": "simple",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "synchronous": {
+              "type": "boolean",
+              "value": true
+            },
+            "public_url": {
+              "type": "jsonpath",
+              "value": "$.env.public_url"
+            },
+            "interval": {
+              "type": "integer",
+              "value": 1
+            },
+            "time_unit": {
+              "type": "string",
+              "value": "days"
+            },
+            "start_date": {
+              "type": "string",
+              "value": "2023-04-01 02:00"
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "e0bca22e-5e2d-4cc3-8577-0691f09dd3de",
+          "name": "Process Updated Subscription Plans"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

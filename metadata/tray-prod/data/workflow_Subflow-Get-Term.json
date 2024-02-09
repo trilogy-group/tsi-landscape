@@ -1,0 +1,334 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "6ec0af18-686d-4aa6-a890-effb37092c3f",
+      "created": "2023-01-12T06:29:23.944557Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "f9de134b-faa6-4d1f-a24f-4c97c93b1713",
+        "created": "2023-01-20T05:28:10.234030Z"
+      },
+      "title": "Subflow Get Term",
+      "description": "Calculate term in months",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "termId": {
+              "type": "string",
+              "title": "Term Id",
+              "description": "Identifier of the subscription term"
+            },
+            "startDate": {
+              "title": "Start Date",
+              "description": "Subscription start date",
+              "type": [
+                "string",
+                "integer"
+              ],
+              "format": "datetime",
+              "date_mask": "YYYY-MM-DD"
+            },
+            "endDate": {
+              "title": "End Date",
+              "description": "Subscription End Date",
+              "type": [
+                "string",
+                "integer"
+              ],
+              "format": "datetime",
+              "date_mask": "YYYY-MM-DD"
+            },
+            "allowSmallTerm": {
+              "title": "allowSmallTerm",
+              "description": "Allow terms less than 12 months",
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "termInMonths": {
+              "title": "Term in months",
+              "description": "Subscription term in months",
+              "type": "number"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "netsuite-1",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "script-1": {
+          "title": "Calculate Sub Term in Months",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "termDuration"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.subscriptionTermDuration",
+                      "fallback": {
+                        "type": "number",
+                        "value": 0
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "termUnit"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.subscriptionTermUnit.id",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "startDate"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.startDate"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "endDate"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.endDate"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "allowSmallTerms"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.allowSmallTerm",
+                      "fallback": {
+                        "type": "boolean",
+                        "value": false
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  function monthDiff(d1, d2) {\n    const startDate = new Date(d1 + ' 00:00:00');\n    const endDate = new Date(d2 + ' 00:00:00');\n    const startDay = startDate.getDate();\n    const startMonth = startDate.getMonth() + 1;\n    const startYear = startDate.getYear();\n    const endDay = endDate.getDate();\n    const endMonth = endDate.getMonth() + 1;\n    const endYear = endDate.getYear();\n    const years = endYear - startYear;\n    let months = endMonth - startMonth;\n    months = years * 12 + months;\n    if (endDay >= startDay) {\n      months++;\n    }\n\n    return ((!input.allowSmallTerms && months<12) ? 12 : months);\n  }\n\n  switch(input.termUnit) {\n    case 'MONTHS':\n      return ((!input.allowSmallTerms && input.termDuration < 12) ? 12 : input.termDuration);\n    case 'YEARS':\n      return input.termDuration * 12;\n    default:\n      return monthDiff(input.startDate, input.endDate);\n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Return Months",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "termInMonths": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Term Id provided",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.termId"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": ""
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get Subscription Term",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "subscriptionterm"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.termId"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": []
+    }
+  ],
+  "projects": []
+}

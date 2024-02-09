@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ready_To_Close__c</fullName>
+    <description>Shows if the opportunity can be closed. An opportunity only can be closed after subscription is activated / terminated in netsuite, all tasks are completed and the provisioning ticket is created if required.</description>
+    <externalId>false</externalId>
+    <formula>/*
+(TEXT(Type) = &apos;Renewal&apos; || TEXT(Type) = &apos;New Business&apos; || TEXT(Type) = &apos;Upsell&apos;) &amp;&amp; 
+((ReadyToClose_Common__c &amp;&amp; (ReadyToClose_CloseWin__c || ReadyToClose_CloseLose__c))
+|| ISPICKVAL(Subscription_Status__c,&apos;Terminated - Invalid Subscription&apos;) || ISPICKVAL(Subscription_Status__c,&apos;Terminated - Finance Action&apos;))
+*/
+
+
+
+(TEXT(Type) = &apos;Renewal&apos; || TEXT(Type) = &apos;New Business&apos; || TEXT(Type) = &apos;Upsell&apos; || TEXT(Type) = &apos;xBR&apos; || TEXT(Type) = &apos;Prime&apos; || (TEXT(Type) = &apos;Professional Services&apos; &amp;&amp; (Business_Unit__c = &apos;Skyvera&apos; || Business_Unit__c = &apos;IgniteTech&apos; || Business_Unit__c = &apos;Jigsaw&apos;))) &amp;&amp;
+(
+(
+ReadyToClose_Common__c &amp;&amp; (ReadyToClose_CloseWin__c || ReadyToClose_CloseLose__c)
+) 
+||
+ISPICKVAL(Subscription_Status__c, &apos;Terminated - Invalid Subscription&apos;) 
+||
+ISPICKVAL(Subscription_Status__c, &apos;Terminated - Finance Action&apos;)
+)</formula>
+    <inlineHelpText>Shows if the opportunity can be closed. An opportunity only can be closed after subscription is activated / terminated in netsuite, all tasks are completed and the provisioning ticket is created if required.</inlineHelpText>
+    <label>Ready To Close</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

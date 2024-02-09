@@ -1,0 +1,401 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "29bc39a3-3c98-49b6-ba2d-284ebcd12e2a",
+      "created": "2023-06-01T16:54:44.344820Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "266664ff-a40c-40db-bca4-04e59eacb9ac",
+        "created": "2023-09-15T23:45:13.084186Z"
+      },
+      "title": "Subflow Get Product Data for an Item",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "itemId": {
+              "type": "string",
+              "title": "itemId",
+              "description": "Identifier of a non-inventory sales item"
+            },
+            "subscriptionPlan": {
+              "title": "subscriptionPlan",
+              "type": "object",
+              "properties": {
+                "new_property": {
+                  "type": "string",
+                  "title": "New property"
+                }
+              },
+              "additionalProperties": false,
+              "required": [],
+              "advanced": []
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "item": {
+              "title": "item",
+              "type": "object",
+              "properties": {
+                "new_property": {
+                  "type": "string",
+                  "title": "New property"
+                }
+              },
+              "additionalProperties": false,
+              "required": [],
+              "advanced": []
+            },
+            "fields": {
+              "title": "fields",
+              "type": "object",
+              "properties": {
+                "successLevel": {
+                  "type": "string",
+                  "title": "successLevel"
+                },
+                "productEdition": {
+                  "title": "productEdition",
+                  "type": "string"
+                },
+                "deploymentType": {
+                  "title": "deploymentType",
+                  "type": "string"
+                },
+                "subscriptionType": {
+                  "title": "subscriptionType",
+                  "type": "string"
+                },
+                "chargeType": {
+                  "title": "chargeType",
+                  "type": "string"
+                },
+                "billingType": {
+                  "title": "billingType",
+                  "type": "string"
+                },
+                "component": {
+                  "title": "component",
+                  "type": "string"
+                },
+                "isRequired": {
+                  "title": "isRequired",
+                  "type": "boolean",
+                  "default": false
+                }
+              },
+              "additionalProperties": false,
+              "required": [],
+              "advanced": []
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "object-helpers-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "script-1": {
+          "title": "Fields by Code",
+          "description": "Returns meaning of some of the product code fiedls to be used in SF",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "code"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.itemId"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Determine product parameters by its code (success level, edition, deployment type)\nexports.step = function (input) {\n    const codeParts = input.code.split(\"-\");\n    const lastCodePart = codeParts.pop();\n    const successLevel = lastCodePart === \"PLA\" ? \"Platinum\" : lastCodePart === \"SIL\" ? \"Standard\" : lastCodePart === \"GOL\" ? \"Gold\" : null;\n    const productEdition = lastCodePart === \"ADD\" ? \"Add-On\" : lastCodePart === \"STA\" ? \"Standard\" : lastCodePart === \"ENT\" ? \"Enterprise\" : lastCodePart === \"PRO\" ? \"Professional\" : null;\n    const deploymentType = codeParts[1] === \"OP\" ? \"OnPrem\" : codeParts[1] === \"SA\" ? \"SaaS\" : codeParts[1] === \"HO\" ? \"Hosted\" : \"Other\";\n\n    return {\n        successLevel,\n        productEdition,\n        deploymentType\n    }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get Main Item Details",
+          "description": "Load the Netsuite Item data",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "nonInventorySaleItem"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.itemId"
+            },
+            "expand_sub_resources": {
+              "type": "boolean",
+              "value": true
+            }
+          }
+        },
+        "object-helpers-1": {
+          "title": "Merge Fields",
+          "connector": {
+            "name": "object-helpers",
+            "version": "4.1"
+          },
+          "operation": "merge_two_objects",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "source": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result"
+            },
+            "target": {
+              "type": "jsonpath",
+              "value": "$.steps.script-2.result"
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "item": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-1"
+                },
+                "fields": {
+                  "type": "jsonpath",
+                  "value": "$.steps.object-helpers-1.result"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "script-3": {
+          "title": "Get Plan Member",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "plan"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.subscriptionPlan"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "itemId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.itemId"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\treturn input.plan.member.items.find(f=>f.item.id === input.itemId);\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-2": {
+          "title": "Get Item Properties",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "planItem"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-3.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\tif(input.planItem.subscriptionLineType.refName === \"One Time\"){\n        return ({\n            subscriptionType: \"One-Time\",\n            chargeType: \"One-Time\",\n          \tbillingFrequency: null,\n            billingType: null,\n            component: false,\n            isRequired: input.planItem.isRequired,\n        });\n    } else {\n        return ({\n            subscriptionType: \"Renewable\",\n            chargeType: \"Recurring\",\n          \tbillingFrequency: \"Annual\",\n            billingType: \"Advance\",\n            component: false,\n          isRequired: input.planItem.isRequired,\n        });\n    }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": []
+    }
+  ],
+  "projects": []
+}

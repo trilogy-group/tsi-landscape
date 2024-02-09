@@ -1,0 +1,2692 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "688a335c-b0ac-4e39-94e9-29fe69841419",
+      "created": "2022-10-27T21:07:01.680726Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "group": "b6741d62-2aac-483d-a9c4-9ff68bcadfba",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "4b7c0efc-d7e6-4adf-a702-3b8e3b2da2b0",
+        "created": "2023-10-10T23:33:27.215133Z"
+      },
+      "title": "Subflow Raise Invoice O2C Ticket",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "subscription": {
+              "title": "Subscription",
+              "type": "object",
+              "properties": {
+                "new_property": {
+                  "type": "string",
+                  "title": "New property"
+                }
+              },
+              "additionalProperties": false,
+              "required": [],
+              "advanced": []
+            },
+            "opportunity": {
+              "title": "Opportunity",
+              "type": "object",
+              "properties": {
+                "new_property": {
+                  "type": "string",
+                  "title": "New property"
+                }
+              },
+              "additionalProperties": false,
+              "required": [],
+              "advanced": []
+            },
+            "filesList": {
+              "title": "Files List to Attach to Ticket",
+              "type": "array",
+              "items": {
+                "title": "",
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false,
+                "required": [],
+                "advanced": []
+              },
+              "additionalItems": true
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "filesList"
+          ],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "title": "Success",
+              "type": "boolean",
+              "default": false
+            },
+            "jiraTicketId": {
+              "title": "Jira Ticket Id",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "netsuite-2",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "netsuite-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-2",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "jira-cloud-4",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "jira-cloud-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "jira-cloud-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "loop-1",
+                "type": "loop",
+                "content": {
+                  "_loop": [
+                    {
+                      "name": "jira-cloud-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "text-helpers-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "salesforce-3",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "call-workflow-1",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "salesforce-3": {
+          "title": "Update Opportunity with Link",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "O2C_Record__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.text-helpers-1.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.opportunity.Id"
+            }
+          }
+        },
+        "script-1": {
+          "title": "Get Instance",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "self"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.links[0].href"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Get instance name (e.g. 4914352-sb1) out of the 'self' link in the REST response\nexports.step = function(input) {\n\tconst regex = /^https:\\/\\/(?<instance>[^.]+)\\./;\n\tconst instance = input.self.match(regex).groups.instance;\n  return instance;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "netsuite-2": {
+          "title": "Update AR fields",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "Subscription"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.subscription.id"
+            },
+            "writable_record_fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "custrecord_isautorenewal"
+                    },
+                    "value": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "custrecord_customer_po"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "AR"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Prod?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "4914352"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "success": {
+                  "value": true,
+                  "type": "boolean"
+                },
+                "jiraTicketId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.jira-cloud-1.key",
+                  "fallback": {
+                    "value": "O2C-11111",
+                    "type": "string"
+                  }
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "jira-cloud-2": {
+          "title": "Update Submitter",
+          "description": "We can't set the submitter on creation, but we can update it afterwards",
+          "connector": {
+            "name": "jira-cloud",
+            "version": "2.0"
+          },
+          "operation": "update_issue",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3698bbfd-cdf2-419a-8e47-a0c47d4445b2",
+            "title": "O2C-Devgraph-APL-auth",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/7b32dbcd474d8c1f71bf9ee60c173096.png"
+            },
+            "scopes": [
+              "read:jira-work",
+              "read:jira-user",
+              "write:jira-work",
+              "offline_access"
+            ],
+            "service_name": "jira-cloud",
+            "service_version": 1
+          },
+          "properties": {
+            "issue_id": {
+              "type": "jsonpath",
+              "value": "$.steps.jira-cloud-1.key"
+            },
+            "project_key": {
+              "type": "string",
+              "value": "O2C"
+            },
+            "other_fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "customfield_10295"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.opportunity.SBQQ__PrimaryQuote__r.SBQQ__SalesRep__r.Name"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Append message",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "e96c1f66-536a-4e5c-8bd3-8a2375110837"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "Invoice Request ticket created and saved to O2C Record field: {$.steps.text-helpers-1.result}"
+                },
+                "chatter_post": {
+                  "type": "boolean",
+                  "value": true
+                },
+                "objectType": {
+                  "type": "string",
+                  "value": "Opportunity"
+                },
+                "objectId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.data.opportunity.Id"
+                }
+              }
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop Files",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {},
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.filesList"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Auto-renewal?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.opportunity.Win_Type__c"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Auto-Renew"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "jira-cloud-1": {
+          "title": "Create Ticket",
+          "connector": {
+            "name": "jira-cloud",
+            "version": "2.0"
+          },
+          "operation": "create_issue",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "expand": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "self": {
+                "type": "string"
+              },
+              "key": {
+                "type": "string"
+              },
+              "fields": {
+                "type": "object",
+                "properties": {
+                  "customfield_10871": {
+                    "type": "null"
+                  },
+                  "resolution": {
+                    "type": "null"
+                  },
+                  "customfield_10873": {
+                    "type": "null"
+                  },
+                  "customfield_10621": {
+                    "type": "null"
+                  },
+                  "customfield_10622": {
+                    "type": "null"
+                  },
+                  "customfield_10746": {
+                    "type": "null"
+                  },
+                  "customfield_10747": {
+                    "type": "null"
+                  },
+                  "customfield_10748": {
+                    "type": "null"
+                  },
+                  "lastViewed": {
+                    "type": "null"
+                  },
+                  "customfield_10741": {
+                    "type": "null"
+                  },
+                  "customfield_10620": {
+                    "type": "null"
+                  },
+                  "customfield_10852": {
+                    "type": "null"
+                  },
+                  "customfield_10610": {
+                    "type": "null"
+                  },
+                  "customfield_10731": {
+                    "type": "null"
+                  },
+                  "customfield_10611": {
+                    "type": "null"
+                  },
+                  "customfield_10854": {
+                    "type": "null"
+                  },
+                  "customfield_10855": {
+                    "type": "null"
+                  },
+                  "customfield_10734": {
+                    "type": "null"
+                  },
+                  "aggregatetimeoriginalestimate": {
+                    "type": "null"
+                  },
+                  "customfield_10618": {
+                    "type": "null"
+                  },
+                  "customfield_10619": {
+                    "type": "null"
+                  },
+                  "issuelinks": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "assignee": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "accountId": {
+                        "type": "string"
+                      },
+                      "avatarUrls": {
+                        "type": "object",
+                        "properties": {
+                          "48x48": {
+                            "type": "string"
+                          },
+                          "24x24": {
+                            "type": "string"
+                          },
+                          "16x16": {
+                            "type": "string"
+                          },
+                          "32x32": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "displayName": {
+                        "type": "string"
+                      },
+                      "active": {
+                        "type": "boolean"
+                      },
+                      "timeZone": {
+                        "type": "string"
+                      },
+                      "accountType": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customfield_10851": {
+                    "type": "null"
+                  },
+                  "customfield_10730": {
+                    "type": "null"
+                  },
+                  "customfield_10964": {
+                    "type": "null"
+                  },
+                  "customfield_10843": {
+                    "type": "null"
+                  },
+                  "customfield_10601": {
+                    "type": "null"
+                  },
+                  "customfield_10602": {
+                    "type": "null"
+                  },
+                  "customfield_10844": {
+                    "type": "null"
+                  },
+                  "customfield_10845": {
+                    "type": "null"
+                  },
+                  "customfield_10846": {
+                    "type": "null"
+                  },
+                  "customfield_10725": {
+                    "type": "null"
+                  },
+                  "customfield_10726": {
+                    "type": "null"
+                  },
+                  "customfield_10605": {
+                    "type": "null"
+                  },
+                  "customfield_10606": {
+                    "type": "null"
+                  },
+                  "customfield_10849": {
+                    "type": "null"
+                  },
+                  "customfield_10607": {
+                    "type": "null"
+                  },
+                  "customfield_10729": {
+                    "type": "null"
+                  },
+                  "customfield_10608": {
+                    "type": "null"
+                  },
+                  "customfield_10609": {
+                    "type": "null"
+                  },
+                  "subtasks": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "customfield_10830": {
+                    "type": "null"
+                  },
+                  "customfield_10831": {
+                    "type": "number"
+                  },
+                  "customfield_10832": {
+                    "type": "null"
+                  },
+                  "customfield_10833": {
+                    "type": "null"
+                  },
+                  "customfield_10834": {
+                    "type": "null"
+                  },
+                  "customfield_10835": {
+                    "type": "null"
+                  },
+                  "customfield_10957": {
+                    "type": "null"
+                  },
+                  "votes": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "votes": {
+                        "type": "number"
+                      },
+                      "hasVoted": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "worklog": {
+                    "type": "object",
+                    "properties": {
+                      "startAt": {
+                        "type": "number"
+                      },
+                      "maxResults": {
+                        "type": "number"
+                      },
+                      "total": {
+                        "type": "number"
+                      },
+                      "worklogs": {
+                        "type": "array",
+                        "items": {}
+                      }
+                    }
+                  },
+                  "issuetype": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "iconUrl": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "subtask": {
+                        "type": "boolean"
+                      },
+                      "avatarId": {
+                        "type": "number"
+                      },
+                      "hierarchyLevel": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "customfield_10820": {
+                    "type": "null"
+                  },
+                  "customfield_10821": {
+                    "type": "null"
+                  },
+                  "customfield_10823": {
+                    "type": "null"
+                  },
+                  "customfield_10824": {
+                    "type": "null"
+                  },
+                  "customfield_10946": {
+                    "type": "null"
+                  },
+                  "customfield_10947": {
+                    "type": "null"
+                  },
+                  "customfield_10705": {
+                    "type": "null"
+                  },
+                  "customfield_10827": {
+                    "type": "null"
+                  },
+                  "customfield_10829": {
+                    "type": "null"
+                  },
+                  "customfield_10933": {
+                    "type": "null"
+                  },
+                  "customfield_10814": {
+                    "type": "null"
+                  },
+                  "customfield_10935": {
+                    "type": "null"
+                  },
+                  "customfield_10815": {
+                    "type": "null"
+                  },
+                  "customfield_10816": {
+                    "type": "null"
+                  },
+                  "timetracking": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "customfield_10800": {
+                    "type": "null"
+                  },
+                  "customfield_10801": {
+                    "type": "null"
+                  },
+                  "customfield_10923": {
+                    "type": "null"
+                  },
+                  "customfield_10802": {
+                    "type": "null"
+                  },
+                  "customfield_10924": {
+                    "type": "null"
+                  },
+                  "customfield_10803": {
+                    "type": "null"
+                  },
+                  "customfield_10925": {
+                    "type": "null"
+                  },
+                  "customfield_10804": {
+                    "type": "null"
+                  },
+                  "environment": {
+                    "type": "null"
+                  },
+                  "duedate": {
+                    "type": "null"
+                  },
+                  "customfield_10917": {
+                    "type": "null"
+                  },
+                  "customfield_10918": {
+                    "type": "null"
+                  },
+                  "customfield_10590": {
+                    "type": "null"
+                  },
+                  "customfield_10591": {
+                    "type": "null"
+                  },
+                  "customfield_10470": {
+                    "type": "null"
+                  },
+                  "customfield_10350": {
+                    "type": "null"
+                  },
+                  "customfield_10471": {
+                    "type": "null"
+                  },
+                  "customfield_10472": {
+                    "type": "null"
+                  },
+                  "customfield_10351": {
+                    "type": "null"
+                  },
+                  "customfield_10352": {
+                    "type": "null"
+                  },
+                  "customfield_10353": {
+                    "type": "null"
+                  },
+                  "customfield_10354": {
+                    "type": "null"
+                  },
+                  "customfield_10596": {
+                    "type": "null"
+                  },
+                  "customfield_10355": {
+                    "type": "null"
+                  },
+                  "customfield_10356": {
+                    "type": "null"
+                  },
+                  "customfield_10346": {
+                    "type": "null"
+                  },
+                  "customfield_10588": {
+                    "type": "null"
+                  },
+                  "customfield_10347": {
+                    "type": "null"
+                  },
+                  "customfield_10468": {
+                    "type": "null"
+                  },
+                  "customfield_10589": {
+                    "type": "null"
+                  },
+                  "customfield_10348": {
+                    "type": "null"
+                  },
+                  "customfield_10227": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customfield_10469": {
+                    "type": "null"
+                  },
+                  "customfield_10349": {
+                    "type": "null"
+                  },
+                  "customfield_10109": {
+                    "type": "null"
+                  },
+                  "customfield_10340": {
+                    "type": "null"
+                  },
+                  "customfield_10582": {
+                    "type": "null"
+                  },
+                  "customfield_10583": {
+                    "type": "null"
+                  },
+                  "customfield_10584": {
+                    "type": "null"
+                  },
+                  "customfield_10100": {
+                    "type": "null"
+                  },
+                  "customfield_10343": {
+                    "type": "null"
+                  },
+                  "customfield_10222": {
+                    "type": "null"
+                  },
+                  "customfield_10344": {
+                    "type": "null"
+                  },
+                  "customfield_10103": {
+                    "type": "null"
+                  },
+                  "customfield_10345": {
+                    "type": "null"
+                  },
+                  "customfield_10214": {
+                    "type": "null"
+                  },
+                  "customfield_10335": {
+                    "type": "null"
+                  },
+                  "customfield_10698": {
+                    "type": "null"
+                  },
+                  "customfield_10577": {
+                    "type": "null"
+                  },
+                  "customfield_10336": {
+                    "type": "null"
+                  },
+                  "customfield_10578": {
+                    "type": "null"
+                  },
+                  "customfield_10337": {
+                    "type": "null"
+                  },
+                  "customfield_10338": {
+                    "type": "null"
+                  },
+                  "customfield_10339": {
+                    "type": "null"
+                  },
+                  "timeestimate": {
+                    "type": "null"
+                  },
+                  "status": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "iconUrl": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "statusCategory": {
+                        "type": "object",
+                        "properties": {
+                          "self": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "number"
+                          },
+                          "key": {
+                            "type": "string"
+                          },
+                          "colorName": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "customfield_10450": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customfield_10693": {
+                    "type": "null"
+                  },
+                  "customfield_10451": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customfield_10330": {
+                    "type": "null"
+                  },
+                  "customfield_10331": {
+                    "type": "null"
+                  },
+                  "customfield_10332": {
+                    "type": "null"
+                  },
+                  "customfield_10574": {
+                    "type": "null"
+                  },
+                  "customfield_10575": {
+                    "type": "null"
+                  },
+                  "customfield_10334": {
+                    "type": "null"
+                  },
+                  "customfield_10576": {
+                    "type": "null"
+                  },
+                  "customfield_10203": {
+                    "type": "null"
+                  },
+                  "customfield_10324": {
+                    "type": "null"
+                  },
+                  "customfield_10566": {
+                    "type": "number"
+                  },
+                  "customfield_10446": {
+                    "type": "null"
+                  },
+                  "customfield_10325": {
+                    "type": "null"
+                  },
+                  "customfield_10326": {
+                    "type": "null"
+                  },
+                  "customfield_10447": {
+                    "type": "null"
+                  },
+                  "customfield_10448": {
+                    "type": "null"
+                  },
+                  "customfield_10449": {
+                    "type": "null"
+                  },
+                  "customfield_10328": {
+                    "type": "null"
+                  },
+                  "aggregatetimeestimate": {
+                    "type": "null"
+                  },
+                  "customfield_10329": {
+                    "type": "null"
+                  },
+                  "creator": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "accountId": {
+                        "type": "string"
+                      },
+                      "emailAddress": {
+                        "type": "string"
+                      },
+                      "avatarUrls": {
+                        "type": "object",
+                        "properties": {
+                          "48x48": {
+                            "type": "string"
+                          },
+                          "24x24": {
+                            "type": "string"
+                          },
+                          "16x16": {
+                            "type": "string"
+                          },
+                          "32x32": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "displayName": {
+                        "type": "string"
+                      },
+                      "active": {
+                        "type": "boolean"
+                      },
+                      "timeZone": {
+                        "type": "string"
+                      },
+                      "accountType": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customfield_10680": {
+                    "type": "null"
+                  },
+                  "customfield_10681": {
+                    "type": "null"
+                  },
+                  "customfield_10320": {
+                    "type": "null"
+                  },
+                  "customfield_10683": {
+                    "type": "null"
+                  },
+                  "customfield_10684": {
+                    "type": "null"
+                  },
+                  "customfield_10322": {
+                    "type": "null"
+                  },
+                  "customfield_10685": {
+                    "type": "null"
+                  },
+                  "customfield_10201": {
+                    "type": "null"
+                  },
+                  "customfield_10443": {
+                    "type": "null"
+                  },
+                  "customfield_10686": {
+                    "type": "null"
+                  },
+                  "customfield_10444": {
+                    "type": "null"
+                  },
+                  "customfield_10323": {
+                    "type": "null"
+                  },
+                  "customfield_10202": {
+                    "type": "null"
+                  },
+                  "customfield_10313": {
+                    "type": "null"
+                  },
+                  "customfield_10435": {
+                    "type": "null"
+                  },
+                  "customfield_10314": {
+                    "type": "null"
+                  },
+                  "customfield_10315": {
+                    "type": "null"
+                  },
+                  "customfield_10436": {
+                    "type": "null"
+                  },
+                  "customfield_10558": {
+                    "type": "null"
+                  },
+                  "customfield_10679": {
+                    "type": "null"
+                  },
+                  "customfield_10316": {
+                    "type": "null"
+                  },
+                  "customfield_10317": {
+                    "type": "null"
+                  },
+                  "customfield_10559": {
+                    "type": "null"
+                  },
+                  "customfield_10318": {
+                    "type": "null"
+                  },
+                  "customfield_10319": {
+                    "type": "null"
+                  },
+                  "timespent": {
+                    "type": "null"
+                  },
+                  "customfield_10790": {
+                    "type": "null"
+                  },
+                  "customfield_10791": {
+                    "type": "null"
+                  },
+                  "aggregatetimespent": {
+                    "type": "null"
+                  },
+                  "customfield_10673": {
+                    "type": "null"
+                  },
+                  "customfield_10310": {
+                    "type": "null"
+                  },
+                  "customfield_10311": {
+                    "type": "null"
+                  },
+                  "customfield_10432": {
+                    "type": "null"
+                  },
+                  "customfield_10312": {
+                    "type": "null"
+                  },
+                  "customfield_10433": {
+                    "type": "null"
+                  },
+                  "customfield_10423": {
+                    "type": "null"
+                  },
+                  "customfield_10302": {
+                    "type": "null"
+                  },
+                  "customfield_10786": {
+                    "type": "null"
+                  },
+                  "customfield_10544": {
+                    "type": "null"
+                  },
+                  "customfield_10665": {
+                    "type": "null"
+                  },
+                  "customfield_10787": {
+                    "type": "null"
+                  },
+                  "customfield_10303": {
+                    "type": "null"
+                  },
+                  "customfield_10424": {
+                    "type": "null"
+                  },
+                  "customfield_10545": {
+                    "type": "null"
+                  },
+                  "customfield_10546": {
+                    "type": "null"
+                  },
+                  "customfield_10304": {
+                    "type": "null"
+                  },
+                  "customfield_10305": {
+                    "type": "null"
+                  },
+                  "customfield_10789": {
+                    "type": "null"
+                  },
+                  "customfield_10547": {
+                    "type": "null"
+                  },
+                  "customfield_10548": {
+                    "type": "null"
+                  },
+                  "customfield_10306": {
+                    "type": "null"
+                  },
+                  "customfield_10549": {
+                    "type": "null"
+                  },
+                  "customfield_10307": {
+                    "type": "null"
+                  },
+                  "customfield_10308": {
+                    "type": "null"
+                  },
+                  "customfield_10309": {
+                    "type": "null"
+                  },
+                  "workratio": {
+                    "type": "number"
+                  },
+                  "customfield_10780": {
+                    "type": "null"
+                  },
+                  "customfield_10781": {
+                    "type": "null"
+                  },
+                  "customfield_10540": {
+                    "type": "null"
+                  },
+                  "customfield_10782": {
+                    "type": "null"
+                  },
+                  "customfield_10420": {
+                    "type": "null"
+                  },
+                  "customfield_10783": {
+                    "type": "null"
+                  },
+                  "customfield_10541": {
+                    "type": "null"
+                  },
+                  "customfield_10662": {
+                    "type": "null"
+                  },
+                  "customfield_10421": {
+                    "type": "null"
+                  },
+                  "customfield_10663": {
+                    "type": "null"
+                  },
+                  "customfield_10542": {
+                    "type": "null"
+                  },
+                  "customfield_10784": {
+                    "type": "null"
+                  },
+                  "customfield_10301": {
+                    "type": "null"
+                  },
+                  "customfield_10664": {
+                    "type": "null"
+                  },
+                  "customfield_10543": {
+                    "type": "null"
+                  },
+                  "customfield_10775": {
+                    "type": "null"
+                  },
+                  "customfield_10533": {
+                    "type": "null"
+                  },
+                  "customfield_10896": {
+                    "type": "null"
+                  },
+                  "customfield_10412": {
+                    "type": "null"
+                  },
+                  "customfield_10654": {
+                    "type": "null"
+                  },
+                  "customfield_10776": {
+                    "type": "null"
+                  },
+                  "customfield_10655": {
+                    "type": "null"
+                  },
+                  "customfield_10534": {
+                    "type": "null"
+                  },
+                  "customfield_10777": {
+                    "type": "null"
+                  },
+                  "customfield_10898": {
+                    "type": "null"
+                  },
+                  "customfield_10535": {
+                    "type": "null"
+                  },
+                  "customfield_10536": {
+                    "type": "null"
+                  },
+                  "customfield_10778": {
+                    "type": "null"
+                  },
+                  "customfield_10899": {
+                    "type": "null"
+                  },
+                  "customfield_10416": {
+                    "type": "null"
+                  },
+                  "customfield_10779": {
+                    "type": "null"
+                  },
+                  "customfield_10537": {
+                    "type": "null"
+                  },
+                  "customfield_10538": {
+                    "type": "null"
+                  },
+                  "customfield_10417": {
+                    "type": "null"
+                  },
+                  "customfield_10418": {
+                    "type": "null"
+                  },
+                  "customfield_10539": {
+                    "type": "null"
+                  },
+                  "customfield_10419": {
+                    "type": "null"
+                  },
+                  "customfield_10890": {
+                    "type": "null"
+                  },
+                  "customfield_10891": {
+                    "type": "null"
+                  },
+                  "customfield_10892": {
+                    "type": "null"
+                  },
+                  "customfield_10650": {
+                    "type": "null"
+                  },
+                  "customfield_10893": {
+                    "type": "null"
+                  },
+                  "customfield_10772": {
+                    "type": "null"
+                  },
+                  "customfield_10651": {
+                    "type": "null"
+                  },
+                  "customfield_10530": {
+                    "type": "null"
+                  },
+                  "customfield_10773": {
+                    "type": "null"
+                  },
+                  "customfield_10410": {
+                    "type": "null"
+                  },
+                  "customfield_10531": {
+                    "type": "null"
+                  },
+                  "customfield_10652": {
+                    "type": "null"
+                  },
+                  "customfield_10653": {
+                    "type": "null"
+                  },
+                  "customfield_10532": {
+                    "type": "null"
+                  },
+                  "customfield_10895": {
+                    "type": "null"
+                  },
+                  "customfield_10774": {
+                    "type": "null"
+                  },
+                  "customfield_10522": {
+                    "type": "null"
+                  },
+                  "customfield_10885": {
+                    "type": "null"
+                  },
+                  "customfield_10886": {
+                    "type": "null"
+                  },
+                  "customfield_10523": {
+                    "type": "null"
+                  },
+                  "customfield_10644": {
+                    "type": "null"
+                  },
+                  "customfield_10524": {
+                    "type": "null"
+                  },
+                  "customfield_10887": {
+                    "type": "null"
+                  },
+                  "customfield_10767": {
+                    "type": "null"
+                  },
+                  "customfield_10888": {
+                    "type": "null"
+                  },
+                  "customfield_10525": {
+                    "type": "null"
+                  },
+                  "customfield_10889": {
+                    "type": "null"
+                  },
+                  "customfield_10526": {
+                    "type": "null"
+                  },
+                  "customfield_10768": {
+                    "type": "null"
+                  },
+                  "customfield_10769": {
+                    "type": "null"
+                  },
+                  "customfield_10528": {
+                    "type": "null"
+                  },
+                  "customfield_10529": {
+                    "type": "null"
+                  },
+                  "customfield_10881": {
+                    "type": "null"
+                  },
+                  "customfield_10761": {
+                    "type": "null"
+                  },
+                  "customfield_10882": {
+                    "type": "null"
+                  },
+                  "customfield_10883": {
+                    "type": "null"
+                  },
+                  "customfield_10762": {
+                    "type": "null"
+                  },
+                  "customfield_10884": {
+                    "type": "null"
+                  },
+                  "customfield_10511": {
+                    "type": "null"
+                  },
+                  "customfield_10512": {
+                    "type": "null"
+                  },
+                  "customfield_10876": {
+                    "type": "null"
+                  },
+                  "customfield_10514": {
+                    "type": "null"
+                  },
+                  "customfield_10757": {
+                    "type": "null"
+                  },
+                  "customfield_10758": {
+                    "type": "null"
+                  },
+                  "customfield_10078": {
+                    "type": "null"
+                  },
+                  "customfield_10079": {
+                    "type": "null"
+                  },
+                  "customfield_10063": {
+                    "type": "null"
+                  },
+                  "labels": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "components": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "customfield_10290": {
+                    "type": "null"
+                  },
+                  "customfield_10291": {
+                    "type": "null"
+                  },
+                  "customfield_10050": {
+                    "type": "null"
+                  },
+                  "customfield_10293": {
+                    "type": "null"
+                  },
+                  "customfield_10294": {
+                    "type": "null"
+                  },
+                  "customfield_10295": {
+                    "type": "null"
+                  },
+                  "customfield_10296": {
+                    "type": "null"
+                  },
+                  "customfield_10297": {
+                    "type": "null"
+                  },
+                  "customfield_10058": {
+                    "type": "null"
+                  },
+                  "customfield_10059": {
+                    "type": "null"
+                  },
+                  "customfield_10049": {
+                    "type": "null"
+                  },
+                  "customfield_10281": {
+                    "type": "null"
+                  },
+                  "customfield_10282": {
+                    "type": "null"
+                  },
+                  "customfield_10283": {
+                    "type": "null"
+                  },
+                  "customfield_10284": {
+                    "type": "null"
+                  },
+                  "customfield_10043": {
+                    "type": "null"
+                  },
+                  "reporter": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "accountId": {
+                        "type": "string"
+                      },
+                      "emailAddress": {
+                        "type": "string"
+                      },
+                      "avatarUrls": {
+                        "type": "object",
+                        "properties": {
+                          "48x48": {
+                            "type": "string"
+                          },
+                          "24x24": {
+                            "type": "string"
+                          },
+                          "16x16": {
+                            "type": "string"
+                          },
+                          "32x32": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "displayName": {
+                        "type": "string"
+                      },
+                      "active": {
+                        "type": "boolean"
+                      },
+                      "timeZone": {
+                        "type": "string"
+                      },
+                      "accountType": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "customfield_10287": {
+                    "type": "null"
+                  },
+                  "customfield_10288": {
+                    "type": "null"
+                  },
+                  "customfield_10038": {
+                    "type": "null"
+                  },
+                  "progress": {
+                    "type": "object",
+                    "properties": {
+                      "progress": {
+                        "type": "number"
+                      },
+                      "total": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "customfield_10150": {
+                    "type": "null"
+                  },
+                  "customfield_10151": {
+                    "type": "null"
+                  },
+                  "customfield_10152": {
+                    "type": "null"
+                  },
+                  "project": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "key": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "projectTypeKey": {
+                        "type": "string"
+                      },
+                      "simplified": {
+                        "type": "boolean"
+                      },
+                      "avatarUrls": {
+                        "type": "object",
+                        "properties": {
+                          "48x48": {
+                            "type": "string"
+                          },
+                          "24x24": {
+                            "type": "string"
+                          },
+                          "16x16": {
+                            "type": "string"
+                          },
+                          "32x32": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "projectCategory": {
+                        "type": "object",
+                        "properties": {
+                          "self": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "customfield_10153": {
+                    "type": "null"
+                  },
+                  "customfield_10154": {
+                    "type": "null"
+                  },
+                  "customfield_10276": {
+                    "type": "null"
+                  },
+                  "customfield_10277": {
+                    "type": "null"
+                  },
+                  "customfield_10157": {
+                    "type": "null"
+                  },
+                  "customfield_10158": {
+                    "type": "null"
+                  },
+                  "customfield_10269": {
+                    "type": "null"
+                  },
+                  "customfield_10029": {
+                    "type": "null"
+                  },
+                  "resolutiondate": {
+                    "type": "null"
+                  },
+                  "watches": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "watchCount": {
+                        "type": "number"
+                      },
+                      "isWatching": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "customfield_10380": {
+                    "type": "null"
+                  },
+                  "customfield_10381": {
+                    "type": "null"
+                  },
+                  "customfield_10382": {
+                    "type": "null"
+                  },
+                  "customfield_10140": {
+                    "type": "null"
+                  },
+                  "customfield_10383": {
+                    "type": "null"
+                  },
+                  "customfield_10020": {
+                    "type": "null"
+                  },
+                  "customfield_10141": {
+                    "type": "null"
+                  },
+                  "customfield_10021": {
+                    "type": "null"
+                  },
+                  "customfield_10142": {
+                    "type": "null"
+                  },
+                  "customfield_10384": {
+                    "type": "null"
+                  },
+                  "customfield_10143": {
+                    "type": "null"
+                  },
+                  "customfield_10264": {
+                    "type": "null"
+                  },
+                  "customfield_10385": {
+                    "type": "null"
+                  },
+                  "customfield_10022": {
+                    "type": "null"
+                  },
+                  "customfield_10265": {
+                    "type": "null"
+                  },
+                  "customfield_10023": {
+                    "type": "null"
+                  },
+                  "customfield_10144": {
+                    "type": "null"
+                  },
+                  "customfield_10024": {
+                    "type": "null"
+                  },
+                  "customfield_10266": {
+                    "type": "null"
+                  },
+                  "customfield_10145": {
+                    "type": "null"
+                  },
+                  "customfield_10387": {
+                    "type": "null"
+                  },
+                  "customfield_10025": {
+                    "type": "null"
+                  },
+                  "customfield_10267": {
+                    "type": "null"
+                  },
+                  "customfield_10268": {
+                    "type": "null"
+                  },
+                  "customfield_10137": {
+                    "type": "null"
+                  },
+                  "customfield_10016": {
+                    "type": "null"
+                  },
+                  "customfield_10017": {
+                    "type": "null"
+                  },
+                  "customfield_10138": {
+                    "type": "null"
+                  },
+                  "customfield_10018": {
+                    "type": "object",
+                    "properties": {
+                      "hasEpicLinkFieldDependency": {
+                        "type": "boolean"
+                      },
+                      "showField": {
+                        "type": "boolean"
+                      },
+                      "nonEditableReason": {
+                        "type": "object",
+                        "properties": {
+                          "reason": {
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "customfield_10139": {
+                    "type": "null"
+                  },
+                  "customfield_10019": {
+                    "type": "string"
+                  },
+                  "updated": {
+                    "type": "string"
+                  },
+                  "timeoriginalestimate": {
+                    "type": "null"
+                  },
+                  "customfield_10370": {
+                    "type": "null"
+                  },
+                  "customfield_10250": {
+                    "type": "null"
+                  },
+                  "customfield_10371": {
+                    "type": "null"
+                  },
+                  "customfield_10372": {
+                    "type": "null"
+                  },
+                  "customfield_10251": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "customfield_10131": {
+                    "type": "null"
+                  },
+                  "customfield_10010": {
+                    "type": "null"
+                  },
+                  "customfield_10252": {
+                    "type": "null"
+                  },
+                  "customfield_10253": {
+                    "type": "null"
+                  },
+                  "customfield_10254": {
+                    "type": "null"
+                  },
+                  "customfield_10133": {
+                    "type": "null"
+                  },
+                  "customfield_10376": {
+                    "type": "null"
+                  },
+                  "customfield_10134": {
+                    "type": "null"
+                  },
+                  "customfield_10135": {
+                    "type": "null"
+                  },
+                  "customfield_10256": {
+                    "type": "null"
+                  },
+                  "customfield_10377": {
+                    "type": "null"
+                  },
+                  "customfield_10014": {
+                    "type": "null"
+                  },
+                  "customfield_10015": {
+                    "type": "null"
+                  },
+                  "customfield_10257": {
+                    "type": "null"
+                  },
+                  "customfield_10136": {
+                    "type": "null"
+                  },
+                  "customfield_10249": {
+                    "type": "null"
+                  },
+                  "customfield_10008": {
+                    "type": "null"
+                  },
+                  "customfield_10129": {
+                    "type": "null"
+                  },
+                  "customfield_10009": {
+                    "type": "null"
+                  },
+                  "summary": {
+                    "type": "string"
+                  },
+                  "customfield_10000": {
+                    "type": "string"
+                  },
+                  "customfield_10364": {
+                    "type": "null"
+                  },
+                  "customfield_10001": {
+                    "type": "null"
+                  },
+                  "customfield_10486": {
+                    "type": "null"
+                  },
+                  "customfield_10002": {
+                    "type": "null"
+                  },
+                  "customfield_10487": {
+                    "type": "null"
+                  },
+                  "customfield_10124": {
+                    "type": "null"
+                  },
+                  "customfield_10125": {
+                    "type": "null"
+                  },
+                  "customfield_10004": {
+                    "type": "null"
+                  },
+                  "customfield_10357": {
+                    "type": "null"
+                  },
+                  "customfield_10359": {
+                    "type": "null"
+                  },
+                  "comment": {
+                    "type": "object",
+                    "properties": {
+                      "comments": {
+                        "type": "array",
+                        "items": {}
+                      },
+                      "self": {
+                        "type": "string"
+                      },
+                      "maxResults": {
+                        "type": "number"
+                      },
+                      "total": {
+                        "type": "number"
+                      },
+                      "startAt": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "statuscategorychangedate": {
+                    "type": "string"
+                  },
+                  "fixVersions": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "customfield_10900": {
+                    "type": "null"
+                  },
+                  "customfield_10901": {
+                    "type": "null"
+                  },
+                  "customfield_10902": {
+                    "type": "null"
+                  },
+                  "customfield_10903": {
+                    "type": "null"
+                  },
+                  "customfield_10904": {
+                    "type": "null"
+                  },
+                  "customfield_10905": {
+                    "type": "null"
+                  },
+                  "customfield_10906": {
+                    "type": "null"
+                  },
+                  "priority": {
+                    "type": "object",
+                    "properties": {
+                      "self": {
+                        "type": "string"
+                      },
+                      "iconUrl": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "versions": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "aggregateprogress": {
+                    "type": "object",
+                    "properties": {
+                      "progress": {
+                        "type": "number"
+                      },
+                      "total": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "issuerestriction": {
+                    "type": "object",
+                    "properties": {
+                      "issuerestrictions": {
+                        "type": "object",
+                        "properties": {}
+                      },
+                      "shouldDisplay": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "created": {
+                    "type": "string"
+                  },
+                  "customfield_10091": {
+                    "type": "null"
+                  },
+                  "customfield_10094": {
+                    "type": "null"
+                  },
+                  "customfield_10095": {
+                    "type": "null"
+                  },
+                  "customfield_10098": {
+                    "type": "null"
+                  },
+                  "customfield_10099": {
+                    "type": "null"
+                  },
+                  "security": {
+                    "type": "null"
+                  },
+                  "attachment": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "customfield_10080": {
+                    "type": "null"
+                  },
+                  "customfield_10081": {
+                    "type": "null"
+                  },
+                  "customfield_10082": {
+                    "type": "null"
+                  },
+                  "customfield_10083": {
+                    "type": "null"
+                  },
+                  "customfield_10084": {
+                    "type": "null"
+                  },
+                  "customfield_10085": {
+                    "type": "null"
+                  },
+                  "customfield_10086": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "3698bbfd-cdf2-419a-8e47-a0c47d4445b2",
+            "title": "O2C-Devgraph-APL-auth",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/7b32dbcd474d8c1f71bf9ee60c173096.png"
+            },
+            "scopes": [
+              "read:jira-work",
+              "read:jira-user",
+              "write:jira-work",
+              "offline_access"
+            ],
+            "service_name": "jira-cloud",
+            "service_version": 1
+          },
+          "properties": {
+            "project_key": {
+              "type": "string",
+              "value": "O2C"
+            },
+            "summary": {
+              "type": "jsonpath",
+              "value": "$.steps.script-2.result.subject"
+            },
+            "issue_type_id": {
+              "type": "string",
+              "value": "11850"
+            },
+            "description": {
+              "type": "jsonpath",
+              "value": "$.steps.script-2.result.description"
+            },
+            "due_date": {
+              "type": "string",
+              "value": ""
+            }
+          }
+        },
+        "jira-cloud-3": {
+          "title": "Attach document to ticket",
+          "connector": {
+            "name": "jira-cloud",
+            "version": "2.0"
+          },
+          "operation": "create_issue_attachment",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3698bbfd-cdf2-419a-8e47-a0c47d4445b2",
+            "title": "O2C-Devgraph-APL-auth",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/7b32dbcd474d8c1f71bf9ee60c173096.png"
+            },
+            "scopes": [
+              "read:jira-work",
+              "read:jira-user",
+              "write:jira-work",
+              "offline_access"
+            ],
+            "service_name": "jira-cloud",
+            "service_version": 1
+          },
+          "properties": {
+            "attachment": {
+              "type": "jsonpath",
+              "value": "$.steps.loop-1.value.file"
+            },
+            "issue_id": {
+              "type": "jsonpath",
+              "value": "$.steps.jira-cloud-1.key"
+            }
+          }
+        },
+        "text-helpers-1": {
+          "title": "Construct Ticket Address",
+          "connector": {
+            "name": "text-helpers",
+            "version": "3.0"
+          },
+          "operation": "concatenate",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "separator": {
+              "type": "string",
+              "value": ""
+            },
+            "values": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "https://devgraph-alp.atlassian.net/browse/"
+                },
+                {
+                  "type": "jsonpath",
+                  "value": "$.steps.jira-cloud-1.key"
+                }
+              ]
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get Customer",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "customer"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.subscription.customer.id"
+            },
+            "expand_sub_resources": {
+              "value": false,
+              "type": "boolean"
+            }
+          }
+        },
+        "jira-cloud-4": {
+          "title": "Search Sales Rep ID in JIRA",
+          "connector": {
+            "name": "jira-cloud",
+            "version": "2.0"
+          },
+          "operation": "search_users",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3698bbfd-cdf2-419a-8e47-a0c47d4445b2",
+            "title": "O2C-Devgraph-APL-auth",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/7b32dbcd474d8c1f71bf9ee60c173096.png"
+            },
+            "scopes": [
+              "read:jira-work",
+              "read:jira-user",
+              "write:jira-work",
+              "offline_access"
+            ],
+            "service_name": "jira-cloud",
+            "service_version": 1
+          },
+          "properties": {
+            "start_at": {
+              "type": "number",
+              "value": 0
+            },
+            "max_results": {
+              "type": "number",
+              "value": 50
+            },
+            "query": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.opportunity.SBQQ__PrimaryQuote__r.SBQQ__SalesRep__r.Email"
+            }
+          }
+        },
+        "script-2": {
+          "title": "Prepare Jira Ticket Data",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "object",
+                "properties": {
+                  "subject": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              },
+              "console": {
+                "type": "array",
+                "items": {}
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "customer"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsQuoteId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.opportunity.SBQQ__PrimaryQuote__r.NetSuite_ID__c"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subscriptionName"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.subscription.name"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subscriptionId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.subscription.id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "winType"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.opportunity.Win_Type__c"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "isrEmail"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.opportunity.SBQQ__PrimaryQuote__r.SBQQ__SalesRep__r.Email"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "isrJiraAccountId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.jira-cloud-4.results[0].accountId",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "manualo2c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.opportunity.Manual_O2C__c",
+                      "fallback": {
+                        "type": "boolean",
+                        "value": false
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "footerText"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.opportunity.SBQQ__PrimaryQuote__r.Line_Items_Footer_Text__c",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "opportunityType"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.opportunity.Type",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  const customerName = input.customer.isPerson\n    ? [\n        input.customer.firstName,\n        input.customer.middleName,\n        input.customer.lastName,\n      ]\n        .filter((f) => Boolean(f)) // filter out empty fields\n        .join(\" \")\n    : input.customer.companyName;\n  \n  var isrTag = `${input.isrEmail}`;\n\tif(input.isrJiraAccountId) {\n    isrTag = `[~accountid:${input.isrJiraAccountId}], email: ${input.isrEmail}`;\n  }\n  \n  let subject = `Invoice Request - ${customerName} -${input.subscriptionName}`;\n  const descriptionHeader = `Ticket generated by Trilogy Sales Infrastructure.\\n\\n*Sales Rep*: ${isrTag}`;\n  let descriptionFooter = input.opportunityType === 'renewal' ? 'Sales Team: Core Renewals\\n' : '';\n  descriptionFooter += `Activate the subscription and generate the invoice.`;\n  const subscriptionLink = `[${input.subscriptionId}|https://4914352.app.netsuite.com/app/accounting/subscription/subscription.nl?id=${input.subscriptionId}]`;\n  const quoteLink = `[${input.nsQuoteId}|https://4914352.app.netsuite.com/app/accounting/transactions/estimate.nl?id=${input.nsQuoteId}]`;\n  const manualo2cText = `Please replace the renewal subscription ${subscriptionLink} with a new Renewal Subscription as per the Quote ${quoteLink}.`;\n  const additionalInstructions = input.footerText?`*Important Note*: ${input.footerText}`:'';\n  let description;\n  let descriptionText;\n  switch(input.winType) {\n    case 'Auto-Renew':\n      subject = `AR - ${subject}`;\n      descriptionText = input.manualo2c ? `\nThis is an Auto-Renewal Invoice request.\n${manualo2cText}` : `\nThis is an Auto-Renewal Invoice request for renewal subscription ${subscriptionLink}.`;\n      description = `AUTO-RENEWAL\n${descriptionHeader}\n${descriptionText}\nQuote: AR.\nPreviously Signed Quote with AR Clause attached to this ticket.\n${descriptionFooter}\n${additionalInstructions}`;\n      break;\n    case 'PO Received':\n      description = `${descriptionHeader}\n${input.opportunityType} Opportunity won for draft subscription ${subscriptionLink}.\nPO Only. PO Attached to this ticket.\n${descriptionFooter}\n${additionalInstructions}`;\n      break;\n    case 'Quote Signed':\n      descriptionText = input.manualo2c ? `\n${manualo2cText}` : `\n${input.opportunityType} Opportunity won for draft subscription ${subscriptionLink}.\nSigned quote ${quoteLink}.\n${additionalInstructions}`;\n      description = `${descriptionHeader}${descriptionText}\n${descriptionFooter}`;\n      break;\n    default:\n      throw new Error(`Unexpected win type: ${input.winType}`)\n  }\n  return {\n    subject: subject,\n    description: description\n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "e96c1f66-536a-4e5c-8bd3-8a2375110837",
+          "name": "Subflow Append Message to Description"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

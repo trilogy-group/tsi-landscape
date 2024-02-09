@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__GooglePrimaryProductOfInterest__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Primary product of interest for the prospect</inlineHelpText>
+    <label>Primary Product Of Interest</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Chrome Enterprise</fullName>
+                <default>false</default>
+                <label>Chrome Enterprise</label>
+            </value>
+            <value>
+                <fullName>Google Cloud Platform</fullName>
+                <default>false</default>
+                <label>Google Cloud Platform</label>
+            </value>
+            <value>
+                <fullName>Google Maps Platform</fullName>
+                <default>false</default>
+                <label>Google Maps Platform</label>
+            </value>
+            <value>
+                <fullName>Google Workspace</fullName>
+                <default>false</default>
+                <label>Google Workspace</label>
+            </value>
+            <value>
+                <fullName>Professional Services Organization</fullName>
+                <default>false</default>
+                <label>Professional Services Organization</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

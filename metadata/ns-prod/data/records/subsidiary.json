@@ -1,0 +1,2067 @@
+{
+  "type": "object",
+  "properties": {
+    "custrecord_eff_nsp2p_currency_code": {
+      "title": "EFF_NSP2P - Currency Code",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "country": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "PR",
+            "PS",
+            "PT",
+            "PW",
+            "PY",
+            "QA",
+            "AD",
+            "AE",
+            "AF",
+            "AG",
+            "AI",
+            "AL",
+            "AM",
+            "AN",
+            "AO",
+            "AQ",
+            "AR",
+            "AS",
+            "AT",
+            "RE",
+            "AU",
+            "AW",
+            "AX",
+            "AZ",
+            "RO",
+            "BA",
+            "BB",
+            "RS",
+            "BD",
+            "BE",
+            "RU",
+            "BF",
+            "BG",
+            "RW",
+            "BH",
+            "BI",
+            "BJ",
+            "BL",
+            "BM",
+            "BN",
+            "BO",
+            "SA",
+            "BQ",
+            "SB",
+            "BR",
+            "SC",
+            "BS",
+            "SD",
+            "BT",
+            "SE",
+            "SG",
+            "BV",
+            "BW",
+            "SH",
+            "SI",
+            "BY",
+            "SJ",
+            "BZ",
+            "SK",
+            "SL",
+            "SM",
+            "SN",
+            "SO",
+            "CA",
+            "SR",
+            "CC",
+            "SS",
+            "ST",
+            "CD",
+            "CF",
+            "SV",
+            "CG",
+            "SX",
+            "CH",
+            "SY",
+            "CI",
+            "SZ",
+            "CK",
+            "CL",
+            "CM",
+            "CN",
+            "CO",
+            "CR",
+            "TC",
+            "TD",
+            "CS",
+            "TF",
+            "CU",
+            "CV",
+            "TG",
+            "CW",
+            "TH",
+            "CX",
+            "CY",
+            "TJ",
+            "TK",
+            "CZ",
+            "TL",
+            "TM",
+            "TN",
+            "TO",
+            "TR",
+            "TT",
+            "DE",
+            "TV",
+            "TW",
+            "DJ",
+            "TZ",
+            "DK",
+            "DM",
+            "DO",
+            "UA",
+            "UG",
+            "DZ",
+            "UM",
+            "EA",
+            "US",
+            "EC",
+            "EE",
+            "EG",
+            "EH",
+            "UY",
+            "UZ",
+            "VA",
+            "ER",
+            "VC",
+            "ES",
+            "VE",
+            "ET",
+            "VG",
+            "VI",
+            "VN",
+            "VU",
+            "FI",
+            "FJ",
+            "FK",
+            "FM",
+            "FO",
+            "FR",
+            "WF",
+            "GA",
+            "GB",
+            "WS",
+            "GD",
+            "GE",
+            "GF",
+            "GG",
+            "GH",
+            "GI",
+            "GL",
+            "GM",
+            "GN",
+            "GP",
+            "GQ",
+            "GR",
+            "GS",
+            "GT",
+            "GU",
+            "GW",
+            "GY",
+            "XK",
+            "HK",
+            "HM",
+            "HN",
+            "HR",
+            "YE",
+            "HT",
+            "HU",
+            "IC",
+            "ID",
+            "YT",
+            "IE",
+            "IL",
+            "IM",
+            "IN",
+            "IO",
+            "ZA",
+            "IQ",
+            "IR",
+            "IS",
+            "IT",
+            "ZM",
+            "JE",
+            "ZW",
+            "JM",
+            "JO",
+            "JP",
+            "KE",
+            "KG",
+            "KH",
+            "KI",
+            "KM",
+            "KN",
+            "KP",
+            "KR",
+            "KW",
+            "KY",
+            "KZ",
+            "LA",
+            "LB",
+            "LC",
+            "LI",
+            "LK",
+            "LR",
+            "LS",
+            "LT",
+            "LU",
+            "LV",
+            "LY",
+            "MA",
+            "MC",
+            "MD",
+            "ME",
+            "MF",
+            "MG",
+            "MH",
+            "MK",
+            "ML",
+            "MM",
+            "MN",
+            "MO",
+            "MP",
+            "MQ",
+            "MR",
+            "MS",
+            "MT",
+            "MU",
+            "MV",
+            "MW",
+            "MX",
+            "MY",
+            "MZ",
+            "NA",
+            "NC",
+            "NE",
+            "NF",
+            "NG",
+            "NI",
+            "NL",
+            "NO",
+            "NP",
+            "NR",
+            "NU",
+            "NZ",
+            "OM",
+            "PA",
+            "PE",
+            "PF",
+            "PG",
+            "PH",
+            "PK",
+            "PL",
+            "PM",
+            "PN"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "custrecord_sta_acc_basecurr": {
+      "title": "Bank Account No.",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_subsidiary_legal_information": {
+      "title": "Legal Information",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_invoice_company_email": {
+      "title": "Company email for Invoice",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "custrecord_sta_einvoicing_payee_iban": {
+      "title": "Company IBAN",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_current_factoring_batch_no": {
+      "title": "Current Factoring Batch No.",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_esw_online_terms": {
+      "title": "TBD:ONLINE TERMS",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "tranInternalPrefix": {
+      "title": "Transaction Number Prefix",
+      "type": "string",
+      "description": "When you use auto-generated numbering with NetSuite OneWorld, you can make your transaction number sequences independent per subsidiary. Enter up to 8 alphanumeric characters in this field to number transactions with a prefix to signify this subsidiary. To set up auto-generated numbering, go to Setup &gt; Company &gt; Setup Tasks &gt; Auto-Generated Numbers. On the Transaction Numbers subtab, check the Use Subsidiary box next to each transaction to which this prefix should be applied.",
+      "nullable": true
+    },
+    "state": {
+      "title": "State",
+      "type": "string",
+      "description": "Select the state or province in which this subsidiary is located.",
+      "nullable": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "fax": {
+      "title": "Fax",
+      "type": "string",
+      "description": "Enter the fax number for this subsidiary.",
+      "nullable": true
+    },
+    "custrecord_subsidiary_lockbox": {
+      "title": "Lockbox",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_sta_einvoicing_payee_busin_id": {
+      "title": "Company Business ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord18": {
+      "title": "Consero",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_epm_username": {
+      "title": "Planning & Budgeting Username",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "internalId": {
+      "title": "Internal ID",
+      "type": "integer",
+      "description": "Either the internalID or externalID field is required for update, delete and get operations.",
+      "format": "int64",
+      "nullable": true
+    },
+    "custrecord_sta_placeofdomicile": {
+      "title": "Place of Domicile",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "description": "Enter the name of this subsidiary the way it should appear on all forms except checks. On checks, your company name is pre-printed with address and MICR information. The name can be alphanumeric. The maximum number of characters is 83.",
+      "nullable": true
+    },
+    "custrecord_sta_einvoicing_payee_iban3": {
+      "title": "Company IBAN 3",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_sta_einvoicing_payee_iban2": {
+      "title": "Company IBAN 2",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_emea_company_reg_num": {
+      "title": "Company Registration Number",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_einvoice_factoring_msg": {
+      "title": "Factoring Message",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_sta_giro_bic": {
+      "title": "Giro BIC",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_sta_einvoicing_payee_edi": {
+      "title": "Company EDI ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_sta_einvoicing_payee_vat": {
+      "title": "Company VAT",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_invoice_company_phone": {
+      "title": "Phone number for Invoice",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "isInactive": {
+      "title": "Subsidiary is Inactive",
+      "type": "boolean",
+      "description": "Check this box if this subsidiary is no longer active or used in your account. Inactivated subsidiaries no longer show in the Subsidiary field on records and transactions unless they are currently attached to a record. Web sites of inactive subsidiaries are no longer available online."
+    },
+    "custrecord_nspbcs_epm_application_name": {
+      "title": "Planning & Budgeting Application Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "legalName": {
+      "title": "Legal Name",
+      "type": "string",
+      "description": "Enter the legal name of this subsidiary as it should appear on tax forms.",
+      "nullable": true
+    },
+    "custrecord_nspbcs_epm_password": {
+      "title": "Planning & Budgeting Password",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_migrated_to_sub_setup": {
+      "title": "FF SC Migrated to Subsidiary Setup",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_adyen_merchant": {
+      "title": "TBD-Adyen Merchant",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_company_bic2": {
+      "title": "Company BIC 2",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_psg_lc_test_mode": {
+      "title": "Licensing Client Test Mode",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_company_bic3": {
+      "title": "Company BIC 3",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_nspbcs_epm_url": {
+      "title": "Planning & Budgeting URL",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "email": {
+      "title": "Return Email Address",
+      "type": "string",
+      "description": "Enter the return email address for this subsidiary.",
+      "nullable": true
+    },
+    "custrecord_adyen_x_api_key": {
+      "title": "TBD-Adyen X-API Key",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_subsidiary_payment_instruct": {
+      "title": "Payment Instructions",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastModifiedDate": {
+      "title": "Last Modified Date",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "custrecord_sta_einvoicing_interest": {
+      "title": "Overdue interest",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_stripe_account_id": {
+      "title": "Stripe Account ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_sta_einvoice_factoring_id": {
+      "title": "Factoring Seller Identification",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_erpff_p2p_dd_workflow_id": {
+      "title": "DizzyData workflow ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "url": {
+      "title": "Web Site",
+      "type": "string",
+      "description": "Enter this subsidiary&apos;s Web Site address, or URL.",
+      "nullable": true
+    },
+    "custrecord_sta_giro": {
+      "title": "Giro number",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "isElimination": {
+      "title": "Elimination",
+      "type": "boolean",
+      "description": "Check this box if this subsidiary record is to be used for only journal entries and transactions between subsidiaries. When a loan, sale, or inventory transfer is made between subsidiaries, you use an elimination subsidiary to balance your consolidated books. By entering a journal entry against the elimination subsidiary in the same amount as the inter-company transaction, you have both a record of the transactions and a correct balance."
+    },
+    "custrecord_company_bic": {
+      "title": "Company BIC",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "fullName": {
+      "title": "Full Name",
+      "type": "string",
+      "nullable": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "custrecord_jj_order_email_employee": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "mainAddress": {
+      "type": "object",
+      "properties": {
+        "zip": {
+          "title": "Zip",
+          "type": "string",
+          "nullable": true
+        },
+        "country": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "title": "Internal identifier",
+              "type": "string",
+              "enum": [
+                "PR",
+                "PS",
+                "PT",
+                "PW",
+                "PY",
+                "QA",
+                "AD",
+                "AE",
+                "AF",
+                "AG",
+                "AI",
+                "AL",
+                "AM",
+                "AN",
+                "AO",
+                "AQ",
+                "AR",
+                "AS",
+                "AT",
+                "RE",
+                "AU",
+                "AW",
+                "AX",
+                "AZ",
+                "RO",
+                "BA",
+                "BB",
+                "RS",
+                "BD",
+                "BE",
+                "RU",
+                "BF",
+                "BG",
+                "RW",
+                "BH",
+                "BI",
+                "BJ",
+                "BL",
+                "BM",
+                "BN",
+                "BO",
+                "SA",
+                "BQ",
+                "SB",
+                "BR",
+                "SC",
+                "BS",
+                "SD",
+                "BT",
+                "SE",
+                "SG",
+                "BV",
+                "BW",
+                "SH",
+                "SI",
+                "BY",
+                "SJ",
+                "BZ",
+                "SK",
+                "SL",
+                "SM",
+                "SN",
+                "SO",
+                "CA",
+                "SR",
+                "CC",
+                "SS",
+                "ST",
+                "CD",
+                "CF",
+                "SV",
+                "CG",
+                "SX",
+                "CH",
+                "SY",
+                "CI",
+                "SZ",
+                "CK",
+                "CL",
+                "CM",
+                "CN",
+                "CO",
+                "CR",
+                "TC",
+                "TD",
+                "CS",
+                "TF",
+                "CU",
+                "CV",
+                "TG",
+                "CW",
+                "TH",
+                "CX",
+                "CY",
+                "TJ",
+                "TK",
+                "CZ",
+                "TL",
+                "TM",
+                "TN",
+                "TO",
+                "TR",
+                "TT",
+                "DE",
+                "TV",
+                "TW",
+                "DJ",
+                "TZ",
+                "DK",
+                "DM",
+                "DO",
+                "UA",
+                "UG",
+                "DZ",
+                "UM",
+                "EA",
+                "US",
+                "EC",
+                "EE",
+                "EG",
+                "EH",
+                "UY",
+                "UZ",
+                "VA",
+                "ER",
+                "VC",
+                "ES",
+                "VE",
+                "ET",
+                "VG",
+                "VI",
+                "VN",
+                "VU",
+                "FI",
+                "FJ",
+                "FK",
+                "FM",
+                "FO",
+                "FR",
+                "WF",
+                "GA",
+                "GB",
+                "WS",
+                "GD",
+                "GE",
+                "GF",
+                "GG",
+                "GH",
+                "GI",
+                "GL",
+                "GM",
+                "GN",
+                "GP",
+                "GQ",
+                "GR",
+                "GS",
+                "GT",
+                "GU",
+                "GW",
+                "GY",
+                "XK",
+                "HK",
+                "HM",
+                "HN",
+                "HR",
+                "YE",
+                "HT",
+                "HU",
+                "IC",
+                "ID",
+                "YT",
+                "IE",
+                "IL",
+                "IM",
+                "IN",
+                "IO",
+                "ZA",
+                "IQ",
+                "IR",
+                "IS",
+                "IT",
+                "ZM",
+                "JE",
+                "ZW",
+                "JM",
+                "JO",
+                "JP",
+                "KE",
+                "KG",
+                "KH",
+                "KI",
+                "KM",
+                "KN",
+                "KP",
+                "KR",
+                "KW",
+                "KY",
+                "KZ",
+                "LA",
+                "LB",
+                "LC",
+                "LI",
+                "LK",
+                "LR",
+                "LS",
+                "LT",
+                "LU",
+                "LV",
+                "LY",
+                "MA",
+                "MC",
+                "MD",
+                "ME",
+                "MF",
+                "MG",
+                "MH",
+                "MK",
+                "ML",
+                "MM",
+                "MN",
+                "MO",
+                "MP",
+                "MQ",
+                "MR",
+                "MS",
+                "MT",
+                "MU",
+                "MV",
+                "MW",
+                "MX",
+                "MY",
+                "MZ",
+                "NA",
+                "NC",
+                "NE",
+                "NF",
+                "NG",
+                "NI",
+                "NL",
+                "NO",
+                "NP",
+                "NR",
+                "NU",
+                "NZ",
+                "OM",
+                "PA",
+                "PE",
+                "PF",
+                "PG",
+                "PH",
+                "PK",
+                "PL",
+                "PM",
+                "PN"
+              ]
+            },
+            "refName": {
+              "title": "Reference Name",
+              "type": "string"
+            }
+          }
+        },
+        "addr2": {
+          "title": "Address 2",
+          "type": "string",
+          "nullable": true
+        },
+        "city": {
+          "title": "City",
+          "type": "string",
+          "nullable": true
+        },
+        "addr1": {
+          "title": "Address 1",
+          "type": "string",
+          "nullable": true
+        },
+        "lastModifiedDate": {
+          "title": "Last Modified Date",
+          "type": "string",
+          "format": "date-time",
+          "nullable": true
+        },
+        "addr3": {
+          "title": "Address 3",
+          "type": "string",
+          "nullable": true
+        },
+        "externalId": {
+          "title": "External ID",
+          "type": "string",
+          "nullable": true
+        },
+        "addrPhone": {
+          "title": "Phone",
+          "type": "string",
+          "nullable": true
+        },
+        "addressee": {
+          "title": "Addressee",
+          "type": "string",
+          "nullable": true
+        },
+        "attention": {
+          "title": "Attention",
+          "type": "string",
+          "nullable": true
+        },
+        "override": {
+          "title": "Override",
+          "type": "boolean"
+        },
+        "state": {
+          "title": "State/Province",
+          "type": "string",
+          "nullable": true
+        },
+        "addrText": {
+          "title": "Address",
+          "type": "string",
+          "nullable": true
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      },
+      "x-ns-filterable": []
+    },
+    "parent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_emea_finance_contact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "taxRegistration": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "taxAgency": {
+                "title": "Tax Agency",
+                "type": "string",
+                "nullable": true
+              },
+              "taxRegistrationNumber": {
+                "title": "Tax Reg. Number",
+                "type": "string",
+                "nullable": true
+              },
+              "taxEngine": {
+                "title": "Tax Engine",
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "nexusCountry": {
+                "title": "Country",
+                "type": "string",
+                "nullable": true
+              },
+              "effectiveFrom": {
+                "title": "Effective From",
+                "type": "string",
+                "format": "date",
+                "nullable": true
+              },
+              "id": {
+                "title": "ID",
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "validUntil": {
+                "title": "Valid Until",
+                "type": "string",
+                "format": "date",
+                "nullable": true
+              },
+              "isTaxExempt": {
+                "title": "Tax-Exempt",
+                "type": "boolean"
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "nexus": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "representingCustomer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "shippingAddress": {
+      "type": "object",
+      "properties": {
+        "zip": {
+          "title": "Zip",
+          "type": "string",
+          "nullable": true
+        },
+        "country": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "title": "Internal identifier",
+              "type": "string",
+              "enum": [
+                "PR",
+                "PS",
+                "PT",
+                "PW",
+                "PY",
+                "QA",
+                "AD",
+                "AE",
+                "AF",
+                "AG",
+                "AI",
+                "AL",
+                "AM",
+                "AN",
+                "AO",
+                "AQ",
+                "AR",
+                "AS",
+                "AT",
+                "RE",
+                "AU",
+                "AW",
+                "AX",
+                "AZ",
+                "RO",
+                "BA",
+                "BB",
+                "RS",
+                "BD",
+                "BE",
+                "RU",
+                "BF",
+                "BG",
+                "RW",
+                "BH",
+                "BI",
+                "BJ",
+                "BL",
+                "BM",
+                "BN",
+                "BO",
+                "SA",
+                "BQ",
+                "SB",
+                "BR",
+                "SC",
+                "BS",
+                "SD",
+                "BT",
+                "SE",
+                "SG",
+                "BV",
+                "BW",
+                "SH",
+                "SI",
+                "BY",
+                "SJ",
+                "BZ",
+                "SK",
+                "SL",
+                "SM",
+                "SN",
+                "SO",
+                "CA",
+                "SR",
+                "CC",
+                "SS",
+                "ST",
+                "CD",
+                "CF",
+                "SV",
+                "CG",
+                "SX",
+                "CH",
+                "SY",
+                "CI",
+                "SZ",
+                "CK",
+                "CL",
+                "CM",
+                "CN",
+                "CO",
+                "CR",
+                "TC",
+                "TD",
+                "CS",
+                "TF",
+                "CU",
+                "CV",
+                "TG",
+                "CW",
+                "TH",
+                "CX",
+                "CY",
+                "TJ",
+                "TK",
+                "CZ",
+                "TL",
+                "TM",
+                "TN",
+                "TO",
+                "TR",
+                "TT",
+                "DE",
+                "TV",
+                "TW",
+                "DJ",
+                "TZ",
+                "DK",
+                "DM",
+                "DO",
+                "UA",
+                "UG",
+                "DZ",
+                "UM",
+                "EA",
+                "US",
+                "EC",
+                "EE",
+                "EG",
+                "EH",
+                "UY",
+                "UZ",
+                "VA",
+                "ER",
+                "VC",
+                "ES",
+                "VE",
+                "ET",
+                "VG",
+                "VI",
+                "VN",
+                "VU",
+                "FI",
+                "FJ",
+                "FK",
+                "FM",
+                "FO",
+                "FR",
+                "WF",
+                "GA",
+                "GB",
+                "WS",
+                "GD",
+                "GE",
+                "GF",
+                "GG",
+                "GH",
+                "GI",
+                "GL",
+                "GM",
+                "GN",
+                "GP",
+                "GQ",
+                "GR",
+                "GS",
+                "GT",
+                "GU",
+                "GW",
+                "GY",
+                "XK",
+                "HK",
+                "HM",
+                "HN",
+                "HR",
+                "YE",
+                "HT",
+                "HU",
+                "IC",
+                "ID",
+                "YT",
+                "IE",
+                "IL",
+                "IM",
+                "IN",
+                "IO",
+                "ZA",
+                "IQ",
+                "IR",
+                "IS",
+                "IT",
+                "ZM",
+                "JE",
+                "ZW",
+                "JM",
+                "JO",
+                "JP",
+                "KE",
+                "KG",
+                "KH",
+                "KI",
+                "KM",
+                "KN",
+                "KP",
+                "KR",
+                "KW",
+                "KY",
+                "KZ",
+                "LA",
+                "LB",
+                "LC",
+                "LI",
+                "LK",
+                "LR",
+                "LS",
+                "LT",
+                "LU",
+                "LV",
+                "LY",
+                "MA",
+                "MC",
+                "MD",
+                "ME",
+                "MF",
+                "MG",
+                "MH",
+                "MK",
+                "ML",
+                "MM",
+                "MN",
+                "MO",
+                "MP",
+                "MQ",
+                "MR",
+                "MS",
+                "MT",
+                "MU",
+                "MV",
+                "MW",
+                "MX",
+                "MY",
+                "MZ",
+                "NA",
+                "NC",
+                "NE",
+                "NF",
+                "NG",
+                "NI",
+                "NL",
+                "NO",
+                "NP",
+                "NR",
+                "NU",
+                "NZ",
+                "OM",
+                "PA",
+                "PE",
+                "PF",
+                "PG",
+                "PH",
+                "PK",
+                "PL",
+                "PM",
+                "PN"
+              ]
+            },
+            "refName": {
+              "title": "Reference Name",
+              "type": "string"
+            }
+          }
+        },
+        "addr2": {
+          "title": "Address 2",
+          "type": "string",
+          "nullable": true
+        },
+        "city": {
+          "title": "City",
+          "type": "string",
+          "nullable": true
+        },
+        "addr1": {
+          "title": "Address 1",
+          "type": "string",
+          "nullable": true
+        },
+        "lastModifiedDate": {
+          "title": "Last Modified Date",
+          "type": "string",
+          "format": "date-time",
+          "nullable": true
+        },
+        "addr3": {
+          "title": "Address 3",
+          "type": "string",
+          "nullable": true
+        },
+        "externalId": {
+          "title": "External ID",
+          "type": "string",
+          "nullable": true
+        },
+        "addrPhone": {
+          "title": "Phone",
+          "type": "string",
+          "nullable": true
+        },
+        "addressee": {
+          "title": "Addressee",
+          "type": "string",
+          "nullable": true
+        },
+        "attention": {
+          "title": "Attention",
+          "type": "string",
+          "nullable": true
+        },
+        "override": {
+          "title": "Override",
+          "type": "boolean"
+        },
+        "state": {
+          "title": "State/Province",
+          "type": "string",
+          "nullable": true
+        },
+        "addrText": {
+          "title": "Address",
+          "type": "string",
+          "nullable": true
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      },
+      "x-ns-filterable": []
+    },
+    "custrecord_gl_company_region": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "representingVendor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_jj_employeeforsubsidiary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_subsidiary_signatory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "returnAddress": {
+      "type": "object",
+      "properties": {
+        "zip": {
+          "title": "Zip",
+          "type": "string",
+          "nullable": true
+        },
+        "country": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "title": "Internal identifier",
+              "type": "string",
+              "enum": [
+                "PR",
+                "PS",
+                "PT",
+                "PW",
+                "PY",
+                "QA",
+                "AD",
+                "AE",
+                "AF",
+                "AG",
+                "AI",
+                "AL",
+                "AM",
+                "AN",
+                "AO",
+                "AQ",
+                "AR",
+                "AS",
+                "AT",
+                "RE",
+                "AU",
+                "AW",
+                "AX",
+                "AZ",
+                "RO",
+                "BA",
+                "BB",
+                "RS",
+                "BD",
+                "BE",
+                "RU",
+                "BF",
+                "BG",
+                "RW",
+                "BH",
+                "BI",
+                "BJ",
+                "BL",
+                "BM",
+                "BN",
+                "BO",
+                "SA",
+                "BQ",
+                "SB",
+                "BR",
+                "SC",
+                "BS",
+                "SD",
+                "BT",
+                "SE",
+                "SG",
+                "BV",
+                "BW",
+                "SH",
+                "SI",
+                "BY",
+                "SJ",
+                "BZ",
+                "SK",
+                "SL",
+                "SM",
+                "SN",
+                "SO",
+                "CA",
+                "SR",
+                "CC",
+                "SS",
+                "ST",
+                "CD",
+                "CF",
+                "SV",
+                "CG",
+                "SX",
+                "CH",
+                "SY",
+                "CI",
+                "SZ",
+                "CK",
+                "CL",
+                "CM",
+                "CN",
+                "CO",
+                "CR",
+                "TC",
+                "TD",
+                "CS",
+                "TF",
+                "CU",
+                "CV",
+                "TG",
+                "CW",
+                "TH",
+                "CX",
+                "CY",
+                "TJ",
+                "TK",
+                "CZ",
+                "TL",
+                "TM",
+                "TN",
+                "TO",
+                "TR",
+                "TT",
+                "DE",
+                "TV",
+                "TW",
+                "DJ",
+                "TZ",
+                "DK",
+                "DM",
+                "DO",
+                "UA",
+                "UG",
+                "DZ",
+                "UM",
+                "EA",
+                "US",
+                "EC",
+                "EE",
+                "EG",
+                "EH",
+                "UY",
+                "UZ",
+                "VA",
+                "ER",
+                "VC",
+                "ES",
+                "VE",
+                "ET",
+                "VG",
+                "VI",
+                "VN",
+                "VU",
+                "FI",
+                "FJ",
+                "FK",
+                "FM",
+                "FO",
+                "FR",
+                "WF",
+                "GA",
+                "GB",
+                "WS",
+                "GD",
+                "GE",
+                "GF",
+                "GG",
+                "GH",
+                "GI",
+                "GL",
+                "GM",
+                "GN",
+                "GP",
+                "GQ",
+                "GR",
+                "GS",
+                "GT",
+                "GU",
+                "GW",
+                "GY",
+                "XK",
+                "HK",
+                "HM",
+                "HN",
+                "HR",
+                "YE",
+                "HT",
+                "HU",
+                "IC",
+                "ID",
+                "YT",
+                "IE",
+                "IL",
+                "IM",
+                "IN",
+                "IO",
+                "ZA",
+                "IQ",
+                "IR",
+                "IS",
+                "IT",
+                "ZM",
+                "JE",
+                "ZW",
+                "JM",
+                "JO",
+                "JP",
+                "KE",
+                "KG",
+                "KH",
+                "KI",
+                "KM",
+                "KN",
+                "KP",
+                "KR",
+                "KW",
+                "KY",
+                "KZ",
+                "LA",
+                "LB",
+                "LC",
+                "LI",
+                "LK",
+                "LR",
+                "LS",
+                "LT",
+                "LU",
+                "LV",
+                "LY",
+                "MA",
+                "MC",
+                "MD",
+                "ME",
+                "MF",
+                "MG",
+                "MH",
+                "MK",
+                "ML",
+                "MM",
+                "MN",
+                "MO",
+                "MP",
+                "MQ",
+                "MR",
+                "MS",
+                "MT",
+                "MU",
+                "MV",
+                "MW",
+                "MX",
+                "MY",
+                "MZ",
+                "NA",
+                "NC",
+                "NE",
+                "NF",
+                "NG",
+                "NI",
+                "NL",
+                "NO",
+                "NP",
+                "NR",
+                "NU",
+                "NZ",
+                "OM",
+                "PA",
+                "PE",
+                "PF",
+                "PG",
+                "PH",
+                "PK",
+                "PL",
+                "PM",
+                "PN"
+              ]
+            },
+            "refName": {
+              "title": "Reference Name",
+              "type": "string"
+            }
+          }
+        },
+        "addr2": {
+          "title": "Address 2",
+          "type": "string",
+          "nullable": true
+        },
+        "city": {
+          "title": "City",
+          "type": "string",
+          "nullable": true
+        },
+        "addr1": {
+          "title": "Address 1",
+          "type": "string",
+          "nullable": true
+        },
+        "lastModifiedDate": {
+          "title": "Last Modified Date",
+          "type": "string",
+          "format": "date-time",
+          "nullable": true
+        },
+        "addr3": {
+          "title": "Address 3",
+          "type": "string",
+          "nullable": true
+        },
+        "externalId": {
+          "title": "External ID",
+          "type": "string",
+          "nullable": true
+        },
+        "addrPhone": {
+          "title": "Phone",
+          "type": "string",
+          "nullable": true
+        },
+        "addressee": {
+          "title": "Addressee",
+          "type": "string",
+          "nullable": true
+        },
+        "attention": {
+          "title": "Attention",
+          "type": "string",
+          "nullable": true
+        },
+        "override": {
+          "title": "Override",
+          "type": "boolean"
+        },
+        "state": {
+          "title": "State/Province",
+          "type": "string",
+          "nullable": true
+        },
+        "addrText": {
+          "title": "Address",
+          "type": "string",
+          "nullable": true
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      },
+      "x-ns-filterable": []
+    },
+    "custrecord_erpff_p2p_dd_wid_select": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "currency": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "parent",
+    "country",
+    "custrecord_sta_acc_basecurr",
+    "custrecord_subsidiary_legal_information",
+    "custrecord_invoice_company_email",
+    "externalId",
+    "custrecord_sta_einvoicing_payee_iban",
+    "custrecord_emea_finance_contact",
+    "custrecord_current_factoring_batch_no",
+    "representingVendor",
+    "tranInternalPrefix",
+    "state",
+    "id",
+    "fax",
+    "custrecord_subsidiary_lockbox",
+    "custrecord_sta_einvoicing_payee_busin_id",
+    "custrecord_gl_company_region",
+    "custrecord18",
+    "custrecord_nspbcs_epm_username",
+    "representingCustomer",
+    "custrecord_sta_placeofdomicile",
+    "name",
+    "custrecord_sta_einvoicing_payee_iban3",
+    "custrecord_erpff_p2p_dd_wid_select",
+    "custrecord_sta_einvoicing_payee_iban2",
+    "custrecord_emea_company_reg_num",
+    "custrecord_einvoice_factoring_msg",
+    "custrecord_sta_giro_bic",
+    "custrecord_sta_einvoicing_payee_edi",
+    "custrecord_sta_einvoicing_payee_vat",
+    "custrecord_invoice_company_phone",
+    "isInactive",
+    "custrecord_nspbcs_epm_application_name",
+    "legalName",
+    "custrecord_ff_sc_migrated_to_sub_setup",
+    "custrecord_subsidiary_signatory",
+    "custrecord_company_bic2",
+    "custrecord_psg_lc_test_mode",
+    "custrecord_company_bic3",
+    "currency",
+    "custrecord_nspbcs_epm_url",
+    "email",
+    "custrecord_subsidiary_payment_instruct",
+    "lastModifiedDate",
+    "custrecord_sta_einvoicing_interest",
+    "custrecord_stripe_account_id",
+    "custrecord_sta_einvoice_factoring_id",
+    "custrecord_erpff_p2p_dd_workflow_id",
+    "url",
+    "custrecord_sta_giro",
+    "isElimination",
+    "custrecord_company_bic",
+    "fullName"
+  ]
+}

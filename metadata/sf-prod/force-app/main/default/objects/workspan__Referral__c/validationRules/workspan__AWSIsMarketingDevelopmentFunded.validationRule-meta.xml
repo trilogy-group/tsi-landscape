@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__AWSIsMarketingDevelopmentFunded</fullName>
+    <active>false</active>
+    <errorConditionFormula>NOT ISPICKVAL(workspan__AWSIsOpportunityFromMarketingActivity__c, &quot;YES&quot;)
+        &amp;&amp; NOT ISPICKVAL(workspan__AWSIsMarketingDevelopmentFunded__c, &quot;&quot;)
+        &amp;&amp; !workspan__SkipValidationRules__c</errorConditionFormula>
+    <errorDisplayField>workspan__AWSIsMarketingDevelopmentFunded__c</errorDisplayField>
+    <errorMessage>Since the Opportunity is not from Marketing Activity, &apos;Is AWS Marketing Development Funded?&apos; must be left blank.</errorMessage>
+</ValidationRule>

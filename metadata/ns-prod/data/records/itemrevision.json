@@ -1,0 +1,85 @@
+{
+  "type": "object",
+  "properties": {
+    "inactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "description": "Check the Inactive box to not display this revision in lists."
+    },
+    "obsoleteDate": {
+      "title": "Obsolete Date",
+      "type": "string",
+      "description": "Obsolete dates on a revision record cannot be edited. You can set the effective date and when the revision is saved. The obsolete date is determined by NetSuite to avoid gaps or overlaps in dates covered by revisions.",
+      "format": "date",
+      "nullable": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "description": "Enter a revision Name. For example, Version One.",
+      "nullable": true
+    },
+    "memo": {
+      "title": "Memo",
+      "type": "string",
+      "description": "Enter a Memo about this revision. You can later search for this version by memo text.",
+      "nullable": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "effectiveDate": {
+      "title": "Effective Date",
+      "type": "string",
+      "description": "Enter the revision Effective Date.",
+      "format": "date",
+      "nullable": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "item": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": []
+}

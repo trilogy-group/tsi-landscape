@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DoNotAllowToChangeStatusIfHandledByAuto</fullName>
+    <active>false</active>
+    <description>Ensures that users cannot change the quote status if handled by the automation process, i.e. the product is a NetSuite product and the opportunity is not flagged manual O2C.</description>
+    <errorConditionFormula>NOT($Setup.Quality_Bars_Configuration__c.Disabled_Quote_QBs__c)
+&amp;&amp; ISCHANGED(SBQQ__Status__c)
+&amp;&amp; NOT(ISBLANK(SBQQ__Opportunity2__c))
+&amp;&amp; SBQQ__Opportunity2__r.Manual_O2C__c = FALSE
+&amp;&amp; NOT(ISBLANK(SBQQ__Opportunity2__r.Product_Configuration__c))
+&amp;&amp; SBQQ__Opportunity2__r.Product_Configuration__r.NetSuite_Product__c = TRUE</errorConditionFormula>
+    <errorMessage>Cannot change the quote status if handled by the automation process.</errorMessage>
+</ValidationRule>

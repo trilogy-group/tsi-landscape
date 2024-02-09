@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Navigate back to task effectively refreshing the page</description>
+        <name>Navigate_to_Task</name>
+        <label>Navigate to Task</label>
+        <locationX>336</locationX>
+        <locationY>2690</locationY>
+        <actionName>c:navigateToRecord</actionName>
+        <actionType>component</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>MyTask.Id</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>51.0</apiVersion>
+    <assignments>
+        <description>Add to the collection</description>
+        <name>Add_to_FileIDs</name>
+        <label>Add to FileIDs</label>
+        <locationX>270</locationX>
+        <locationY>1190</locationY>
+        <assignmentItems>
+            <assignToReference>FileIDs</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Collect_File_IDs.ContentDocument.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Collect_File_IDs</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Store ID for deletion</description>
+        <name>Save_for_Deletion</name>
+        <label>Save for Deletion</label>
+        <locationX>270</locationX>
+        <locationY>1706</locationY>
+        <assignmentItems>
+            <assignToReference>FileIDs_ToDelete</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Attachments.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Attachments</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Check if the attachment is a debug info.</description>
+        <name>Debug_File</name>
+        <label>Debug File?</label>
+        <locationX>402</locationX>
+        <locationY>1598</locationY>
+        <defaultConnector>
+            <targetReference>Loop_Attachments</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Debug_File_Yes</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Attachments.Title</leftValueReference>
+                <operator>StartsWith</operator>
+                <rightValue>
+                    <stringValue>QC Platinum Offer Prompt for</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Loop_Attachments.Title</leftValueReference>
+                <operator>StartsWith</operator>
+                <rightValue>
+                    <stringValue>QC Prompt for</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Loop_Attachments.Title</leftValueReference>
+                <operator>StartsWith</operator>
+                <rightValue>
+                    <stringValue>QC Task Exception</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Save_for_Deletion</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Delete scorecards if found</description>
+        <name>Has_Scorecards</name>
+        <label>Has Scorecards?</label>
+        <locationX>182</locationX>
+        <locationY>566</locationY>
+        <defaultConnector>
+            <targetReference>Delete_QC_Summary</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Has_Scorecards_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Scorecards</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Delete_QC_Scorecards</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>If_Summary_Exists</name>
+        <label>Task has QC records?</label>
+        <locationX>336</locationX>
+        <locationY>350</locationY>
+        <defaultConnector>
+            <targetReference>Refresh_Task_Var</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Summary</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>MyTask.QC_Summary__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Scorecards</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check if there are any files to delete.</description>
+        <name>Need_Deletion</name>
+        <label>Need Deletion?</label>
+        <locationX>182</locationX>
+        <locationY>1982</locationY>
+        <defaultConnector>
+            <targetReference>Refresh_Task_Var</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Need_Deletion_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FileIDs_ToDelete</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Delete_Debug_Attachments</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Re-create QC records related to the task. QC will be re-triggered automatically.</description>
+    <interviewLabel>QC_Task_Recheck {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>QC Task Recheck</label>
+    <loops>
+        <description>Collect attachment IDs into a variable so we can later query all files in one shot (doing this in a loop against SF best practice).</description>
+        <name>Collect_File_IDs</name>
+        <label>Collect File IDs</label>
+        <locationX>182</locationX>
+        <locationY>1082</locationY>
+        <collectionReference>Get_Task_Attachments</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Add_to_FileIDs</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_Attachment_Details</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Loop files and delete the ones matching the pattern</description>
+        <name>Loop_Attachments</name>
+        <label>Loop Attachments</label>
+        <locationX>182</locationX>
+        <locationY>1490</locationY>
+        <collectionReference>Get_Attachment_Details</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Debug_File</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Need_Deletion</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordDeletes>
+        <description>Delete debug attachments</description>
+        <name>Delete_Debug_Attachments</name>
+        <label>Delete Debug Attachments</label>
+        <locationX>50</locationX>
+        <locationY>2090</locationY>
+        <connector>
+            <targetReference>Refresh_Task_Var</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>FileIDs_ToDelete</elementReference>
+            </value>
+        </filters>
+        <object>ContentDocument</object>
+    </recordDeletes>
+    <recordDeletes>
+        <description>Delete qc scorecards</description>
+        <name>Delete_QC_Scorecards</name>
+        <label>Delete QC Scorecards</label>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
+        <connector>
+            <targetReference>Delete_QC_Summary</targetReference>
+        </connector>
+        <inputReference>Get_Scorecards</inputReference>
+    </recordDeletes>
+    <recordDeletes>
+        <description>Delete qc summary</description>
+        <name>Delete_QC_Summary</name>
+        <label>Delete QC Summary</label>
+        <locationX>182</locationX>
+        <locationY>866</locationY>
+        <connector>
+            <targetReference>Get_Task_Attachments</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>MyTask.QC_Summary__r.Id</elementReference>
+            </value>
+        </filters>
+        <object>QC_Summary__c</object>
+    </recordDeletes>
+    <recordLookups>
+        <description>Get attachment details to see if we need to delete it</description>
+        <name>Get_Attachment_Details</name>
+        <label>Get Attachment Details</label>
+        <locationX>182</locationX>
+        <locationY>1382</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Attachments</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>FileIDs</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>ContentDocument</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Title</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get scorecard linked to QC summary (for old records we do not have scorecard on Task object)</description>
+        <name>Get_Scorecards</name>
+        <label>Get Scorecards</label>
+        <locationX>182</locationX>
+        <locationY>458</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Has_Scorecards</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>QC_Summary__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>MyTask.QC_Summary__r.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>QC_Scorecard__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Task</name>
+        <label>Get Task</label>
+        <locationX>336</locationX>
+        <locationY>242</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>If_Summary_Exists</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>TaskId</elementReference>
+            </value>
+        </filters>
+        <object>Task</object>
+        <outputReference>MyTask</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>QC_Summary__c</queriedFields>
+        <queriedFields>QC_Scorecard__c</queriedFields>
+        <queriedFields>Work_Unit_Type__c</queriedFields>
+        <queriedFields>Subject</queriedFields>
+        <queriedFields>CreatedDate</queriedFields>
+        <queriedFields>WhatId</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <description>Get task&apos;s attachments to iterate and delete debug files</description>
+        <name>Get_Task_Attachments</name>
+        <label>Get Task Attachments</label>
+        <locationX>182</locationX>
+        <locationY>974</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Collect_File_IDs</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>LinkedEntityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>TaskId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>ContentDocumentLink</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>ContentDocumentId</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Refresh_Task_Var</name>
+        <label>Refresh Task Var</label>
+        <locationX>336</locationX>
+        <locationY>2366</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_QC_Summary</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>TaskId</elementReference>
+            </value>
+        </filters>
+        <object>Task</object>
+        <outputReference>MyTask</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>QC_Summary__c</queriedFields>
+        <queriedFields>QC_Scorecard__c</queriedFields>
+        <queriedFields>Work_Unit_Type__c</queriedFields>
+        <queriedFields>Subject</queriedFields>
+        <queriedFields>CreatedDate</queriedFields>
+        <queriedFields>WhatId</queriedFields>
+    </recordLookups>
+    <screens>
+        <name>Confirmation</name>
+        <label>Confirmation</label>
+        <locationX>336</locationX>
+        <locationY>134</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Get_Task</targetReference>
+        </connector>
+        <fields>
+            <name>ID</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 66, 13); font-size: 16px;&quot;&gt;Confirmation&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;QC records will be re-created!&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>Add to let records re-creation finalized so when user is redirected back the Task record contains correct references.</description>
+        <name>Delete_Confirmation</name>
+        <label>Delete Confirmation</label>
+        <locationX>336</locationX>
+        <locationY>2582</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Navigate_to_Task</targetReference>
+        </connector>
+        <fields>
+            <name>text1</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px; color: rgb(0, 160, 30);&quot;&gt;Success!&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Records were re-created! &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;Important&lt;/em&gt;:&lt;/strong&gt; refresh the task page to see the correct refs to the newly created records.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Done</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>210</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Confirmation</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <description>Call to a sub-flow to generate QC records</description>
+        <name>Create_QC_Summary</name>
+        <label>Create QC Summary</label>
+        <locationX>336</locationX>
+        <locationY>2474</locationY>
+        <connector>
+            <targetReference>Delete_Confirmation</targetReference>
+        </connector>
+        <flowName>CreateQCSummaryOrScorecardIfNeeded</flowName>
+        <inputAssignments>
+            <name>MyTask</name>
+            <value>
+                <elementReference>MyTask</elementReference>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>MyTask</assignToReference>
+            <name>MyTask</name>
+        </outputAssignments>
+    </subflows>
+    <variables>
+        <description>Collection that keeps file IDs.</description>
+        <name>FileIDs</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Collection with IDs to delete</description>
+        <name>FileIDs_ToDelete</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>MyTask</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Task</objectType>
+    </variables>
+    <variables>
+        <description>Stores the ID number of the task that triggered the flow</description>
+        <name>TaskId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

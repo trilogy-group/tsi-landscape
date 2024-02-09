@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ReadyToClose_PrimaryQuote__c</fullName>
+    <description>True if the primary quote is Accepted, Generated or Signed, or can be &apos;Out for signature&apos; if Win Type is &apos;Auto-Renew&apos; or &apos;PO Received&apos;.</description>
+    <externalId>false</externalId>
+    <formula>OR(
+(!ISBLANK(SBQQ__PrimaryQuote__c) &amp;&amp;
+(ISPICKVAL(SBQQ__PrimaryQuote__r.SBQQ__Status__c,&apos;Accepted&apos;) ||
+ISPICKVAL(SBQQ__PrimaryQuote__r.SBQQ__Status__c,&apos;Generated&apos;) ||
+ISPICKVAL(SBQQ__PrimaryQuote__r.SBQQ__Status__c,&apos;Signed&apos;) ||
+(ISPICKVAL(SBQQ__PrimaryQuote__r.SBQQ__Status__c,&apos;Out for Signature&apos;) &amp;&amp; (ISPICKVAL(Win_Type__c,&apos;Auto-Renew&apos;) || ISPICKVAL(Win_Type__c,&apos;PO Received&apos;))))),
+ISPICKVAL(Type, &apos;xBR&apos;),
+ ISPICKVAL(Type,&apos;Prime&apos;)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>True if the primary quote is Accepted, Generated or Signed, or can be &apos;Out for signature&apos; if Win Type is &apos;Auto-Renew&apos; or &apos;PO Received&apos;.</inlineHelpText>
+    <label>ReadyToClose_PrimaryQuote</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

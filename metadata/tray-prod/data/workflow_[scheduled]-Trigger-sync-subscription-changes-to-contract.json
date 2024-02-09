@@ -1,0 +1,106 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "0b06421e-c45e-4ad2-84a0-adb5fde5707a",
+      "created": "2024-01-03T14:21:14.611877Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "project_id": "228d6ee9-0240-4a1e-a98d-152f0f8c2b81",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "3f3d3324-999d-4ce0-af9e-9e223adf05c8",
+        "created": "2024-01-03T17:22:21.431282Z"
+      },
+      "title": "[scheduled] Trigger sync subscription changes to contract",
+      "description": "This schedule flow runs daily and calls the Trigger sync subscription changes to contract flow.",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "call-workflow-1": {
+          "title": "Call Trigger flow",
+          "description": "We have a separate schedule flow from the trigger flow in order for the trigger flow to be an exact match from the sandbox flow.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "536facad-30eb-4cfe-98d2-f9be79b28c52"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {}
+            }
+          }
+        },
+        "trigger": {
+          "title": "Scheduled Trigger",
+          "description": "The trigger is scheduled to 8am GMT because netsuite timezone is -6/-7 GMT and we need to wait for the day to close for netsuite to be sure that all change orders for the previous day are processed.",
+          "connector": {
+            "name": "scheduled",
+            "version": "3.5"
+          },
+          "operation": "simple",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "synchronous": {
+              "type": "boolean",
+              "value": false
+            },
+            "public_url": {
+              "type": "jsonpath",
+              "value": "$.env.public_url"
+            },
+            "interval": {
+              "type": "integer",
+              "value": 1
+            },
+            "time_unit": {
+              "type": "string",
+              "value": "days"
+            },
+            "start_date": {
+              "type": "string",
+              "value": "2024-01-04 08:00"
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "536facad-30eb-4cfe-98d2-f9be79b28c52",
+          "name": "Trigger sync subscription changes to contract"
+        },
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

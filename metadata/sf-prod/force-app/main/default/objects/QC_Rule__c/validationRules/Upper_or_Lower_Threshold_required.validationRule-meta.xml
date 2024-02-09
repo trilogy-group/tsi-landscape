@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Upper_or_Lower_Threshold_required</fullName>
+    <active>true</active>
+    <description>Upper Threshold and Lower Threshold cannot be empty at the same time. At least one of them must be defined.</description>
+    <errorConditionFormula>ISPICKVAL( Automation_ID__c, &apos;Threshold&apos; ) &amp;&amp; ISNULL( Upper_Threshold__c ) &amp;&amp; ISNULL( Lower_Threshold__c )</errorConditionFormula>
+    <errorMessage>Upper Threshold and Lower Threshold cannot be empty at the same time. At least one of them must be defined.</errorMessage>
+</ValidationRule>

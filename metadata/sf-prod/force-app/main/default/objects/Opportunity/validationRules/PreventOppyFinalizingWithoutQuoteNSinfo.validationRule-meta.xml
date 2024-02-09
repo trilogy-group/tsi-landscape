@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PreventOppyFinalizingWithoutQuoteNSinfo</fullName>
+    <active>false</active>
+    <description>LAMBDA-49514 Validation rule to not allow an opportunity to move to Quote Followup or Finalizing if Quote.NetSuite ID and O2C Ticket link are empty and prevent reuse of generated SF Quote</description>
+    <errorConditionFormula>AND(Product_Configuration__r.Processed_via_OTC__c,
+Manual_O2C__c=TRUE,
+OR(ISPICKVAL(StageName ,&quot;Quote Follow-Up&quot;),ISPICKVAL(StageName ,&quot;Finalizing&quot;)),
+OR(ISBLANK(SBQQ__PrimaryQuote__r.NetSuite_ID__c),ISBLANK(SBQQ__PrimaryQuote__r.O2C_Ticket_Link__c)),
+ISPICKVAL(SBQQ__PrimaryQuote__r.SBQQ__Status__c,&quot;Accepted&quot;),
+ISBLANK(TEXT(Loss_Reason__c)),
+NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+)&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorMessage>Please populate the NetSuite ID and O2C ticket link in the Primary Quote to change the opportunity stage.
+The NetSuite ID of the Quote could be obtained from the latest Quote Request ticket.</errorMessage>
+</ValidationRule>

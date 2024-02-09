@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_Won_Win_Type_required</fullName>
+    <active>true</active>
+    <description>Don&apos;t allow advancing a Sales Opportunity to Stage=Closed-Won, unless Win_Type is set.</description>
+    <errorConditionFormula>AND(TEXT(StageName) = &apos;Closed Won&apos;, ISBLANK(TEXT(Win_Type__c)), NOT(ISPICKVAL(Type,&apos;CSM&apos;))) &amp;&amp;  NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorMessage>You must set Win Type prior to moving the opportunity to Closed Won</errorMessage>
+</ValidationRule>

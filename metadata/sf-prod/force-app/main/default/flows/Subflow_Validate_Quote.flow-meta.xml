@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <assignments>
+        <description>Sets the error message to the output variable</description>
+        <name>Set_Error_Message</name>
+        <label>Set Error Message</label>
+        <locationX>578</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>ErrorMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ErrorMessageFormula</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ValidQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>Set ValidQuote to true</description>
+        <name>Set_ValidQuote</name>
+        <label>Set ValidQuote</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>ValidQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>Set ValidQuote to true</description>
+        <name>Set_ValidQuote2</name>
+        <label>Set ValidQuote</label>
+        <locationX>314</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>ValidQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <description>Check if the quality bars are enable for the current user</description>
+        <name>Quality_Bars</name>
+        <label>Quality Bars</label>
+        <locationX>248</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>Validation_Rules</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Enabled</defaultConnectorLabel>
+        <rules>
+            <name>Disabled</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Setup.Quality_Bars_Configuration__c.Disabled_Quote_QBs__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_ValidQuote</targetReference>
+            </connector>
+            <label>Disabled</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Branches each validation rule</description>
+        <name>Validation_Rules</name>
+        <label>Validation Rules</label>
+        <locationX>446</locationX>
+        <locationY>350</locationY>
+        <defaultConnector>
+            <targetReference>Set_Error_Message</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Valid</defaultConnectorLabel>
+        <rules>
+            <name>Valid</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>IsQuoteValid</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_ValidQuote2</targetReference>
+            </connector>
+            <label>Valid</label>
+        </rules>
+    </decisions>
+    <description>Validates if the quote is correct</description>
+    <formulas>
+        <description>True if it&apos;s a netsuite product in a renewal opportunity and netsuite id is not set in the account, partner or distributor</description>
+        <name>Account_NetSuite_ID_Required</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(OR(ISPICKVAL({!Get_Quote.SBQQ__Opportunity2__r.Type}, &apos;New Business&apos;),ISPICKVAL({!Get_Quote.SBQQ__Opportunity2__r.Type}, &apos;Upsell&apos;))),
+{!Get_Quote.SBQQ__Opportunity2__r.Product_Configuration__r.NetSuite_Product__c} = TRUE,
+OR(
+ISBLANK({!Get_Quote.SBQQ__Account__r.NetSuite_ID__c}),
+AND(
+NOT(ISBLANK({!Get_Quote.SBQQ__Partner__c})),
+ISBLANK({!Get_Quote.SBQQ__Partner__r.NetSuite_ID__c})),
+AND(
+NOT(ISBLANK({!Get_Quote.SBQQ__Distributor__c})),
+ISBLANK({!Get_Quote.SBQQ__Distributor__r.NetSuite_ID__c}))
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <description>True if the billing frequency is empty</description>
+        <name>Billing_Frequency_Required</name>
+        <dataType>Boolean</dataType>
+        <expression>ISBLANK(TEXT({!Get_Quote.SBQQ__BillingFrequency__c}))</expression>
+    </formulas>
+    <formulas>
+        <description>True if billing or shipping address are empty</description>
+        <name>Billing_Shipping_Address_Required</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+    ISBLANK({!Get_Quote.SBQQ__BillingStreet__c}),
+    ISBLANK({!Get_Quote.SBQQ__BillingCity__c}),
+    ISBLANK({!Get_Quote.SBQQ__BillingName__c}),
+    ISBLANK({!Get_Quote.SBQQ__BillingCountry__c}),
+    ISBLANK({!Get_Quote.SBQQ__ShippingStreet__c}),
+    ISBLANK({!Get_Quote.SBQQ__ShippingCity__c}),
+    ISBLANK({!Get_Quote.SBQQ__ShippingName__c}),
+    ISBLANK({!Get_Quote.SBQQ__ShippingCountry__c})
+)</expression>
+    </formulas>
+    <formulas>
+        <description>True if end date empty or less than start date</description>
+        <name>End_Date_Required</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+    ISBLANK({!Get_Quote.SBQQ__EndDate__c}),
+    {!Get_Quote.SBQQ__EndDate__c} &lt; {!Get_Quote.SBQQ__StartDate__c}
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Creates a error message according to the rules that are failing</description>
+        <name>ErrorMessageFormula</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT({!IsQuoteValid}), &quot;Fix the following issues:&lt;br&gt;&quot;, &quot;&quot;) &amp; 
+IF({!Final_Quote_Or_Later_Stage}, &quot;- Opportunity must be in Final Quote or later stage.&lt;br&gt;&quot;, &quot;&quot;) &amp; 
+IF({!Account_NetSuite_ID_Required}, &quot;- NetSuite ID must be populated for the account and any partners (reseller or distributor).&lt;br&gt;&quot;, &quot;&quot;) &amp; 
+IF({!Billing_Frequency_Required}, &quot;- Billing Frequency must be filled.&lt;br&gt;&quot;, &quot;&quot;) &amp; 
+IF({!Billing_Shipping_Address_Required}, &quot;- The billing/shipping address and details must be filled.&lt;br&gt;&quot;, &quot;&quot;) &amp; 
+IF({!Service_Provider_Required}, &quot;- Service provider details must be filled.&lt;br&gt;&quot;, &quot;&quot;) &amp; 
+IF({!Quote_Status_Should_be_draft}, &quot;- Quote status must be &apos;Draft&apos;.&lt;br&gt;&quot;, &quot;&quot;) &amp; 
+IF({!Primary_Contact_Required}, &quot;- The &apos;Primary Contact&apos; must be set and must have an &apos;Email&apos;.&lt;br&gt;&quot;, &quot;&quot;) &amp; 
+IF({!Expiration_Date_3_Days_Least}, &quot;- Quote must have at least 3 days before expiration.&lt;br&gt;&quot;, &quot;&quot;) &amp; 
+IF({!Sales_Rep_Required_And_Active}, &quot;- An active sales rep must be set.&lt;br&gt;&quot;, &quot;&quot;) &amp; 
+IF({!Payment_Term_Required}, &quot;- Payment Terms must be set.&lt;br&gt;&quot;, &quot;&quot;) &amp; 
+IF({!End_Date_Required}, &quot;- Quote End Date must be set and can&apos;t be less than start date.&lt;br&gt;&quot;, &quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <description>True if the expiration date is blank or less than 3 days</description>
+        <name>Expiration_Date_3_Days_Least</name>
+        <dataType>Boolean</dataType>
+        <expression>ISBLANK({!Get_Quote.SBQQ__ExpirationDate__c}) || ({!Get_Quote.SBQQ__ExpirationDate__c} - 3 &lt; TODAY())</expression>
+    </formulas>
+    <formulas>
+        <description>True if not in the final quote or later stage</description>
+        <name>Final_Quote_Or_Later_Stage</name>
+        <dataType>Boolean</dataType>
+        <expression>CASE(
+    {!Get_Quote.SBQQ__Opportunity2__r.StageName},
+    &quot;Pending&quot;, 1,
+    &quot;Outreach&quot;, 1,
+    &quot;Engaged&quot;, 1,
+    &quot;Proposal&quot;, 1,
+    &quot;Final Quote&quot;, 0,
+    0
+) = 1</expression>
+    </formulas>
+    <formulas>
+        <description>True if all validations are false</description>
+        <name>IsQuoteValid</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+   NOT({!Final_Quote_Or_Later_Stage}),
+   NOT({!Account_NetSuite_ID_Required}),
+   NOT({!Billing_Frequency_Required}),
+   NOT({!Billing_Shipping_Address_Required}),
+   NOT({!Service_Provider_Required}),
+   NOT({!Quote_Status_Should_be_draft}),
+   NOT({!Primary_Contact_Required}),
+   NOT({!Expiration_Date_3_Days_Least}),
+   NOT({!Sales_Rep_Required_And_Active}),
+   NOT({!Payment_Term_Required}),
+   NOT({!End_Date_Required})
+)</expression>
+    </formulas>
+    <formulas>
+        <description>True if payment term is empty</description>
+        <name>Payment_Term_Required</name>
+        <dataType>Boolean</dataType>
+        <expression>ISBLANK(TEXT({!Get_Quote.SBQQ__PaymentTerms__c}))</expression>
+    </formulas>
+    <formulas>
+        <description>True if the quote doesn&apos;t have a Primary contact or if the primary contact doesn&apos;t have an email</description>
+        <name>Primary_Contact_Required</name>
+        <dataType>Boolean</dataType>
+        <expression>ISBLANK({!Get_Quote.SBQQ__PrimaryContact__c}) || ISBLANK({!Get_Quote.SBQQ__PrimaryContact__r.Email})</expression>
+    </formulas>
+    <formulas>
+        <description>True if quote status is not draft</description>
+        <name>Quote_Status_Should_be_draft</name>
+        <dataType>Boolean</dataType>
+        <expression>!ISPICKVAL({!Get_Quote.SBQQ__Status__c}, &apos;Draft&apos;)</expression>
+    </formulas>
+    <formulas>
+        <description>True if sales rep is empty or inactive</description>
+        <name>Sales_Rep_Required_And_Active</name>
+        <dataType>Boolean</dataType>
+        <expression>ISBLANK({!Get_Quote.SBQQ__SalesRep__c}) || NOT({!Get_Quote.SBQQ__SalesRep__r.IsActive})</expression>
+    </formulas>
+    <formulas>
+        <description>True if the service provider is empty</description>
+        <name>Service_Provider_Required</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+    ISBLANK({!Get_Quote.Service_Provider_Name__c}),
+    ISBLANK({!Get_Quote.Service_Provider_Street__c}),
+    ISBLANK({!Get_Quote.Service_Provider_City__c}),
+    ISBLANK({!Get_Quote.Service_Provider_Country__c})
+)</expression>
+    </formulas>
+    <interviewLabel>Subflow Validate Quote {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Subflow Validate Quote</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get the quote that will be validated</description>
+        <name>Get_Quote</name>
+        <label>Get Quote</label>
+        <locationX>248</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Quality_Bars</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>QuoteId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__Quote__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>122</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Quote</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Error message to be displayed to the user if the quote is not valid</description>
+        <name>ErrorMessage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Quote id from the quote that will be validated</description>
+        <name>QuoteId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Returns true if the quote is valid or if the quality bars are disabled for the current user</description>
+        <name>ValidQuote</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+</Flow>

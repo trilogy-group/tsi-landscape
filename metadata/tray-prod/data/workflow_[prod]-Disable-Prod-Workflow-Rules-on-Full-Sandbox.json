@@ -1,0 +1,1067 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "9e88a2be-de1d-4449-859a-f6aefe1d770a",
+      "created": "2022-09-22T13:22:11.777222Z",
+      "workspace_id": "b672e3d6-a262-46f2-b04e-14c42946779c",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "4a592429-5086-479b-bd19-3192f2ea2c82",
+        "created": "2022-09-23T03:29:10.381557Z"
+      },
+      "title": "[prod] Disable Prod Workflow Rules on Full Sandbox",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "terminate-1",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "storage-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-1",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "salesforce-3",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-2",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "salesforce-4",
+                      "type": "branch",
+                      "content": {
+                        "error": [],
+                        "success": [
+                          {
+                            "name": "script-1",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "salesforce-5",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "steps": {
+        "salesforce-3": {
+          "title": "Get Workflow Full",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "x-content-type-options": {
+                        "type": "string"
+                      },
+                      "x-xss-protection": {
+                        "type": "string"
+                      },
+                      "x-robots-tag": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "sforce-limit-info": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "transfer-encoding": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "attributes": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "Id": {
+                        "type": "string"
+                      },
+                      "Name": {
+                        "type": "string"
+                      },
+                      "TableEnumOrId": {
+                        "type": "string"
+                      },
+                      "ManageableState": {
+                        "type": "string"
+                      },
+                      "NamespacePrefix": {
+                        "type": "null"
+                      },
+                      "CreatedDate": {
+                        "type": "string"
+                      },
+                      "CreatedById": {
+                        "type": "string"
+                      },
+                      "LastModifiedDate": {
+                        "type": "string"
+                      },
+                      "LastModifiedById": {
+                        "type": "string"
+                      },
+                      "Metadata": {
+                        "type": "object",
+                        "properties": {
+                          "actions": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "booleanFilter": {
+                            "type": "null"
+                          },
+                          "criteriaItems": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "formula": {
+                            "type": "string"
+                          },
+                          "urls": {
+                            "type": "null"
+                          },
+                          "workflowTimeTriggers": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "active": {
+                            "type": "boolean"
+                          },
+                          "description": {
+                            "type": "null"
+                          },
+                          "failedMigrationToolVersion": {
+                            "type": "null"
+                          },
+                          "triggerType": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "FullName": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "3c8da781-700c-4952-bc33-a705e822f448",
+            "title": "SF-Full",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full",
+              "api"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "method": {
+              "type": "string",
+              "value": "GET"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.attributes.url"
+                }
+              }
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "none": {
+                  "type": "null",
+                  "value": null
+                }
+              }
+            }
+          }
+        },
+        "script-1": {
+          "title": "Set Disable Property",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "metadata"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-4.response.body.Metadata"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// You can reference the input variables using input.NAME\n// Parsed JSON files could be referenced as fileInput\nexports.step = function(input, fileInput) {\n  input.metadata.active = false;\n\treturn {Metadata: input.metadata};\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-2": {
+          "title": "Get Refresh Timestamp",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Workflow"
+            },
+            "key": {
+              "type": "string",
+              "value": "FullSandboxCreatedDate"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "TrayIO Rule?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-3.response.body.Name"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "starts with"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "TrayOn"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "starts with"
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-3.response.body.Name"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "zd-account-sync"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop Workflows",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "attributes": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "Id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "attributes",
+                  "Id"
+                ]
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-2.response.body.records"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Already Processed?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].CreatedDate"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-2.value"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "salesforce-4": {
+          "title": "Get Workflow Prod",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "x-content-type-options": {
+                        "type": "string"
+                      },
+                      "x-xss-protection": {
+                        "type": "string"
+                      },
+                      "x-robots-tag": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "sforce-limit-info": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "transfer-encoding": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "attributes": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "Id": {
+                        "type": "string"
+                      },
+                      "Name": {
+                        "type": "string"
+                      },
+                      "TableEnumOrId": {
+                        "type": "string"
+                      },
+                      "ManageableState": {
+                        "type": "string"
+                      },
+                      "NamespacePrefix": {
+                        "type": "null"
+                      },
+                      "CreatedDate": {
+                        "type": "string"
+                      },
+                      "CreatedById": {
+                        "type": "string"
+                      },
+                      "LastModifiedDate": {
+                        "type": "string"
+                      },
+                      "LastModifiedById": {
+                        "type": "string"
+                      },
+                      "Metadata": {
+                        "type": "object",
+                        "properties": {
+                          "actions": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "booleanFilter": {
+                            "type": "null"
+                          },
+                          "criteriaItems": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "formula": {
+                            "type": "string"
+                          },
+                          "urls": {
+                            "type": "null"
+                          },
+                          "workflowTimeTriggers": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "active": {
+                            "type": "boolean"
+                          },
+                          "description": {
+                            "type": "null"
+                          },
+                          "failedMigrationToolVersion": {
+                            "type": "null"
+                          },
+                          "triggerType": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "FullName": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {
+            "strategy": "manual"
+          },
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "method": {
+              "type": "string",
+              "value": "GET"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.attributes.url"
+                }
+              }
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "none": {
+                  "type": "null",
+                  "value": null
+                }
+              }
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "Terminate",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "terminate_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "salesforce-5": {
+          "title": "Disable Rule",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3c8da781-700c-4952-bc33-a705e822f448",
+            "title": "SF-Full",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full",
+              "api"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "method": {
+              "type": "string",
+              "value": "PATCH"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.attributes.url"
+                }
+              }
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Content-Type"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "application/json"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get Sandbox CreatedDate",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "query",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3c8da781-700c-4952-bc33-a705e822f448",
+            "title": "SF-Full",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full",
+              "api"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "query": {
+              "type": "string",
+              "value": "SELECT CreatedDate FROM Organization"
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Set Refresh Timestamp",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Workflow"
+            },
+            "key": {
+              "type": "string",
+              "value": "FullSandboxCreatedDate"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-1.records[0].CreatedDate"
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "SOQL",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "x-content-type-options": {
+                        "type": "string"
+                      },
+                      "x-xss-protection": {
+                        "type": "string"
+                      },
+                      "x-robots-tag": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "sforce-limit-info": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "transfer-encoding": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "size": {
+                        "type": "number"
+                      },
+                      "totalSize": {
+                        "type": "number"
+                      },
+                      "done": {
+                        "type": "boolean"
+                      },
+                      "queryLocator": {
+                        "type": "null"
+                      },
+                      "entityTypeName": {
+                        "type": "string"
+                      },
+                      "records": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "attributes": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "Id": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "attributes",
+                            "Id"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "3c8da781-700c-4952-bc33-a705e822f448",
+            "title": "SF-Full",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full",
+              "api"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "method": {
+              "type": "string",
+              "value": "GET"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/data/v54.0/tooling/query/?q=SELECT+ID+FROM+WorkflowRule"
+                }
+              }
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "none": {
+                  "type": "null",
+                  "value": null
+                }
+              }
+            }
+          }
+        },
+        "trigger": {
+          "title": "Scheduled Trigger",
+          "connector": {
+            "name": "scheduled",
+            "version": "3.5"
+          },
+          "operation": "simple",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "synchronous": {
+              "type": "boolean",
+              "value": false
+            },
+            "public_url": {
+              "type": "jsonpath",
+              "value": "$.env.public_url"
+            },
+            "interval": {
+              "type": "integer",
+              "value": 10
+            },
+            "time_unit": {
+              "type": "string",
+              "value": "minutes"
+            }
+          }
+        }
+      },
+      "dependencies": []
+    }
+  ],
+  "projects": []
+}

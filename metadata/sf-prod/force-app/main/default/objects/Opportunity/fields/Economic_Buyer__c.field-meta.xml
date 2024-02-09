@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Economic_Buyer__c</fullName>
+    <description>Green: EB has reviewed savings report &amp; is aligned
+||
+Yellow: EB has not reviewed savings report or has open questions
+||
+Red: EB aware and unwilling to move forward</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Green: EB has reviewed savings report &amp; is aligned
+||
+Yellow: EB has not reviewed savings report or has open questions
+||
+Red: EB aware and unwilling to move forward</inlineHelpText>
+    <label>Economic Buyer</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Opportunity_Progression</valueSetName>
+    </valueSet>
+</CustomField>

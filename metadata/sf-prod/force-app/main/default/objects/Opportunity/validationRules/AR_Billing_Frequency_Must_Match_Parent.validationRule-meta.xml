@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AR_Billing_Frequency_Must_Match_Parent</fullName>
+    <active>true</active>
+    <description>For Auto-renewed subscription the Billing Frequency should match the parent.</description>
+    <errorConditionFormula>AND (TEXT(Current_Billing_Term__c) &lt;&gt;  
+      TEXT(SBQQ__PrimaryQuote__r.SBQQ__BillingFrequency__c) ,
+      ISPICKVAL(Win_Type__c, &apos;Auto-Renew&apos;),
+NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+)&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorDisplayField>Current_Billing_Term__c</errorDisplayField>
+    <errorMessage>For Auto-Renewals, Billing Frequency on Quote should match with that on renewed subscription (Current Billing Frequency)</errorMessage>
+</ValidationRule>

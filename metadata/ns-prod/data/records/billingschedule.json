@@ -1,0 +1,590 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "description": "Check this box to inactivate this billing schedule. You cannot apply inactive schedules to orders."
+    },
+    "weekMonday": {
+      "title": "Monday",
+      "type": "boolean"
+    },
+    "initialAmountPercent": {
+      "title": "Initial Amount in %",
+      "type": "number",
+      "format": "double",
+      "nullable": true
+    },
+    "applyToSubtotal": {
+      "title": "Apply To Subtotal",
+      "type": "boolean",
+      "description": "Check this box to create a billing schedule applied to the pre-tax, pre-discount subtotal of a transaction. To create a billing schedule applied to a transaction subtotal, Type must be set to Standard and Recurrence Frequency must be set to Custom."
+    },
+    "scheduleType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "FBM",
+            "STD",
+            "TM",
+            "FBI",
+            "CB"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "billForActuals": {
+      "title": "Invoice Actual Time Only",
+      "type": "boolean",
+      "description": "Check the box to invoice only actual time worked and recorded in Time Tracking in each interval. If checked, you cannot enter an initial amount. Clear the box to invoice planned time and actual time worked."
+    },
+    "frequency": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "SEMIMONTHLY",
+            "STARTOFPERIOD",
+            "WEEKLY",
+            "QUADWEEKLY",
+            "BIENNIALLY",
+            "DAILY",
+            "NEVER",
+            "SEMIANNUALLY",
+            "ONETIME",
+            "ENDOFPERIOD",
+            "MONTHLY",
+            "TRIENNIALLY",
+            "HOURLY",
+            "QUARTERLY",
+            "ANNUALLY",
+            "CUSTOM",
+            "BIMONTHLY",
+            "BIWEEKLY"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "weekSunday": {
+      "title": "Sunday",
+      "type": "boolean"
+    },
+    "isPublic": {
+      "title": "Public",
+      "type": "boolean",
+      "description": "Check this box to make this billing schedule public. You can select a public schedule on any estimate, sales order or item record. If you do not check the Public box, this schedule is Private. A private billing schedule shows only in the transaction it is created from. If you create a private billing schedule from a transaction, that schedule is attached to items on the resulting sales order. Note: This check box is available only for schedules created on-the-fly. If you create a regular schedule, it defaults to Public and cannot be changed."
+    },
+    "weekWednesday": {
+      "title": "Wednesday",
+      "type": "boolean"
+    },
+    "weekThursday": {
+      "title": "Thursday",
+      "type": "boolean"
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "seriesStartDate": {
+      "title": "Recurrence Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true
+    },
+    "weekFriday": {
+      "title": "Friday",
+      "type": "boolean"
+    },
+    "recurrencePattern": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "FIXED_BILL_DATE",
+            "ANNIVERSARY_BILL_DATE"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "repeatEvery": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "6"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "weekSaturday": {
+      "title": "Saturday",
+      "type": "boolean"
+    },
+    "inArrears": {
+      "title": "In Arrears",
+      "type": "boolean",
+      "description": "Check this box to bill at the end of each period, instead of the beginning. For example, on a billing schedule with no initial amount, standard monthly frequency, in arrears, the first invoice is created one month from one day after the sales order date. Note: When this box is not checked, the first invoice bills for the initial amount plus the first recurring amount."
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "description": "Enter the name of this billing schedule.",
+      "nullable": true
+    },
+    "initialAmount": {
+      "title": "Initial Amount",
+      "type": "number",
+      "description": "Enter the initial bill amount generated by this billing schedule. This can be entered as a percentage or a set currency amount if you use line-level billing schedules. You can only use percentage initial amounts if you apply billing schedules on the transaction level.",
+      "format": "double",
+      "nullable": true
+    },
+    "numberRemaining": {
+      "title": "Recurrence Count",
+      "type": "integer",
+      "description": "Enter the number of subsequent payments you want the order amount divided into.",
+      "format": "int64",
+      "nullable": true
+    },
+    "weekTuesday": {
+      "title": "Tuesday",
+      "type": "boolean"
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "initialTerms": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "milestone": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "milestoneCompleted": {
+                "title": "Completed",
+                "type": "boolean"
+              },
+              "comments": {
+                "title": "Comment",
+                "type": "string",
+                "nullable": true
+              },
+              "milestoneDate": {
+                "title": "Estimated Completion Date",
+                "type": "string",
+                "format": "date",
+                "nullable": true
+              },
+              "milestoneId": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "milestoneActualCompletionDate": {
+                "title": "Actual Completion Date",
+                "type": "string",
+                "format": "date",
+                "nullable": true
+              },
+              "milestoneAmount": {
+                "title": "Amount",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "milestoneTerms": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              },
+              "projectTask": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "job": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "transaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "recurrence": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "amount": {
+                "title": "Amount",
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "recurrenceDate": {
+                "title": "Date",
+                "type": "string",
+                "format": "date",
+                "nullable": true
+              },
+              "relativeToPrevious": {
+                "title": "Relative to Previous",
+                "type": "boolean"
+              },
+              "count": {
+                "title": "Count",
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "units": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string",
+                    "enum": [
+                      "DAY",
+                      "WEEK",
+                      "MONTH"
+                    ]
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  }
+                }
+              },
+              "recurrenceId": {
+                "type": "integer",
+                "format": "int64",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              },
+              "paymentTerms": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string"
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "title": "External identifier",
+                    "type": "string"
+                  },
+                  "links": {
+                    "title": "Links",
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                      "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                    }
+                  }
+                }
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    },
+    "recurrenceTerms": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "initialAmountPercent",
+    "applyToSubtotal",
+    "scheduleType",
+    "recurrenceTerms",
+    "externalId",
+    "billForActuals",
+    "frequency",
+    "isPublic",
+    "id",
+    "recurrencePattern",
+    "repeatEvery",
+    "inArrears",
+    "name",
+    "initialAmount",
+    "numberRemaining",
+    "initialTerms",
+    "job",
+    "transaction"
+  ]
+}

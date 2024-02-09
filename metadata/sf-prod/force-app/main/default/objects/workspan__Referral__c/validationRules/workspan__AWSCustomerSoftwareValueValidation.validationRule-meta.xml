@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__AWSCustomerSoftwareValueValidation</fullName>
+    <active>true</active>
+    <description>Customer Software Value cannot be a negative number</description>
+    <errorConditionFormula>workspan__AWSCustomerSoftwareValue__c &lt; 0
+        &amp;&amp; !workspan__SkipValidationRules__c</errorConditionFormula>
+    <errorDisplayField>workspan__AWSCustomerSoftwareValue__c</errorDisplayField>
+    <errorMessage>Customer Software Value cannot be a negative</errorMessage>
+</ValidationRule>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__CloseDateRequired</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(
+            ISNEW() &amp;&amp; workspan__ReferralCreationMethod__c = &apos;UI&apos;, 
+            ISNEW() &amp;&amp; ISPICKVAL(workspan__ReadyForSubmitPicklist__c, &apos;Yes&apos;) &amp;&amp; workspan__ReferralCreationMethod__c = &apos;Bulk&apos;, 
+            !ISNEW() &amp;&amp; ISPICKVAL(workspan__ReadyForSubmitPicklist__c, &apos;Yes&apos;))
+        &amp;&amp; workspan__CloseDate__c &lt; TODAY()
+        &amp;&amp; workspan__SourcedToPartner__c = &apos;Amazon&apos;
+        &amp;&amp; !workspan__SubmittedToPartnerSystem__c
+        &amp;&amp; !workspan__SkipValidationRules__c</errorConditionFormula>
+    <errorDisplayField>workspan__CloseDate__c</errorDisplayField>
+    <errorMessage>Close Date cannot be in the past.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>InfoBright</fullName>
+    <columns>NetSuite_ID__c</columns>
+    <columns>NetSuite_SubscriptionPlan_ID__c</columns>
+    <columns>PRODUCT2.ACTIVE</columns>
+    <columns>PRODUCT2.NAME</columns>
+    <columns>Product__c</columns>
+    <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+    <columns>Product_Edition_Label__c</columns>
+    <columns>Success_Level__c</columns>
+    <columns>PRODUCT2.EXTERNAL_ID</columns>
+    <columns>Deployment_Type__c</columns>
+    <columns>SBQQ__SubscriptionTerm__c</columns>
+    <columns>PRODUCT2.DESCRIPTION</columns>
+    <columns>PRODUCT2.LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>PRODUCT2.FAMILY</field>
+        <operation>equals</operation>
+        <value>InfoBright</value>
+    </filters>
+    <label>InfoBright</label>
+</ListView>

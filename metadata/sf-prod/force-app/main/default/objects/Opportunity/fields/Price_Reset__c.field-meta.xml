@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Price_Reset__c</fullName>
+    <description>LAMBDA-47566 &gt; indicates that Price Reset applied to the opportunity product</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Select if Price Reset is being done on this opportunity (i.e. not the usual 25/35/45)</inlineHelpText>
+    <label>Price Reset</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Price Reset</fullName>
+                <default>false</default>
+                <label>Price Reset</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

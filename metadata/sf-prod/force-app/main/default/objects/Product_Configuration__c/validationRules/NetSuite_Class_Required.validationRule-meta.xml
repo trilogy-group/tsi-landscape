@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NetSuite_Class_Required</fullName>
+    <active>true</active>
+    <description>Ensures that when the NetSuite Product field is checked, the NetSuite Class field cannot be left blank.</description>
+    <errorConditionFormula>AND(
+   NetSuite_Product__c = TRUE,
+   ISBLANK(NetSuite_Class__c)
+)</errorConditionFormula>
+    <errorMessage>NetSuite Class is required when NetSuite Product is checked.</errorMessage>
+</ValidationRule>

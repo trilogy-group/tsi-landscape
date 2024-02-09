@@ -1,0 +1,90 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "3ae2d416-acb6-4f5f-8235-e1e4e08818f9",
+      "created": "2023-12-04T10:49:03.281659Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "project_id": "228d6ee9-0240-4a1e-a98d-152f0f8c2b81",
+      "creator": "0c145cd5-0a3a-480f-bd7e-2cc8a66fd232",
+      "version": {
+        "id": "914ca1da-19c3-4134-a7d2-b0855596f9cd",
+        "created": "2023-12-06T02:18:13.917495Z"
+      },
+      "title": "Trigger Sync SF Opportunity Contact Role to NS",
+      "description": "This flow encapsulates the synchronization from SF Contact attached to an opportunity into NetSuite. It is called asynchronously with the \"Fire and Forget\" operation.",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-2",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "trigger": {
+          "title": "Async call",
+          "description": "This flow encapsulates the synchronization from SF Contact attached to an opportunity into NetSuite. It is called asynchronously with the \"Fire and Forget\" operation.",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "call-workflow-2": {
+          "title": "Call subflow synchronously",
+          "description": "Calls synchronously the subflow syncing the NS Quote to SF Quote.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "3d82cfba-9e03-4c52-ba21-2d81d61e1be1"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "opportunityContactRoleId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.opportunityContactRoleId"
+                }
+              }
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "3d82cfba-9e03-4c52-ba21-2d81d61e1be1",
+          "name": "Sync SF Opportunity Contact Role to NS"
+        },
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

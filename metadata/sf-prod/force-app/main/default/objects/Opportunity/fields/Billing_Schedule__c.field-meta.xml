@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Schedule__c</fullName>
+    <externalId>false</externalId>
+    <label>Billing Schedule</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>100% Upfront</fullName>
+                <default>false</default>
+                <label>100% Upfront</label>
+            </value>
+            <value>
+                <fullName>50% Upon Receipt / 50% Net 30</fullName>
+                <default>false</default>
+                <label>50% Upon Receipt / 50% Net 30</label>
+            </value>
+            <value>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+                <label>Monthly</label>
+            </value>
+            <value>
+                <fullName>100% Net 30</fullName>
+                <default>false</default>
+                <label>100% Net 30</label>
+            </value>
+            <value>
+                <fullName>Prepaid, Annual 2YR</fullName>
+                <default>false</default>
+                <label>Prepaid, Annual 2YR</label>
+            </value>
+            <value>
+                <fullName>Prepaid, Annual 3YR</fullName>
+                <default>false</default>
+                <label>Prepaid, Annual 3YR</label>
+            </value>
+            <value>
+                <fullName>Prepaid, Annual 4YR</fullName>
+                <default>false</default>
+                <label>Prepaid, Annual 4YR</label>
+            </value>
+            <value>
+                <fullName>Prepaid, Annual 5YR</fullName>
+                <default>false</default>
+                <label>Prepaid, Annual 5YR</label>
+            </value>
+            <value>
+                <fullName>SB Annual Billing</fullName>
+                <default>false</default>
+                <label>SB Annual Billing</label>
+            </value>
+            <value>
+                <fullName>SB Monthly Billing</fullName>
+                <default>false</default>
+                <label>SB Monthly Billing</label>
+            </value>
+            <value>
+                <fullName>SB Monthly Billing Day 5 Net 30</fullName>
+                <default>false</default>
+                <label>SB Monthly Billing Day 5 Net 30</label>
+            </value>
+            <value>
+                <fullName>SB Monthly Billing EOM</fullName>
+                <default>false</default>
+                <label>SB Monthly Billing EOM</label>
+            </value>
+            <value>
+                <fullName>Monthly Billing</fullName>
+                <default>false</default>
+                <label>Monthly Billing</label>
+            </value>
+            <value>
+                <fullName>Quarterly - 1 Year</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Quarterly - 1 Year</label>
+            </value>
+            <value>
+                <fullName>Semi-annually</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Semi-annually</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

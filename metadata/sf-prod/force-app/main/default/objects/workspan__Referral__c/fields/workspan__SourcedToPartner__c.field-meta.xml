@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__SourcedToPartner__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Populated with PartnerId when a Referral is created in Salesforce. Otherwise is sent from WorkSpan. Can&apos;t be changed after creation.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Track the partner to whom your company sourced this Referral</inlineHelpText>
+    <label>Sourced To Partner</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

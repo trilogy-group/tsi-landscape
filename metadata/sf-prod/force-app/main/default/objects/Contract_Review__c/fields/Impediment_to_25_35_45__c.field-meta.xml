@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Impediment_to_25_35_45__c</fullName>
+    <externalId>false</externalId>
+    <formula>Customer_Contract_Extension_Right__c || !ISBLANK(TEXT(Caps_on_Renewal_Price__c)) || !ISPICKVAL(Customer_Right_to_Reduce_Entitlements__c,&apos;At Renewal&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Impediment to 25/35/45</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

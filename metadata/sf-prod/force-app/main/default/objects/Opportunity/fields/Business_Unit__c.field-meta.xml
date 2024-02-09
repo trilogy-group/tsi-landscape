@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Business_Unit__c</fullName>
+    <description>LAMBDA-60439 Business unit field to be referred by email templates</description>
+    <externalId>false</externalId>
+    <formula>Text(Product_Configuration__r.Business_Unit__c)</formula>
+    <inlineHelpText>Business Unit derived from Product configuration</inlineHelpText>
+    <label>Business Unit</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

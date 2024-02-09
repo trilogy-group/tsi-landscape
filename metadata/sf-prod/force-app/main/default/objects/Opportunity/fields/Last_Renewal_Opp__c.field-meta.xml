@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Renewal_Opp__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>This linked Opp is the last Closed Won renewal opp that identified that the customer is unhappy and at risk to churn</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This is the latest renewal that revealed the customer sentiment that they are considering cancelling next renewal</inlineHelpText>
+    <label>Last Renewal Opp</label>
+    <referenceTo>Opportunity</referenceTo>
+    <relationshipLabel>Opportunities (Last Renewal Opp)</relationshipLabel>
+    <relationshipName>Opportunities2</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

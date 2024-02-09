@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__DealSizeCurrencyValidation</fullName>
+    <active>true</active>
+    <errorConditionFormula>NOT(ISBLANK(workspan__DealSizeCurrency__c) || REGEX(workspan__DealSizeCurrency__c, &apos;[a-zA-Z]{3}&apos;))
+        &amp;&amp; workspan__SourcedByPartner__c != &apos;SAP&apos;
+        &amp;&amp; workspan__SourcedToPartner__c != &apos;SAP&apos;
+        &amp;&amp; !workspan__SkipValidationRules__c</errorConditionFormula>
+    <errorDisplayField>workspan__DealSizeCurrency__c</errorDisplayField>
+    <errorMessage>Deal Size Currency code must have exactly three letters.</errorMessage>
+</ValidationRule>

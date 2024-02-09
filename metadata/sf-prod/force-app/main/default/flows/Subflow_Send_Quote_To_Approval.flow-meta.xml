@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Submit_Quote_for_Approval</name>
+        <label>Submit Quote for Approval</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <actionName>submit</actionName>
+        <actionType>submit</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>objectId</name>
+            <value>
+                <elementReference>Quote.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>submitterId</name>
+            <value>
+                <elementReference>Quote.SBQQ__Opportunity2__r.OwnerId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>nextApproverIds</name>
+            <value>
+                <elementReference>ApproverIds</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>processDefinitionNameOrId</name>
+            <value>
+                <stringValue>FinalQuoteApproval</stringValue>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <assignments>
+        <name>Set_ApproverIds</name>
+        <label>Set ApproverIds</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>ApproverIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Quote.Quote_Approver__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Submit_Quote_for_Approval</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Quote_Ready_for_Approval</name>
+        <label>Quote Ready for Approval</label>
+        <locationX>182</locationX>
+        <locationY>134</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Quote_Ready_for_Approval_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Quote.Quote_Approver__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Quote_Sales_Rep</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Migrated from PB: SendQuoteToApproval (Invocable)
+
+LAMBDA-65238 - Deprecate the Process Builder
+
+Fix Quote Approvers</description>
+    <interviewLabel>SendQuoteToApproval {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Subflow Send Quote To Approval</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Quote_Sales_Rep</name>
+        <label>Update Quote Sales Rep</label>
+        <locationX>50</locationX>
+        <locationY>242</locationY>
+        <connector>
+            <targetReference>Set_ApproverIds</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Quote.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>SBQQ__SalesRep__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>Quote.SBQQ__Opportunity2__r.OwnerId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>SBQQ__SalesRep__c</field>
+            <value>
+                <elementReference>Quote.SBQQ__Opportunity2__r.OwnerId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>SBQQ__Quote__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Quote_Ready_for_Approval</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>ApproverIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Quote</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>SBQQ__Quote__c</objectType>
+    </variables>
+</Flow>

@@ -1,0 +1,1407 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "3e1046c0-7b37-4d43-a3aa-a39f300ab30b",
+      "created": "2022-12-29T15:12:06.974446Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "a217a41e-5d4b-4e4e-bbe4-875694edc931",
+        "created": "2024-02-06T15:05:26.772335Z"
+      },
+      "title": "Sync NS Class and SF Product Configuration",
+      "description": "This flow is triggered when the NS class or the renewal manager of the SF product configuration changes and initiates the sync between the NS class and the SF product configuration.",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {
+          "restlet": "script=customscript_si_main_main_restlet&deploy=customdeploy_si_main_main"
+        },
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "class": {
+              "title": "Class",
+              "type": "object",
+              "properties": {
+                "id": {
+                  "title": "id",
+                  "type": "number"
+                },
+                "name": {
+                  "title": "name",
+                  "type": "string"
+                },
+                "custrecord_cls_entity_us_domestic": {
+                  "title": "custrecord_cls_entity_us_domestic",
+                  "type": "string"
+                },
+                "custrecord_cls_entity_german": {
+                  "title": "custrecord_cls_entity_german",
+                  "type": "string"
+                },
+                "custrecord_cls_entity_japan": {
+                  "title": "custrecord_cls_entity_japan",
+                  "type": "string"
+                },
+                "custrecord_cls_entity_other": {
+                  "title": "custrecord_cls_entity_other",
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "required": [],
+              "advanced": []
+            },
+            "productConfigurationId": {
+              "title": "Product Configuration ID",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "class"
+          ],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string",
+              "title": "message"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-2",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "salesforce-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-1",
+                "type": "branch",
+                "content": {
+                  "true": [],
+                  "false": [
+                    {
+                      "name": "terminate-1",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "script-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "loop-1",
+                "type": "loop",
+                "content": {
+                  "_loop": [
+                    {
+                      "name": "call-workflow-1",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "salesforce-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-6",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "salesforce-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": []
+                }
+              },
+              {
+                "name": "callable-workflow-response-1",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "boolean-condition-3",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "salesforce-4",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-4",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "callable-workflow-response-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": []
+                }
+              },
+              {
+                "name": "boolean-condition-5",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "terminate-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": []
+                }
+              },
+              {
+                "name": "call-workflow-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-3",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "netsuite-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "callable-workflow-response-2",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "terminate-2",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "boolean-condition-1": {
+          "title": "Product configuration found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.total"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": ">"
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Triggered by NS?",
+          "description": "If the flow is triggered by NS on a class update, syncs the contracting entities from the NS class into the related SF product configuration.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.class"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "Triggered by SF?",
+          "description": "If the flow is triggered by SF on the product configuration renewal manager update, syncs the renewal manager from the SF product configuration to the related NS class.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.productConfigurationId"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "PC not synced to NS?",
+          "description": "Continues only if the NetSuite class is defined on the product configuration. Ignores NetSuite class starting by 'ignore'.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-4.records[0].NetSuite_Class__c"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "starts with"
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-4.records[0].NetSuite_Class__c"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Ignore"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "boolean-condition-5": {
+          "title": "RM not synced to NS?",
+          "description": "If the renewal manager is defined on the product configuration record, continues only if the renewal manager has a NetSuite ID.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-4.records[0].Renewal_Manager__c"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-4.records[0].Renewal_Manager__r.NetSuite_ID__c",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-6": {
+          "title": "Has fields to update?",
+          "description": "Check whether there are some fields to update. If there is no field to update, don't update the record.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.length"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": ">"
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Sync subsidiary if not in SF",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "5b56e196-f133-4e69-b1ea-348f8170e36b"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "subsidiaryId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value"
+                },
+                "updateType": {
+                  "type": "string",
+                  "value": "onlyCreation"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Get NS metadata",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "8cd05cfc-a86e-4be8-8e66-4a05cf6550c5"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {}
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "success"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "callable-workflow-response-2": {
+          "title": "SUCCESS",
+          "description": "The process was successful.",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "SUCCESS"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "callable-workflow-response-3": {
+          "title": "SKIP - no NetSuite class",
+          "description": "The product configuration has no NetSuite class or is ignored. Skips the process.",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "SKIP - no NetSuite class"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop Collection",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": [
+                  "string",
+                  "number",
+                  "object",
+                  "array",
+                  "boolean",
+                  "null"
+                ],
+                "description": "The script result returned from the function",
+                "title": "Result"
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result"
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Update Class via TSI API",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/917247fd-0fa6-4f4c-b085-3ccbdc273c4d.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "full_url": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-3.result.url"
+                }
+              }
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-3.result.payload"
+                }
+              }
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get product configuration",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Product Configurations",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Product Configuration",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Record ID"
+                    },
+                    "Contracting_Entity_US_and_AE__c": {
+                      "name": "Contracting_Entity_US_and_AE__c",
+                      "type": "string",
+                      "title": "Contracting Entity US and AE"
+                    },
+                    "Contracting_Entity_DE_and_AT__c": {
+                      "name": "Contracting_Entity_DE_and_AT__c",
+                      "type": "string",
+                      "title": "Contracting Entity DE and AT"
+                    },
+                    "Contacting_Entity_JP__c": {
+                      "name": "Contacting_Entity_JP__c",
+                      "type": "string",
+                      "title": "Contacting Entity JP"
+                    },
+                    "Contracting_Entity_Other__c": {
+                      "name": "Contracting_Entity_Other__c",
+                      "type": "string",
+                      "title": "Contracting Entity Other"
+                    },
+                    "Mailbox_Override__c": {
+                      "name": "Mailbox_Override__c",
+                      "type": "string",
+                      "title": "Outbound Email Domain"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                },
+                {
+                  "type": "string",
+                  "value": "Contracting_Entity_US_and_AE__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Contracting_Entity_DE_and_AT__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Contacting_Entity_JP__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Contracting_Entity_Other__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Mailbox_Override__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Product_Configuration__c"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "NetSuite_Class__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.class.name"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Get SF subsidiary ids",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Subsidiaries",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Subsidiary",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Record ID"
+                    },
+                    "Netsuite_Id__c": {
+                      "name": "Netsuite_Id__c",
+                      "type": "string",
+                      "title": "Netsuite Id"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                },
+                {
+                  "type": "string",
+                  "value": "Netsuite_Id__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Subsidiary__c"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Netsuite_Id__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "In"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "salesforce-3": {
+          "title": "Update Product Configuration",
+          "description": "Updates the product configuration record by setting the fields to update.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "jsonpath",
+              "value": "$.steps.script-2.result.fields"
+            },
+            "object": {
+              "type": "string",
+              "value": "Product_Configuration__c"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-1.records[0].Id"
+            }
+          }
+        },
+        "salesforce-4": {
+          "title": "Get Product Configuration",
+          "description": "Retrieves the product configuration record.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Product Configurations",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Product Configuration",
+                  "properties": {
+                    "NetSuite_Class__c": {
+                      "name": "NetSuite_Class__c",
+                      "type": "string",
+                      "title": "NetSuite Class"
+                    },
+                    "Renewal_Manager__c": {
+                      "name": "Renewal_Manager__c",
+                      "type": "string",
+                      "title": "Renewal Manager"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "NetSuite_Class__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Renewal_Manager__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Renewal_Manager__r.NetSuite_ID__c"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Product_Configuration__c"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Id"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.productConfigurationId"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "script-1": {
+          "title": "Get NS subsidiary ids",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "class"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.class"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  let subsidiaries = [getFirst(input.class.custrecord_cls_entity_us_domestic),\n    getFirst(input.class.custrecord_cls_entity_german),\n    getFirst(input.class.custrecord_cls_entity_japan),\n    getFirst(input.class.custrecord_cls_entity_other)];\n    console.log(subsidiaries)\n    subsidiaries = subsidiaries.filter(i => !!i);\n  console.log(subsidiaries)\n  subsidiaries.sort();\n  return subsidiaries.filter((item,index) => subsidiaries.indexOf(item) === index);\n};\n\nfunction getFirst(item) {\n  if (!item) {\n    return undefined;\n  }\n  return item.replace(/[\\u0005]/g,', ').split(', ').shift();\n}\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-2": {
+          "title": "Get fields to update",
+          "description": "Returns an array of fields to update and its length. A field must be updated only if the new value differs from the current value.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "SFsubsidiaryIds"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.records"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "class"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.class"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "productConfiguration"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0]"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  // Start from scratch.\n  const fields = [];\n\n  // Detect altered IDs.\n  appendAlteredIdFields(input, fields);\n\n  // Detect altered value fields.\n  appendAlteredValueFields(input, fields);\n\n  // Return the array of fields to update and its length.\n  return {\n    fields,\n    length: fields.length,\n  };\n};\n\nfunction appendAlteredIdFields(input, fields) {\n  // Define mapped fields.\n  const mappedFields = [\n    { ns: 'custrecord_cls_entity_us_domestic', sf: 'Contracting_Entity_US_and_AE__c' },\n    { ns: 'custrecord_cls_entity_german', sf: 'Contracting_Entity_DE_and_AT__c' },\n    { ns: 'custrecord_cls_entity_japan', sf: 'Contacting_Entity_JP__c' },\n    { ns: 'custrecord_cls_entity_other', sf: 'Contracting_Entity_Other__c' },\n  ];\n\n  // Browse mapped fields and check whether a field must be updated.\n  for (const mappedField of mappedFields) {\n    const sfId = input.productConfiguration[mappedField.sf];\n    const nsId = getFirst(input.class[mappedField.ns]);\n    const newSfId = input.SFsubsidiaryIds.find(i => i.Netsuite_Id__c === nsId).Id;\n    if (sfId !== newSfId) {\n      fields.push({ key: mappedField.sf, value: newSfId });\n    }\n  }\n}\n\nfunction appendAlteredValueFields(input, fields) {\n  // Define mapped fields.\n  const mappedFields = [\n    { ns: 'custrecord_outbound_email_domain', sf: 'Mailbox_Override__c' },\n  ];\n\n  // Browse mapped fields and check whether a field must be updated.\n  for (const mappedField of mappedFields) {\n    if (mappedField.ns in input.class) {\n    \tconst sfValue = input.productConfiguration[mappedField.sf];\n    \tconst nsValue = getFirst(input.class[mappedField.ns]);\n    \tif (sfValue !== nsValue) {\n      \tfields.push({ key: mappedField.sf, value: nsValue });\n    \t}\n    }\n  }\n}\n\nfunction getFirst(item) {\n  if (!item) {\n    return null;\n  }\n  return item.replace(/[\\u0005]/g, ', ').split(', ').shift();\n}\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-3": {
+          "title": "Prepare TSI API Payload",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "restletUrl"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-2.response.restlet_url"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "restlet"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.config.restlet"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "className"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-4.records[0].NetSuite_Class__c"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "renewalManagerId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-4.records[0].Renewal_Manager__r.NetSuite_ID__c",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n  const { restletUrl, restlet, className, renewalManagerId } = input;\n\treturn {\n  \turl: `${restletUrl}/app/site/hosting/restlet.nl?${restlet}`,\n    payload: { op: 'class.internalUpdate', className, renewalManagerId },\n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "Terminate",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "terminate_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "terminate-2": {
+          "title": "FAIL - unexpected trigger",
+          "description": "If there is no expected trigger, fails the process.",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "This flow was triggered with an unexpected trigger."
+            }
+          }
+        },
+        "terminate-3": {
+          "title": "FAIL - missing NetSuite ID",
+          "description": "The renewal manager is not synced with NS. As we are assuming the renewal manager exists in NS and is synced into Salesforce, fails the process.",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "FAIL - missing NetSuite ID"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Sync call",
+          "description": "This flow is triggered when the NS class or the renewal manager of the SF product configuration changes and initiates the sync between the NS class and the SF product configuration.",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b56e196-f133-4e69-b1ea-348f8170e36b",
+          "name": "Subflow sync NS subsidiary to SF"
+        },
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "8cd05cfc-a86e-4be8-8e66-4a05cf6550c5",
+          "name": "Get NS metadata"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

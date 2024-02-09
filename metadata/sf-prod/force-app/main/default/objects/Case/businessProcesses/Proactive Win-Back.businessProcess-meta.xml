@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BusinessProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Proactive Win-Back</fullName>
+    <description>Proactive Win-Back Cases for Closed Won Opportunities with Negative Sentiment</description>
+    <isActive>true</isActive>
+    <values>
+        <fullName>Connect</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Identify Resolution</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Not Possible</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Resolution Attempts</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Resolution Fail</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Resolution Success</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Review</fullName>
+        <default>true</default>
+    </values>
+</BusinessProcess>

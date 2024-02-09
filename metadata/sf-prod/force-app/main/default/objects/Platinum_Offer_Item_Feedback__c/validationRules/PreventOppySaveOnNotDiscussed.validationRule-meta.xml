@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PreventOppySaveOnNotDiscussed</fullName>
+    <active>true</active>
+    <description>LAMBDA-60192: Do not allow the user to set Customer Interest as &apos;Not Discussed&apos; if the Notes field is empty</description>
+    <errorConditionFormula>AND( ISPICKVAL(Customer_Interest__c,&apos;Not Discussed&apos;),
+ISBLANK(Notes__c), NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+)</errorConditionFormula>
+    <errorDisplayField>Notes__c</errorDisplayField>
+    <errorMessage>Kindly add note(s) detailing the reasons for not discussing the offer item(s) during the renewal call.</errorMessage>
+</ValidationRule>

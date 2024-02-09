@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Business_Value_Fit__c</fullName>
+    <description>Green: Confirmed AWS &amp; Confirmed spend of &gt;$100K &amp; Confirmed focus on cost optimization
+||
+Yellow: Unclear on AWS &amp; Unclear on spend &amp; Unclear on cost optimization priority
+||
+Red: Low/no usage or No savings focus</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Green: Confirmed AWS &amp; Confirmed spend of &gt;$100K &amp; Confirmed focus on cost optimization
+||
+Yellow: Unclear on AWS &amp; Unclear on spend &amp; Unclear on cost optimization priority
+||
+Red: Low/no usage or No savings focus</inlineHelpText>
+    <label>Business Value Fit</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Opportunity_Progression</valueSetName>
+    </valueSet>
+</CustomField>

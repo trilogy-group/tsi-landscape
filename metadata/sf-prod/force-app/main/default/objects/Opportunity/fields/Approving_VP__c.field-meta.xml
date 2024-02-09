@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approving_VP__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>LAMBDA-49896 Lookup field to be used by approval process to set from Product Configuration</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Renewal Manager of the Product</inlineHelpText>
+    <label>Approving VP</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Opportunities</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

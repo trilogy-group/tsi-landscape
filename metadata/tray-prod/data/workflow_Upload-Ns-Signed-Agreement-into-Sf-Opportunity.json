@@ -1,0 +1,427 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "c743a666-9ca0-4df3-9f22-40e3afe77088",
+      "created": "2022-07-08T11:44:48.141088Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "group": "b3908d0b-3e55-41b5-b2fa-81ada960bc16",
+      "creator": "ea98028e-3c67-4163-be3f-643c230a71c0",
+      "version": {
+        "id": "d1c27afe-928d-43f9-8a83-45657150d250",
+        "created": "2023-06-23T15:27:14.176971Z"
+      },
+      "title": "Upload Ns Signed Agreement into Sf Opportunity",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "sfOpportunityId": {
+              "title": "sfOpportunityId",
+              "type": "string"
+            },
+            "nsAgreementId": {
+              "title": "nsAgreementId",
+              "type": "string",
+              "description": "AdobeSign agreement identifier"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "isSuccessful": {
+              "title": "isSuccessful",
+              "type": "boolean",
+              "default": false
+            },
+            "message": {
+              "title": "message",
+              "type": "string"
+            },
+            "signedQuote": {
+              "title": "Signed Quote",
+              "type": "object",
+              "properties": {},
+              "additionalProperties": false,
+              "required": [],
+              "advanced": []
+            },
+            "signedQuoteNSId": {
+              "title": "Signed Quote NS Id",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-4",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "salesforce-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "callable-workflow-response-2",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "salesforce-3": {
+          "title": "Get ContentDocumentId",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Content Document Link",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Content Document Link",
+                  "properties": {
+                    "ContentDocumentId": {
+                      "name": "ContentDocumentId",
+                      "type": "string",
+                      "title": "ContentDocument ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "ContentDocumentId"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "ContentDocumentLink"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Id"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.id"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Download signed file",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "c6af6bca-ca60-4a38-ba67-4531f0095ed6"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "id": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-4.custrecord_echosign_signed_doc"
+                }
+              }
+            }
+          }
+        },
+        "callable-workflow-response-2": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "isSuccessful": {
+                  "value": true,
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string",
+                  "value": "Signed Echosign agreement has been uploaded successfully"
+                },
+                "signedQuote": {
+                  "type": "jsonpath",
+                  "value": "$.steps.call-workflow-1.response.file"
+                },
+                "signedQuoteNSId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-4.custrecord_echosign_signed_doc"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "netsuite-4": {
+          "title": "Get Adobe Agreement",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "customrecord_echosign_agreement"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.nsAgreementId"
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Upload File",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "upload_and_link_file",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "file": {
+              "type": "jsonpath",
+              "value": "$.steps.call-workflow-1.response.file"
+            },
+            "description": {
+              "type": "string",
+              "value": "Signed agreement"
+            },
+            "linked_entity_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.sfOpportunityId"
+            },
+            "share_type": {
+              "type": "string",
+              "value": "V"
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Set Signed Quote field",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Signed_Quote__c"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "https://trilogy-sales.lightning.force.com/lightning/r/ContentDocument/{$.steps.salesforce-3.records[0].ContentDocumentId}/view"
+                    }
+                  }
+                }
+              ]
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.sfOpportunityId"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "c6af6bca-ca60-4a38-ba67-4531f0095ed6",
+          "name": "Download NS file"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

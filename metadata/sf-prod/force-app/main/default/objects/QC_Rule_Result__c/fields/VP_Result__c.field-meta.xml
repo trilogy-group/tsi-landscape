@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VP_Result__c</fullName>
+    <description>Used by the VP to validate auto-grader result</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Used by the VP to validate auto-grader result</inlineHelpText>
+    <label>VP Result</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>QC_Result</valueSetName>
+    </valueSet>
+</CustomField>

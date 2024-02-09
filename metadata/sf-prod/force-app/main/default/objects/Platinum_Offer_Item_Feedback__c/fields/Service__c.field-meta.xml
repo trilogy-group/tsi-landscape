@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service__c</fullName>
+    <description>Field to bring information about Service from the related Platinum offer item object</description>
+    <externalId>false</externalId>
+    <formula>Platinum_Offer_Item__r.Service__c</formula>
+    <inlineHelpText>Service of the related item</inlineHelpText>
+    <label>Service</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

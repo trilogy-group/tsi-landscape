@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Future_Delivery_Date</fullName>
+    <active>true</active>
+    <description>LAMBDA-63164 : Prevent Future Date Selection when marking services &apos;Delivered&apos;</description>
+    <errorConditionFormula>AND(Delivery_Date__c &gt; TODAY() ,
+ISPICKVAL(Delivery_Status__c,&quot;Delivered&quot;))</errorConditionFormula>
+    <errorDisplayField>Delivery_Date__c</errorDisplayField>
+    <errorMessage>Delivery Date cannot be a Future Date</errorMessage>
+</ValidationRule>

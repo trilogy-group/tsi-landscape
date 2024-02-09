@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <actionCalls>
+        <name>DisableOpportunityQBs</name>
+        <label>DisableOpportunityQBs</label>
+        <locationX>176</locationX>
+        <locationY>566</locationY>
+        <actionName>OpportunityQBDisable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Update_Opportunity</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+    </actionCalls>
+    <actionCalls>
+        <name>EnableOpportunityQbs</name>
+        <label>EnableOpportunityQbs</label>
+        <locationX>176</locationX>
+        <locationY>782</locationY>
+        <actionName>OpportunityQBEnable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Set_Emails</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+    </actionCalls>
+    <actionCalls>
+        <name>EnableOpportunityQbs_fault</name>
+        <label>EnableOpportunityQbs</label>
+        <locationX>440</locationX>
+        <locationY>782</locationY>
+        <actionName>OpportunityQBEnable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Error</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Email_To_Vps_And_Admins</name>
+        <label>Send Email To Vps And Admins</label>
+        <locationX>176</locationX>
+        <locationY>998</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>EmailMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddressesArray</name>
+            <value>
+                <elementReference>EmailAddresses</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>EmailSubject</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>56.0</apiVersion>
+    <assignments>
+        <name>Set_Emails</name>
+        <label>Set Emails</label>
+        <locationX>176</locationX>
+        <locationY>890</locationY>
+        <assignmentItems>
+            <assignToReference>EmailAddresses</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>TSIAdminsGroup</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_Email_To_Vps_And_Admins</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Opportunity_Values</name>
+        <label>Set Opportunity Values</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>OpportunityToUpdate.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GetOpportunity.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OpportunityToUpdate.StageName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NewStageValue</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OpportunityToUpdate.Description</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NewDescription</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OpportunityToUpdate.Win_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>DisableOpportunityQBs</targetReference>
+        </connector>
+    </assignments>
+    <choices>
+        <name>Engaged</name>
+        <choiceText>Engaged</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Engaged</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Outreach</name>
+        <choiceText>Outreach</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Outreach</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Proposal</name>
+        <choiceText>Proposal</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Proposal</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>QuoteFollowUp</name>
+        <choiceText>Quote Follow-Up</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Quote Follow-Up</stringValue>
+        </value>
+    </choices>
+    <dynamicChoiceSets>
+        <name>StagePickList</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>StageName</picklistField>
+        <picklistObject>Opportunity</picklistObject>
+    </dynamicChoiceSets>
+    <formulas>
+        <name>DescriptionStageMessage</name>
+        <dataType>String</dataType>
+        <expression>&quot;Reverting Opportunity from &quot; &amp; TEXT({!GetOpportunity.StageName}) &amp; &quot; to &quot; &amp; TEXT({!OpportunityToUpdate.StageName}) &amp;&quot; &quot;</expression>
+    </formulas>
+    <formulas>
+        <name>NewDescription</name>
+        <dataType>String</dataType>
+        <expression>TEXT(MONTH(TODAY())) &amp; &apos;/&apos; &amp; TEXT(DAY(TODAY())) &amp; &apos;/&apos; &amp; TEXT(YEAR(TODAY())) &amp; &apos; &apos; &amp; {!$User.FirstName} &amp; &apos; &apos; &amp; {!$User.LastName} &amp; &apos; - &apos; &amp; {!DescriptionStageMessage} &amp; &apos; - Reason: &apos; &amp; {!Stage_Revert_Reason} &amp; SUBSTITUTE({!BreakLineTemplate}, &apos;~&apos;, &apos;&apos;) &amp;{!GetOpportunity.Description}</expression>
+    </formulas>
+    <formulas>
+        <name>NewStageValue</name>
+        <dataType>String</dataType>
+        <expression>IF(TEXT({!GetOpportunity.StageName})==&apos;Quote Follow-Up&apos;,{!New_Stage_no_QFU},{!New_Stage})</expression>
+    </formulas>
+    <formulas>
+        <name>WarningMessageText</name>
+        <dataType>String</dataType>
+        <expression>CASE({!GetOpportunity.StageName}, &apos;Quote Follow-Up&apos;, &apos;Are you sure you want to pull the opportunity back from the `Quote Followup` stage? This may cause any `Out for Signature` quote to be canceled&apos;,
+ &apos;Finalizing&apos;, If({!New_Stage}=&apos;Quote Follow-Up&apos;,&apos;Are you sure you want to pull the opportunity back from the `Finalizing` stage? This may cause any pending Invoice Request O2C ticket to be canceled.&apos;,
+ &apos;Are you sure you want to pull the opportunity back from the `Finalizing` stage? This may cause any `Out for Signature` quote to be canceled and pending Invoice Request O2C ticket to be canceled.&apos;),&apos;&apos;)</expression>
+    </formulas>
+    <interviewLabel>Revert Opportunity Stage {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Revert Opportunity Stage</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>GetOpportunity</name>
+        <label>GetOpportunity</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Stage</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Opportunity</name>
+        <label>Update Opportunity</label>
+        <locationX>176</locationX>
+        <locationY>674</locationY>
+        <connector>
+            <targetReference>EnableOpportunityQbs</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>EnableOpportunityQbs_fault</targetReference>
+        </faultConnector>
+        <inputReference>OpportunityToUpdate</inputReference>
+    </recordUpdates>
+    <runInMode>DefaultMode</runInMode>
+    <screens>
+        <name>Display_Error_Message</name>
+        <label>Display Error Message</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Set_Opportunity_Values</targetReference>
+        </connector>
+        <fields>
+            <name>Warning_Message</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(251, 8, 8);&quot;&gt;{!WarningMessageText}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Confirm</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Error</name>
+        <label>Error</label>
+        <locationX>440</locationX>
+        <locationY>890</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>ErrorScreen</name>
+            <fieldText>&lt;pre class=&quot;ql-syntax&quot; spellcheck=&quot;false&quot;&gt;Error! An error occurred while updating the Opportunity. Please go to the previous screen and select a different option. Or, contact Trilogy support team.
+Stage Selected: {!New_Stage}
+{!GetOpportunity.StageName}
+Error Message:
+{!$Flow.CurrentStage}
+{!$Flow.FaultMessage}
+&lt;/pre&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>Flow To Set Opportunity Stage from Quote Follow-Up  and Finalizing Stage</description>
+        <name>Update_Stage</name>
+        <label>Update Stage</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <backButtonLabel>Cancel</backButtonLabel>
+        <connector>
+            <targetReference>Display_Error_Message</targetReference>
+        </connector>
+        <fields>
+            <name>OpportunityName</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;{!GetOpportunity.Name}&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>WarningMessage</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 14px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);&quot;&gt;Please provide the reason for reverting the opportunity to the previous stage&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Stage_Revert_Reason</name>
+            <dataType>String</dataType>
+            <fieldText>Stage Revert Reason</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>New_Stage</name>
+            <choiceReferences>Outreach</choiceReferences>
+            <choiceReferences>Engaged</choiceReferences>
+            <choiceReferences>Proposal</choiceReferences>
+            <choiceReferences>QuoteFollowUp</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>New Stage</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>GetOpportunity.StageName</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <stringValue>Quote Follow-Up</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>New_Stage_no_QFU</name>
+            <choiceReferences>Outreach</choiceReferences>
+            <choiceReferences>Engaged</choiceReferences>
+            <choiceReferences>Proposal</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>New Stage</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>GetOpportunity.StageName</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>Quote Follow-Up</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <nextOrFinishButtonLabel>Confirm</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>GetOpportunity</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>BreakLineTemplate</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>~
+
+~</text>
+    </textTemplates>
+    <textTemplates>
+        <name>EmailMessage</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>The Opportunity {!GetOpportunity.Name} has been reverted from  {!GetOpportunity.StageName} to {!OpportunityToUpdate.StageName}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>EmailSubject</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Opportunity Reverted to Lower Stage</text>
+    </textTemplates>
+    <variables>
+        <name>EmailAddresses</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>OpportunityToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <description>Record Id of Opportunity</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>TSIAdminsGroup</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>rp-si@trilogy.com</stringValue>
+        </value>
+    </variables>
+</Flow>

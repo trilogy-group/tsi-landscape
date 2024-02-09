@@ -1,0 +1,266 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "071d538a-75ae-4ffd-9379-7a96b6347960",
+      "created": "2022-07-05T11:57:31.148255Z",
+      "workspace_id": "ddb7dc60-0c96-4280-b59f-517d94a74202",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "556c08b0-fc2b-43df-a5a6-5d6f6ce95f6b",
+        "created": "2022-07-05T11:57:40.600392Z"
+      },
+      "title": "[prod] Log Message",
+      "description": "This flow sends error information to the administrators",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {
+          "Notification_Emails": [
+            "konstantin.borisov@trilogy.com"
+          ]
+        },
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "log_title": {
+              "type": "string",
+              "title": "log title",
+              "description": "Log title which is shown in the 'Window URL' column"
+            },
+            "workflow_title": {
+              "title": "workflow title",
+              "type": "string",
+              "description": "Title of the workflow"
+            },
+            "step": {
+              "title": "step",
+              "type": "string",
+              "description": "A short message which will go to the step_name column"
+            },
+            "trace_url": {
+              "title": "trace URL",
+              "type": "string",
+              "description": "Exectution URL"
+            },
+            "message": {
+              "title": "message",
+              "type": "string",
+              "description": "Log message"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "sheets-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "script-1": {
+          "title": "Format Current Timestamp",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": []
+            },
+            "script": {
+              "type": "string",
+              "value": "// You can reference the input variables using input.NAME\n// Parsed JSON files could be referenced as fileInput\nexports.step = function(input, fileInput) {\n  const lastSyncDate = new Date();\n  const isoStr = lastSyncDate.toISOString();\n  const withoutMilliseconds = isoStr.includes('.')\n    ? isoStr.split('.')[0] + 'Z'\n    : isoStr;\n  return {\n    timestamp: withoutMilliseconds,\n    date: withoutMilliseconds.substring(0,10),\n    time: withoutMilliseconds.substring(11,19)\n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "sheets-1": {
+          "title": "GSheet Log",
+          "connector": {
+            "name": "sheets",
+            "version": "8.0"
+          },
+          "operation": "create_row",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "Konstantin Borisov's google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/51312ff204893a2751b6788b914f9b78.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "value_input_option": {
+              "type": "string",
+              "value": "RAW"
+            },
+            "spreadsheet_id": {
+              "type": "string",
+              "value": "1p6r0PYef1wxHS4e9VDo9xKzpihueB6_O3eQ-nEP6Cl4"
+            },
+            "worksheet_name": {
+              "type": "string",
+              "value": "prod log"
+            },
+            "data": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "A"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.timestamp"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "B"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.log_title"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "C"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.workflow_title"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "D"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.step"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "E"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.trace_url"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "I"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "LOG MESSAGE"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "H"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.message"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "dependencies": []
+    }
+  ],
+  "projects": []
+}

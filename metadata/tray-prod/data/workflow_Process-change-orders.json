@@ -1,0 +1,964 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "69ef2be7-8cf6-4fb8-afa5-f6d614d42d4a",
+      "created": "2022-07-07T06:39:58.898830Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "group": "fe5806e2-73a1-4945-8e2c-324fe0411a56",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "f9429310-8399-49a0-9f4f-cea67f01b64a",
+        "created": "2023-12-01T21:08:54.461501Z"
+      },
+      "title": "Process change orders",
+      "description": "Processes the change orders created since the last execution. If a specific subscription ID is provided, limit the scope to this subscription and don't update the last execution timestamp.",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "subscription": {
+              "type": "string",
+              "title": "subscription",
+              "description": "Subscription Id to limit processing to 1 subscription only. It is needed to speed up E2Es."
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-3",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "storage-3",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "netsuite-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-8",
+                "type": "branch",
+                "content": {
+                  "true": [],
+                  "false": [
+                    {
+                      "name": "script-9",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "storage-4",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "script-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "loop-1",
+                "type": "loop",
+                "content": {
+                  "_loop": [
+                    {
+                      "name": "boolean-condition-12",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "call-workflow-6",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "loop-2",
+                "type": "loop",
+                "content": {
+                  "_loop": [
+                    {
+                      "name": "delay-1",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "call-workflow-1",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "boolean-condition-1",
+                "type": "branch",
+                "content": {
+                  "true": [],
+                  "false": [
+                    {
+                      "name": "break-loop-1",
+                      "type": "break",
+                      "content": {},
+                      "target": "loop-3"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "script-1": {
+          "title": "Preprocess change orders",
+          "description": "Preprocesses change orders:\n- by splitting them by the action, returning all the termination orders;\n- by grouping them by subscription, returns the group of change orders and the subscription ID for each of them.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "changeOrders"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.response.body.items"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n\tconst { changeOrders } = input;\n  \n  // Retrieve all termination orders.\n  const terminations = changeOrders.filter(co => co.action === 'TERMINATE');\n  \n  // Group change orders by subscription.\n\tconst groups = changeOrders.reduce((group, co) => {\n\t\tconst key = co.subscription;\n\t\tgroup[key] = group[key] ?? { subscriptionId: key, changeOrders: [] };\n\t\tgroup[key].changeOrders.push(co);\n\t\treturn group;\n\t}, {});\n  const groupsBySubscription = Object.values(groups);\n  \n  return { terminations, groupsBySubscription };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "loop-3": {
+          "title": "Loop forever",
+          "description": "Loops until there is no more change orders to process it",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_forever",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "properties": {
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {}
+        },
+        "netsuite-2": {
+          "title": "Get Change Orders",
+          "description": "Retrieves the change orders by executing the query.",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "x-netsuite-jobid": {
+                        "type": "string"
+                      },
+                      "preference-applied": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "rel",
+                            "href"
+                          ]
+                        }
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "hasMore": {
+                        "type": "boolean"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "action": {
+                              "type": "string"
+                            },
+                            "customerentityid": {
+                              "type": "string"
+                            },
+                            "custrecord_enable_auto_provisioning": {
+                              "type": "string"
+                            },
+                            "custrecord_parent_subscription": {
+                              "type": "string"
+                            },
+                            "datecreated": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "parentsubscription": {
+                              "type": "string"
+                            },
+                            "reason": {
+                              "type": "string"
+                            },
+                            "requestor": {
+                              "type": "string"
+                            },
+                            "subscription": {
+                              "type": "string"
+                            },
+                            "custrecord_replacement_subscription": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "links",
+                            "action",
+                            "customerentityid",
+                            "custrecord_enable_auto_provisioning",
+                            "custrecord_parent_subscription",
+                            "datecreated",
+                            "id",
+                            "parentsubscription",
+                            "reason",
+                            "requestor",
+                            "subscription"
+                          ]
+                        }
+                      },
+                      "offset": {
+                        "type": "number"
+                      },
+                      "totalResults": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-2.result"
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "SUCCESS",
+          "description": "End of the flow. Success run.",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "storage-3": {
+          "title": "Get last created date",
+          "description": "Retrieves the created date of the last change order processed by this flow.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Workflow"
+            },
+            "key": {
+              "type": "string",
+              "value": "LastCreatedDate"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Has more change orders",
+          "description": "Checks if netsuite has more change orders to process",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.response.body.hasMore"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "call-workflow-6": {
+          "title": "Update open opp if any",
+          "description": "Updates the open opportunity referencing the replaced subscription if any to target the replacement subscription.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "5893220e-e4df-4c17-a8cf-44971aea8471"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "termination_order_reason": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.reason",
+                  "fallback": {
+                    "value": null,
+                    "type": "null"
+                  }
+                },
+                "replaced_subscription_id": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.subscription"
+                },
+                "replacement_subscription_id": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.custrecord_replacement_subscription"
+                },
+                "parent_subscription_id": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.custrecord_parent_subscription",
+                  "fallback": {
+                    "type": "null",
+                    "value": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-8": {
+          "title": "Is test run?",
+          "description": "If the scope is limited to the subscription, consider it as a test run. The last created date is not updated in this case.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.subscription",
+                      "fallback": {
+                        "type": "string",
+                        "value": ""
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": ""
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "loop-2": {
+          "title": "Loop subscriptions",
+          "description": "For each groups, process change orders of the given subscription.",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {},
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result.groupsBySubscription"
+            }
+          }
+        },
+        "break-loop-1": {
+          "title": "Break Loop",
+          "description": "Go out of the loop if there is no more change orders to process it",
+          "connector": {
+            "name": "break-loop",
+            "version": "1.1"
+          },
+          "operation": "break",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "call-workflow-1": {
+          "title": "Process change orders per sub",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "56b66d7b-f252-496b-8756-e61131eddcf4"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "subscriptionId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-2.value.subscriptionId"
+                },
+                "changeOrders": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-2.value.changeOrders"
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-12": {
+          "title": "Has replacement sub?",
+          "description": "This condition checks if there is a replacement subscription defined on the terminated subscription. If yes, any open opportunity has to be updated to reference the replacement subscription.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-1.value.custrecord_replacement_subscription",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop termination orders",
+          "description": "For each termination order, check if a replacement subscription is defined. If a replaced subscription is terminated, the synced open opportunity must be updated.",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {},
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result.terminations"
+            }
+          }
+        },
+        "storage-4": {
+          "title": "Set last created date",
+          "description": "Sets the created date of the last returned change order. If there is no change order, just keep the existing value.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Workflow"
+            },
+            "key": {
+              "type": "string",
+              "value": "LastCreatedDate"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.script-9.result",
+              "fallback": {
+                "type": "jsonpath",
+                "value": "$.steps.storage-3.value"
+              }
+            }
+          }
+        },
+        "script-9": {
+          "title": "New last created date",
+          "description": "Retrieves the created date of the last returned change order.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "changeOrders"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.response.body.items"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\tconst lastItem = input.changeOrders.pop();\n\treturn lastItem?.datecreated;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "delay-1": {
+          "title": "Delay 2 seconds",
+          "description": "Added this delay because we were getting timeout from google when triggering everything at the same time",
+          "connector": {
+            "name": "delay",
+            "version": "1.0"
+          },
+          "operation": "delay",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "time_unit": {
+              "type": "string",
+              "value": "seconds"
+            },
+            "delay_value": {
+              "type": "integer",
+              "value": 2
+            }
+          }
+        },
+        "script-2": {
+          "title": "Change Orders query",
+          "description": "Prepares the query for retrieving the change orders from the last execution. If a specific subscription ID is provided, limit the scope to this subscription. If there is no previous execution, limit the scope to the last 24 hours.",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subscription"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.subscription",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "lastCreatedDate"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.storage-3.value"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  let whereClause;\n  // E2E limit to process only the target subscription\n  if (input.subscription) {\n    whereClause = ` AND sco.subscription = ${input.subscription}`;\n  } else if (input.lastCreatedDate) {\n    whereClause = ` AND to_char(sco.datecreated, 'yyyy-mm-dd hh24:mi:ss') > '${input.lastCreatedDate}'`;\n  } else {\n    whereClause = ' AND sco.datecreated > CURRENT_TIMESTAMP - 1';\n  }\n  return {\n    q:\n       `SELECT\n  sco.id,\n  sco.action,\n  sco.subscription,\n  to_char(sco.datecreated, 'yyyy-mm-dd hh24:mi:ss') as datecreated,\n  c.entityid as customerentityid,\n  CASE\n    WHEN hist.subscription IS NULL THEN s.custrecord_parent_subscription\n    ELSE hist.subscription\n  END AS parentsubscription,\n  s.custrecord_parent_subscription,\n  s.custrecord_replacement_subscription,\n  apo.scriptid as custrecord_enable_auto_provisioning,\n  e.entityid as requestor,\n  scr.name as reason\nFROM subscriptionChangeOrder sco\nINNER JOIN subscription s ON s.id = sco.subscription\nINNER JOIN customer c ON s.customer = c.id\nLEFT JOIN subscriptionRenewalHistory hist ON hist.newsubscription = s.id\nINNER JOIN subscriptionplan sp ON sp.itemid = s.subscriptionplanname\nLEFT JOIN customrecordproductintegration pi ON pi.custrecordclass = sp.class\n  AND upper(pi.custrecordproductvariantcode) = upper(\n    REGEXP_REPLACE(\n      sp.displayname,\n        '[^-]+-([^-]+-[^-]+)-.*',\n        '\\\\1'\n      )\n    )\nLEFT JOIN customlistauto_provisioning_options apo on apo.id=pi.custrecordenable_auto_provisioning\nINNER JOIN employee e on e.id = sco.requestor\nLEFT JOIN CUSTOMRECORDSUB_STATUS_CHANGE_REASON scr ON scr.id = sco.custrecord_st_change_reason\nWHERE\n  sco.action IN ('ACTIVATE', 'TERMINATE')\n  AND exists (select top 1 1 from customrecordproductintegration pi1 where pi1.custrecordclass = s.class and pi1.isinactive = 'F')\n  AND (s.custrecord_isprime IS NULL OR s.custrecord_isprime <> 1)\n  AND sco.subscriptionchangeorderstatus != 'VOIDED'\n  ${whereClause}\nORDER BY sco.datecreated`\n  };\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "trigger": {
+          "title": "Sync call",
+          "description": "Processes the change orders created since the last execution. If a specific subscription ID is provided, limit the scope to this subscription and don't update the last execution timestamp.",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "56b66d7b-f252-496b-8756-e61131eddcf4",
+          "name": "Subflow Process change orders per subscription"
+        },
+        {
+          "id": "5893220e-e4df-4c17-a8cf-44971aea8471",
+          "name": "Update Opportunity on Replaced Subscription termination"
+        },
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

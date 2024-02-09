@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Success_Level_Required_in_CSM_Opp</fullName>
+    <active>true</active>
+    <description>Triggered if success level can&apos;t be determined for a CSM opportunity.</description>
+    <errorConditionFormula>ISPICKVAL(Type, &apos;CSM&apos;) &amp;&amp; (ISBLANK(ContractId) || ISBLANK(Contract.Success_Level__c)) &amp;&amp; ISBLANK(TEXT( Account.Success_Level__c )) &amp;&amp;  NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)</errorConditionFormula>
+    <errorMessage>Success Level can&apos;t be determined for this opportunity. Set Success Level for the account or for the contract related to this opportunity.</errorMessage>
+</ValidationRule>

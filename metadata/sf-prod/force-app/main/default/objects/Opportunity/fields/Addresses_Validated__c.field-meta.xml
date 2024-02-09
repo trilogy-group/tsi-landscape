@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Addresses_Validated__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Should be checked when the addresses for Account and Primary Partner are validated. Used to not allow the opportunity to move to the final quote without the addresses being validated.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Make sure you verify the customer and partner (if applicable) addresses. Check this box when done. You can&apos;t generate the final quote until you verify. If sold directly, set both shipping and billing addresses on the account. If sold via a partner, set the shipping address for the end-user on the account, and billing address on the partner (since we will be charging them).</inlineHelpText>
+    <label>Addresses Validated?</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,3496 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "cce7a8c5-a5f3-4663-a115-20506e469098",
+      "created": "2023-01-20T05:11:48.767770Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "d2aedc4e-ccf0-4726-9bec-aaea618d22fa",
+        "created": "2023-08-07T20:07:02.064604Z"
+      },
+      "title": "Create Provisioning ZD Ticket",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "changeOrderId": {
+              "title": "Change Order Id",
+              "description": "Activation order identifier",
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string",
+              "title": "message"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-16",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [
+              {
+                "name": "boolean-condition-3",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "call-workflow-2",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-5",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "salesforce-1",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "storage-1",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "boolean-condition-12",
+                            "type": "branch",
+                            "content": {
+                              "true": [],
+                              "false": [
+                                {
+                                  "name": "script-17",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "storage-3",
+                                  "type": "normal",
+                                  "content": {}
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "false": []
+                      }
+                    },
+                    {
+                      "name": "script-18",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-2",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "zendesk-7",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "script-14",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": [
+                          {
+                            "name": "boolean-condition-11",
+                            "type": "branch",
+                            "content": {
+                              "true": [],
+                              "false": [
+                                {
+                                  "name": "terminate-2",
+                                  "type": "normal",
+                                  "content": {}
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "boolean-condition-7",
+                      "type": "branch",
+                      "content": {
+                        "true": [],
+                        "false": [
+                          {
+                            "name": "boolean-condition-4",
+                            "type": "branch",
+                            "content": {
+                              "true": [],
+                              "false": [
+                                {
+                                  "name": "terminate-3",
+                                  "type": "normal",
+                                  "content": {}
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "zendesk-2",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "script-2",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "script-15",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "zendesk-3",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "script-3",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "script-4",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-8",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "call-workflow-1",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": [
+                          {
+                            "name": "boolean-condition-9",
+                            "type": "branch",
+                            "content": {
+                              "true": [
+                                {
+                                  "name": "script-8",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "script-10",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "netsuite-3",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "script-11",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "boolean-condition-10",
+                                  "type": "branch",
+                                  "content": {
+                                    "true": [
+                                      {
+                                        "name": "netsuite-4",
+                                        "type": "normal",
+                                        "content": {}
+                                      },
+                                      {
+                                        "name": "script-12",
+                                        "type": "normal",
+                                        "content": {}
+                                      },
+                                      {
+                                        "name": "file-helpers-1",
+                                        "type": "normal",
+                                        "content": {}
+                                      },
+                                      {
+                                        "name": "zendesk-4",
+                                        "type": "normal",
+                                        "content": {}
+                                      }
+                                    ],
+                                    "false": []
+                                  }
+                                }
+                              ],
+                              "false": []
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "script-5",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "script-6",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "script-13",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "zendesk-1",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "script-9",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "netsuite-2",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-6",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "salesforce-2",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "storage-2",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "storage-4",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": []
+                      }
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ],
+            "false": []
+          }
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "storage-2": {
+          "title": "Remove OppId",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "delete",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Opp_{$.env.execution_uuid}"
+            }
+          }
+        },
+        "netsuite-2": {
+          "title": "Update Memo",
+          "description": "Run the SQL to get the subscription term",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "subscription"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.response.body.items[0].subscription"
+            },
+            "writable_record_fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "custrecord_memo"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-9.result.memo"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Sales rep email found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-18.result"
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "script-17": {
+          "title": "Create Task Data",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].action"
+                    },
+                    "name": {
+                      "type": "string",
+                      "value": "action"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Task parameters based on the action type\nexports.step = function (input) {\n    const action = input.action;\n    const subject = action === 'ACTIVATE' ? 'Create Provisioning Ticket' : 'Create Deprovisioning Ticket';\n    const message = `Automation fails to create a ${action === 'ACTIVATE' ? 'provisioning' : 'deprovisioning'} ticket in Central Zendesk for this opportunity. Please do it manually.`;\n    return {\n        subject,\n        message,\n    };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Get Opportunity",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "1cbe4310-e2a7-4a40-8d06-558d5eb630d8"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "subscription_id": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-1.response.body.items[0].subscription"
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-11": {
+          "title": "Is action TERMINATE?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].action"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "TERMINATE"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "storage-3": {
+          "title": "Store Task Message",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Info_{$.env.execution_uuid}"
+            },
+            "value": {
+              "type": "object",
+              "value": {
+                "TaskMessage": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-17.result.message"
+                },
+                "TaskSubject": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-17.result.subject"
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Auto Provisioning Enabled?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-16.result",
+                      "fallback": {
+                        "value": "F",
+                        "type": "string"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    },
+                    "is_case_sensitive": {
+                      "value": true,
+                      "type": "boolean"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-7": {
+          "title": "Customer contact email found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].contact_email",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "netsuite-4": {
+          "title": "Get file content",
+          "connector": {
+            "name": "netsuite",
+            "version": "1.9"
+          },
+          "operation": "get_record",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "record": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "mediaTypeName": {
+                    "type": "string"
+                  },
+                  "fileType": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  },
+                  "folder": {
+                    "type": "object",
+                    "properties": {
+                      "attributes": {
+                        "type": "object",
+                        "properties": {
+                          "internalId": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "fileSize": {
+                    "type": "number"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "textFileEncoding": {
+                    "type": "string"
+                  },
+                  "isOnline": {
+                    "type": "boolean"
+                  },
+                  "isInactive": {
+                    "type": "boolean"
+                  },
+                  "class": {
+                    "type": "string"
+                  },
+                  "bundleable": {
+                    "type": "boolean"
+                  },
+                  "department": {
+                    "type": "string"
+                  },
+                  "hideInBundle": {
+                    "type": "boolean"
+                  },
+                  "isPrivate": {
+                    "type": "boolean"
+                  },
+                  "owner": {
+                    "type": "object",
+                    "properties": {
+                      "attributes": {
+                        "type": "object",
+                        "properties": {
+                          "internalId": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "lastModifiedDate": {
+                    "type": "string"
+                  },
+                  "createdDate": {
+                    "type": "string"
+                  },
+                  "internalId": {
+                    "type": "string"
+                  },
+                  "recordType": {
+                    "type": "string"
+                  }
+                }
+              },
+              "isSuccess": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "file"
+            },
+            "internal_id": {
+              "type": "jsonpath",
+              "value": "$.steps.script-11.result.fileId",
+              "fallback": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "netsuite-3": {
+          "title": "Get file ids",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "p3p": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "content": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "full_url": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-10.result.url"
+                }
+              }
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-10.result.payload"
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-6": {
+          "title": "Opp Found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-2.response.opportunity.Id",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "script-6": {
+          "title": "Format Internal Note",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsData"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0]"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "dates"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "term"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-1.response.termInMonths",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "oldTicket"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Provisioning_Ticket__c",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "opportunityId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-2.response.opportunity.Id",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "cancelationNoticeFile"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-11.result.fileId",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "opportunityId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-2.response.opportunity.Id",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "workflowTitle"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.env.workflow_title"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  let nsSB = '';\n  let sfSB = '';\n  if (input.workflowTitle.startsWith('[full]')) {\n    nsSB = '-sb2';\n    sfSB = '--full.sandbox';\n  }\n  let note = `Customer: ${input.nsData.cust} ${\n    input.nsData.reseller ? \"\\nReseller: \" + input.nsData.reseller : \"\"\n  }`;\n  const autoRenewal = input.nsData.isautorenewal === 'T' ? 'Yes' : 'No';\n  let subscriptionLink = `Subscription Link: https://4914352${nsSB}.app.netsuite.com/app/accounting/subscription/subscription.nl?id=${input.nsData.subscription}`;\n  let oppLink = input.opportunityId ? `Salesforce Opportunity Link: https://trilogy-sales${sfSB}.lightning.force.com/${input.opportunityId}` : '';\n  let title;\n  if (input.nsData.action === \"ACTIVATE\") {\n    title = `${input.nsData.custrecordsupport_product}: License Renewal for ${input.nsData.cust}`;\n    note = `${note}\n${input.nsData.custrecordsupport_product} License Renewal for ${input.term} months\nRenewal Date: ${input.dates.startDate}\nExpiry Date: ${input.dates.endDate}\nContact for the License Key is ${input.nsData.contact_name} (${input.nsData.contact_email})\nAuto-Renewal: ${autoRenewal}\n${subscriptionLink}\n${oppLink}\nTicket created on behalf of ${input.sales_rep_name}, Renewals Team via Automation`;\n    \n    if (input.nsData.quote_header) {\n      note += `\\nAdditional License / Key /Instance information: ${input.nsData.quote_header}`;\n    }\n    if (input.nsData.quote_footer) {\n      note += `\\nAdditional License / Key /Instance information: ${input.nsData.quote_footer}`;\n    }\n  } else {\n    title = `${input.nsData.custrecordsupport_product}: License Ending at ${input.dates.terminationDate} for ${input.nsData.cust}`;\n    let notice = input.cancelationNoticeFile ? 'Per written notice, see attached' : 'Customer did not provide notice and there is no auto-renewal clause';\n    note = `${note}\n${input.nsData.custrecordsupport_product} License is to terminate on expiry date\n${notice}\nExpiry Date: ${input.dates.terminationDate}\n${subscriptionLink}\n${oppLink}`;\n  }\n\n  if (input.oldTicket) {\n    // Previous ticket exists\n    note = `A previous support ticket was raised : ${input.oldTicket}\nNow there are changes to the user subscriptions as described below.\n\n${note}`;\n  }\n\n\n  return {\n    title: title,\n    note: note\n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-1": {
+          "title": "SuiteQL Get Data",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "changeOrderId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.changeOrderId"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  return {\n    q:\n      `with BaseData AS (SELECT\n    s.id AS subscription,\n    co.action,\n    reason.name AS reason,\n    apo.scriptid as custrecordenable_auto_provisioning,\n    pi.custrecordsupport_brand,\n    pi.custrecordsupport_product,\n    co.effectivedate - current_date AS days_until,\n    CASE\n        WHEN cust.isperson = 'T' THEN REGEXP_REPLACE(\n            cust.title || ' ' || cust.firstname || ' ' || cust.middlename || ' ' || cust.lastname,\n            '  +',\n            ' '\n        )\n        ELSE cust.companyname\n    END AS cust,\n    CASE\n        WHEN reseller.isperson = 'T' THEN REGEXP_REPLACE(\n            reseller.title || ' ' || reseller.firstname || ' ' || reseller.middlename || ' ' || reseller.lastname,\n            '  +',\n            ' '\n        )\n        ELSE reseller.companyname\n    END AS reseller,\n    s.startdate,\n    s.enddate,\n    emp.email AS requestor_email,\n    emp.entityid AS requestor_name,\n    sales_rep.email AS sales_rep_email,\n    sales_rep.entityid AS sales_rep_name,\n    s.custrecord_memo AS memo,\n    s.custrecord_contract_docs AS contractual_doc_id,\n    s.custrecord_isautorenewal AS isautorenewal,\nFROM\n    subscriptionChangeOrder co\n    JOIN subscription s ON co.subscription = s.id\n    JOIN subscriptionplan sp ON sp.itemid = s.subscriptionplanname\n    JOIN customrecordproductintegration pi ON pi.custrecordclass = sp.class\n    AND upper(pi.custrecordproductvariantcode) = upper(\n        REGEXP_REPLACE(\n            sp.displayname,\n            '[^-]+-([^-]+-[^-]+)-.*',\n            '\\\\1'\n        )\n    )\n    JOIN customrecordsub_status_change_reason reason on reason.id = co.custrecord_st_change_reason\n    JOIN customer cust ON cust.id = s.custrecord_subs_end_user\n    LEFT JOIN customer reseller ON reseller.id = s.customer and s.customer != s.custrecord_subs_end_user\n    LEFT JOIN employee emp ON emp.id = co.requestor\n    LEFT JOIN employee sales_rep ON sales_rep.id = s.custrecord_subscription_salesrep\n    LEFT JOIN customlistauto_provisioning_options apo on apo.id=pi.custrecordenable_auto_provisioning\n      WHERE  co.id=${input.changeOrderId})\n    \nSELECT b.subscription, b.action, b.reason, b.custrecordenable_auto_provisioning, b.custrecordsupport_brand, b.custrecordsupport_product, b.days_until, b.cust, b.reseller, b.startdate, b.enddate, b.requestor_email, b.requestor_name, b.sales_rep_email, b.sales_rep_name, b.memo, b.contractual_doc_id, b.isautorenewal,\nt.custbody_line_items_header_text AS quote_header,\n    t.custbody_line_items_footer_text AS quote_footer,\n    ags.custrecord_echosign_email AS contact_email,\n    agsc.entityid as contact_name,\n    t.id as transactionid,\n    t.createddate as transactioncreateddate\n    FROM BaseData as b\nLEFT JOIN transactionline tl ON tl.subscription = b.subscription AND linesequencenumber = 1\n    LEFT JOIN transaction t ON (tl.transaction = t.id OR t.custbody_related_subscription = b.subscription) AND t.recordtype = 'estimate'\n    LEFT JOIN customrecord_echosign_agreement ag ON ag.custrecord_echosign_parent_record = t.id AND ag.custrecord_agreement_type = 1\n    LEFT JOIN customrecord_echosign_signer ags ON ags.custrecord_echosign_agree = ag.id AND ags.custrecord_echosign_signer_order = 1\n    LEFT JOIN contact agsc on agsc.id = ags.custrecord_echosign_signer\n    ORDER BY\n    CASE WHEN transactionid IS NULL THEN 1 ELSE 0 END,\n    transactioncreateddate DESC`\n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-13": {
+          "title": "Format uploads",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "cancelationNoticeToken"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.zendesk-4.upload.token",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n  const tokens = [];\n  if (input.cancelationNoticeToken) {\n  \ttokens.push(input.cancelationNoticeToken); \n  }\n\treturn tokens;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-10": {
+          "title": "Prepare TSI API Payload",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "payload": {
+                    "type": "object",
+                    "properties": {
+                      "op": {
+                        "type": "string"
+                      },
+                      "productFamilyCode": {
+                        "type": "string"
+                      },
+                      "productVariantCode": {
+                        "type": "string"
+                      },
+                      "customerId": {
+                        "type": "string"
+                      },
+                      "subscriptionId": {
+                        "type": "string"
+                      },
+                      "content": {
+                        "type": "null"
+                      },
+                      "quoteLineStartDates": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "line": {
+                              "type": "string"
+                            },
+                            "startDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "line",
+                            "startDate"
+                          ]
+                        }
+                      },
+                      "quoteLineEndDates": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "line": {
+                              "type": "string"
+                            },
+                            "endDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "line",
+                            "endDate"
+                          ]
+                        }
+                      },
+                      "orderType": {
+                        "type": "string"
+                      },
+                      "expiry": {
+                        "type": "string"
+                      },
+                      "salesRep": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "recipients": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "email": {
+                              "type": "string"
+                            },
+                            "role": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "email",
+                            "role"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "console": {
+                "type": "array",
+                "items": {}
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "recordType"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "customrecord697"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "id"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].contractual_doc_id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "instance"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-8.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  const request = {\n    url: `https://${input.instance}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=customscript_si_main_main_restlet&deploy=customdeploy_si_main_main`,\n    payload: {\n      op: \"search.internalAttachedFields\",\n      recordType: input.recordType,\n      id: input.id,\n    }\n  };\n  return request;\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-5": {
+          "title": "Opp Found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-2.response.opportunity.Id",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": ""
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "success"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "script-3": {
+          "title": "Get Product",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "products"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.zendesk-3.response.body.ticket_field.custom_field_options"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "productName"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].custrecordsupport_product"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\treturn input.products.find(f=>f.name.trim()===input.productName.trim()).value;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Calc Term",
+          "description": "Use the subflow, but provide only start and end dates to get the term in months",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "6ec0af18-686d-4aa6-a890-effb37092c3f"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "allowSmallTerm": {
+                  "type": "boolean",
+                  "value": true
+                },
+                "termId": {
+                  "type": "string",
+                  "value": ""
+                },
+                "startDate": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-1.response.body.items[0].startdate"
+                },
+                "endDate": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-1.response.body.items[0].enddate"
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-12": {
+          "title": "Won't Process stage?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].StageName"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "Won't Process"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "storage-4": {
+          "title": "Remove Task Message",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "delete",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Info_{$.env.execution_uuid}"
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "Is action TERMINATE?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].action"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "TERMINATE"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "script-16": {
+          "title": "Check PI/Action",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "action"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].action",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "enableAutoProvisioning"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].custrecordenable_auto_provisioning",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Check if we need to process the action\nexports.step = function (input) {\n    const { action, enableAutoProvisioning } = input;\n    const isValidAction = action === 'ACTIVATE' || action === 'TERMINATE';\n\n    if (!isValidAction) {\n        return false;\n    }\n    \n    switch (enableAutoProvisioning) {\n        case 'VAL_PROVISIONDEPROVISION':\n            return true;\n            \n        case 'VAL_PROVISION':\n            return action === 'ACTIVATE';\n            \n        case 'VAL_DEPROVISION':\n            return action === 'TERMINATE';\n            \n        default:\n            return false;\n    }\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-4": {
+          "title": "Get Priority",
+          "description": "Priority: High is the renewal is less than 2 days from now",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "daysUntilAction"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].days_until"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n\treturn input.daysUntilAction<2?\"high\":\"normal\";\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-18": {
+          "title": "Sales Rep Email",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsEmail"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].sales_rep_email",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "sfEmail"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Owner.Email",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\treturn input.nsEmail ?? input.sfEmail;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-8": {
+          "title": "Activate?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].action"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "ACTIVATE"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "terminate-2": {
+          "title": "Terminate",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "Sales rep email not found. Probably the Sales rep is not set in the Netsuite subscription."
+            }
+          }
+        },
+        "script-8": {
+          "title": "Get Instance",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "self"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.links[0].href",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Get instance name (e.g. 4914352-sb1) out of the 'self' link in the REST response\nexports.step = function(input) {\n\tconst regex = /^https:\\/\\/(?<instance>[^.]+)\\./;\n\tconst instance = input.self.match(regex).groups.instance;\n  return instance;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-15": {
+          "title": "Get Product Field Id",
+          "description": "For sanbox: ticket_fields/7524733041938\nFor prod: ticket_fields/360001160034",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "brandUrl"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.zendesk-2.brands[0].url"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  // Check if we're on prod using a brand URL\n  const isProd=input.brandUrl.startsWith('https://central-supportdesk.zendesk.com');\n\t// return the product field id based on the environment\n  return isProd?360001160034:7524733041938;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "zendesk-4": {
+          "title": "Upload attachment",
+          "connector": {
+            "name": "zendesk",
+            "version": "7.1"
+          },
+          "operation": "upload_attachment",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3289028a-124f-4f56-b504-7c55e644c47e",
+            "title": "Central Zendesk",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/01260647de9803dd69df3ecc34a8d908.png"
+            },
+            "scopes": [
+              "apps:read",
+              "hc:read",
+              "tickets:read",
+              "auditlogs:read",
+              "automations:read",
+              "users:read",
+              "read",
+              "organizations:read",
+              "tickets:write"
+            ],
+            "service_name": "zendesk",
+            "service_version": 2
+          },
+          "properties": {
+            "file": {
+              "type": "jsonpath",
+              "value": "$.steps.file-helpers-1.file"
+            },
+            "file_name": {
+              "type": "jsonpath",
+              "value": "$.steps.script-12.result"
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get Provisioning Ticket",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Opportunities",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Opportunity",
+                  "properties": {
+                    "Provisioning_Ticket__c": {
+                      "name": "Provisioning_Ticket__c",
+                      "type": "string",
+                      "title": "Provisioning Ticket"
+                    },
+                    "StageName": {
+                      "name": "StageName",
+                      "type": "string",
+                      "title": "Stage"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Provisioning_Ticket__c"
+                },
+                {
+                  "type": "string",
+                  "value": "Owner.Email"
+                },
+                {
+                  "type": "string",
+                  "value": "StageName"
+                }
+              ]
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Id"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-2.response.opportunity.Id",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match any conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-12": {
+          "title": "Get filename",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "name"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-4.record.name"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "fileType"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-4.record.fileType"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// if the pdf file doesn't end with .pdf, From base64 doesn't return mime type and upload to SF doesn't work\nexports.step = function(input) {\n\tif (input.fileType === '_PDF' && input.name.substr(input.name.length -4).toLowerCase() !== '.pdf') {\n    return `${input.name}.pdf`;\n  } else if (input.fileType === '_PNGIMAGE' && input.name.substr(input.name.length -4).toLowerCase() !== '.png') {\n    return `${input.name}.png`;\n  } else if (input.fileType === '_EXCEL' && input.name.substr(input.name.length -4).toLowerCase() !== '.xls') {\n    return `${input.name}.xls`;\n  } else if (input.fileType === '_JPGIMAGE' && input.name.substr(input.name.length -4).toLowerCase() !== '.jpg') {\n    return `${input.name}.jpg`;\n  }\n  return input.name;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Store OppId",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "Opp_{$.env.execution_uuid}"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.call-workflow-2.response.opportunity.Id",
+              "fallback": {
+                "value": null,
+                "type": "null"
+              }
+            }
+          }
+        },
+        "zendesk-2": {
+          "title": "List Brands",
+          "connector": {
+            "name": "zendesk",
+            "version": "7.1"
+          },
+          "operation": "list_brands",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3289028a-124f-4f56-b504-7c55e644c47e",
+            "title": "Central Zendesk",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/01260647de9803dd69df3ecc34a8d908.png"
+            },
+            "scopes": [
+              "apps:read",
+              "hc:read",
+              "tickets:read",
+              "auditlogs:read",
+              "automations:read",
+              "users:read",
+              "read",
+              "organizations:read",
+              "tickets:write"
+            ],
+            "service_name": "zendesk",
+            "service_version": 2
+          },
+          "properties": {}
+        },
+        "boolean-condition-9": {
+          "title": "has contractual document?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].contractual_doc_id",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "zendesk-7": {
+          "title": "Search requester",
+          "connector": {
+            "name": "zendesk",
+            "version": "7.1"
+          },
+          "operation": "search_users",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "users": {
+                "type": "array",
+                "items": {}
+              },
+              "next_page": {
+                "type": "null"
+              },
+              "previous_page": {
+                "type": "null"
+              },
+              "count": {
+                "type": "number"
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "3289028a-124f-4f56-b504-7c55e644c47e",
+            "title": "Central Zendesk",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/01260647de9803dd69df3ecc34a8d908.png"
+            },
+            "scopes": [
+              "apps:read",
+              "hc:read",
+              "tickets:read",
+              "auditlogs:read",
+              "automations:read",
+              "users:read",
+              "read",
+              "organizations:read",
+              "tickets:write"
+            ],
+            "service_name": "zendesk",
+            "service_version": 2
+          },
+          "properties": {
+            "page": {
+              "type": "integer",
+              "value": 1
+            },
+            "per_page": {
+              "type": "integer",
+              "value": 100
+            },
+            "query": {
+              "type": "string",
+              "value": "email:{$.steps.script-18.result} is_verified:true is_suspended:false"
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get Data",
+          "description": "Run the SQL to get the subscription term",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "x-netsuite-jobid": {
+                        "type": "string"
+                      },
+                      "preference-applied": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "p3p": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "hasMore": {
+                        "type": "boolean"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "action": {
+                              "type": "string"
+                            },
+                            "contact_email": {
+                              "type": "string"
+                            },
+                            "cust": {
+                              "type": "string"
+                            },
+                            "custrecordenable_auto_provisioning": {
+                              "type": "string"
+                            },
+                            "custrecordsupport_brand": {
+                              "type": "string"
+                            },
+                            "custrecordsupport_product": {
+                              "type": "string"
+                            },
+                            "days_until": {
+                              "type": "string"
+                            },
+                            "enddate": {
+                              "type": "string"
+                            },
+                            "memo": {
+                              "type": "string"
+                            },
+                            "reason": {
+                              "type": "string"
+                            },
+                            "requestor_email": {
+                              "type": "string"
+                            },
+                            "requestor_name": {
+                              "type": "string"
+                            },
+                            "reseller": {
+                              "type": "string"
+                            },
+                            "sales_rep_email": {
+                              "type": "string"
+                            },
+                            "sales_rep_name": {
+                              "type": "string"
+                            },
+                            "startdate": {
+                              "type": "string"
+                            },
+                            "subscription": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "links",
+                            "action",
+                            "contact_email",
+                            "cust",
+                            "custrecordenable_auto_provisioning",
+                            "custrecordsupport_brand",
+                            "custrecordsupport_product",
+                            "days_until",
+                            "enddate",
+                            "memo",
+                            "reason",
+                            "requestor_email",
+                            "requestor_name",
+                            "reseller",
+                            "sales_rep_email",
+                            "sales_rep_name",
+                            "startdate",
+                            "subscription"
+                          ]
+                        }
+                      },
+                      "offset": {
+                        "type": "number"
+                      },
+                      "totalResults": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result"
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            }
+          }
+        },
+        "script-5": {
+          "title": "Format Dates",
+          "description": "Convert '31-Mar-2021' to '3/31/2021'",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "nsData"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0]"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Reformat the dates\n// '31-Mar-2021' to '3/31/2021'\nexports.step = function(input) {\n  if (input.nsData.action === 'TERMINATE') {\n    return {\n      terminationDate: new Date(Date.parse(input.nsData.startdate) - 1).toLocaleDateString(\"en-US\")\n    }\n  }\n\treturn {\n    startDate:new Date(Date.parse(input.nsData.startdate)).toLocaleDateString(\"en-US\"),\n    endDate:new Date(Date.parse(input.nsData.enddate)).toLocaleDateString(\"en-US\")\n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-11": {
+          "title": "Get cancelation notice file",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "contractualDocumentFiles"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.response.body.content.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  return input.contractualDocumentFiles.find(i => i.fileName.startsWith('Cancelation-Notice-'));\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "zendesk-3": {
+          "title": "Get Products",
+          "description": "Get all the options available for the Product field\nProduction endpoint: /api/v2/ticket_fields/360001160034",
+          "connector": {
+            "name": "zendesk",
+            "version": "7.1"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "transfer-encoding": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "x-zendesk-api-version": {
+                        "type": "string"
+                      },
+                      "x-zendesk-application-version": {
+                        "type": "string"
+                      },
+                      "x-frame-options": {
+                        "type": "string"
+                      },
+                      "access-control-allow-origin": {
+                        "type": "string"
+                      },
+                      "access-control-expose-headers": {
+                        "type": "string"
+                      },
+                      "x-rate-limit": {
+                        "type": "string"
+                      },
+                      "rate-limit": {
+                        "type": "string"
+                      },
+                      "x-rate-limit-remaining": {
+                        "type": "string"
+                      },
+                      "rate-limit-remaining": {
+                        "type": "string"
+                      },
+                      "rate-limit-reset": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "etag": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "x-zendesk-origin-server": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "x-request-id": {
+                        "type": "string"
+                      },
+                      "x-runtime": {
+                        "type": "string"
+                      },
+                      "x-zendesk-zorg": {
+                        "type": "string"
+                      },
+                      "cf-cache-status": {
+                        "type": "string"
+                      },
+                      "report-to": {
+                        "type": "string"
+                      },
+                      "nel": {
+                        "type": "string"
+                      },
+                      "server": {
+                        "type": "string"
+                      },
+                      "cf-ray": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "ticket_field": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "number"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "raw_title": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "raw_description": {
+                            "type": "string"
+                          },
+                          "position": {
+                            "type": "number"
+                          },
+                          "active": {
+                            "type": "boolean"
+                          },
+                          "required": {
+                            "type": "boolean"
+                          },
+                          "collapsed_for_agents": {
+                            "type": "boolean"
+                          },
+                          "regexp_for_validation": {
+                            "type": "null"
+                          },
+                          "title_in_portal": {
+                            "type": "string"
+                          },
+                          "raw_title_in_portal": {
+                            "type": "string"
+                          },
+                          "visible_in_portal": {
+                            "type": "boolean"
+                          },
+                          "editable_in_portal": {
+                            "type": "boolean"
+                          },
+                          "required_in_portal": {
+                            "type": "boolean"
+                          },
+                          "tag": {
+                            "type": "null"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          },
+                          "removable": {
+                            "type": "boolean"
+                          },
+                          "agent_description": {
+                            "type": "null"
+                          },
+                          "custom_field_options": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "raw_name": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                },
+                                "default": {
+                                  "type": "boolean"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "name",
+                                "raw_name",
+                                "value",
+                                "default"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "3289028a-124f-4f56-b504-7c55e644c47e",
+            "title": "Central Zendesk",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/01260647de9803dd69df3ecc34a8d908.png"
+            },
+            "scopes": [
+              "apps:read",
+              "hc:read",
+              "tickets:read",
+              "auditlogs:read",
+              "automations:read",
+              "users:read",
+              "read",
+              "organizations:read",
+              "tickets:write"
+            ],
+            "service_name": "zendesk",
+            "service_version": 2
+          },
+          "properties": {
+            "method": {
+              "type": "string",
+              "value": "GET"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/api/v2/ticket_fields/{$.steps.script-15.result}"
+                }
+              }
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "none": {
+                  "type": "null",
+                  "value": null
+                }
+              }
+            },
+            "query_parameters": {
+              "type": "array",
+              "value": []
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Set Provisioning Ticket",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Provisioning_Ticket__c"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-9.result.ticketLink"
+                    }
+                  }
+                }
+              ]
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.call-workflow-2.response.opportunity.Id"
+            }
+          }
+        },
+        "terminate-3": {
+          "title": "Terminate",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "fail_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "message": {
+              "type": "string",
+              "value": "Customer contact email not found. Probably the Netsuite subscription doesn't have a quote linked to it, or the quote doesn't have signers."
+            }
+          }
+        },
+        "script-9": {
+          "title": "Format Memo",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "memo"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].memo",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "ticketId"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.zendesk-1.response.body.ticket.id"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\tconst today = localeDateToNetsuiteTimezone(new Date());\n  const todayString = `${(today.getMonth()+1).toString().padStart(2, '0')}/${today.getDate().toString().padStart(2, '0')}/${today.getFullYear().toString().substring(2,4)}`;\n  const ticketLink = `https://central-supportdesk.zendesk.com/agent/tickets/${input.ticketId}`\n  const message = `${todayString} SYSTEM: Zendesk Ticket: ${ticketLink}`;\n  const memo = input.memo ? `${message}\\r\\n\\r\\n${input.memo}` : message;\n  return {\n  \tmemo: memo,\n    ticketLink: ticketLink\n  };\n};\n\nfunction localeDateToNetsuiteTimezone(date) {\n  const newDate = new Date(date.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));\n  newDate.setMinutes(newDate.getMinutes() - newDate.getTimezoneOffset());\n  newDate.setHours(0, 0, 0, 0);\n  return newDate;\n}"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-14": {
+          "title": "Get requester ID",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "users"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.zendesk-7.users"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\tif (input.users.length > 0) {\n\t\treturn input.users[0].id; // assuming one account per email address\n\t}\n\treturn null; // submitter is requester\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "zendesk-1": {
+          "title": "Create Ticket",
+          "connector": {
+            "name": "zendesk",
+            "version": "7.1"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "3289028a-124f-4f56-b504-7c55e644c47e",
+            "title": "Central Zendesk",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/01260647de9803dd69df3ecc34a8d908.png"
+            },
+            "scopes": [
+              "apps:read",
+              "hc:read",
+              "tickets:read",
+              "auditlogs:read",
+              "automations:read",
+              "users:read",
+              "read",
+              "organizations:read",
+              "tickets:write"
+            ],
+            "service_name": "zendesk",
+            "service_version": 2
+          },
+          "properties": {
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/api/v2/tickets/"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Content-Type"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "application/json"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "object",
+                  "value": {
+                    "ticket": {
+                      "type": "object",
+                      "value": {
+                        "type": {
+                          "type": "string",
+                          "value": "task"
+                        },
+                        "priority": {
+                          "type": "jsonpath",
+                          "value": "$.steps.script-4.result"
+                        },
+                        "brand_id": {
+                          "type": "jsonpath",
+                          "value": "$.steps.script-2.result"
+                        },
+                        "subject": {
+                          "type": "jsonpath",
+                          "value": "$.steps.script-6.result.title"
+                        },
+                        "comment": {
+                          "type": "object",
+                          "value": {
+                            "body": {
+                              "type": "jsonpath",
+                              "value": "$.steps.script-6.result.note"
+                            },
+                            "public": {
+                              "type": "boolean",
+                              "value": true
+                            },
+                            "uploads": {
+                              "type": "jsonpath",
+                              "value": "$.steps.script-13.result"
+                            }
+                          }
+                        },
+                        "requester_id": {
+                          "type": "jsonpath",
+                          "value": "$.steps.script-14.result",
+                          "fallback": {
+                            "value": null,
+                            "type": "null"
+                          }
+                        },
+                        "custom_fields": {
+                          "type": "array",
+                          "value": [
+                            {
+                              "type": "object",
+                              "value": {
+                                "id": {
+                                  "type": "jsonpath",
+                                  "value": "$.steps.script-15.result"
+                                },
+                                "value": {
+                                  "type": "jsonpath",
+                                  "value": "$.steps.script-3.result"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "script-2": {
+          "title": "Get Brand Id",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "brands"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.zendesk-2.brands"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "brandName"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].custrecordsupport_brand"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  const brand = input.brands.find(f=>f.name===input.brandName);\n  if (!brand) {\n    throw new Error(`Brand ${input.brandName} couldn't be find in zendesk.`)\n  }\n\treturn brand.id;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "Customer-related Change?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items[0].reason"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "in"
+                    },
+                    "value2": {
+                      "type": "array",
+                      "value": [
+                        {
+                          "type": "string",
+                          "value": "Customer Activated"
+                        },
+                        {
+                          "type": "string",
+                          "value": "Churn"
+                        },
+                        {
+                          "type": "string",
+                          "value": "Auto Renewed"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-10": {
+          "title": "Has cancelation notice?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-11.result.fileId",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "file-helpers-1": {
+          "title": "From base64",
+          "connector": {
+            "name": "file-helpers",
+            "version": "2.5"
+          },
+          "operation": "create",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "name": {
+              "type": "jsonpath",
+              "value": "$.steps.script-12.result"
+            },
+            "content": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-4.record.content"
+            },
+            "base64_to_binary": {
+              "type": "boolean",
+              "value": true
+            }
+          }
+        },
+        "trigger": {
+          "title": "Async Call",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "1cbe4310-e2a7-4a40-8d06-558d5eb630d8",
+          "name": "Get Synced Opportunity"
+        },
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "6ec0af18-686d-4aa6-a890-effb37092c3f",
+          "name": "Subflow Get Term"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

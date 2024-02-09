@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_IQB_Renewal_Date_Is_Req</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL(Type , &apos;Renewal&apos;) &amp;&amp; 
+ISNULL(Renewal_Date__c ) &amp;&amp;  NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorDisplayField>Renewal_Date__c</errorDisplayField>
+    <errorMessage>On the Renewal opportunity, &apos;Renewal Date&apos; is required, please refer PB001 for details.</errorMessage>
+</ValidationRule>

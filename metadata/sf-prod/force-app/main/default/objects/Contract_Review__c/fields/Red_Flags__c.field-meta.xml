@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Red_Flags__c</fullName>
+    <description>True if one red flag is true</description>
+    <externalId>false</externalId>
+    <formula>Non_standard_Contract_Term__c || Contract_Lanaguage_not_English__c || Non_ESW_Paper__c || Government_Contract__c || Restriction_on_moving_cont_to_affiliate__c || Undesirable_Law_or_Jurisdiction__c || Direct_liability_disclaimer__c || Unlimited_liability_carve_outs__c || No_disclaimer_of_Indirect_Damages__c || No_Auto_Renewal_Clause__c || Auto_Renewal_Limitations__c || Customer_Termination_for_Convenience__c || AR_Period_60_days__c || Refund_right_other_than_IP_indemnity__c || Impediment_to_25_35_45__c || Impaired_Termination_Rights__c || Price_increase_notice_requirement__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>True if one red flag is true</inlineHelpText>
+    <label>Red Flags</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

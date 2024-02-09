@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Manager_Exist_with_Profile_Team_Manager</fullName>
+    <active>true</active>
+    <description>LAMBDA-19837
+ensures that users with any of the following Roles (ISR, ISR Renewals, ISR New Business, CSM) have a manager defined, and his/her profile is Team Manager.</description>
+    <errorConditionFormula>IF( OR(UserRole.Name = &apos;ISR&apos;, UserRole.Name = &apos;ISR Renewals&apos;, UserRole.Name = &apos;ISR New Business&apos;, UserRole.Name = &apos;CSM&apos;) ,  OR( ISNULL(ManagerId),  Manager.Profile.Name != &apos;Team Manager&apos;)  , false)</errorConditionFormula>
+    <errorDisplayField>ManagerId</errorDisplayField>
+    <errorMessage>User of role CSM or ISR New Business or ISR Renewals, or ISR must have a manager with profile Team Manager</errorMessage>
+</ValidationRule>

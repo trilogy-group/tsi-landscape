@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Renewal_Active</fullName>
+    <columns>NAME</columns>
+    <columns>Business_Unit__c</columns>
+    <columns>Renewal_Manager__c</columns>
+    <columns>BU_Notification_Party__c</columns>
+    <columns>Fulfillment_Email__c</columns>
+    <columns>Non_US_Provider_Name__c</columns>
+    <columns>Non_US_Service_Provider_Street__c</columns>
+    <columns>US_Provider_Name__c</columns>
+    <columns>US_Service_Provider_Street__c</columns>
+    <columns>Renewal_Enabled__c</columns>
+    <columns>New_Business_Enabled__c</columns>
+    <columns>Processed_via_OTC__c</columns>
+    <columns>Manual_Quote__c</columns>
+    <columns>NetSuite_Class__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Renewal_Enabled__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>All Renewal Enabled</label>
+</ListView>

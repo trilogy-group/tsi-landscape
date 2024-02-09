@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__Industry__c</fullName>
+    <deprecated>false</deprecated>
+    <description>OOB this is the Industry of the Account that is selected on the Opportunity, but it can be changed on the Field Mapping page of the WorkSpan Admin tab.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The industry you classified the customer into</inlineHelpText>
+    <label>Industry</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Advertising &amp; Marketing</fullName>
+                <default>false</default>
+                <label>Advertising &amp; Marketing</label>
+            </value>
+            <value>
+                <fullName>Aerospace</fullName>
+                <default>false</default>
+                <label>Aerospace</label>
+            </value>
+            <value>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+                <label>Agriculture</label>
+            </value>
+            <value>
+                <fullName>Automotive</fullName>
+                <default>false</default>
+                <label>Automotive</label>
+            </value>
+            <value>
+                <fullName>Business &amp; Professional Services</fullName>
+                <default>false</default>
+                <label>Business &amp; Professional Services</label>
+            </value>
+            <value>
+                <fullName>Computers &amp; Electronics</fullName>
+                <default>false</default>
+                <label>Computers &amp; Electronics</label>
+            </value>
+            <value>
+                <fullName>Consumer Goods</fullName>
+                <default>false</default>
+                <label>Consumer Goods</label>
+            </value>
+            <value>
+                <fullName>Consumer Packaged Goods</fullName>
+                <default>false</default>
+                <label>Consumer Packaged Goods</label>
+            </value>
+            <value>
+                <fullName>Education</fullName>
+                <default>false</default>
+                <label>Education</label>
+            </value>
+            <value>
+                <fullName>Electrical &amp; Electronics</fullName>
+                <default>false</default>
+                <label>Electrical &amp; Electronics</label>
+            </value>
+            <value>
+                <fullName>Energy - Oil &amp; Gas</fullName>
+                <default>false</default>
+                <label>Energy - Oil &amp; Gas</label>
+            </value>
+            <value>
+                <fullName>Energy - Power &amp; Utilities</fullName>
+                <default>false</default>
+                <label>Energy - Power &amp; Utilities</label>
+            </value>
+            <value>
+                <fullName>Energy &amp; Utilities</fullName>
+                <default>false</default>
+                <label>Energy &amp; Utilities</label>
+            </value>
+            <value>
+                <fullName>Financial Services</fullName>
+                <default>false</default>
+                <label>Financial Services</label>
+            </value>
+            <value>
+                <fullName>Food Beverage &amp; Restaurants</fullName>
+                <default>false</default>
+                <label>Food, Beverage &amp; Restaurants</label>
+            </value>
+            <value>
+                <fullName>Gaming</fullName>
+                <default>false</default>
+                <label>Gaming</label>
+            </value>
+            <value>
+                <fullName>Government</fullName>
+                <default>false</default>
+                <label>Government</label>
+            </value>
+            <value>
+                <fullName>Healthcare &amp; Life Sciences</fullName>
+                <default>false</default>
+                <label>Healthcare &amp; Life Sciences</label>
+            </value>
+            <value>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+                <label>Healthcare</label>
+            </value>
+            <value>
+                <fullName>Hospitality</fullName>
+                <default>false</default>
+                <label>Hospitality</label>
+            </value>
+            <value>
+                <fullName>Industrial Goods &amp; Manufacturing</fullName>
+                <default>false</default>
+                <label>Industrial Goods &amp; Manufacturing</label>
+            </value>
+            <value>
+                <fullName>Law &amp; Government</fullName>
+                <default>false</default>
+                <label>Law &amp; Government</label>
+            </value>
+            <value>
+                <fullName>Life Sciences</fullName>
+                <default>false</default>
+                <label>Life Sciences</label>
+            </value>
+            <value>
+                <fullName>Logistics &amp; Transportation</fullName>
+                <default>false</default>
+                <label>Logistics &amp; Transportation</label>
+            </value>
+            <value>
+                <fullName>Manufacturing Industrial &amp; Transportation</fullName>
+                <default>false</default>
+                <label>Manufacturing, Industrial &amp; Transportation</label>
+            </value>
+            <value>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+                <label>Manufacturing</label>
+            </value>
+            <value>
+                <fullName>Marketing &amp; Advertising</fullName>
+                <default>false</default>
+                <label>Marketing &amp; Advertising</label>
+            </value>
+            <value>
+                <fullName>Media &amp; Entertainment</fullName>
+                <default>false</default>
+                <label>Media &amp; Entertainment</label>
+            </value>
+            <value>
+                <fullName>Mining</fullName>
+                <default>false</default>
+                <label>Mining</label>
+            </value>
+            <value>
+                <fullName>Non-Profit Organization</fullName>
+                <default>false</default>
+                <label>Non-Profit Organization</label>
+            </value>
+            <value>
+                <fullName>Non-Profit</fullName>
+                <default>false</default>
+                <label>Non-Profit</label>
+            </value>
+            <value>
+                <fullName>Professional Services</fullName>
+                <default>false</default>
+                <label>Professional Services</label>
+            </value>
+            <value>
+                <fullName>Public Sector &amp; EDU</fullName>
+                <default>false</default>
+                <label>Public Sector &amp; EDU</label>
+            </value>
+            <value>
+                <fullName>Real Estate &amp; Construction</fullName>
+                <default>false</default>
+                <label>Real Estate &amp; Construction</label>
+            </value>
+            <value>
+                <fullName>Retail &amp; Consumer</fullName>
+                <default>false</default>
+                <label>Retail &amp; Consumer</label>
+            </value>
+            <value>
+                <fullName>Retail &amp; Wholesale</fullName>
+                <default>false</default>
+                <label>Retail &amp; Wholesale</label>
+            </value>
+            <value>
+                <fullName>Retail</fullName>
+                <default>false</default>
+                <label>Retail</label>
+            </value>
+            <value>
+                <fullName>Software &amp; Internet</fullName>
+                <default>false</default>
+                <label>Software &amp; Internet</label>
+            </value>
+            <value>
+                <fullName>Telecommunications Media &amp; Gaming</fullName>
+                <default>false</default>
+                <label>Telecommunications, Media &amp; Gaming</label>
+            </value>
+            <value>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+                <label>Telecommunications</label>
+            </value>
+            <value>
+                <fullName>Tourism &amp; Leisure</fullName>
+                <default>false</default>
+                <label>Tourism &amp; Leisure</label>
+            </value>
+            <value>
+                <fullName>Transportation &amp; Logistics</fullName>
+                <default>false</default>
+                <label>Transportation &amp; Logistics</label>
+            </value>
+            <value>
+                <fullName>Travel</fullName>
+                <default>false</default>
+                <label>Travel</label>
+            </value>
+            <value>
+                <fullName>Wholesale &amp; Distribution</fullName>
+                <default>false</default>
+                <label>Wholesale &amp; Distribution</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Cross-Industry</fullName>
+                <default>false</default>
+                <label>Cross-Industry</label>
+            </value>
+            <value>
+                <fullName>Aerospace and Defense</fullName>
+                <default>false</default>
+                <label>Aerospace and Defense</label>
+            </value>
+            <value>
+                <fullName>Banking</fullName>
+                <default>false</default>
+                <label>Banking</label>
+            </value>
+            <value>
+                <fullName>Building Materials</fullName>
+                <default>false</default>
+                <label>Building Materials</label>
+            </value>
+            <value>
+                <fullName>Cargo Transportation &amp; Logistics Service</fullName>
+                <default>false</default>
+                <label>Cargo Transportation &amp; Logistics Service</label>
+            </value>
+            <value>
+                <fullName>Chemicals</fullName>
+                <default>false</default>
+                <label>Chemicals</label>
+            </value>
+            <value>
+                <fullName>Consumer Products</fullName>
+                <default>false</default>
+                <label>Consumer Products</label>
+            </value>
+            <value>
+                <fullName>Defense and Security</fullName>
+                <default>false</default>
+                <label>Defense and Security</label>
+            </value>
+            <value>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+                <label>Engineering</label>
+            </value>
+            <value>
+                <fullName>Construction and Operation</fullName>
+                <default>false</default>
+                <label>Construction and Operation</label>
+            </value>
+            <value>
+                <fullName>Fabricated Metal Products</fullName>
+                <default>false</default>
+                <label>Fabricated Metal Products</label>
+            </value>
+            <value>
+                <fullName>Forest Products</fullName>
+                <default>false</default>
+                <label>Forest Products</label>
+            </value>
+            <value>
+                <fullName>Furniture &amp; Textiles</fullName>
+                <default>false</default>
+                <label>Furniture &amp; Textiles</label>
+            </value>
+            <value>
+                <fullName>High Tech</fullName>
+                <default>false</default>
+                <label>High Tech</label>
+            </value>
+            <value>
+                <fullName>Higher Education and Research</fullName>
+                <default>false</default>
+                <label>Higher Education and Research</label>
+            </value>
+            <value>
+                <fullName>Industrial Machinery and Components</fullName>
+                <default>false</default>
+                <label>Industrial Machinery and Components</label>
+            </value>
+            <value>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+                <label>Insurance</label>
+            </value>
+            <value>
+                <fullName>Media</fullName>
+                <default>false</default>
+                <label>Media</label>
+            </value>
+            <value>
+                <fullName>Mill Prod. &amp; Mining</fullName>
+                <default>false</default>
+                <label>Mill Prod. &amp; Mining</label>
+            </value>
+            <value>
+                <fullName>Nonclassifiable Est.</fullName>
+                <default>false</default>
+                <label>Nonclassifiable Est.</label>
+            </value>
+            <value>
+                <fullName>Oil and Gas</fullName>
+                <default>false</default>
+                <label>Oil and Gas</label>
+            </value>
+            <value>
+                <fullName>Passenger Travel &amp; Leisure</fullName>
+                <default>false</default>
+                <label>Passenger Travel &amp; Leisure</label>
+            </value>
+            <value>
+                <fullName>Postal</fullName>
+                <default>false</default>
+                <label>Postal</label>
+            </value>
+            <value>
+                <fullName>Primary Metals</fullName>
+                <default>false</default>
+                <label>Primary Metals</label>
+            </value>
+            <value>
+                <fullName>Public Sector</fullName>
+                <default>false</default>
+                <label>Public Sector</label>
+            </value>
+            <value>
+                <fullName>Sports &amp; Entertainment</fullName>
+                <default>false</default>
+                <label>Sports &amp; Entertainment</label>
+            </value>
+            <value>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+                <label>Utilities</label>
+            </value>
+            <value>
+                <fullName>Wholesale Distribution</fullName>
+                <default>false</default>
+                <label>Wholesale Distribution</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

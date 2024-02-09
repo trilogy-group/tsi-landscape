@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DoNotAllowToChangeToSignedIfFinalizing</fullName>
+    <active>true</active>
+    <description>For opps in Finalizing, blocks changing status to Signed. The opp first needs to go to Quote Follow-up, to cancel ticket invoices. And then later a new invoice will be generated.</description>
+    <errorConditionFormula>(ISCHANGED(SBQQ__Status__c) || ISCHANGED(SBQQ__Primary__c)) &amp;&amp;
+ISPICKVAL(SBQQ__Status__c, &apos;Signed&apos;) &amp;&amp; 
+SBQQ__Primary__c &amp;&amp;
+ISPICKVAL(SBQQ__Opportunity2__r.StageName, &apos;Finalizing&apos;) &amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Quote_QBs__c)</errorConditionFormula>
+    <errorDisplayField>SBQQ__Status__c</errorDisplayField>
+    <errorMessage>It&apos;s not possible to change the status to Signed when opportunity is in Finalizing. Revert the opportunity to Quote Follow-up, and then you can change the status to Signed.</errorMessage>
+</ValidationRule>

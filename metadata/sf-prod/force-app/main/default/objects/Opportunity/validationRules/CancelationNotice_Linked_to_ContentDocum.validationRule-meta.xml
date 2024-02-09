@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CancelationNotice_Linked_to_ContentDocum</fullName>
+    <active>true</active>
+    <description>If there is a Cancelation Notice, it must be a content document link</description>
+    <errorConditionFormula>!ISBLANK(Cancelation_Notice__c) &amp;&amp; NOT(REGEX(Cancelation_Notice__c, &quot;^https://trilogy-sales\\S*.lightning.force.com/lightning/r/ContentDocument/\\S*/view&quot;))&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorDisplayField>Cancelation_Notice__c</errorDisplayField>
+    <errorMessage>URL must be from a ContentDocument link (e.g. https://trilogy-sales.lightning.force.com/lightning/r/ContentDocument/0692x00000B9knZAAR/view)</errorMessage>
+</ValidationRule>

@@ -1,0 +1,101 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "b1806369-1d89-494e-9608-107306db8837",
+      "created": "2023-04-18T12:31:16.311583Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "0c145cd5-0a3a-480f-bd7e-2cc8a66fd232",
+      "version": {
+        "id": "27ead8dd-d66b-4d51-ad38-3c7ee1322652",
+        "created": "2023-10-03T11:55:47.911396Z"
+      },
+      "title": "Trigger Sync NS Class and SF Product Configuration",
+      "description": "This flow is triggered when the NS class or the renewal manager of the SF product configuration changes and initiates asynchronously the sync between the NS class and the SF product configuration.",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "trigger": {
+          "title": "Async call",
+          "description": "This flow is triggered when the NS class or the renewal manager of the SF product configuration changes and initiates asynchronously the sync between the NS class and the SF product configuration.",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "call-workflow-1": {
+          "title": "Call subflow synchronously",
+          "description": "Calls synchronously the subflow syncing the NS class and the SF product configuration.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "3e1046c0-7b37-4d43-a3aa-a39f300ab30b"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "class": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.class",
+                  "fallback": {
+                    "value": null,
+                    "type": "null"
+                  }
+                },
+                "productConfigurationId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.productConfigurationId",
+                  "fallback": {
+                    "value": null,
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "3e1046c0-7b37-4d43-a3aa-a39f300ab30b",
+          "name": "Sync NS Class and SF Product Configuration"
+        },
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

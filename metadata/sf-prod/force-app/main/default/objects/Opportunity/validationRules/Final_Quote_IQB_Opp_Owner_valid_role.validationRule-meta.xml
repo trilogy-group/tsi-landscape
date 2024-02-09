@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Final_Quote_IQB_Opp_Owner_valid_role</fullName>
+    <active>true</active>
+    <description>LAMBDA-19837. To generate final quote, Opportunity Owner role has to be one of the following roles: System Administrator, ISR, ISR Renewals, ISR New Business, CSM, Manager CSM, Manager New Sales, Manager Renewals, ISR External.</description>
+    <errorConditionFormula>NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c) &amp;&amp; TEXT(StageName) = &apos;Final Quote&apos; 
+&amp;&amp;
+!( OR( Owner.UserRole.Name = &apos;System Administrator&apos;, Owner.UserRole.Name = &apos;ISR Renewals&apos;, Owner.UserRole.Name = &apos;ISR&apos;, Owner.UserRole.Name = &apos;ISR New Business&apos;, Owner.UserRole.Name = &apos;CSM&apos;, Owner.UserRole.Name = &apos;Manager CSM&apos;, Owner.UserRole.Name = &apos;Manager New Sales&apos;, Owner.UserRole.Name = &apos;Manager Renewals&apos;, Owner.UserRole.Name = &apos;ISR External&apos;))</errorConditionFormula>
+    <errorDisplayField>OwnerId</errorDisplayField>
+    <errorMessage>To generate final quote, Opportunity Owner role has to be one of the following roles: System Administrator, ISR, ISR Renewals, ISR New Business, CSM, Manager CSM, Manager New Sales, Manager Renewals, ISR External.</errorMessage>
+</ValidationRule>

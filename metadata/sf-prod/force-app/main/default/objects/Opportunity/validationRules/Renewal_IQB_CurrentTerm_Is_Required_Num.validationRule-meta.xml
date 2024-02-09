@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_IQB_CurrentTerm_Is_Required_Num</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL(Type , &apos;Renewal&apos;) &amp;&amp; TEXT(StageName) = &apos;Final Quote&apos; &amp;&amp; NOT(REGEX( TEXT(Current_Term__c) , &apos;[\\d]+\\.?[\\d]*&apos;)) &amp;&amp;  NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)</errorConditionFormula>
+    <errorDisplayField>Current_Term__c</errorDisplayField>
+    <errorMessage>On the Renewal opportunity, &apos;Current Term&apos; is required and must be numeric, when opportunity is moved to &apos;Final Quote&apos; stage.</errorMessage>
+</ValidationRule>

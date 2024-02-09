@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <assignments>
+        <name>Assign_Success_Level</name>
+        <label>Assign Success Level</label>
+        <locationX>684</locationX>
+        <locationY>456</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Success_Level__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Through_Product_Line_Items.Product2.Success_Level__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Get_Success_Level</name>
+        <label>Get Success Level</label>
+        <locationX>653</locationX>
+        <locationY>311</locationY>
+        <defaultConnector>
+            <targetReference>Loop_Through_Product_Line_Items</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Success Level Not Obtained</defaultConnectorLabel>
+        <rules>
+            <name>Success_Level_Obtained</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Through_Product_Line_Items.Product2.Success_Level__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Loop_Through_Product_Line_Items.Product2.Success_Level__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Success_Level</targetReference>
+            </connector>
+            <label>Success Level Obtained</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>this is an exception added to avoid calculation in case of a closed platinum</description>
+        <name>Should_calculate_the_success_level</name>
+        <label>Should calculate the success level</label>
+        <locationX>379</locationX>
+        <locationY>357</locationY>
+        <defaultConnector>
+            <targetReference>Product_Line_Items</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Allow Calculation</defaultConnectorLabel>
+        <rules>
+            <name>Is_Closed_Platinum</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Success_Level__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Platinum</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.IsClosed</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Is Closed Platinum</label>
+        </rules>
+    </decisions>
+    <description>Update Success Level Opportunities that are not CSM
+
+LAMBDA-63138 enable Disable All Flows custom setting</description>
+    <interviewLabel>On CreateOrUpdate SalesOpportunity {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>On CreateOrUpdate SalesOpportunity</label>
+    <loops>
+        <name>Loop_Through_Product_Line_Items</name>
+        <label>Loop Through Product Line Items</label>
+        <locationX>870</locationX>
+        <locationY>113</locationY>
+        <collectionReference>Product_Line_Items</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Get_Success_Level</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Opportunity_Default_Values</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Product_Line_Items</name>
+        <label>Product Line Items</label>
+        <locationX>532</locationX>
+        <locationY>118</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Through_Product_Line_Items</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>OpportunityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>TotalPrice</field>
+            <operator>GreaterThan</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>OpportunityLineItem</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Opportunity_Default_Values</name>
+        <label>Update Opportunity Default Values</label>
+        <locationX>1294</locationX>
+        <locationY>112</locationY>
+        <inputAssignments>
+            <field>Success_Level__c</field>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>49</locationX>
+        <locationY>51</locationY>
+        <connector>
+            <targetReference>Should_calculate_the_success_level</targetReference>
+        </connector>
+        <object>Opportunity</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

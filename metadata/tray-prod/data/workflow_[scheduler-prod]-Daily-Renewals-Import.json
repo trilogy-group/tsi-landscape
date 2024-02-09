@@ -1,0 +1,103 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "e36a2f52-1d97-4f03-b8cc-3123c8988d75",
+      "created": "2022-05-11T06:00:14.056627Z",
+      "workspace_id": "ddb7dc60-0c96-4280-b59f-517d94a74202",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "50698e98-e132-4c12-8de5-9f4e6d950b97",
+        "created": "2022-05-11T06:00:36.479008Z"
+      },
+      "title": "[scheduler-prod] Daily Renewals Import",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "71aa75f4-6165-40a6-a918-093b1b13e568",
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "trigger": {
+          "title": "Daily Trigger",
+          "connector": {
+            "name": "scheduled",
+            "version": "3.5"
+          },
+          "operation": "simple",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "synchronous": {
+              "type": "boolean",
+              "value": false
+            },
+            "public_url": {
+              "type": "jsonpath",
+              "value": "$.env.public_url"
+            },
+            "interval": {
+              "type": "integer",
+              "value": 1
+            },
+            "time_unit": {
+              "type": "string",
+              "value": "days"
+            },
+            "start_date": {
+              "type": "string",
+              "value": "2022-05-09 07:01"
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Call Workflow",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "621c2a60-91f4-4b7d-a92b-453b6f71d460"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "schedule": {
+                  "type": "string",
+                  "value": "daily"
+                }
+              }
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "621c2a60-91f4-4b7d-a92b-453b6f71d460",
+          "name": "[scheduled prod] Sync Draft Renewals"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

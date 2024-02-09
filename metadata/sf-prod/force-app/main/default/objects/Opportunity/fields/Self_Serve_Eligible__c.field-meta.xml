@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Self_Serve_Eligible__c</fullName>
+    <description>Field to calculate whether the record is eligible for Self-Serve or not</description>
+    <externalId>false</externalId>
+    <formula>AND (Product_Configuration__r.Self_Serve__c,
+       Transactional_Opp__c,
+IsPickVal( Type,&apos;Renewal&apos; )
+)</formula>
+    <inlineHelpText>This field is checked if the product is enabled for Self-Serve portal</inlineHelpText>
+    <label>Self-Serve Eligible</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

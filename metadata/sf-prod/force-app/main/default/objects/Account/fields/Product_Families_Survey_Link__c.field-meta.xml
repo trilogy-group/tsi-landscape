@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Families_Survey_Link__c</fullName>
+    <description>This field is used to store the Survey Link based on Product Family and is being Synced to Outreach.</description>
+    <externalId>false</externalId>
+    <formula>IF (INCLUDES(Product_Families__c,&quot;Accuris&quot; ),&quot;https://forms.gle/MenAj3eHnF3HEcir8&quot;,
+IF (INCLUDES(Product_Families__c,&quot;Artemis (APS)&quot; ),&quot;https://forms.gle/WEEPxjg3Dajvfphf9&quot;,
+IF (INCLUDES(Product_Families__c,&quot;Bonzai&quot; ),&quot;https://forms.gle/hGStRdds87AF2Tyb6&quot;,
+IF (INCLUDES(Product_Families__c,&quot;Broadvision&quot; ),&quot;https://forms.gle/UY8n5gprxXsU5UFW9&quot;,
+IF (INCLUDES(Product_Families__c,&quot;Callstream/CityNumbers&quot; ),&quot;https://forms.gle/FHtuLdbf4LZuXK6e8&quot;,
+IF (INCLUDES(Product_Families__c,&quot;EngineYard&quot; ),&quot;https://forms.gle/TunwfHNqHBKiEfjSA&quot;,
+IF (INCLUDES(Product_Families__c,&quot;Finserv (AIS)&quot; ),&quot;https://forms.gle/MZviCnR3qu79veSe8&quot;,
+IF (INCLUDES(Product_Families__c,&quot;Kayako&quot; ),&quot;https://forms.gle/aRo8CHJiBjAZ2J428&quot;,
+IF (INCLUDES(Product_Families__c,&quot;Lyris (AEM)&quot; ),&quot;https://forms.gle/7J8gHjD3rLH6HGWc6&quot;,
+IF (INCLUDES(Product_Families__c,&quot;Messageone&quot; ),&quot;https://forms.gle/FvGCu824Za6ajLdz6&quot;,
+IF (INCLUDES(Product_Families__c,&quot;Mobilogy&quot; ),&quot;https://forms.gle/qYZRRFPns1XJBTAB7&quot;,
+IF (INCLUDES(Product_Families__c,&quot;NewNet&quot; ),&quot;https://forms.gle/C1SnLebYEBiLJJhy6&quot;,
+IF (INCLUDES(Product_Families__c,&quot;PeerApp&quot; ),&quot;https://forms.gle/39mXdaeB9U4LUxsz9&quot;,
+IF (INCLUDES(Product_Families__c,&quot;ResponseTek&quot; ),&quot;https://forms.gle/cEjZfRvZYsB5fnCU8&quot;,
+IF (INCLUDES(Product_Families__c,&quot;Service Gateway&quot; ),&quot;https://forms.gle/4fMBf4aTW15aXzeK7&quot;,
+IF (INCLUDES(Product_Families__c,&quot;STL&quot; ),&quot;https://forms.gle/m6QxPF3Kg2JM2n4Y7&quot;,
+IF (INCLUDES(Product_Families__c,&quot;VoltDelta&quot; ),&quot;https://forms.gle/vb9NbTsci7BRi81i9&quot;,
+null )))))))))))))))))</formula>
+    <label>Product Families Survey Link</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

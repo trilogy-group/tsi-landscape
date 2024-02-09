@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Success_Level__c</fullName>
+    <description>LAMBDA-69849 field to derive success level from related Product</description>
+    <externalId>false</externalId>
+    <formula>TEXT(PricebookEntry.Product2.Success_Level__c)</formula>
+    <inlineHelpText>Success level of the related product fetched from the Product record</inlineHelpText>
+    <label>Success Level</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

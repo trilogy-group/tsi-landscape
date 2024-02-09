@@ -1,0 +1,102 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "1d558631-c032-4261-8933-957b2c3ef653",
+      "created": "2023-02-16T17:31:12.536705Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "8b503482-8c39-4cec-b922-7613b429f2f9",
+        "created": "2023-02-17T13:04:50.531753Z"
+      },
+      "title": "Daily Trigger Change Order Processing",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "call-workflow-1": {
+          "title": "Call Workflow",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "69ef2be7-8cf6-4fb8-afa5-f6d614d42d4a"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "subscription": {
+                  "type": "string",
+                  "value": ""
+                }
+              }
+            }
+          }
+        },
+        "trigger": {
+          "title": "Scheduled Trigger",
+          "connector": {
+            "name": "scheduled",
+            "version": "3.5"
+          },
+          "operation": "simple",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "synchronous": {
+              "type": "boolean",
+              "value": false
+            },
+            "public_url": {
+              "type": "jsonpath",
+              "value": "$.env.public_url"
+            },
+            "interval": {
+              "type": "integer",
+              "value": 1
+            },
+            "time_unit": {
+              "type": "string",
+              "value": "days"
+            },
+            "start_date": {
+              "type": "string",
+              "value": "2023-02-18 19:00"
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "69ef2be7-8cf6-4fb8-afa5-f6d614d42d4a",
+          "name": "Process change orders"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

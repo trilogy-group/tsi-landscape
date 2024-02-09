@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Probability_Score__c</fullName>
+    <description>Predict the opportunity score based on opportunity data, Einstein Opportunity Scoring and Einstein Prediction Builder.</description>
+    <externalId>false</externalId>
+    <formula>/*IF(
+(IsClosed = True &amp;&amp; IsWon = False) || (NOT(ISBLANK(TEXT(Loss_Reason__c))) &amp;&amp; Text(StageName) = &apos;Finalizing&apos;),
+0,
+IF(
+Text(StageName) = &apos;Closed Won&apos;  ||  
+Text(StageName) = &apos;Co-Term&apos; || 
+(TEXT(CurrentContractHasAutoRenewalClause__c) = &apos;Yes&apos; &amp;&amp; Customer_Termination_Deadline__c &lt; TODAY()) ||
+(Text(StageName) = &apos;Finalizing&apos; &amp;&amp; Text(Win_Type__c) = &apos;Quote Signed&apos;),
+100,
+IF(TEXT(Customer_Business_Value__c) = &apos;Happy with value delivered&apos;,
+98,
+IF(TEXT(Customer_Moving_Off_Product__c) = &apos;No&apos;,
+96,
+IF(Platinum_Service_Delivered__c &gt; 1,
+95,
+IF(TEXT(Customer_Moving_Off_Product__c) = &apos;Started moving off product&apos;,
+86,
+IF(Platinum_Service_Delivered__c = 1,
+85,
+IF(TEXT(Customer_Business_Value__c) = &apos;Has unresolved concerns&apos;,
+77,
+IF(TEXT(Customer_Business_Value__c) = &apos;Unknown&apos;,
+64,
+IF(CONTAINS(TEXT(AR_Scenario__c), &apos;Voluntary&apos;),
+60,
+IF(TEXT(Customer_Moving_Off_Product__c) = &apos;Unknown&apos;,
+58,
+IF(TEXT(AR_Scenario__c) = &apos;Ghosted&apos;,
+50,
+IF(TEXT(Customer_Moving_Off_Product__c) = &apos;No longer using product&apos;,
+43,
+IF(Platinum_Service_Delivered__c = 0,
+40,
+IF(TEXT(AR_Scenario__c) = &apos;Unresponsive&apos;,
+30,
+IF(TEXT(AR_Scenario__c) = &apos;Involuntary&apos;,
+10,
+0
+)))))))))))))))) */
+
+
+IF
+(
+(IsClosed = True &amp;&amp; IsWon = False) || 
+(NOT(ISBLANK(TEXT(Loss_Reason__c))) &amp;&amp; Text(StageName) = &apos;Finalizing&apos;),
+0,
+IF(
+Text(StageName) = &apos;Closed Won&apos;  ||  
+Text(StageName) = &apos;Co-Term&apos; || 
+(TEXT(CurrentContractHasAutoRenewalClause__c) = &apos;Yes&apos; &amp;&amp; Customer_Termination_Deadline__c &lt; TODAY()) ||
+(Text(StageName) = &apos;Finalizing&apos; &amp;&amp; Text(Win_Type__c) = &apos;Quote Signed&apos;) ||
+(Text(StageName) = &apos;Finalizing&apos; &amp;&amp; Text(Win_Type__c) = &apos;Auto-Renew&apos;),
+100,
+IF(NOT(ISBLANK(OpportunityScore.Score)),
+OpportunityScore.Score, 
+Einstein_Predicted_Score__c)
+)
+)</formula>
+    <label>Renewal Probability Score</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

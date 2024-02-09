@@ -1,0 +1,1964 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "56b66d7b-f252-496b-8756-e61131eddcf4",
+      "created": "2023-09-18T22:33:09.249740Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "0c145cd5-0a3a-480f-bd7e-2cc8a66fd232",
+      "version": {
+        "id": "37a596ed-0e74-40fa-a208-c6e76c6a5a9f",
+        "created": "2023-10-30T20:58:33.948324Z"
+      },
+      "title": "Subflow Process change orders per subscription",
+      "description": "Processes the given change orders related to a unique subscription.\nThis subflow is part of the \"Process change orders\" process.",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {
+          "classesForTempo": []
+        },
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "subscription": {
+              "type": "string",
+              "title": "subscription",
+              "description": "Subscription Id to limit processing to 1 subscription only. It is needed to speed up E2Es."
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-7",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-12",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-4",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-1",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "script-7",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-6",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "script-10",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-9",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "http-client-1",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": [
+                          {
+                            "name": "call-workflow-4",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "call-workflow-1",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "loop-2",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "script-4",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-3",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "break-loop-1",
+                      "type": "break",
+                      "content": {},
+                      "target": "loop-2"
+                    }
+                  ],
+                  "false": []
+                }
+              },
+              {
+                "name": "salesforce-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "loop-3",
+                "type": "loop",
+                "content": {
+                  "_loop": [
+                    {
+                      "name": "boolean-condition-4",
+                      "type": "branch",
+                      "content": {
+                        "true": [],
+                        "false": [
+                          {
+                            "name": "call-workflow-3",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "script-6",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-5",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "break-loop-2",
+                      "type": "break",
+                      "content": {},
+                      "target": "loop-2"
+                    }
+                  ],
+                  "false": []
+                }
+              },
+              {
+                "name": "boolean-condition-1",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "script-3",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "netsuite-3",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-2",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "script-11",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "boolean-condition-10",
+                            "type": "branch",
+                            "content": {
+                              "true": [
+                                {
+                                  "name": "http-client-2",
+                                  "type": "normal",
+                                  "content": {}
+                                }
+                              ],
+                              "false": [
+                                {
+                                  "name": "call-workflow-5",
+                                  "type": "normal",
+                                  "content": {}
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "name": "call-workflow-2",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": [
+                          {
+                            "name": "salesforce-2",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "boolean-condition-7",
+                            "type": "branch",
+                            "content": {
+                              "true": [
+                                {
+                                  "name": "call-workflow-6",
+                                  "type": "normal",
+                                  "content": {}
+                                }
+                              ],
+                              "false": []
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "steps": {
+        "loop-3": {
+          "title": "Loop opportunities",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "object",
+                "title": "Opportunity",
+                "properties": {
+                  "Id": {
+                    "name": "Id",
+                    "type": "string",
+                    "title": "Opportunity ID"
+                  },
+                  "IsClosed": {
+                    "name": "IsClosed",
+                    "type": "boolean",
+                    "title": "Closed"
+                  }
+                }
+              },
+              "count": {
+                "type": "number",
+                "id": "http://jsonschema.net/total"
+              },
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              },
+              "is_first": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_first"
+              },
+              "is_last": {
+                "type": "boolean",
+                "id": "http://jsonschema.net/is_last"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-1.records"
+            }
+          }
+        },
+        "call-workflow-3": {
+          "title": "Append message",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "e96c1f66-536a-4e5c-8bd3-8a2375110837"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "The parent subscription ({$.steps.call-workflow-7.response.url}/app/accounting/subscription/subscription.nl?id={$.steps.loop-2.value.subscription}) is terminated and this opportunity may no longer be valid."
+                },
+                "chatter_post": {
+                  "type": "boolean",
+                  "value": true
+                },
+                "objectType": {
+                  "type": "string",
+                  "value": "Opportunity"
+                },
+                "objectId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-3.value.Id"
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "No New Draft?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.response.body.items[0].id",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": ""
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "script-3": {
+          "title": "Same Parent SQL",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "row"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n  return {\n    q: `\nSELECT\n    s.id AS id,\n    s.billingsubscriptionstatus AS substatus,\n    CASE\n        WHEN hist.subscription IS NULL THEN s.custrecord_parent_subscription\n        ELSE hist.subscription\n    END AS parentsubscription\nFROM    \n    subscription s\n    LEFT JOIN subscriptionRenewalHistory hist ON hist.newsubscription = s.id    \nWHERE\n    CASE\n        WHEN hist.subscription IS NULL THEN s.custrecord_parent_subscription\n        ELSE hist.subscription\n    END = ${input.row.parentsubscription}\nAND s.id != ${input.row.subscription}\nAND s.billingsubscriptionstatus IN ('DRAFT', 'PENDING_ACTIVATION', 'ACTIVE')\nAND (s.custrecord_isprime is null OR s.custrecord_isprime <> 1)\n`\n  };\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Set SF Opp Subscription Status",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "7eaeda95-2b7c-4547-bd69-e9a29259a6d6"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "id": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-2.value.subscription"
+                },
+                "changeOrderId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-2.value.id"
+                },
+                "autoProvisioningConfig": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-2.value.custrecord_enable_auto_provisioning",
+                  "fallback": {
+                    "type": "null",
+                    "value": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Set SF Opp Subscription Status",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "877f4856-100f-44e1-b4fe-a6dea86409f0"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "id": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.subscription"
+                },
+                "requestor": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.requestor"
+                },
+                "changeOrderId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.id"
+                },
+                "autoProvisioningConfig": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.custrecord_enable_auto_provisioning",
+                  "fallback": {
+                    "type": "null",
+                    "value": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Renewal?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.parentsubscription",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "script-4": {
+          "title": "Ends with active items",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subscription"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-4"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  const activeItems = input.subscription.subscriptionLine.items.find(i => {\n    if (!['ACTIVE','PENDING_ACTIVATION'].includes(i.status.id)) {\n      return false;\n    }\n    const lastPriceInterval = input.subscription.priceInterval.items.filter(p => p.lineNumber === i.lineNumber).pop();\n    return lastPriceInterval.status.id === 'ACTIVE'\n  });\n  return {\n    hasActiveItems: !!activeItems\n  }\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "netsuite-4": {
+          "title": "Get subscription",
+          "description": "Retrieves the subscription data.",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "Subscription"
+            },
+            "expand_sub_resources": {
+              "value": true,
+              "type": "boolean"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.subscriptionId"
+            }
+          }
+        },
+        "call-workflow-5": {
+          "title": "Create ZD Provisioning Ticket",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "dadb95d1-6e5e-49fe-aa53-f73cd3c038ee"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "changeOrderId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-2.value.id"
+                },
+                "subscription": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-2.value.subscription"
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-6": {
+          "title": "Active items found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-7.result.hasActiveItems"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "loop-2": {
+          "title": "Loop termination orders",
+          "description": "Processes sequentially termination orders.",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "value": {},
+              "count": {
+                "type": "number"
+              },
+              "index": {
+                "type": "number"
+              },
+              "is_first": {
+                "type": "boolean"
+              },
+              "is_last": {
+                "type": "boolean"
+              },
+              "branch_name": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.script-2.result.terminations"
+            }
+          }
+        },
+        "boolean-condition-9": {
+          "title": "Is TEMPO class?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-10.result"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "in"
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.config.classesForTempo"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "http-client-2": {
+          "title": "Trigger TEMPO",
+          "description": "Triggers 'On Draft NS Renewal Subscription Created/Updated, Create/Update SF Renewal Opportunity'",
+          "connector": {
+            "name": "http-client",
+            "version": "5.5"
+          },
+          "operation": "post_request",
+          "output_schema": {},
+          "error_handling": {
+            "target": "loop-2",
+            "strategy": "continueLoop"
+          },
+          "properties": {
+            "auth": {
+              "type": "object",
+              "value": {
+                "none": {
+                  "type": "null",
+                  "value": null
+                }
+              }
+            },
+            "follow_redirect": {
+              "type": "boolean",
+              "value": false
+            },
+            "follow_keep_method": {
+              "type": "boolean",
+              "value": false
+            },
+            "reject_unauthorized": {
+              "type": "boolean",
+              "value": true
+            },
+            "follow_authorization_header": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "status_code": {
+              "type": "object",
+              "value": {
+                "range": {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "integer",
+                      "value": 200
+                    },
+                    "to": {
+                      "type": "integer",
+                      "value": 299
+                    }
+                  }
+                }
+              }
+            },
+            "case_sensitive_headers": {
+              "type": "boolean",
+              "value": false
+            },
+            "url": {
+              "type": "jsonpath",
+              "value": "$.steps.script-12.result.deactivationUrl"
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "x-Csrf-Token"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQSflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "object",
+                  "value": {
+                    "CustomerId": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.customerentityid"
+                    },
+                    "SubscriptionId": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-4.idNumber"
+                    },
+                    "ProductId": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-11.result"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-4": {
+          "title": "Create ZD Provisioning Ticket",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "dadb95d1-6e5e-49fe-aa53-f73cd3c038ee"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "changeOrderId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.id"
+                },
+                "subscription": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value.subscription"
+                }
+              }
+            }
+          }
+        },
+        "script-6": {
+          "title": "Has active items",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subscription"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-4"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  const activeItems =\n        input.subscription.priceInterval.items\n        \t.find(i => i.status.id === 'ACTIVE');   \n  return {\n    hasActiveItems: !!activeItems\n  }\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "call-workflow-7": {
+          "title": "Get NS metadata",
+          "description": "Retrieves the NS metadata for the current environment.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "8cd05cfc-a86e-4be8-8e66-4a05cf6550c5"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {}
+            }
+          }
+        },
+        "script-10": {
+          "title": "Get class",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "class"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-4.class.refName",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  if (!input.class) {\n    return null;\n  }\n\tconst parts = input.class.split(':');\n  return parts[parts.length - 1].trim();\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-5": {
+          "title": "Active items found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-6.result.hasActiveItems"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "Closed?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-3.value.IsClosed"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop activation orders",
+          "description": "Processes sequentially activation orders.",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "value": {},
+              "count": {
+                "type": "number"
+              },
+              "index": {
+                "type": "number"
+              },
+              "is_first": {
+                "type": "boolean"
+              },
+              "is_last": {
+                "type": "boolean"
+              },
+              "branch_name": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.script-2.result.activations"
+            }
+          }
+        },
+        "script-7": {
+          "title": "Has active items",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subscription"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-4"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// If the subscription doesn’t have active items, it means it was activated and terminated, then we are not processing\nexports.step = function(input) {\n  const activeItems =\n        input.subscription.priceInterval.items\n        \t.find(i => i.status.id === 'ACTIVE');   \n  return {\n    hasActiveItems: !!activeItems\n  }\n};\n"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "call-workflow-6": {
+          "title": "Add Note to Opp",
+          "description": "Add a note to the opportunity's Description with the reason the subscription status is not synced.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "e96c1f66-536a-4e5c-8bd3-8a2375110837"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "The corresponding subscription ({$.steps.call-workflow-7.response.url}/app/accounting/subscription/subscription.nl?id={$.steps.loop-2.value.subscription}) is terminated, however, there is another renewal subscription ({$.steps.call-workflow-7.response.url}/app/accounting/subscription/subscription.nl?id={$.steps.netsuite-3.response.body.items[0].id}) for the same parent, hence this opportunity was not updated."
+                },
+                "chatter_post": {
+                  "type": "boolean",
+                  "value": false
+                },
+                "objectType": {
+                  "type": "string",
+                  "value": "Opportunity"
+                },
+                "objectId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.salesforce-2.records[0].Id"
+                }
+              }
+            }
+          }
+        },
+        "http-client-1": {
+          "title": "Trigger TEMPO",
+          "description": "Triggers 'On Draft NS Renewal Subscription Created/Updated, Create/Update SF Renewal Opportunity'",
+          "connector": {
+            "name": "http-client",
+            "version": "5.5"
+          },
+          "operation": "post_request",
+          "output_schema": {},
+          "error_handling": {
+            "target": "loop-2",
+            "strategy": "continueLoop"
+          },
+          "properties": {
+            "auth": {
+              "type": "object",
+              "value": {
+                "none": {
+                  "type": "null",
+                  "value": null
+                }
+              }
+            },
+            "follow_redirect": {
+              "type": "boolean",
+              "value": false
+            },
+            "follow_keep_method": {
+              "type": "boolean",
+              "value": false
+            },
+            "reject_unauthorized": {
+              "type": "boolean",
+              "value": true
+            },
+            "follow_authorization_header": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "status_code": {
+              "type": "object",
+              "value": {
+                "range": {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "integer",
+                      "value": 200
+                    },
+                    "to": {
+                      "type": "integer",
+                      "value": 299
+                    }
+                  }
+                }
+              }
+            },
+            "case_sensitive_headers": {
+              "type": "boolean",
+              "value": false
+            },
+            "url": {
+              "type": "jsonpath",
+              "value": "$.steps.script-12.result.activationUrl"
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "x-Csrf-Token"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQSflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "object",
+                  "value": {
+                    "CustomerId": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-1.value.customerentityid"
+                    },
+                    "SubscriptionId": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-4.idNumber"
+                    },
+                    "ProductId": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-10.result"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "boolean-condition-7": {
+          "title": "Found Opp?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-2.total"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": ">"
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "break-loop-2": {
+          "title": "Continue Loop",
+          "connector": {
+            "name": "break-loop",
+            "version": "1.1"
+          },
+          "operation": "continue",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "netsuite-3": {
+          "title": "Check New Draft",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-3.result"
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Find opportunities",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Opportunities",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Opportunity",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Opportunity ID"
+                    },
+                    "IsClosed": {
+                      "name": "IsClosed",
+                      "type": "boolean",
+                      "title": "Closed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                },
+                {
+                  "type": "string",
+                  "value": "IsClosed"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "Parent_Subscription_ID__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.subscription"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "script-12": {
+          "title": "Get TEMPO urls",
+          "description": "Determines the URLs for activation/deactivation for TEMPO.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "object",
+                "properties": {
+                  "activationUrl": {
+                    "type": "string"
+                  },
+                  "deactivationUrl": {
+                    "type": "string"
+                  }
+                }
+              },
+              "console": {
+                "type": "array",
+                "items": {}
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "instance"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.call-workflow-7.response.account_id"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\tconst prod = input.instance === '4914352';\n  if (prod) {\n    return {\n      activationUrl: 'https://b41c7538-06b3-4a39-ab53-79717f02d712.trayapp.io',\n      deactivationUrl: 'https://2383e574-7f10-489d-b8cd-9f23a76f06de.trayapp.io'\n    }\n  } else {\n    return {\n      activationUrl: 'https://3a66be5d-8889-4fab-b3f8-53b5b960dfb1.trayapp.io',\n      deactivationUrl: 'https://d1b4e82a-cae8-428a-a6c2-4476187a72ab.trayapp.io'\n    }\n  }\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-11": {
+          "title": "Get class",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "class"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-4.class.refName",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  if (!input.class) {\n    return null;\n  }\n\tconst parts = input.class.split(':');\n  return parts[parts.length - 1].trim();\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Find Opp",
+          "description": "Find opp for the subscription change order created for and add a message to it about skipping the opp update because another renewal was found.",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Opportunities",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Opportunity",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Opportunity ID"
+                    },
+                    "IsClosed": {
+                      "name": "IsClosed",
+                      "type": "boolean",
+                      "title": "Closed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                },
+                {
+                  "type": "string",
+                  "value": "IsClosed"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.subscription"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "break-loop-1": {
+          "title": "Continue Loop",
+          "connector": {
+            "name": "break-loop",
+            "version": "1.1"
+          },
+          "operation": "continue",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "script-2": {
+          "title": "Preprocess change orders",
+          "description": "Preprocesses change orders by splitting them by the action, returning activation orders and termination orders. Both change orders have a different process.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "changeOrders"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.changeOrders"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n  const { changeOrders } = input;\n\treturn {\n\t\tactivations: changeOrders.filter(co => co.action === 'ACTIVATE'),\n\t\tterminations: changeOrders.filter(co => co.action === 'TERMINATE'),\t\n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "Active items found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-4.result.hasActiveItems"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-10": {
+          "title": "Is TEMPO class?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-11.result"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "in"
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.config.classesForTempo"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Async call",
+          "description": "Processes the given change orders related to a unique subscription.\nThis subflow is part of the \"Process change orders\" process.",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "dadb95d1-6e5e-49fe-aa53-f73cd3c038ee",
+          "name": "Trigger Create Provisioning ZD Ticket"
+        },
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "e96c1f66-536a-4e5c-8bd3-8a2375110837",
+          "name": "Subflow Append Message to Description"
+        },
+        {
+          "id": "8cd05cfc-a86e-4be8-8e66-4a05cf6550c5",
+          "name": "Get NS metadata"
+        },
+        {
+          "id": "877f4856-100f-44e1-b4fe-a6dea86409f0",
+          "name": "Trigger On NS Sub Activation Set SF Opportunity Subscription Status"
+        },
+        {
+          "id": "7eaeda95-2b7c-4547-bd69-e9a29259a6d6",
+          "name": "Trigger On NS Sub Termination Set SF Opportunity Subscription Status"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Success_Level__c</fullName>
+    <description>Inferred from the success level of the opportunity line items (each line item linked to a product object that has a Success Level field).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The success level of the subscription added to the primary quote.</inlineHelpText>
+    <label>Success Level</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Success_Levels</valueSetName>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,595 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "description": "When you check this box, this item will no longer appear on a list unless you check the Show All box at the bottom of the list page."
+    },
+    "createdDate": {
+      "title": "Date Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "lastModifiedDate": {
+      "title": "Last Modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true
+    },
+    "description": {
+      "title": "Description",
+      "type": "string",
+      "description": "Enter a description for this item. This description will appear in the Description column of sales forms.",
+      "nullable": true
+    },
+    "includeChildren": {
+      "title": "Include Children",
+      "type": "boolean",
+      "description": "Check the Include Children box to share the item with all the sub-subsidiaries associated with each subsidiary selected in the Subsidiary field. Note: When sharing items across subsidiaries, all of the options selected on the item record must be compatible across subsidiaries. For example, when entering an inventory item to be shared across subsidiaries, you should select Income and Asset accounts on the item record that are also shared across the same subsidiaries."
+    },
+    "itemId": {
+      "title": "Item Name/Number",
+      "type": "string",
+      "description": "Enter up to 250 characters for the name of this item. This name appears in lists on transactions. If you have the option of entering a display name and do not, the item name prints in the Item column of sales forms when Basic printing is used. If you have the option to enter a vendor name and do not, the item name prints in the Item column of purchase forms. If you have entered a display name, it will print on purchases instead of the item name when Basic printing is used.",
+      "nullable": true
+    },
+    "itemType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "Group",
+            "Discount",
+            "Description",
+            "EndGroup",
+            "GiftCert",
+            "Subtotal",
+            "Service",
+            "ShipItem",
+            "InvtPart",
+            "TaxItem",
+            "Payment",
+            "Expense",
+            "NonInvtPart",
+            "TaxGroup",
+            "Kit",
+            "Markup",
+            "OthCharge",
+            "DwnLdItem",
+            "Assembly",
+            "SubscriPlan"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "customForm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "-250"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "department": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "subsidiary": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/subsidiary"
+          }
+        }
+      }
+    },
+    "class": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "translations": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "title": "Links",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+                }
+              },
+              "displayName": {
+                "title": "Display Name",
+                "type": "string",
+                "nullable": true
+              },
+              "language": {
+                "title": "Language",
+                "type": "string",
+                "nullable": true
+              },
+              "locale": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "title": "Internal identifier",
+                    "type": "string",
+                    "enum": [
+                      "it_CH",
+                      "en_TC",
+                      "af_ZA",
+                      "es_EA",
+                      "es_EC",
+                      "pt_BR",
+                      "en_CY",
+                      "fr_LU",
+                      "nl_AN",
+                      "es_UY",
+                      "en_TT",
+                      "es_ES",
+                      "pt_ST",
+                      "en_DM",
+                      "en_TZ",
+                      "es_ES_EURO",
+                      "fr_ML",
+                      "de_DE_onLQA",
+                      "es_VE",
+                      "nl_BE",
+                      "da_DK",
+                      "pt_AO",
+                      "to_TO",
+                      "en_UG",
+                      "am_ET",
+                      "ss_SZ",
+                      "nl_BQ",
+                      "ar",
+                      "pt_AW",
+                      "ko_KR",
+                      "en_US",
+                      "fr_BE_EURO",
+                      "ko_KP",
+                      "si_AQ",
+                      "fr_MG",
+                      "el_GR",
+                      "be_BY",
+                      "en_AU",
+                      "he_IL",
+                      "en_AW",
+                      "es_SV",
+                      "en_BB",
+                      "ar_YE",
+                      "es_CO",
+                      "es_CL",
+                      "en_BM",
+                      "es_CR",
+                      "pa_IN",
+                      "en_SC",
+                      "en_BS",
+                      "sm_WS",
+                      "it_IT_EURO",
+                      "fr_KM",
+                      "es_CU",
+                      "en_SB",
+                      "en_SG",
+                      "en_BW",
+                      "en_SH",
+                      "en_BZ",
+                      "en_SL",
+                      "az_AZ",
+                      "fi_FI",
+                      "en_SS",
+                      "sr_YU",
+                      "en_CD",
+                      "en_CA",
+                      "ka_GE",
+                      "lv_LV",
+                      "uk_UA",
+                      "es_DO",
+                      "ur_PK",
+                      "ar_IQ",
+                      "fr_LU_EURO",
+                      "pt_PT",
+                      "fr_FR_EURO",
+                      "en_PH",
+                      "th_TH",
+                      "bn_BD",
+                      "si_LK",
+                      "en_PG",
+                      "hu_HU",
+                      "ar_SA",
+                      "ar_SD",
+                      "ru_KZ",
+                      "ar_BH",
+                      "nl_BE_EURO",
+                      "ro_MD",
+                      "en_QA",
+                      "ru_KG",
+                      "es_AR",
+                      "ta_IN",
+                      "sr_RS",
+                      "aa_ER",
+                      "en",
+                      "de_DE_EURO",
+                      "zh_MO",
+                      "en_AE",
+                      "ar_SY",
+                      "es_BO",
+                      "en_AI",
+                      "no_NO",
+                      "en_AG",
+                      "nl_SR",
+                      "fr_VU",
+                      "en_MW",
+                      "gu_AQ",
+                      "ar_TN",
+                      "nl_SX",
+                      "hi_IN",
+                      "en_NA",
+                      "mn_MN",
+                      "en_NG",
+                      "fr_FR",
+                      "ms_MY",
+                      "nl_CW",
+                      "uz_UZ",
+                      "ar_DJ",
+                      "sr_CS",
+                      "de_AT_EURO",
+                      "en_NZ",
+                      "es_PE",
+                      "es_PA",
+                      "fa_IR",
+                      "ar_DZ",
+                      "fr_GN",
+                      "lb_LU",
+                      "xx_US",
+                      "pt_CV",
+                      "sh_RS",
+                      "ht_HT",
+                      "fr_WF",
+                      "es_AR_onLQA",
+                      "es_PR",
+                      "ar_EG",
+                      "es_PY",
+                      "fr_GA",
+                      "en_KW",
+                      "de_AT",
+                      "ro_RO",
+                      "en_KY",
+                      "fr_FR_onLQA",
+                      "fr_DJ",
+                      "ca_ES_EURO",
+                      "cs_CZ",
+                      "en_LC",
+                      "pl_AQ",
+                      "fr_TD",
+                      "fr_TG",
+                      "es_MX",
+                      "sv_AX",
+                      "sk_SK",
+                      "en_LR",
+                      "en_LS",
+                      "ar_OM",
+                      "dz_BT",
+                      "te_IN",
+                      "de_LU_EURO",
+                      "sq_AL",
+                      "sv_SE",
+                      "sn_ZW",
+                      "es_NI",
+                      "en_IE_EURO",
+                      "my_MM",
+                      "en_MF",
+                      "en_MU",
+                      "it_IT",
+                      "pl_PL",
+                      "fr_BE",
+                      "fr_BF",
+                      "tr_TR",
+                      "fr_BI",
+                      "fr_BJ",
+                      "id_ID",
+                      "fr_RW",
+                      "en_ZM",
+                      "km_KH",
+                      "ja_JP",
+                      "de_DE",
+                      "fr_BL",
+                      "tg_TJ",
+                      "ar_QA",
+                      "de_CH",
+                      "zh_HK",
+                      "pt_PT_EURO",
+                      "en_JO",
+                      "en_JM",
+                      "fr_CA",
+                      "nl_NL_EURO",
+                      "fr_CF",
+                      "fr_CG",
+                      "fr_CD",
+                      "pa_AQ",
+                      "fr_CH",
+                      "xx_US_wthId",
+                      "fr_CI",
+                      "pt_GW",
+                      "vi_VN",
+                      "ru_MD",
+                      "fr_CM",
+                      "fr_SC",
+                      "en_KE",
+                      "ne_NP",
+                      "bs_BA",
+                      "sl_SI",
+                      "en_KN",
+                      "fr_SN",
+                      "ar_AE",
+                      "en_GY",
+                      "tl_PH",
+                      "ca_ES",
+                      "es_IC",
+                      "lo_LA",
+                      "kn_IN",
+                      "so_SO",
+                      "fr_PF",
+                      "ar_JO",
+                      "nl_NL",
+                      "is_IS",
+                      "fi_FI_EURO",
+                      "pt_MZ",
+                      "sk_SK_EURO",
+                      "sl_SI_EURO",
+                      "en_IE",
+                      "ms_BN",
+                      "hr_HR",
+                      "ar_KW",
+                      "de_LU",
+                      "lt_LT",
+                      "en_IN",
+                      "ps_AF",
+                      "en_ZA",
+                      "en_VC",
+                      "ru_RU",
+                      "sh_YU",
+                      "ar_LB",
+                      "mr_IN",
+                      "dv_MV",
+                      "fj_FJ",
+                      "zh_TW",
+                      "tk_TM",
+                      "ar_LY",
+                      "en_VU",
+                      "fr_NE",
+                      "en_FK",
+                      "es_GT",
+                      "fr_NC",
+                      "es_GQ",
+                      "fa_AF",
+                      "bg_BG",
+                      "hy_AM",
+                      "en_CY_EURO",
+                      "mk_MK",
+                      "ar_MA",
+                      "en_GD",
+                      "en_GB",
+                      "es_HN",
+                      "gu_IN",
+                      "en_GH",
+                      "et_EE",
+                      "en_GI",
+                      "zh_CN",
+                      "en_GM",
+                      "ar_MR"
+                    ]
+                  },
+                  "refName": {
+                    "title": "Reference Name",
+                    "type": "string"
+                  }
+                }
+              },
+              "salesDescription": {
+                "title": "Sales Description",
+                "type": "string",
+                "nullable": true
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            },
+            "x-ns-filterable": []
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "createdDate",
+    "lastModifiedDate",
+    "externalId",
+    "description",
+    "subsidiary",
+    "includeChildren",
+    "itemId",
+    "itemType",
+    "location",
+    "id",
+    "department",
+    "class"
+  ]
+}

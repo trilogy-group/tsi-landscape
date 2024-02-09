@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cant_intro_if_no_prime_contact</fullName>
+    <active>true</active>
+    <description>Will customer intro to prime contact can&apos;t be filled in if there is no prime contact.</description>
+    <errorConditionFormula>ISBLANK(Prime_Contact__c) &amp;&amp; NOT(ISBLANK(TEXT(Prime_Contact_Intro__c)))</errorConditionFormula>
+    <errorDisplayField>Prime_Contact__c</errorDisplayField>
+    <errorMessage>Please enter the Prime Contact information</errorMessage>
+</ValidationRule>

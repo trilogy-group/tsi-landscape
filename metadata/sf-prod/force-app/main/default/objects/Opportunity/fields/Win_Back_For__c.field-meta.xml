@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Win_Back_For__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The closed lost opportunity this Win Back type opportunity is related to.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The closed lost opportunity this Win Back type opportunity is related to.</inlineHelpText>
+    <label>Win Back For</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>No Closed Lost renewal opportunities found for the account.</errorMessage>
+        <filterItems>
+            <field>Opportunity.AccountId</field>
+            <operation>equals</operation>
+            <valueField>$Source.AccountId</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Opportunity.IsWon</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </filterItems>
+        <filterItems>
+            <field>Opportunity.Type</field>
+            <operation>equals</operation>
+            <value>Renewal</value>
+        </filterItems>
+        <filterItems>
+            <field>Opportunity.IsClosed</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Opportunity</referenceTo>
+    <relationshipLabel>Win Back Opportunities</relationshipLabel>
+    <relationshipName>Win_Back_Opportunities</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Reseller__c</fullName>
+    <description>Used in quote templates to determine if &quot;Ship To&quot; address should be shown.</description>
+    <externalId>false</externalId>
+    <formula>OR(SBQQ__Distributor__c != null,  SBQQ__Partner__c != null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is Reseller</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

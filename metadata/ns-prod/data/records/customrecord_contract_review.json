@@ -1,0 +1,600 @@
+{
+  "type": "object",
+  "properties": {
+    "custrecord_cr_losses_liability_limit": {
+      "title": "Indemnifiable losses liability limit",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_provider_ar_notice_require": {
+      "title": "Provider Auto-Renewal Notice Requirements",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_master_agreement_version": {
+      "title": "Master Agreement Version",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_exclusive_jurisdiction": {
+      "title": "Exclusive jurisdiction",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_exclusion_liability_limit": {
+      "title": "Exclusion of limitation of liability",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_pt_has_right_not_to_renew": {
+      "title": "Provider has right NOT to renew",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_pt_notice_requirements": {
+      "title": "Provider non-renewal notice requirements",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_disclaimer_of_indirect_dam": {
+      "title": "Disclaimer of Indirect Damages",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_loss_liability_limit_amoun": {
+      "title": "Indemnifiable losses liability limit amount",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_has_autorenewal_clause": {
+      "title": "Has Auto-Renewal Clause?",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_contract_notice_requiremen": {
+      "title": "Contract Notice Requirements",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_contract_term": {
+      "title": "Contract Term",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_provider_lockin_period": {
+      "title": "Provider Lock-in Period",
+      "type": "number",
+      "format": "float",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_contract_language": {
+      "title": "Contract Language",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_limitation_of_liability": {
+      "title": "Limitation of liability (even if notified)",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_provider_ar_notice_period": {
+      "title": "Provider Auto-Renewal Notice Period",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_federal_gov_contract": {
+      "title": "Federal government contract",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_restriction_on_new_buyer": {
+      "title": "Restriction on new buyer acting under contract after a change of control at Provider",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_customer_contract_extensio": {
+      "title": "Customer Contract Extension Right",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_pp_change_notice_requireme": {
+      "title": "Provider Price Change Notice Requirement",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_ar_custom_term": {
+      "title": "Auto-Renewal Custom Term",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_pp_change_notice_period": {
+      "title": "Provider Price Change Notice Period",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_name": {
+      "title": "Name / Automatically Set",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_ct_at_convenience": {
+      "title": "Can customer terminate the contract at convenience?",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_ct_notice_period": {
+      "title": "Customer Non-Renewal Notice Period",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_review_date": {
+      "title": "Review Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_pt_notice_period": {
+      "title": "Provider Notice Period NOT to Renew",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_mfn_clause_affiliates": {
+      "title": "MFN Clause - affiliates",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_ct_refund_prepaid_fees": {
+      "title": "Customer Termination Refund Prepaid Fees",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_latest_signed_quote_versio": {
+      "title": "Latest Signed Quote Version",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "recordId": {
+      "title": "Record ID",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_contract_end_date": {
+      "title": "Contract End Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_contract_law_country": {
+      "title": "Contract Law Country",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_master_agr_effective_date": {
+      "title": "Master Agreement Effective Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_contract_law_state": {
+      "title": "Contract Law State",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_ct_at_change_of_control": {
+      "title": "Can customer terminate the contract at change of control?",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_cr_ar_price": {
+      "title": "Auto-Renewal Price",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "custrecord_cr_contract_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_cr_customer_reduce_entitlemen": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_cr_subscription": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_cr_transfer_rights_by_provide": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_cr_master_agreement_paper": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_cr_caps_on_renewal_price": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_cr_latest_signed_quote_paper": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_cr_use_of_foreign_entities": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "custrecord_cr_losses_liability_limit",
+    "custrecord_cr_master_agreement_paper",
+    "custrecord_cr_provider_ar_notice_require",
+    "externalId",
+    "lastmodifiedby",
+    "custrecord_cr_master_agreement_version",
+    "custrecord_cr_use_of_foreign_entities",
+    "custrecord_cr_exclusive_jurisdiction",
+    "custrecord_cr_exclusion_liability_limit",
+    "custrecord_cr_pt_has_right_not_to_renew",
+    "custrecord_cr_pt_notice_requirements",
+    "scriptId",
+    "custrecord_cr_disclaimer_of_indirect_dam",
+    "custrecord_cr_loss_liability_limit_amoun",
+    "id",
+    "custrecord_cr_has_autorenewal_clause",
+    "custrecord_cr_contract_notice_requiremen",
+    "custrecord_cr_contract_term",
+    "created",
+    "custrecord_cr_provider_lockin_period",
+    "custrecord_cr_contract_language",
+    "lastmodified",
+    "name",
+    "custrecord_cr_limitation_of_liability",
+    "custrecord_cr_subscription",
+    "custrecord_cr_provider_ar_notice_period",
+    "isInactive",
+    "custrecord_cr_federal_gov_contract",
+    "custrecord_cr_restriction_on_new_buyer",
+    "custrecord_cr_customer_contract_extensio",
+    "custrecord_cr_pp_change_notice_requireme",
+    "custrecord_cr_ar_custom_term",
+    "custrecord_cr_pp_change_notice_period",
+    "custrecord_cr_name",
+    "custrecord_cr_caps_on_renewal_price",
+    "custrecord_cr_ct_at_convenience",
+    "custrecord_cr_ct_notice_period",
+    "custrecord_cr_review_date",
+    "custrecord_cr_pt_notice_period",
+    "custrecord_cr_mfn_clause_affiliates",
+    "owner",
+    "custrecord_cr_latest_signed_quote_paper",
+    "custrecord_cr_ct_refund_prepaid_fees",
+    "abbreviation",
+    "custrecord_cr_latest_signed_quote_versio",
+    "recordId",
+    "custrecord_cr_contract_end_date",
+    "custrecord_cr_contract_law_country",
+    "custrecord_cr_contract_type",
+    "custrecord_cr_master_agr_effective_date",
+    "custrecord_cr_contract_law_state",
+    "custrecord_cr_ct_at_change_of_control",
+    "custrecord_cr_customer_reduce_entitlemen",
+    "custrecord_cr_ar_price",
+    "custrecord_cr_transfer_rights_by_provide"
+  ],
+  "x-ns-custom-record": true
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__AWSProcurementType__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field is required in order to launch Referral in ACE for the “ISV Accelerate - SRRP” Partners.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The payment agreement with the customer</inlineHelpText>
+    <label>AWS Procurement Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Contract</fullName>
+                <default>false</default>
+                <label>Contract</label>
+            </value>
+            <value>
+                <fullName>Pay-as-you-go</fullName>
+                <default>false</default>
+                <label>Pay-as-you-go</label>
+            </value>
+            <value>
+                <fullName>Subscription</fullName>
+                <default>false</default>
+                <label>Subscription</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TimeStampIsRequired</fullName>
+    <active>true</active>
+    <description>LAMBDA-60192 Time stamp field is required if customer interest is either Positive”/”Negative”/”Neutral</description>
+    <errorConditionFormula>AND( NOT(ISNEW()),NOT (AND(IsChanged(Customer_Interest__c),ISPICKVAL(Customer_Interest__c,&apos;Not Discussed&apos;),
+ISPICKVAL(Customer_Interest__c,&apos;Customer won\&apos;t engage&apos;),
+ISPICKVAL(Customer_Interest__c,&apos;Unclear feedback&apos;))
+),
+IsBlank( Time_Stamp__c ),
+NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+)</errorConditionFormula>
+    <errorDisplayField>Customer_Interest__c</errorDisplayField>
+    <errorMessage>Please include the timestamps from the call recording that correspond to the customer feedback provided for the platinum offer items</errorMessage>
+</ValidationRule>

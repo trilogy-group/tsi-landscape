@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prime_Q1_Free_Form_only_if_Q1_is_Yes_IDK</fullName>
+    <active>true</active>
+    <description>Primary question must be Yes or I Don&apos;t Know in order to ask the additional free form question.</description>
+    <errorConditionFormula>ISBLANK(TEXT(XO_Prime_Q1__c)) &amp;&amp;  NOT(ISBLANK(XO_Prime_Q1_Free_Form__c))</errorConditionFormula>
+    <errorDisplayField>XO_Prime_Q1_Free_Form__c</errorDisplayField>
+    <errorMessage>What was the customer&apos;s response to XO Prime Q1: Does your organization hire remote?</errorMessage>
+</ValidationRule>

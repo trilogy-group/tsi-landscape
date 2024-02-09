@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CSM_All</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Priority_Score__c</columns>
+    <columns>Success_Level__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.TYPE</field>
+        <operation>equals</operation>
+        <value>CSM</value>
+    </filters>
+    <label>CSM - All</label>
+    <sharedTo>
+        <role>CSM</role>
+        <role>Manager_CSM</role>
+    </sharedTo>
+</ListView>

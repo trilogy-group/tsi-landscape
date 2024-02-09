@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AI_Pitch_Sentiment__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Customer&apos;s sentiment towards the AI product features pitched as a part of the Renewal.</inlineHelpText>
+    <label>AI Pitch Sentiment</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Skeptical</fullName>
+                <default>false</default>
+                <label>Skeptial / Against AI</label>
+            </value>
+            <value>
+                <fullName>Not Interested - Don&apos;t see value in the feature</fullName>
+                <default>false</default>
+                <label>Not Interested - Don&apos;t see value in the feature</label>
+            </value>
+            <value>
+                <fullName>Interested but not ready to act</fullName>
+                <default>false</default>
+                <label>Interested but not ready to act</label>
+            </value>
+            <value>
+                <fullName>Highly Interested</fullName>
+                <default>false</default>
+                <label>Highly Interested / Wants to try</label>
+            </value>
+            <value>
+                <fullName>Neutral</fullName>
+                <default>false</default>
+                <label>Neutral</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

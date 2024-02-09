@@ -1,0 +1,486 @@
+{
+  "type": "object",
+  "properties": {
+    "custrecord_useleasetermasal": {
+      "title": "Use Lease Term as Asset Life",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_autopropose": {
+      "title": "Auto-propose from Asset Accounts",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_adminallreports": {
+      "title": "Allow Administrators to View All Reports",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_postlocation": {
+      "title": "Post on Location Change",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_maxsummaryperjournal": {
+      "title": "Max Summary Per Journal",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_diagnostic_scan_pref": {
+      "title": "Diagnostic Scan Preference",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_batchsearchlimit": {
+      "title": "Batch Search Limit",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_depschedpd_template": {
+      "title": "Depreciation Schedule PD Template",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_postingtaxmigrated": {
+      "title": "Posting Tax Migrated",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_allowleaseedit": {
+      "title": "Allow Lease Modifications",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_depschednbv_template": {
+      "title": "Depreciation Schedule NBV Template",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_far_reportfolder": {
+      "title": "Reports Folder",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_allownegativecost": {
+      "title": "Allow Negative Asset Cost",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_followacctperiod": {
+      "title": "Use Accounting Period Dates for Depreciation",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_constrainal": {
+      "title": "Constrain Alternate Asset Life",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_farsetupcheckaplock": {
+      "title": "Post to Next Open Period if AP is Locked",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_propapprovedonly": {
+      "title": "Propose Approved Transactions Only",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_deprschedinslimit": {
+      "title": "Depreciation Schedule Instruction Limit",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_far_disposalform": {
+      "title": "Asset Disposal Invoice Form",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_bgqueuelimit": {
+      "title": "Queue Limit",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_restrictrejectassetprop": {
+      "title": "Restrict Ability to Reject Proposals",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_precompute": {
+      "title": "Precompute Depreciation Values",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_allowcustomtransaction": {
+      "title": "Use Custom Transaction Entries",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_fam_files_folder": {
+      "title": "FAM Generated Files Folder",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_allowfuturedepr": {
+      "title": "Allow Future Depreciation",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_deprmonth_template": {
+      "title": "Depreciation Monthly Template",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_assetsumm_template": {
+      "title": "Asset Summary Template",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_farsetupcheckarlock": {
+      "title": "Post to Next Open Period if AR is Locked",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_preventmultiresetoncsv": {
+      "title": "Prevent Multiple Reset on CSV Import",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_assetreg_template": {
+      "title": "Asset Register Template",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_allowvalueedit": {
+      "title": "Allow Asset Value Editing",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_intcurrsymbols": {
+      "title": "Integer Currencies (Deprecated)",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_autocreate": {
+      "title": "Auto-create new Assets from Proposals",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_daysstorereports": {
+      "title": "Days to Store Reports",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_assetlist_template": {
+      "title": "Asset Listing Template",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_postclass": {
+      "title": "Post on Class Change",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ctryspecific_pref": {
+      "title": "Country Specific Preferences",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_journallinelimit": {
+      "title": "Journal Line Limit",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_postdepartment": {
+      "title": "Post on Department Change",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_run_script_on_csv_import": {
+      "title": "Run Server Scripts on CSV Import",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_reportfilesizelimit": {
+      "title": "Report File Size Limit",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "recordId": {
+      "title": "Record ID",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_queuepollinginterval": {
+      "title": "Queue Polling Interval",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_wdusedepraccount": {
+      "title": "Write-down using Depreciation Account",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_setup_prop_sublist_flds": {
+      "title": "Asset Proposal Sublist Fields",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_fam_summarisejournalsby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_leaseuserrole": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/role"
+          }
+        }
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_userrole": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        },
+        "totalResults": {
+          "title": "Total Results",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "hasMore": {
+          "title": "Has More Results",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "offset": {
+          "title": "Query Offset",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/role"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [],
+  "x-ns-custom-record": true
+}

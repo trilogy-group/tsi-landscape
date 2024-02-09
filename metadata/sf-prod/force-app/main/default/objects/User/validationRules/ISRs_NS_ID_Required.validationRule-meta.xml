@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ISRs_NS_ID_Required</fullName>
+    <active>true</active>
+    <description>User with Role=ISR Renewals must have NetSuite ID set</description>
+    <errorConditionFormula>AND(UserRole.Name = &apos;ISR Renewals&apos;,  ISBLANK( NetSuite_ID__c ))</errorConditionFormula>
+    <errorDisplayField>NetSuite_ID__c</errorDisplayField>
+    <errorMessage>User with Role=ISR Renewals must have NetSuite ID set</errorMessage>
+</ValidationRule>

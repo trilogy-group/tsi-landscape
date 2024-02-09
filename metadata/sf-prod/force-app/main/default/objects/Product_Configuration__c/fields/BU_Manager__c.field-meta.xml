@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BU_Manager__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Manager of the BU team that processes the renewals for the product family</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Manager of the BU team that processes the renewals for the product family. If Opportunity is Handled by BU, this user will be the approving VP.</inlineHelpText>
+    <label>BU Manager</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Product_Configurations_BUManager</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Health_Reason__c</fullName>
+    <description>Field migrated from Ignite SFDC</description>
+    <externalId>false</externalId>
+    <label>Health Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not launched &gt; 90 days</fullName>
+                <default>false</default>
+                <label>Not launched &gt; 90 days</label>
+            </value>
+            <value>
+                <fullName>Client Execution (lacking effort from the POC)</fullName>
+                <default>false</default>
+                <label>Client Execution (lacking effort from the POC)</label>
+            </value>
+            <value>
+                <fullName>Unresponsive POC</fullName>
+                <default>false</default>
+                <label>Unresponsive POC</label>
+            </value>
+            <value>
+                <fullName>Billing Issue / Delinquent</fullName>
+                <default>false</default>
+                <label>Billing Issue / Delinquent</label>
+            </value>
+            <value>
+                <fullName>Custom Engineering Project Off Track</fullName>
+                <default>false</default>
+                <label>Custom Engineering Project Off Track</label>
+            </value>
+            <value>
+                <fullName>High Defect Volume</fullName>
+                <default>false</default>
+                <label>High Defect Volume</label>
+            </value>
+            <value>
+                <fullName>Critical Technical Issue</fullName>
+                <default>false</default>
+                <label>Critical Technical Issue</label>
+            </value>
+            <value>
+                <fullName>POC Turnover/ Lost POC</fullName>
+                <default>false</default>
+                <label>POC Turnover/ Lost POC</label>
+            </value>
+            <value>
+                <fullName>Dissatisfied</fullName>
+                <default>false</default>
+                <label>Dissatisfied</label>
+            </value>
+            <value>
+                <fullName>Risk of loss- Competitor/Budget</fullName>
+                <default>false</default>
+                <label>Risk of loss- Competitor/Budget</label>
+            </value>
+            <value>
+                <fullName>Lack of Engagement</fullName>
+                <default>false</default>
+                <label>Lack of Engagement</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

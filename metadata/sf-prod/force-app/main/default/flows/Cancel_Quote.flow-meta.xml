@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Cancels the o2c jira ticket</description>
+        <name>Cancel_O2C_Jira_ticket</name>
+        <label>Cancel O2C Jira ticket</label>
+        <locationX>50</locationX>
+        <locationY>782</locationY>
+        <actionName>NetsuiteSyncActions.postV1O2cjiraticketCancel</actionName>
+        <actionType>externalService</actionType>
+        <connector>
+            <targetReference>Set_Status_to_Cancelled</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>cancelO2CJiraTicketInput</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Calls trayIO which will search by Out for Signature Agreements and call Netsuite to canceled them</description>
+        <name>Cancel_Out_for_Signature_Agreements</name>
+        <label>Cancel Out for Signature Agreements</label>
+        <locationX>490</locationX>
+        <locationY>782</locationY>
+        <actionName>NetsuiteSyncActions.postV1AgreementsCancel</actionName>
+        <actionType>externalService</actionType>
+        <connector>
+            <targetReference>Set_Status_to_Cancelled</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>cancelAgreementInput</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>59.0</apiVersion>
+    <assignments>
+        <description>Assign Quote Id and org id to send to action</description>
+        <name>Assign_inputs_to_action</name>
+        <label>Assign inputs to action</label>
+        <locationX>490</locationX>
+        <locationY>674</locationY>
+        <assignmentItems>
+            <assignToReference>cancelAgreementInput.quoteId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Quote.NetSuite_ID__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>cancelAgreementInput.orgId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Organization.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Cancel_Out_for_Signature_Agreements</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Assign o2c ticket link and org id to use in action</description>
+        <name>Assign_inputs_to_action2</name>
+        <label>Assign inputs to action</label>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
+        <assignmentItems>
+            <assignToReference>cancelO2CJiraTicketInput.o2cTicketLink</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Quote.O2C_Ticket_Link__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>cancelO2CJiraTicketInput.orgId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Organization.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Cancel_O2C_Jira_ticket</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Set Quote status to Cancelled. The quote is generated, but not sent to signature. Only change the quote status to cancelled.</description>
+        <name>Set_Status_to_Cancelled</name>
+        <label>Set Status to Cancelled</label>
+        <locationX>556</locationX>
+        <locationY>1058</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Quote.SBQQ__Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Cancelled</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>UpdateQuote</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Text box need to match text CONFIRM</description>
+        <name>Cancelation_Confirmed</name>
+        <label>Cancelation Confirmed?</label>
+        <locationX>875</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>ScreenNotConfirmed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Confirmed</defaultConnectorLabel>
+        <rules>
+            <name>Confirmed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>textbox_confirmation</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>CONFIRM</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Quote</targetReference>
+            </connector>
+            <label>Confirmed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Only can cancel Out for Signature agreements if we have a netsuite id in the quote</description>
+        <name>Is_Netsuite_Id_set</name>
+        <label>Is Netsuite Id set?</label>
+        <locationX>622</locationX>
+        <locationY>566</locationY>
+        <defaultConnector>
+            <targetReference>Set_Status_to_Cancelled</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NS Id not set</defaultConnectorLabel>
+        <rules>
+            <name>NS_Id_set</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Quote.NetSuite_ID__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_inputs_to_action</targetReference>
+            </connector>
+            <label>NS Id set</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_o2c_ticket_link_set</name>
+        <label>Is o2c ticket link set?</label>
+        <locationX>182</locationX>
+        <locationY>566</locationY>
+        <defaultConnector>
+            <targetReference>Set_Status_to_Cancelled</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not set</defaultConnectorLabel>
+        <rules>
+            <name>O2C_ticket_link_set</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Quote.O2C_Ticket_Link__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_inputs_to_action2</targetReference>
+            </connector>
+            <label>O2C ticket link set</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check what is the quote status to take the action path. It will only do something for Generated and Out For Signature status.</description>
+        <name>Quote_Status</name>
+        <label>Quote Status</label>
+        <locationX>556</locationX>
+        <locationY>458</locationY>
+        <defaultConnector>
+            <targetReference>ScreenStatusMessage</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default</defaultConnectorLabel>
+        <rules>
+            <name>Generated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Quote.SBQQ__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Generated</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_o2c_ticket_link_set</targetReference>
+            </connector>
+            <label>Generated</label>
+        </rules>
+        <rules>
+            <name>Out_For_Signature</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Quote.SBQQ__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Out for Signature</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_Netsuite_Id_set</targetReference>
+            </connector>
+            <label>Out For Signature</label>
+        </rules>
+    </decisions>
+    <description>Cancels a quote and if in Out for Signature status, calls netsuite to cancel the out for signature agreements.
+If it&apos;s generated call trayIO to cancel outstanding jira tickets.</description>
+    <interviewLabel>Cancel Quote {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Cancel Quote</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <description>Get Quote</description>
+        <name>Get_Quote</name>
+        <label>Get Quote</label>
+        <locationX>556</locationX>
+        <locationY>350</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Quote_Status</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__Quote__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Updates the Quote</description>
+        <name>UpdateQuote</name>
+        <label>Update Quote</label>
+        <locationX>556</locationX>
+        <locationY>1166</locationY>
+        <connector>
+            <targetReference>FinalSuccessScreen</targetReference>
+        </connector>
+        <inputReference>Get_Quote</inputReference>
+    </recordUpdates>
+    <screens>
+        <description>Confirmation screen shown to the user. Prevents canceling a quote if the button was wrongly clicked.</description>
+        <name>ConfirmationScreen</name>
+        <label>Confirmation Screen</label>
+        <locationX>875</locationX>
+        <locationY>134</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Cancelation_Confirmed</targetReference>
+        </connector>
+        <fields>
+            <name>textConfirmationScreen</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;This action can&apos;t be reversed.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;Are you sure you want to cancel this quote?&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>textbox_confirmation</name>
+            <dataType>String</dataType>
+            <fieldText>To continue type CONFIRM and click button Cancel Quote</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <nextOrFinishButtonLabel>Cancel the Quote</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Final screen shown to the user after Quote is canceled</description>
+        <name>FinalSuccessScreen</name>
+        <label>Final Success Screen</label>
+        <locationX>556</locationX>
+        <locationY>1274</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>finalSuccessMessage</name>
+            <fieldText>&lt;p&gt;Quote Canceled!&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Screen shown when doesn’t match CONFIRM text</description>
+        <name>ScreenNotConfirmed</name>
+        <label>Screen Not Confirmed</label>
+        <locationX>1194</locationX>
+        <locationY>350</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>finalNotConfirmedMessage</name>
+            <fieldText>&lt;p&gt;Quote not canceled.&lt;/p&gt;&lt;p&gt;Confirmation didn&apos;t match CONFIRM.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Screen shown when quote is in with an unexpected status</description>
+        <name>ScreenStatusMessage</name>
+        <label>Screen Status Message</label>
+        <locationX>930</locationX>
+        <locationY>566</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>finalStatusMessage</name>
+            <fieldText>&lt;p&gt;Quote not canceled because quote status is {!Get_Quote.SBQQ__Status__c}. &lt;/p&gt;&lt;p&gt;Quote needs to be Generated or Out for Signature to Cancel.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>749</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>ConfirmationScreen</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>cancelAgreementInput</name>
+        <apexClass>ExternalService__NetsuiteSyncActions_postV1AgreementsCancel_IN_body</apexClass>
+        <dataType>Apex</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>cancelO2CJiraTicketInput</name>
+        <apexClass>ExternalService__NetsuiteSyncActions_postV1O2cjiraticketCancel_IN_body</apexClass>
+        <dataType>Apex</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Quote being cancelled</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

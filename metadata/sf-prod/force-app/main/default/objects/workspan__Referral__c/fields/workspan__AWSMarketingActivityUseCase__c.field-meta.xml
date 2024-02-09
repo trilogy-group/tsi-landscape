@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__AWSMarketingActivityUseCase__c</fullName>
+    <deprecated>false</deprecated>
+    <description>When the ‘Is Opportunity From Marketing Activity’ is ‘Yes’, the field  ‘Marketing Activity Use Case’ will be automatically nulled out and left blank.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Marketing Campaign Usecase that resulted in the Opportunity</inlineHelpText>
+    <label>Marketing Activity Use Case</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>workspan__AWSIsOpportunityFromMarketingActivity__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AI/ML</fullName>
+                <default>false</default>
+                <label>AI/ML</label>
+            </value>
+            <value>
+                <fullName>Analytics</fullName>
+                <default>false</default>
+                <label>Analytics</label>
+            </value>
+            <value>
+                <fullName>Application Integration</fullName>
+                <default>false</default>
+                <label>Application Integration</label>
+            </value>
+            <value>
+                <fullName>Blockchain</fullName>
+                <default>false</default>
+                <label>Blockchain</label>
+            </value>
+            <value>
+                <fullName>Business Applications</fullName>
+                <default>false</default>
+                <label>Business Applications</label>
+            </value>
+            <value>
+                <fullName>Cloud Financial Management</fullName>
+                <default>false</default>
+                <label>Cloud Financial Management</label>
+            </value>
+            <value>
+                <fullName>Compute</fullName>
+                <default>false</default>
+                <label>Compute</label>
+            </value>
+            <value>
+                <fullName>Containers</fullName>
+                <default>false</default>
+                <label>Containers</label>
+            </value>
+            <value>
+                <fullName>Customer Engagement</fullName>
+                <default>false</default>
+                <label>Customer Engagement</label>
+            </value>
+            <value>
+                <fullName>Databases</fullName>
+                <default>false</default>
+                <label>Databases</label>
+            </value>
+            <value>
+                <fullName>Developer Tools</fullName>
+                <default>false</default>
+                <label>Developer Tools</label>
+            </value>
+            <value>
+                <fullName>End User Computing</fullName>
+                <default>false</default>
+                <label>End User Computing</label>
+            </value>
+            <value>
+                <fullName>Front End Web &amp; Mobile</fullName>
+                <default>false</default>
+                <label>Front End Web &amp; Mobile</label>
+            </value>
+            <value>
+                <fullName>Game Tech</fullName>
+                <default>false</default>
+                <label>Game Tech</label>
+            </value>
+            <value>
+                <fullName>IoT</fullName>
+                <default>false</default>
+                <label>IoT</label>
+            </value>
+            <value>
+                <fullName>Management &amp; Governance</fullName>
+                <default>false</default>
+                <label>Management &amp; Governance</label>
+            </value>
+            <value>
+                <fullName>Media Services</fullName>
+                <default>false</default>
+                <label>Media Services</label>
+            </value>
+            <value>
+                <fullName>Migration &amp; Transfer</fullName>
+                <default>false</default>
+                <label>Migration &amp; Transfer</label>
+            </value>
+            <value>
+                <fullName>Networking &amp; Content Delivery</fullName>
+                <default>false</default>
+                <label>Networking &amp; Content Delivery</label>
+            </value>
+            <value>
+                <fullName>Quantum Technologies</fullName>
+                <default>false</default>
+                <label>Quantum Technologies</label>
+            </value>
+            <value>
+                <fullName>Robotics</fullName>
+                <default>false</default>
+                <label>Robotics</label>
+            </value>
+            <value>
+                <fullName>Satellite</fullName>
+                <default>false</default>
+                <label>Satellite</label>
+            </value>
+            <value>
+                <fullName>Security</fullName>
+                <default>false</default>
+                <label>Security</label>
+            </value>
+            <value>
+                <fullName>Serverless</fullName>
+                <default>false</default>
+                <label>Serverless</label>
+            </value>
+            <value>
+                <fullName>Storage</fullName>
+                <default>false</default>
+                <label>Storage</label>
+            </value>
+            <value>
+                <fullName>VR &amp; AR</fullName>
+                <default>false</default>
+                <label>VR &amp; AR</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>AI/ML</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Analytics</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Application Integration</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Blockchain</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Business Applications</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Cloud Financial Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Compute</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Containers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Customer Engagement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Databases</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Developer Tools</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>End User Computing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Front End Web &amp; Mobile</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Game Tech</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>IoT</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Management &amp; Governance</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Media Services</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Migration &amp; Transfer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Networking &amp; Content Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Quantum Technologies</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Robotics</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Satellite</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Security</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Serverless</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>Storage</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Yes</controllingFieldValue>
+            <valueName>VR &amp; AR</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

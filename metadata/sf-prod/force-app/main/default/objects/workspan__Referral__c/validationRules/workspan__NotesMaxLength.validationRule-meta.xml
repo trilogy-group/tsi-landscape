@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__NotesMaxLength</fullName>
+    <active>true</active>
+    <description>Notes length should be no longer than 255 characters for Outgoing Amazon Referrals.</description>
+    <errorConditionFormula>workspan__SourcedToPartner__c = &apos;Amazon&apos;
+        &amp;&amp; ISPICKVAL(workspan__ReadyForSubmitPicklist__c , &apos;Yes&apos;)
+        &amp;&amp; ISPICKVAL(workspan__ReferralType__c , &apos;Outgoing&apos;)
+        &amp;&amp; LEN(workspan__Notes__c) &gt; 255
+        &amp;&amp; (ISNEW() || ISCHANGED(workspan__ReadyForSubmitPicklist__c) || ISCHANGED(workspan__Notes__c))
+        &amp;&amp; !workspan__SkipValidationRules__c</errorConditionFormula>
+    <errorDisplayField>workspan__Notes__c</errorDisplayField>
+    <errorMessage>Notes length should be no longer than 255 characters for Outgoing Amazon Referrals.</errorMessage>
+</ValidationRule>

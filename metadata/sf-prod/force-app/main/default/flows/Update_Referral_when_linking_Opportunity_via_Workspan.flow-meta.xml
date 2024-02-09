@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <assignments>
+        <name>set_Referral_fields</name>
+        <label>set Referral fields</label>
+        <locationX>174</locationX>
+        <locationY>342</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.workspan__SalesStage__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.workspan__Opportunity__r.StageName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.workspan__CloseDate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.workspan__Opportunity__r.CloseDate</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Custom copy of WorkSpan - Update Referral when linking Opportunity flow template
+
+
+When an incoming referrals comes through ACE and flows to Workspan, you can &apos;accept&apos; it, and link it to an existing opportunity. When you link it, the referral will stay in sync with the opportunity details when this flow is turned on.
+
+2024-01-11 Enabled for CloudFix Opportunity only for now</description>
+    <interviewLabel>Update Referral when linking Opportunity via Workspan {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Referral when linking Opportunity via Workspan</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <sourceTemplate>workspan__UpdateReferralWhenLinkingOpportunity</sourceTemplate>
+    <start>
+        <locationX>50</locationX>
+        <locationY>49</locationY>
+        <connector>
+            <targetReference>set_Referral_fields</targetReference>
+        </connector>
+        <object>workspan__Referral__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

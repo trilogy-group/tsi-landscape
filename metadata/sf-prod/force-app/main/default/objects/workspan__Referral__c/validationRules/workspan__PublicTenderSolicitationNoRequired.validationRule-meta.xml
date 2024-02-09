@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__PublicTenderSolicitationNoRequired</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    workspan__SourcedToPartner__c = &apos;Amazon&apos;,
+    OR(
+        ISPICKVAL(workspan__Industry__c, &apos;Government&apos;),
+        ISPICKVAL(workspan__Industry__c, &apos;Education&apos;)
+    ),
+    ISBLANK(workspan__AWSRFxPublicTenderSolicitationNo__c),
+    OR(
+        (ISNEW() &amp;&amp; workspan__ReferralCreationMethod__c = &apos;UI&apos;),
+        ISPICKVAL(workspan__ReadyForSubmitPicklist__c, &apos;Yes&apos;)
+    ),
+    !workspan__SkipValidationRules__c
+    )</errorConditionFormula>
+    <errorDisplayField>workspan__AWSRFxPublicTenderSolicitationNo__c</errorDisplayField>
+    <errorMessage>Solicitation Number is required when Industry is Government or Education.</errorMessage>
+</ValidationRule>

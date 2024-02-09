@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>53.0</apiVersion>
+    <assignments>
+        <description>assign the record in the loop to the collection in order to update it in last step as a colleciton</description>
+        <name>assign_the_updated_record_to_the_collection</name>
+        <label>assign the updated record to the collection</label>
+        <locationX>264</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>OpportunitiesToUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Go_through_all_opportunities</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Go_through_all_opportunities</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>set StageName of the opportunity to Outreach</description>
+        <name>set_stage_to_Renewal_Engagement</name>
+        <label>set stage to Outreach</label>
+        <locationX>264</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>Go_through_all_opportunities.StageName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Outreach</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>assign_the_updated_record_to_the_collection</targetReference>
+        </connector>
+    </assignments>
+    <description>This flow updates the Renewal Opportunity from stage Pending or AI Presale to Outreach if the Close Date &lt;= 121 days from Today for products configuration that has the renewal flag set and is active
+
+4/22/2023 - LAMBDA-57256 - Start the renewal process 180 days before the renewal date instead of 120. Update the flow condition to Renewal_Start_Date_Formula__c &lt; = Current date of the Flow
+
+5/25/23 - Changed the stage name from Renewal Engagement to Outreach</description>
+    <formulas>
+        <description>Current date + 121 days</description>
+        <name>dateOfDaysLater</name>
+        <dataType>Date</dataType>
+        <expression>{!$Flow.CurrentDate}+91</expression>
+    </formulas>
+    <interviewLabel>AdvanceRenewalOpportunityFromPendingToRenewalEngagement {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>AdvanceRenewalOpportunityFromPending&amp;AIPresaleToOutreach</label>
+    <loops>
+        <description>loop through the opportunities to set the value of each record</description>
+        <name>Go_through_all_opportunities</name>
+        <label>Go through all opportunities</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <collectionReference>get_opportunities</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>set_stage_to_Renewal_Engagement</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Opportunities</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>get opportunities that are in stage pending and type Renewal and active and their name do not start with _test_</description>
+        <name>get_opportunities</name>
+        <label>get opportunities</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Go_through_all_opportunities</targetReference>
+        </connector>
+        <filterLogic>(1 AND 2  AND 3 AND NOT (4) AND 5) OR (6 AND 7 AND 8 AND 9)</filterLogic>
+        <filters>
+            <field>Active__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>StageName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>AI Presale</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Type</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Renewal</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Name</field>
+            <operator>StartsWith</operator>
+            <value>
+                <stringValue>_test_</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Renewal_Start_Date_Formula__c</field>
+            <operator>LessThanOrEqualTo</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Type</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Upsell</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CloseDate</field>
+            <operator>LessThanOrEqualTo</operator>
+            <value>
+                <elementReference>dateOfDaysLater</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Product__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>EngineYard</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>StageName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Pending</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>update the opportunities as collection</description>
+        <name>Update_Opportunities</name>
+        <label>Update Opportunities</label>
+        <locationX>176</locationX>
+        <locationY>650</locationY>
+        <inputReference>OpportunitiesToUpdate</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>get_opportunities</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>opportunities to update collection</description>
+        <name>OpportunitiesToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+</Flow>

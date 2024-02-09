@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_standard_Contract_Term__c</fullName>
+    <externalId>false</externalId>
+    <formula>Contract_Term__c != 12 &amp;&amp; Contract_Term__c != 36 &amp;&amp; Contract_Term__c != 60</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Non-standard Contract Term</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

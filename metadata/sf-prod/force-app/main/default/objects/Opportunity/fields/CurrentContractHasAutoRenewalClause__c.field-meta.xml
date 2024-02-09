@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CurrentContractHasAutoRenewalClause__c</fullName>
+    <description>Indicates if the customer&apos;s last signed quote contained the auto-renewal clause and hence we can enforce auto-renewal.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If the last signed contract/quote contained the AR clause, then set to YES and put a link to the document into the &quot;Previous Quote with AR Cluse&quot; field. If last signed quote did not have the AR clause or quote can&apos;t be located, then set to NO. Auto-Renewal is only possible if there is a previously signed contract/quote with an AR clause.</inlineHelpText>
+    <label>Has Auto-Renewal Clause</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No</fullName>
+                <default>false</default>
+                <label>No</label>
+            </value>
+            <value>
+                <fullName>Yes</fullName>
+                <default>false</default>
+                <label>Yes</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

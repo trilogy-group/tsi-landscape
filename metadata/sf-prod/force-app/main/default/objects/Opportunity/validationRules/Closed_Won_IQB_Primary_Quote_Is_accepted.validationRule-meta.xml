@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_Won_IQB_Primary_Quote_Is_accepted</fullName>
+    <active>true</active>
+    <description>Prevent moving an opportunity into Closed-Won if its primary quote Status!=(Accepted, Generated, Signed ) and Status != Out for signature for Auto Renew or PO Received</description>
+    <errorConditionFormula>NOT(ISPICKVAL(Type,&apos;xBR&apos;)) &amp;&amp;
+NOT(ISPICKVAL(Type,&apos;Prime&apos;)) &amp;&amp;
+Text(StageName) == &apos;Closed Won&apos; &amp;&amp; (isNull(SBQQ__PrimaryQuote__c) ||
+(Text(SBQQ__PrimaryQuote__r.SBQQ__Status__c) != &apos;Accepted&apos;
+&amp;&amp; Text(SBQQ__PrimaryQuote__r.SBQQ__Status__c) != &apos;Generated&apos;
+&amp;&amp; Text(SBQQ__PrimaryQuote__r.SBQQ__Status__c) != &apos;Signed&apos;)
+&amp;&amp; NOT (Text(SBQQ__PrimaryQuote__r.SBQQ__Status__c) == &apos;Out for Signature&apos; &amp;&amp; (Text(Win_Type__c) == &apos;Auto-Renew&apos; || Text(Win_Type__c) == &apos;PO Received&apos;)))
+&amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+&amp;&amp; !IsOpportunityBypassed__c</errorConditionFormula>
+    <errorMessage>Status of the primary quote should be Accepted, or Generated, or Signed in order to set the opportunity as Closed Won. When Win Type is &apos;Auto-Renew&apos; or &apos;PO Received&apos; in addition to the statuses above the primary quote can be &apos;Out for signature&apos;</errorMessage>
+</ValidationRule>

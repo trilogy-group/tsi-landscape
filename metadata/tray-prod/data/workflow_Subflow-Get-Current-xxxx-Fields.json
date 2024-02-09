@@ -1,0 +1,2076 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "f74e4e2d-375c-4764-9d1d-a3f493ee8537",
+      "created": "2022-05-11T05:47:28.094289Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "group": "f999c214-db76-4f52-95dd-c32a2d7c9c9d",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "1600dfae-11df-4db4-90d8-c3ccf8a3068d",
+        "created": "2023-05-09T20:37:23.328669Z"
+      },
+      "title": "Subflow Get Current-xxxx Fields",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {
+          "ExtendedApproach": 0
+        },
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "parentSubscriptionId": {
+              "type": "string",
+              "title": "Parent Subscription Id",
+              "description": "Identifier of the parent subscription"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "currentSuccessLevel": {
+              "type": "string",
+              "title": "Current Success Level",
+              "description": "the parent subscription plan ID"
+            },
+            "currentTerm": {
+              "title": "Current Term",
+              "description": "Parent End Date - Start Date in months ",
+              "type": "number"
+            },
+            "currentSubscriptionStartDate": {
+              "title": "Current Subscription Start Date",
+              "type": "string"
+            },
+            "currentSubscriptionEndDate": {
+              "title": "Current Subscription End Date",
+              "type": "string"
+            },
+            "currentBillingFrequency": {
+              "title": "Current Billing Frequency",
+              "type": "string"
+            },
+            "currentTCV": {
+              "title": "Current TCV",
+              "type": "string",
+              "description": "sum of charges from the Parent or alternatively Current ARR x Term in years"
+            },
+            "currentArr": {
+              "title": "Current ARR",
+              "type": "string",
+              "description": "sum of the recurring amounts adjusted to be 12 months from the Parent"
+            },
+            "currentProduct": {
+              "title": "Current Product",
+              "type": "string"
+            },
+            "name": {
+              "title": "Name",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-5",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-8",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-6",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-4",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "data-mapper-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "data-mapper-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "callable-workflow-response-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "data-mapper-1": {
+          "title": "Billing Frequency Map",
+          "description": "Map between SF and NS billing frequency values",
+          "connector": {
+            "name": "data-mapper",
+            "version": "3.5"
+          },
+          "operation": "map_one_value",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "mappings": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "ANNUALLY"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "Annual"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "MONTHLY"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "Monthly"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "QUARTERLY"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "Quaterly"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "ONETIME"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "One Time"
+                    }
+                  }
+                }
+              ]
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.frequency.id"
+            },
+            "default_value": {
+              "type": "string",
+              "value": ""
+            }
+          }
+        },
+        "netsuite-2": {
+          "title": "Get Subscription Plan",
+          "description": "Load the Plan to get success level from the code",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "links": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "rel": {
+                      "type": "string"
+                    },
+                    "href": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "autoRenewal": {
+                "type": "boolean"
+              },
+              "class": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "createdDate": {
+                "type": "string"
+              },
+              "custitemistrial": {
+                "type": "boolean"
+              },
+              "customForm": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "defaultRenewalTerm": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "displayName": {
+                "type": "string"
+              },
+              "externalId": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "includeChildren": {
+                "type": "boolean"
+              },
+              "incomeAccount": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "initialTerm": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "isInactive": {
+                "type": "boolean"
+              },
+              "itemId": {
+                "type": "string"
+              },
+              "itemType": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "lastModifiedDate": {
+                "type": "string"
+              },
+              "member": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "subsidiary": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "subscriptionplan"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.subscriptionPlan.id"
+            },
+            "expand_sub_resources": {
+              "value": false,
+              "type": "boolean"
+            }
+          }
+        },
+        "data-mapper-2": {
+          "title": "Success Level Map",
+          "connector": {
+            "name": "data-mapper",
+            "version": "3.5"
+          },
+          "operation": "map_one_value",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "mappings": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "SIL"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "Standard"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "STA"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "Standard"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "GOL"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "Gold"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "PLA"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "Platinum"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "string",
+                      "value": "LEG"
+                    },
+                    "to": {
+                      "type": "string",
+                      "value": "Legacy"
+                    }
+                  }
+                }
+              ]
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.script-4.result"
+            },
+            "default_value": {
+              "type": "string",
+              "value": "Standard"
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Calculate Sub Term in Months",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "6ec0af18-686d-4aa6-a890-effb37092c3f"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "termId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-1.initialTerm.id"
+                },
+                "startDate": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-1.startDate"
+                },
+                "endDate": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-1.endDate",
+                  "fallback": {
+                    "type": "string"
+                  }
+                },
+                "allowSmallTerm": {
+                  "value": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "script-4": {
+          "title": "Get Success Level Code",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "planCode"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-2.displayName",
+                      "fallback": {
+                        "value": "X-X-X-X-LEG",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Get the success level code 'SIL', 'GOL, 'PLA'\nexports.step = function(input, fileInput) {\n\treturn input.planCode.split(\"-\")[4];\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "netsuite-3": {
+          "title": "Get Charge",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-6.result"
+                }
+              }
+            }
+          }
+        },
+        "script-8": {
+          "title": "Get Price Intervals",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subscriptionLines"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.subscriptionLine.items",
+                      "fallback": {
+                        "type": "array",
+                        "value": []
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "priceIntervals"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.priceInterval.items",
+                      "fallback": {
+                        "type": "array",
+                        "value": []
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "extendedApproach"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.config.ExtendedApproach"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "function filterIntervals(input, statuses) {\n  const subscriptionLines = input.subscriptionLines\n    .filter((a) => Number(a.subscriptionLineType.id) === 2 \n            && statuses.includes(a.status.id))\n    .map((a) => a.lineNumber);\n\n  // extract relevant priceIntervals by line number\n  const priceIntervals = input.priceIntervals\n  \t\t\t\t\t.filter((a) => subscriptionLines.includes(a.lineNumber));\n  \n  return priceIntervals;\n}\n\nfunction getIntervals(input) {\n  const priceIntervals = filterIntervals(input, ['ACTIVE', 'CLOSED']);\n\n  // Gets the latest price interval record by startdate for each subscription line record\n  let intervals = {};\n  priceIntervals.forEach((a) => {\n    if (!(String(a.lineNumber) in intervals)) {\n      intervals[String(a.lineNumber)] = a;\n      return;\n    }\n    if (new Date(intervals[String(a.lineNumber)].startDate) - new Date(a.startDate) < 0) {\n      intervals[String(a.lineNumber)] = a;\n    }\n  });\n    \n  return Object.values(intervals);\n}\n\nfunction getIntervalsEx(input) {\n  //no ACTIVE intervals, ARR will be zero, let's search for the \n  //most recent ACTIVE start date (exclude negative amounts)\n  const priceIntervals = filterIntervals(input, ['ACTIVE', 'CLOSED', 'TERMINATED']);\n  \n  console.log('No ACTIVE among leaf intervals, search for the most recent active..');\n              \n  var maxActiveStartDate = new Date(0);\n  priceIntervals.forEach(a => {\n    console.log(`${a.lineNumber}-${a.status.id}-${a.startDate}`);\n    if(a.status.id === 'ACTIVE' && \n       (new Date(a.startDate) - maxActiveStartDate > 0) &&\n        a.recurringAmount > 0) {\n      maxActiveStartDate = new Date(a.startDate);\n    }\n  });\n  console.log(`Max Date is ${maxActiveStartDate.toISOString()}`);\n  \n  //return most recent ACTIVE price intervals\n  let intervals = {};\n  priceIntervals.forEach((a) => {\n    if(a.status.id === 'ACTIVE' &&\n       a.recurringAmount > 0 &&\n       new Date(a.startDate) >= maxActiveStartDate) {\n        intervals[String(a.lineNumber)] = a;\n    }\n  });  \n  \n  return Object.values(intervals);  \n}\n\nexports.step = function(input, fileInput) {\n\n  //use default approach to get intervals\n  const res = getIntervals(input);\n  \n  //check if we got at least a single ACTIVE interval\n  if(input.extendedApproach !== 1 || res.filter(x => x.status.id === 'ACTIVE').length > 0) {\n    return res;\n  }\n  \n  //fallback to extended approach\n  return getIntervalsEx(input);\n\n\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "script-6": {
+          "title": "Generate get charge query",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subscriptionLineIds"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Generates query to retrieve the amount of all charges associated with the subscription lines of the subscription\nexports.step = function(input, fileInput) {\n\treturn {\n    q: `\n\t\t\tSELECT amount\n\t\t\tFROM charge\n\t\t\tWHERE subscriptionline IN (${input.subscriptionLineIds.join(',')})\n\t`};\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-1": {
+          "title": "Get TCV",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "charges"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-3.response.body.items"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Sum all the included interval values\nexports.step = function (input, fileInput) {\n    const res = input.charges\n        .map(m => parseFloat(m.amount))\n        .reduce((a, b) => a + b, 0);\n    return res ? +res.toFixed(4) : 0;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "callable-workflow-response-1": {
+          "title": "Callable response",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "currentSuccessLevel": {
+                  "type": "jsonpath",
+                  "value": "$.steps.data-mapper-2.result"
+                },
+                "currentTerm": {
+                  "type": "jsonpath",
+                  "value": "$.steps.call-workflow-1.response.termInMonths"
+                },
+                "currentSubscriptionStartDate": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-1.startDate"
+                },
+                "currentSubscriptionEndDate": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-1.endDate"
+                },
+                "currentBillingFrequency": {
+                  "type": "jsonpath",
+                  "value": "$.steps.data-mapper-1.result"
+                },
+                "currentTCV": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result"
+                },
+                "currentArr": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-3.result"
+                },
+                "currentProduct": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-2.itemId"
+                },
+                "property": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-1.name"
+                },
+                "name": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-1.name"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "script-3": {
+          "title": "Get ARR",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "lines"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-8.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.subscriptionLine.items"
+                    },
+                    "name": {
+                      "type": "string",
+                      "value": "subscriptionLines"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "tcv"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Annual recurring revenue\nexports.step = function(input) {\n  if(Number(input.tcv) <= 0.01) { \n    return 0; // Zero TCV contract can't have non-zero ARR\n  }\n  let totalArr = 0;\n  const frequencyCoeff = (f) => {\n    switch (f) {\n      case 'ANNUALLY': return 1;\n      case 'SEMIANNUALLY': return 2;\n      case 'QUARTERLY': return 4;\n      case 'MONTHLY': return 12;\n      case 'SEMIMONTHLY': return 24;\n      case 'BIENNIALLY': return .5;\n      case 'TRIENNIALLY': return 1.0 / 3.0;\n\n      default: return 0;\n    }\n  };\n\n  for (let i = 0; i < input.lines.length; i++) {\n    if(input.lines[i].status.id !== 'ACTIVE'\n       || !(input.lines[i].recurringAmount)) {\n      continue;\n    }\n    const lineArr = input.lines[i].recurringAmount * frequencyCoeff(input.lines[i].frequency.id) / input.lines[i].repeatEvery;\n    totalArr += lineArr;\n  }\n  \n  return +totalArr.toFixed(4);\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get Subscription",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "get_record",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "links": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "rel": {
+                      "type": "string"
+                    },
+                    "href": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "advanceRenewalPeriodNumber": {
+                "type": "number"
+              },
+              "advanceRenewalPeriodUnit": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "autoRenewal": {
+                "type": "boolean"
+              },
+              "billingAccount": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "billingAccountStartDate": {
+                "type": "string"
+              },
+              "billingSchedule": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "billingSubscriptionStatus": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "class": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "currency": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "customer": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "customForm": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custrecord19": {
+                "type": "boolean"
+              },
+              "custrecord_contract_docs": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custrecord_customer_po": {
+                "type": "string"
+              },
+              "custrecord_subs_bill_to_tier": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custrecord_subs_end_user": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custrecord_subs_ship_to_tier": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "custrecordistrial": {
+                "type": "boolean"
+              },
+              "defaultRenewalMethod": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "defaultRenewalPlan": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "defaultRenewalTerm": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "department": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "endDate": {
+                "type": "string"
+              },
+              "frequency": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "id": {
+                "type": "string"
+              },
+              "idNumber": {
+                "type": "string"
+              },
+              "initialTerm": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "lastBillCycleDate": {
+                "type": "string"
+              },
+              "lastBillDate": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "nextBillCycleDate": {
+                "type": "string"
+              },
+              "priceBook": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "priceInterval": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "links": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "rel": {
+                                "type": "string"
+                              },
+                              "href": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "rel",
+                              "href"
+                            ]
+                          }
+                        },
+                        "catalogType": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "chargeType": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "discount": {
+                          "type": "number"
+                        },
+                        "frequency": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "id": {
+                          "type": "number"
+                        },
+                        "item": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "rel": {
+                                    "type": "string"
+                                  },
+                                  "href": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "rel",
+                                  "href"
+                                ]
+                              }
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "lineNumber": {
+                          "type": "number"
+                        },
+                        "pricePlan": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "rel": {
+                                    "type": "string"
+                                  },
+                                  "href": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "rel",
+                                  "href"
+                                ]
+                              }
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "prorateBy": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "proratebyoption": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "quantity": {
+                          "type": "number"
+                        },
+                        "recurringAmount": {
+                          "type": "number"
+                        },
+                        "repeatEvery": {
+                          "type": "number"
+                        },
+                        "startDate": {
+                          "type": "string"
+                        },
+                        "startOffsetValue": {
+                          "type": "number"
+                        },
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "subscriptionPlanLineNumber": {
+                          "type": "number"
+                        },
+                        "totalintervalvalue": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "links",
+                        "catalogType",
+                        "chargeType",
+                        "discount",
+                        "frequency",
+                        "id",
+                        "item",
+                        "lineNumber",
+                        "pricePlan",
+                        "prorateBy",
+                        "proratebyoption",
+                        "quantity",
+                        "recurringAmount",
+                        "repeatEvery",
+                        "startDate",
+                        "startOffsetValue",
+                        "status",
+                        "subscriptionPlanLineNumber",
+                        "totalintervalvalue"
+                      ]
+                    }
+                  },
+                  "totalResults": {
+                    "type": "number"
+                  }
+                }
+              },
+              "renewalNumber": {
+                "type": "number"
+              },
+              "startDate": {
+                "type": "string"
+              },
+              "subscriptionLine": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "links": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "rel": {
+                                "type": "string"
+                              },
+                              "href": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "rel",
+                              "href"
+                            ]
+                          }
+                        },
+                        "billingMode": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "catalogType": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "class": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "department": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "discount": {
+                          "type": "number"
+                        },
+                        "endDate": {
+                          "type": "string"
+                        },
+                        "includeInRenewal": {
+                          "type": "boolean"
+                        },
+                        "isIncluded": {
+                          "type": "boolean"
+                        },
+                        "isRequired": {
+                          "type": "boolean"
+                        },
+                        "item": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "rel": {
+                                    "type": "string"
+                                  },
+                                  "href": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "rel",
+                                  "href"
+                                ]
+                              }
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "lineNumber": {
+                          "type": "number"
+                        },
+                        "planItem": {
+                          "type": "number"
+                        },
+                        "prorateEndDate": {
+                          "type": "boolean"
+                        },
+                        "prorateStartDate": {
+                          "type": "boolean"
+                        },
+                        "quantity": {
+                          "type": "number"
+                        },
+                        "recurrenceStartDate": {
+                          "type": "string"
+                        },
+                        "revRecOption": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "startDate": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "subscriptionLine": {
+                          "type": "number"
+                        },
+                        "subscriptionLineType": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "refName": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "links",
+                        "billingMode",
+                        "catalogType",
+                        "class",
+                        "department",
+                        "discount",
+                        "endDate",
+                        "includeInRenewal",
+                        "isIncluded",
+                        "isRequired",
+                        "item",
+                        "lineNumber",
+                        "planItem",
+                        "prorateEndDate",
+                        "prorateStartDate",
+                        "quantity",
+                        "recurrenceStartDate",
+                        "revRecOption",
+                        "startDate",
+                        "status",
+                        "subscriptionLine",
+                        "subscriptionLineType"
+                      ]
+                    }
+                  },
+                  "totalResults": {
+                    "type": "number"
+                  }
+                }
+              },
+              "subscriptionPlan": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "subscriptionPlanName": {
+                "type": "string"
+              },
+              "subscriptionRevision": {
+                "type": "number"
+              },
+              "subsidiary": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rel": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "refName": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "record_type": {
+              "type": "string",
+              "value": "subscription"
+            },
+            "record_id": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.parentSubscriptionId"
+            },
+            "expand_sub_resources": {
+              "value": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "script-5": {
+          "title": "Get subscription Line Ids",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subscriptionLines"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.subscriptionLine.items"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Extracts the subscription line id from the subscription line records into an array\nexports.step = function(input, fileInput) {\n\treturn input.subscriptionLines.map((a) => a.subscriptionLine);\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "6ec0af18-686d-4aa6-a890-effb37092c3f",
+          "name": "Subflow Get Term"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

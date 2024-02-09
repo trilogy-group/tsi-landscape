@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__AWSCompetitiveTracking__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Identify other cloud providers who are potential competitors on the opportunity</inlineHelpText>
+    <label>AWS Competitive Tracking</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Oracle Cloud</fullName>
+                <default>false</default>
+                <label>Oracle Cloud</label>
+            </value>
+            <value>
+                <fullName>On-Prem</fullName>
+                <default>false</default>
+                <label>On-Prem</label>
+            </value>
+            <value>
+                <fullName>Co-location</fullName>
+                <default>false</default>
+                <label>Co-location</label>
+            </value>
+            <value>
+                <fullName>Akamai</fullName>
+                <default>false</default>
+                <label>Akamai</label>
+            </value>
+            <value>
+                <fullName>AliCloud</fullName>
+                <default>false</default>
+                <label>AliCloud</label>
+            </value>
+            <value>
+                <fullName>Google Cloud Platform</fullName>
+                <default>false</default>
+                <label>Google Cloud Platform</label>
+            </value>
+            <value>
+                <fullName>IBM Softlayer</fullName>
+                <default>false</default>
+                <label>IBM Softlayer</label>
+            </value>
+            <value>
+                <fullName>Microsoft Azure</fullName>
+                <default>false</default>
+                <label>Microsoft Azure</label>
+            </value>
+            <value>
+                <fullName>Other- Cost Optimization</fullName>
+                <default>false</default>
+                <label>Other- Cost Optimization</label>
+            </value>
+            <value>
+                <fullName>No Competition</fullName>
+                <default>false</default>
+                <label>No Competition</label>
+            </value>
+            <value>
+                <fullName>*Other</fullName>
+                <default>false</default>
+                <label>*Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

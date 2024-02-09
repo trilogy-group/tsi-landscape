@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__All</fullName>
+    <columns>NAME</columns>
+    <columns>workspan__ReferralType__c</columns>
+    <columns>workspan__Opportunity__c</columns>
+    <columns>workspan__CustomerName__c</columns>
+    <columns>workspan__ReferralStatus__c</columns>
+    <columns>workspan__SourcedByPartner__c</columns>
+    <columns>workspan__SourcedToPartner__c</columns>
+    <columns>workspan__NextStep__c</columns>
+    <columns>workspan__SalesStage__c</columns>
+    <columns>workspan__ReferralExpirationDate__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>workspan__IsDeleted__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>All</label>
+</ListView>

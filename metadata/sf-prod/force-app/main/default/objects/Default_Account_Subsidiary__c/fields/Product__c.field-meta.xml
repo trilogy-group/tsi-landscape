@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <description>Product for which Account has a default subsidiary that needs to be used when creating quotes and subscriptions</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Product for which Account has a default subsidiary that needs to be used when creating quotes and subscriptions</inlineHelpText>
+    <label>Product</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Products_Families</valueSetName>
+    </valueSet>
+</CustomField>

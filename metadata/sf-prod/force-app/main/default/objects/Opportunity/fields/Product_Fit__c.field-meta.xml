@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Fit__c</fullName>
+    <description>Green: Buy-in on savings report value &amp; Clear differentiation &amp; Passed security and compliance
+||
+Yellow: Wants to see move savings or Thinks other tools can do it or Unsatisfied security issues
+||
+Red: We’ve failed Technical / Security review or customer not excited by Savings Report</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Green: Buy-in on savings report value &amp; Clear differentiation &amp; Passed security and compliance
+||
+Yellow: Wants to see move savings or Thinks other tools can do it or Unsatisfied security issues
+||
+Red: We’ve failed Technical / Security review or customer not excited by Savings Report</inlineHelpText>
+    <label>Product Fit</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Opportunity_Progression</valueSetName>
+    </valueSet>
+</CustomField>

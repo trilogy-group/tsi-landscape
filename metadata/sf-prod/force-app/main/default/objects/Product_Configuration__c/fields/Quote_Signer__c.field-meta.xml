@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quote_Signer__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>LAMBDA-60988: This field is added on the Quote to store the user who would counter sign the Quote PDF/Contract</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Counter Signer for the Adobe Contract</inlineHelpText>
+    <label>Quote Signer</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Product_Configurations</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

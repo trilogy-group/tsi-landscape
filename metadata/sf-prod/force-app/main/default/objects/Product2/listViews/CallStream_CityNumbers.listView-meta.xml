@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CallStream_CityNumbers</fullName>
+    <columns>PRODUCT2.ACTIVE</columns>
+    <columns>NetSuite_ID__c</columns>
+    <columns>PRODUCT2.NAME</columns>
+    <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+    <columns>PRODUCT2.FAMILY</columns>
+    <columns>Success_Level__c</columns>
+    <columns>Floor_Price__c</columns>
+    <columns>Min_Quantity__c</columns>
+    <columns>Max_Quantity__c</columns>
+    <columns>SBQQ__Component__c</columns>
+    <columns>SBQQ__ChargeType__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>PRODUCT2.FAMILY</field>
+        <operation>equals</operation>
+        <value>CallStream/CityNumbers</value>
+    </filters>
+    <label>CallStream/CityNumbers</label>
+</ListView>

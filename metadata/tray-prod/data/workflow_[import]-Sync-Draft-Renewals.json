@@ -1,0 +1,1082 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "198dfefc-f737-41e6-a5c4-424d33098c18",
+      "created": "2022-06-07T03:32:35.519747Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "d154ad96-7b94-4f04-9f0f-420f99dd9c95",
+        "created": "2024-01-03T17:01:31.926532Z"
+      },
+      "title": "[import] Sync Draft Renewals",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {
+          "class": [
+            "Acquisitions : Skyvera : Skyvera Product : STL Product"
+          ],
+          "startDate": "2023-07-31",
+          "endDate": "2100-01-01"
+        },
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "schedule": {
+              "type": "string",
+              "title": "schedule",
+              "enum": [
+                {
+                  "text": "daily",
+                  "value": "daily"
+                },
+                {
+                  "text": "quarterly",
+                  "value": "quarterly"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-4",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "sheets-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-2",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "salesforce-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-6",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "sheets-3",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "script-5",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "http-client-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        }
+      ],
+      "steps": {
+        "sheets-3": {
+          "title": "Renewals Log",
+          "connector": {
+            "name": "sheets",
+            "version": "8.0"
+          },
+          "operation": "create_row",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "TSI Service User google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/a894e6ff-8a08-4375-ac35-ab9b5d2bc849.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "value_input_option": {
+              "type": "string",
+              "value": "RAW"
+            },
+            "spreadsheet_id": {
+              "type": "string",
+              "value": "1fE00pPj7Jzk9_K298pIAJbpljzLc_QPg7AfjiDFx75w"
+            },
+            "worksheet_name": {
+              "type": "string",
+              "value": "[prod] Renewal Import"
+            },
+            "data": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "A"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-6.result.date"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "B"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-6.result.time"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "F"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.env.execution_uuid"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "H"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.id"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "I"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.records[0].Id",
+                      "fallback": {
+                        "value": "",
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "J"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "Started"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "G"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.class"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "sheets-2": {
+          "title": "Renewals Log",
+          "connector": {
+            "name": "sheets",
+            "version": "8.0"
+          },
+          "operation": "create_row",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "TSI Service User google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/a894e6ff-8a08-4375-ac35-ab9b5d2bc849.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "value_input_option": {
+              "type": "string",
+              "value": "RAW"
+            },
+            "spreadsheet_id": {
+              "type": "string",
+              "value": "1fE00pPj7Jzk9_K298pIAJbpljzLc_QPg7AfjiDFx75w"
+            },
+            "worksheet_name": {
+              "type": "string",
+              "value": "[prod] Renewal Import"
+            },
+            "data": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "A"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.date"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "D"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.count"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "C"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "manual run"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "E"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-4.result"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "B"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result.time"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "F"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.env.execution_uuid"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "column_heading": {
+                      "type": "string",
+                      "value": "K"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.env.execution_log_url"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "script-4": {
+          "title": "Get Subscription IDs",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "subscriptions"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.response.body.items"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Get all the subscriptions ids for logging\nexports.step = function(input, fileInput) {\n\treturn input.subscriptions.map(m=>m.id).join(',');\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            },
+            "files": {
+              "type": "array",
+              "value": []
+            }
+          }
+        },
+        "http-client-1": {
+          "title": "Trigger the flow",
+          "description": "Call this webhook https://app.tray.io/workflow/f82d454f-a68f-432a-b867-dafe79f14721/edit",
+          "connector": {
+            "name": "http-client",
+            "version": "5.5"
+          },
+          "operation": "post_request",
+          "output_schema": {},
+          "error_handling": {
+            "target": "loop-2",
+            "strategy": "continueLoop"
+          },
+          "properties": {
+            "auth": {
+              "type": "object",
+              "value": {
+                "none": {
+                  "type": "null",
+                  "value": null
+                }
+              }
+            },
+            "follow_redirect": {
+              "type": "boolean",
+              "value": false
+            },
+            "follow_keep_method": {
+              "type": "boolean",
+              "value": false
+            },
+            "reject_unauthorized": {
+              "type": "boolean",
+              "value": true
+            },
+            "follow_authorization_header": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "status_code": {
+              "type": "object",
+              "value": {
+                "range": {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "integer",
+                      "value": 200
+                    },
+                    "to": {
+                      "type": "integer",
+                      "value": 299
+                    }
+                  }
+                }
+              }
+            },
+            "case_sensitive_headers": {
+              "type": "boolean",
+              "value": false
+            },
+            "url": {
+              "type": "string",
+              "value": "https://c272daf5-05f2-426d-9157-dd9470a82e66.trayapp.io"
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "x-Csrf-Token"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQSflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "object",
+                  "value": {
+                    "id": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.id"
+                    },
+                    "row": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-5.result"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Get Opportunity",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.6"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Opportunities",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Opportunity",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Opportunity ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/a8ff6c9514c35c853b350382534fb624.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Not equal to"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": ""
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.loop-2.value.id"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "loop-2": {
+          "title": "Loop Subscriptions",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "object",
+                "properties": {
+                  "links": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "links",
+                  "id"
+                ]
+              },
+              "count": {
+                "type": "number"
+              },
+              "index": {
+                "type": "number"
+              },
+              "is_first": {
+                "type": "boolean"
+              },
+              "is_last": {
+                "type": "boolean"
+              },
+              "branch_name": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.netsuite-1.response.body.items"
+            }
+          }
+        },
+        "script-6": {
+          "title": "Format Current Timestamp",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": []
+            },
+            "script": {
+              "type": "string",
+              "value": "// You can reference the input variables using input.NAME\n// Parsed JSON files could be referenced as fileInput\nexports.step = function(input, fileInput) {\n  const lastSyncDate = new Date();\n  const isoStr = lastSyncDate.toISOString();\n  const withoutMilliseconds = isoStr.includes('.')\n    ? isoStr.split('.')[0] + 'Z'\n    : isoStr;\n  return {\n    timestamp: withoutMilliseconds,\n    date: withoutMilliseconds.substring(0,10),\n    time: withoutMilliseconds.substring(11,19)\n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-1": {
+          "title": "Format Draft Renewals Query",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "classes"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.config.class"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "startDate"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.config.startDate"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "endDate"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.config.endDate"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function (input) {\n    return {\n        q:`\n          SELECT s.id, class.fullname as class\n          FROM subscription s\n          LEFT JOIN classification class on class.id = s.class\n          LEFT JOIN subscriptionRenewalHistory hist on hist.newsubscription = s.id\n          WHERE     \n          class.fullname IN (${input.classes.map(m=>`'${m}'`).join(',')})\n          AND s.billingsubscriptionstatus = 'DRAFT'\n          AND (s.custrecord_isprime IS NULL OR s.custrecord_isprime <> 1)\n          AND s.startdate <= TO_DATE('${input.endDate}','YYYY-MM-DD')\n          AND s.startdate >= TO_DATE('${input.startDate}','YYYY-MM-DD')\n          AND CASE WHEN custrecord_parent_subscription IS NOT NULL THEN custrecord_parent_subscription ELSE hist.subscription END IS NOT NULL\n\t         ORDER BY class.fullname, s.id`\n    };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get Subscriptions",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.5"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "x-netsuite-jobid": {
+                        "type": "string"
+                      },
+                      "preference-applied": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "p3p": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "hasMore": {
+                        "type": "boolean"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "id": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "links",
+                            "id"
+                          ]
+                        }
+                      },
+                      "offset": {
+                        "type": "number"
+                      },
+                      "totalResults": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/5490dd45-59c7-41d1-8053-6b8deeb26d36.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            }
+          }
+        },
+        "script-5": {
+          "title": "Get Row",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "updatedRange"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.sheets-3.updates.updatedRange"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// Extract row number from the updated range\nexports.step = function(input, fileInput) {\n  const reg = /!A(?<row>\\d+)/;\n  return parseInt(input.updatedRange.match(reg).groups.row);\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "script-2": {
+          "title": "Format Current Timestamp",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": []
+            },
+            "script": {
+              "type": "string",
+              "value": "// You can reference the input variables using input.NAME\n// Parsed JSON files could be referenced as fileInput\nexports.step = function(input, fileInput) {\n  const lastSyncDate = new Date();\n  const isoStr = lastSyncDate.toISOString();\n  const withoutMilliseconds = isoStr.includes('.')\n    ? isoStr.split('.')[0] + 'Z'\n    : isoStr;\n  return {\n    timestamp: withoutMilliseconds,\n    date: withoutMilliseconds.substring(0,10),\n    time: withoutMilliseconds.substring(11,19)\n  };\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "trigger": {
+          "title": "Manual Trigger",
+          "connector": {
+            "name": "noop",
+            "version": "1.1"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

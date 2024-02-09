@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Final_Quote_Quote_End_Date_Not_Empty</fullName>
+    <active>true</active>
+    <errorConditionFormula>TEXT(StageName) = &apos;Final Quote&apos; &amp;&amp; OR(ISNULL(SBQQ__PrimaryQuote__r.SBQQ__EndDate__c), SBQQ__PrimaryQuote__r.SBQQ__EndDate__c&lt; SBQQ__PrimaryQuote__r.SBQQ__StartDate__c ) &amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)</errorConditionFormula>
+    <errorDisplayField>SBQQ__PrimaryQuote__c</errorDisplayField>
+    <errorMessage>Quote End date cannot be empty or less than Quote start date</errorMessage>
+</ValidationRule>

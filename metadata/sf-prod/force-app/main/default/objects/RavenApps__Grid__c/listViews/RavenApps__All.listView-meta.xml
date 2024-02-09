@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RavenApps__All</fullName>
+    <columns>NAME</columns>
+    <columns>RavenApps__Description__c</columns>
+    <columns>RavenApps__Object_API_Name__c</columns>
+    <columns>RavenApps__Visible_on_Explorer__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RavenApps__RavenAppsId__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>All - Excluding RavenApps Samples</label>
+</ListView>

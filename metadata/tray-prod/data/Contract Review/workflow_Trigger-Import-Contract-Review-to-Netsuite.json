@@ -1,0 +1,741 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "21b60814-00bf-4355-b576-63e5e722af8c",
+      "created": "2023-09-01T19:53:23.847867Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "project_id": "2974a216-c661-40f7-a26d-984a5a49fdf9",
+      "creator": "f21f100c-9e62-42e2-a744-061c18de134c",
+      "version": {
+        "id": "d10a337f-7554-4ec4-a848-a183f5872bfe",
+        "created": "2023-09-01T19:55:14.837643Z"
+      },
+      "title": "Trigger Import Contract Review to Netsuite",
+      "description": "Trigger the Import Contract Review to Netsuite with the spreadsheet set in the config data",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {
+          "spreadsheetId": ""
+        },
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "sheets-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-1",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "terminate-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "script-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "sheets-2",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "sheets-3",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "netsuite-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-1",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "math-helpers-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "call-workflow-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        }
+      ],
+      "steps": {
+        "script-1": {
+          "title": "Generate Contract Review Objs",
+          "description": "Script that generates an array where each item is one Contract Review object and filter to have only the contracts that were not imported.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "data"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.sheets-1.values"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  const arr = input.data; \n\tconst contracts = [];\n\n  // Determine the maximum number of columns\n  let maxColumns = 0;\n  for(let i = 0; i < arr.length; i++) {\n    if(arr[i].length > maxColumns) {\n      maxColumns = arr[i].length;\n    }\n  }\n\n  // For each column starting from the third\n  // first two columns are headers\n  for(let col = 2; col < maxColumns; col++) {\n    let obj = {\n    \tcolumn: getColumnLetter(col+1)\n    };\n    for(let row = 0; row < arr.length; row++) {\n      if(arr[row][col] !== undefined) {\n        const key = getFormattedKey(arr[row][1]);\n        obj[key] = { value: arr[row][col], rowName: arr[row][1] };\n      }\n    }\n    contracts.push(obj);\n  }\n\t//get only the contracts that were not processed previously\n  const filteredContracts = contracts.filter(c => !c.importedIntoNetsuite?.value);\n  return {\n    contracts: filteredContracts,\n    logRows: filteredContracts.length + 1\n  }\n};\n\n//the keys will be automatically created removing text between parentheses and making it camel case\n//additionally we have a key mapping for exceptions\nfunction getFormattedKey(key) {\n  const keyMapping = {\n    \"Opportunity/Contract\": \"opportunity\",\n    \"If Auto-Renewed Last Term, start date of the first ARed Contract\": \"autoRenewLastTermDate\",\n    \"Exclusion of limitation of liability for anything other than: 1) Gross Negligence, 2) Wilful Misconduct, 3) Direct damages due to infringement of either party's IP rights, 4) any other liability that can't lawfully be excluded.\": \"exclusionOfLimitationOfLiability\",\n  }\n  \n  if(keyMapping[key]) {\n    key = keyMapping[key];\n  } else {\n    //remove everything between parentheses (including the parentheses)\n    key = key.replace(/\\(.*?\\)/g, '');\n    //lower case everything\n    key = key.toLowerCase();\n    //capitalize the first letter of each word in a string\n    key = key.replace(/\\b[a-z]/g, (char) => char.toUpperCase());\n    //lower case first letter\n    key = key.charAt(0).toLowerCase() + key.slice(1);\n    //remove non-letter characters\n    key = key.replace(/[^a-zA-Z]/g, '');\n  }\n  return key;\n}\n\nfunction getColumnLetter(columnIndex) {\n  let n = columnIndex;\n\tlet string = '';\n  while (n > 0) {\n      n--;  // Decrement n to make it 0-indexed.\n      string = String.fromCharCode((n % 26) + 'A'.charCodeAt(0)) + string;\n      n = Math.floor(n / 26);  // Update n.\n  }\n  return string;\n}"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "sheets-3": {
+          "title": "Add header for the log",
+          "description": "Add the header for the log",
+          "connector": {
+            "name": "sheets",
+            "version": "8.1"
+          },
+          "operation": "create_column_headers_for_sheet",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "TSI Service User google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/51312ff204893a2751b6788b914f9b78.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "spreadsheet_id": {
+              "type": "jsonpath",
+              "value": "$.config.spreadsheetId"
+            },
+            "worksheet_name": {
+              "type": "jsonpath",
+              "value": "$.steps.sheets-2.replies[0].addSheet.properties.title"
+            },
+            "value_input_option": {
+              "type": "string",
+              "value": "RAW"
+            },
+            "data": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Opportunity"
+                },
+                {
+                  "type": "string",
+                  "value": "Result"
+                },
+                {
+                  "type": "string",
+                  "value": "Message"
+                },
+                {
+                  "type": "string",
+                  "value": "Execution date time"
+                },
+                {
+                  "type": "string",
+                  "value": "Execution URL"
+                }
+              ]
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Import contract review to NS",
+          "description": "Doing through a subflow to process each one independently and raise errors accordingly",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "6550c42c-6262-424e-8311-04a0a4acea91"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "data": {
+                  "type": "jsonpath",
+                  "value": "$.steps.loop-1.value"
+                },
+                "options": {
+                  "type": "jsonpath",
+                  "value": "$.steps.netsuite-1.response.body.items"
+                },
+                "log": {
+                  "type": "object",
+                  "value": {
+                    "tabName": {
+                      "type": "jsonpath",
+                      "value": "$.steps.sheets-2.replies[0].addSheet.properties.title"
+                    },
+                    "row": {
+                      "type": "jsonpath",
+                      "value": "$.steps.math-helpers-1.result"
+                    }
+                  }
+                },
+                "nsFieldMap": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-2.result"
+                }
+              }
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop each contract review",
+          "description": "Loops each Contract Review to insert in netsuite",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_array",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "value": {},
+              "count": {
+                "type": "number"
+              },
+              "index": {
+                "type": "number"
+              },
+              "is_first": {
+                "type": "boolean"
+              },
+              "is_last": {
+                "type": "boolean"
+              },
+              "branch_name": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "array": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result.contracts"
+            }
+          }
+        },
+        "boolean-condition-1": {
+          "title": "Is there contracts to process?",
+          "description": "If logRows is equal to 1 is because there are no contracts to process, because logRows is the contracts array length plus one.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-1.result.logRows"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 1
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "sheets-2": {
+          "title": "Create a tab for log",
+          "description": "Create a tab for logging in the spreadsheet",
+          "connector": {
+            "name": "sheets",
+            "version": "8.1"
+          },
+          "operation": "create_worksheet",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "TSI Service User google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/51312ff204893a2751b6788b914f9b78.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "spreadsheet_id": {
+              "type": "jsonpath",
+              "value": "$.config.spreadsheetId"
+            },
+            "title": {
+              "type": "string",
+              "value": "Log for {$.env.execution_start_time}"
+            },
+            "row_count": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result.logRows"
+            },
+            "column_count": {
+              "value": 5,
+              "type": "integer"
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "Terminate - No contracts",
+          "description": "Terminate the execution because there are no contracts to process.",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "terminate_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "math-helpers-1": {
+          "title": "get log row",
+          "description": "The log row is the index + 2, because the index starts in 0 and we have 1 row for headers",
+          "connector": {
+            "name": "math-helpers",
+            "version": "2.0"
+          },
+          "operation": "add",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "first_value": {
+              "type": "jsonpath",
+              "value": "$.steps.loop-1.index"
+            },
+            "second_value": {
+              "value": 2,
+              "type": "integer"
+            }
+          }
+        },
+        "sheets-1": {
+          "title": "Get Contract Review data",
+          "description": "Gets the data for the whole spreadsheet",
+          "connector": {
+            "name": "sheets",
+            "version": "8.1"
+          },
+          "operation": "get_worksheet_data",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "b4ac0a2b-7ee0-4253-a92b-ecbe138ae9a3",
+            "title": "TSI Service User google-sheets account",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/51312ff204893a2751b6788b914f9b78.png"
+            },
+            "scopes": [
+              "https://www.googleapis.com/auth/spreadsheets"
+            ],
+            "service_name": "google-sheets",
+            "service_version": 2
+          },
+          "properties": {
+            "spreadsheet_id": {
+              "type": "jsonpath",
+              "value": "$.config.spreadsheetId"
+            },
+            "worksheet_name": {
+              "type": "string",
+              "value": "Contracts"
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Saves NS field map",
+          "description": "Saves the mapping to be used by the error handling flow.",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Account"
+            },
+            "key": {
+              "type": "string",
+              "value": "NSContractReviewFieldMap"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.script-2.result"
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Query list options",
+          "description": "Getting with suiteQL the options list to get the name because in salesforce we need to upsert with the name",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "raw_http_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-n-operationid": {
+                        "type": "string"
+                      },
+                      "ns_rtimer_composite": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "pragma": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "expires": {
+                        "type": "string"
+                      },
+                      "x-netsuite-jobid": {
+                        "type": "string"
+                      },
+                      "preference-applied": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "p3p": {
+                        "type": "string"
+                      },
+                      "vary": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "akamai-grn": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "rel": {
+                              "type": "string"
+                            },
+                            "href": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "hasMore": {
+                        "type": "boolean"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "links": {
+                              "type": "array",
+                              "items": {}
+                            },
+                            "addr1": {
+                              "type": "string"
+                            },
+                            "city": {
+                              "type": "string"
+                            },
+                            "country": {
+                              "type": "string"
+                            },
+                            "currency": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "iselimination": {
+                              "type": "string"
+                            },
+                            "isinactive": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "offset": {
+                        "type": "number"
+                      },
+                      "totalResults": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "method": {
+              "type": "string",
+              "value": "POST"
+            },
+            "url": {
+              "type": "object",
+              "value": {
+                "endpoint": {
+                  "type": "string",
+                  "value": "/services/rest/query/v1/suiteql"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "prefer"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "transient"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "object",
+                  "value": {
+                    "q": {
+                      "type": "string",
+                      "value": "select id, name, 'caps' as type from customlist_crc_caps_options\nUNION ALL\nselect id, name, 'contract_type' as type from customlist_crc_contract_type\nUNION ALL\nselect id, name, 'entitlements' as type from customlist_crc_entitlements_options\nUNION ALL\nselect id, name, 'foreign_entities' as type from customlist_crc_foreign_entities_option\nUNION ALL\nselect id, name, 'paper_type' as type from customlist_crc_paper_type\nUNION ALL\nselect id, name, 'transfer_of_rights' as type from customlist_crc_transfer_of_rights"
+                    }
+                  }
+                }
+              }
+            },
+            "include_raw_body": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            }
+          }
+        },
+        "script-2": {
+          "title": "Create NS field map",
+          "description": "Returns a mapping from the keys expected to have in the spreadsheet, the corresponding ns field and data type. This is being created here because it will be used by the import flow and also by the error handling flow.",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": []
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n\treturn {\n    netsuiteSubscriptionId: { key: 'custrecord_cr_subscription', type: 'Text' },\n    reviewDate: { key: 'custrecord_cr_review_date', type: 'Date' },\n    contractType: { key: 'custrecord_cr_contract_type', type: 'List', listType: 'contract_type' },\n    contractEndDate: { key: 'custrecord_cr_contract_end_date', type: 'Date' },\n    contractTerm: { key: 'custrecord_cr_contract_term', type: 'Number' },\n    contractLanguage: { key: 'custrecord_cr_contract_language', type: 'Text' },\n    masterAgreementEffectiveDate: { key: 'custrecord_cr_master_agr_effective_date', type: 'Date' },\n    masterAgreementOnEswStandardPaper: { key: 'custrecord_cr_master_agreement_paper', type: 'List', listType: 'paper_type' },\n    masterAgreementVersion: { key: 'custrecord_cr_master_agreement_version', type: 'Text' },\n    latestSignedQuoteOnEswStandardPaper: { key: 'custrecord_cr_latest_signed_quote_paper', type: 'List', listType: 'paper_type' },\n    latestSignedQuoteVersion: { key: 'custrecord_cr_latest_signed_quote_versio', type: 'Text' },\n    contractNoticeRequirements: { key: 'custrecord_cr_contract_notice_requiremen', type: 'Text' },\n    federalGovernmentContract: { key: 'custrecord_cr_federal_gov_contract', type: 'Boolean' },\n    transferOfRightsOrObligationsToAnAffiliateSubcontractorByProvider: { key: 'custrecord_cr_transfer_rights_by_provide', type: 'List', listType: 'transfer_of_rights' },\n    useOfForeignEntitiesAsAffiliatesSubcontractors: { key: 'custrecord_cr_use_of_foreign_entities', type: 'List', listType: 'foreign_entities' },\n    restrictionOnNewBuyerActingUnderContractAfterAChangeOfControlAtProvider: { key: 'custrecord_cr_restriction_on_new_buyer', type: 'Boolean' },\n    contractLawCountry: { key: 'custrecord_cr_contract_law_country', type: 'Text' },\n    contractLawState: { key: 'custrecord_cr_contract_law_state', type: 'Text' },\n    exclusiveJurisdiction: { key: 'custrecord_cr_exclusive_jurisdiction', type: 'Text' },\n    indemnifiableLossesLiabilityLimit: { key: 'custrecord_cr_losses_liability_limit', type: 'Text' },\n    indemnifiableLossesLiabilityLimitAmount: { key: 'custrecord_cr_loss_liability_limit_amoun', type: 'Currency' },\n    limitationOfLiability: { key: 'custrecord_cr_limitation_of_liability', type: 'Boolean' },\n    exclusionOfLimitationOfLiability: { key: 'custrecord_cr_exclusion_liability_limit', type: 'Text' },\n    missingOrNonStandardDisclaimerOfIndirectDamages: { key: 'custrecord_cr_disclaimer_of_indirect_dam', type: 'Boolean' },\n    autoRenewalClause: { key: 'custrecord_cr_has_autorenewal_clause', type: 'Boolean' },\n    autoRenewalPrice: { key: 'custrecord_cr_ar_price', type: 'Text' },\n    autoRenewalCustomTerm: { key: 'custrecord_cr_ar_custom_term', type: 'Number' },\n    providerAutoRenewalNoticePeriod: { key: 'custrecord_cr_provider_ar_notice_period', type: 'Number' },\n    providerAutoRenewalNoticeRequirements: { key: 'custrecord_cr_provider_ar_notice_require', type: 'Text' },\n    customerTerminationNoticePeriod: { key: 'custrecord_cr_ct_notice_period', type: 'Number' },\n    customerNonRenewalNoticePeriod: { key: 'custrecord_cr_ct_notice_period', type: 'Number' },\n    canCustomerTerminateTheContractAtConvenience: { key: 'custrecord_cr_ct_at_convenience', type: 'Boolean' },\n    canCustomerTerminateTheContractAtChangeOfControl: { key: 'custrecord_cr_ct_at_change_of_control', type: 'Boolean' },\n    customerTerminationRefundOfPrepaidFees: { key: 'custrecord_cr_ct_refund_prepaid_fees', type: 'Percent' },\n    customerContractExtensionRight: { key: 'custrecord_cr_customer_contract_extensio', type: 'Boolean' },\n    providerRightToNotAutorenew: { key: 'custrecord_cr_pt_has_right_not_to_renew', type: 'Boolean' },\n    providerHasRightNotToRenew: { key: 'custrecord_cr_pt_has_right_not_to_renew', type: 'Boolean' },\n    providerLockInPeriod: { key: 'custrecord_cr_provider_lockin_period', type: 'Number' },\n    noticePeriodToNotAutorenew: { key: 'custrecord_cr_pt_notice_period', type: 'Number' },\n    providerNoticePeriodNotToRenew: { key: 'custrecord_cr_pt_notice_period', type: 'Number' },\n    providerTerminationNoticeRequirements: { key: 'custrecord_cr_pt_notice_requirements', type: 'Text' },\n    providerNonRenewalNoticeRequirements: { key: 'custrecord_cr_pt_notice_requirements', type: 'Text' },\n    capsOnRenewalPrice: { key: 'custrecord_cr_caps_on_renewal_price', type: 'List', listType: 'caps' },\n    customerRightToReduceEntitlements: { key: 'custrecord_cr_customer_reduce_entitlemen', type: 'List', listType: 'entitlements' },\n    mfnClauseAffiliates: { key: 'custrecord_cr_mfn_clause_affiliates', type: 'Boolean' },\n    providerPriceChangeNoticePeriod: { key: 'custrecord_cr_pp_change_notice_period', type: 'Number' },\n    providerPriceChangeNoticeRequirement: { key: 'custrecord_cr_pp_change_notice_requireme', type: 'Text' }\n\t};\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "trigger": {
+          "title": "Manual Trigger",
+          "description": "Manual trigger, before executing, check if the spreadsheetId in the config data is correct",
+          "connector": {
+            "name": "noop",
+            "version": "1.1"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "6550c42c-6262-424e-8311-04a0a4acea91",
+          "name": "Import Contract Review to Netsuite"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

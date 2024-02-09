@@ -1,0 +1,1128 @@
+{
+  "type": "object",
+  "properties": {
+    "custrecord_zc_quantity_tolerance_amount": {
+      "title": "Quantity tolerance fixed amount",
+      "type": "number",
+      "format": "float",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_zc_enable_3way_matching": {
+      "title": "Enable 3-Way Matching",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_disable_po_matching": {
+      "title": "Disable Matching Purchase Orders",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_folderid": {
+      "title": "Folder Internal ID for File Storage (PDF and data files)",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_tbr_autoshowpdf": {
+      "title": "EFF_NSP2P__BILL2PROC_AUTO_SHOW_PDF_WHEN_OPENING_NSTRAN",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_usetaxmapping": {
+      "title": "Use Tax Mapping",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_usesubforgnrlmatch": {
+      "title": "SUBSIDIARY FROM THE EMAIL PLUGIN PREVAILS DURING VENDOR MATCHING",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_use_item_or_exp": {
+      "title": "Use Items Instead of Expenses",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_suppress_total_wrn": {
+      "title": "Suppress Total Amount Warnings",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_canvenmtchselflearn": {
+      "title": "Enable self-learning while matching vendors",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_suppress_line_wrn": {
+      "title": "Suppress Number Of Lines Warnings",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_supressvatoninctran": {
+      "title": "Suppress VAT on incoming transactions",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_buyer_ref_id": {
+      "title": "Buyer Reference Field ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_tbr_proc_after_save": {
+      "title": "EFF_NSP2P__P2PTRAN_PROC_AFTER_SAVE",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_filter_po_by_vendor": {
+      "title": "Filter Purchase Orders Base On Vendor",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_zc_3wm_auto_adjust_vb_qty": {
+      "title": "Limit Auto-Adjusting of the Quantity on the Vendor Bill Line to the Maximum Billable Quantity",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_zc_rate_tolerance_amount": {
+      "title": "Rate tolerance fixed amount",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_response_capture_ok": {
+      "title": "Send auto-response when documents are captured successfully",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_serial_ref_id": {
+      "title": "Serial Numbers Field ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_zc_highlight_bill_quantity": {
+      "title": "Highlight bill quantity if lower than PO quantity",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_opennewtab": {
+      "title": "Open Records Directly in New Tab",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_payment_ref_id": {
+      "title": "Payment Reference Field ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_prefixpomatching": {
+      "title": "Prefix for matching POs",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_tbr_filtervendor": {
+      "title": "EFF_NSP2P__P2PTRAN_FILTER_VENDOR",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_zc_mc_amt_tlrnce_amount": {
+      "title": "Amount tolerance fixed amount",
+      "type": "number",
+      "format": "float",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_tbr_vend_auto_pro": {
+      "title": "EFF_NSP2P__VENDOR_CHECKBOX_FOR_AUTO_PROCESSING",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_suppress_curr_wrn": {
+      "title": "Suppress Currency Warnings",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "recordId": {
+      "title": "Record ID",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_ubl_include_default": {
+      "title": "Include UBL File By Default",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_ubl_item_sel_id": {
+      "title": "Item Seller ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_addsubsname": {
+      "title": "Add Subsidiary Name to the naming convention",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_canautoprocincbills": {
+      "title": "Enable Auto-processing for standalone bills to process",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_enableenhanceduiexp": {
+      "title": "Enable Enhanced UI Experience",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_zc_ignore_3wm_results_autoprc": {
+      "title": "Ignore Matching Results when Autoprocessing",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_zc_enforce_3wm_on_save": {
+      "title": "Enforce 3-Way Matching on save",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_attachemail": {
+      "title": "Attach the incoming mail to the created vendor bill",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_zc_rate_tolerance_percentage": {
+      "title": "Rate tolerance percentage",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_tbr_enhancefilterpo": {
+      "title": "EFF_NSP2P__P2PTRAN_ENHANCED_FILTER_POS",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_excl_domains": {
+      "title": "Excluded Domain Names for Matching Algorithm",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_docnumfld": {
+      "title": "Custom Transaction Field Id for Control of Duplicates",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_ubl_file_tran_body": {
+      "title": "Field ID UBL File",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_dupdetect": {
+      "title": "Enable Control of Duplicates",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_is_migrated": {
+      "title": "Main Configuration is Migrated",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_zc_qty_tolerance_percentage": {
+      "title": "Quantity tolerance percentage",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_chamber_comm_id": {
+      "title": "Chamber Of Commerce Field ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_b2pfilesrnmpattern": {
+      "title": "PDF Storage Naming Convention",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_suppress_tax_wrn": {
+      "title": "Suppress Tax Total Warnings",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_autoresponse_cc": {
+      "title": "Auto-response CC",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_canbillmultiplepos": {
+      "title": "Enable Billing Of Multiple Purchase Transactions (not BFN compliant)",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_deftrantype": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string",
+          "enum": [
+            "VendPymt",
+            "CustCred",
+            "ItemShip",
+            "Check",
+            "RevContr",
+            "Journal",
+            "CustChrg",
+            "OrdResv",
+            "RevArrng",
+            "GLAdj",
+            "InvReval",
+            "Opprtnty",
+            "CustRfnd",
+            "CashRfnd",
+            "TrnfrOrd",
+            "Build",
+            "Unbuild",
+            "RevComm",
+            "SalesOrd",
+            "Rfq",
+            "VPrepApp",
+            "TegPybl",
+            "Deposit",
+            "WOIssue",
+            "FinChrg",
+            "PurchOrd",
+            "FftReq",
+            "StatChng",
+            "ExpRept",
+            "DepAppl",
+            "Wave",
+            "OwnTrnsf",
+            "StPickUp",
+            "TegRcvbl",
+            "WOCompl",
+            "NettStlm",
+            "InvAdjst",
+            "Transfer",
+            "Paycheck",
+            "BalJrnal",
+            "VendBill",
+            "YtdAdjst",
+            "XChgJrnl",
+            "ItemRcpt",
+            "Estimate",
+            "PChkJrnl",
+            "VPrep",
+            "SysJrnl",
+            "Commissn",
+            "TaxPymt",
+            "RtnAuth",
+            "CustInvc",
+            "FxReval",
+            "WorkOrd",
+            "PurchCon",
+            "BinTrnfr",
+            "LiaAdjst",
+            "InvDistr",
+            "VendRfq",
+            "LiabPymt",
+            "RevComRv",
+            "TaxLiab",
+            "InvcGrp",
+            "CuTrPrch",
+            "CustAuth",
+            "VendAuth",
+            "InvCount",
+            "InvWksht",
+            "CardRfnd",
+            "VendCred",
+            "PEJrnl",
+            "BinWksht",
+            "Custom",
+            "CustPymt",
+            "CustDep",
+            "PurchReq",
+            "WOClose",
+            "InbShip",
+            "CashSale",
+            "BlankOrd",
+            "CuTrSale",
+            "DeprCust",
+            "CardChrg",
+            "InvTrnfr"
+          ]
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        }
+      }
+    },
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_usesubforpomatching": {
+      "title": "SUBSIDIARY FROM THE EMAIL PLUGIN PREVAILS DURING PURCHASE ORDER MATCHING",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_tbr_basw_note_from": {
+      "title": "EFF_NSP2P__BW_CONNECTOR_2_COM_SOURCE_EINVOICE_NOTE_FROM_FIELD",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_zc_disable_coloring_lines": {
+      "title": "Disable coloring of not matched vendor bill lines",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_supp_line_inf_wrn": {
+      "title": "Suppress Line Information Warnings",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_supplier_notes_id": {
+      "title": "Supplier Notes Field ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_zc_can_process_po_bills": {
+      "title": "Enable Auto-processing for PO-related bills to process",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_tbr_dis_tax_nexust": {
+      "title": "EFF_NSP2P__BILLCREDIT_DISABLE_FILTER_TAX_ON_NEXUS",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_addtimestamp": {
+      "title": "Add date/time stamp to the naming convention",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_enable_highlighting": {
+      "title": "Enable highlighting source data on the clickable PDF (Not BFN Compliant)",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_enablepollv": {
+      "title": "Enable 3-way purchase order matching (Not BFN Compliant)",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_disable_ocr_process": {
+      "title": "Disable OCR Data Processing",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_autoshowpdfonnstran": {
+      "title": "Show by default the PDF file when opening a vendor bill",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_filter_vendor_by_su": {
+      "title": "Filter Vendors Based On Subsidiary",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_leave_empty_des_lin": {
+      "title": "Use Empty Name/Description Values",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_ignoreduedateofb2p": {
+      "title": "Ignore the due date from the incoming transactions",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ff_sc_cfg_resp_capture_errors": {
+      "title": "Send auto-response when an error occurred for captured documents",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_zc_mc_amt_tlrnce_percentage": {
+      "title": "Amount tolerance percentage",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "custrecord_ff_sc_cfg_linesdefglacc": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_zc_tolerance_type_3wm_rate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_cfg_sub_db": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_zc_mc_tolerance_type_3wm_amt": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_cfg_processedtrantmssid": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_zc_prevailing_quantity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_zc_tolerance_type_3wm_qty": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_cfg_failedeinvoicesssid": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_cfg_autoresponse_sender": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_zc_prevailing_rate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_cfg_po_validation_rule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_cfg_ocremailplugin": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_cfg_linesdefitem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_cfg_incomingpurtranssid": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_cfg_capt_fail_tmplt_id": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_cfg_outboundeinvtmssid": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_zc_mc_prevailing_amount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_cfg_default_e_config": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_cfg_capt_ok_tmplt_id": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_cfg_linesearch": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_cfg_abbyy_ocr_fb_vb_bil": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "custrecord_ff_sc_cfg_vendor_db_search": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [],
+  "x-ns-custom-record": true
+}

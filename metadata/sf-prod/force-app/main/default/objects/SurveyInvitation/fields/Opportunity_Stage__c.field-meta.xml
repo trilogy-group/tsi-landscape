@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Stage__c</fullName>
+    <description>LAMBDA-65516 Stagename for related opportunity</description>
+    <externalId>false</externalId>
+    <formula>TEXT(Opportunity__r.StageName)</formula>
+    <inlineHelpText>Auto-captured value of Stagename from related opportunity</inlineHelpText>
+    <label>Opportunity Stage</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

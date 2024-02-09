@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Contract_Active__c</fullName>
+    <description>LAMBDA-60085 Formula to calculate whether the Contract is active or not</description>
+    <externalId>false</externalId>
+    <formula>(TODAY()&lt;= Contract_End_Date__c)</formula>
+    <inlineHelpText>The field is checked if the contract is active based on Renewal Date and term</inlineHelpText>
+    <label>Is Contract Active</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

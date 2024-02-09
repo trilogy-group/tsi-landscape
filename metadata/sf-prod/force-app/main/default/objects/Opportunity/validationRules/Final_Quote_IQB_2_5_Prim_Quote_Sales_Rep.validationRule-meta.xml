@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Final_Quote_IQB_2_5_Prim_Quote_Sales_Rep</fullName>
+    <active>true</active>
+    <description>Opportunity on Final Quote must have a quote with a sales rep assigned to who is active</description>
+    <errorConditionFormula>TEXT(StageName) = &apos;Final Quote&apos; &amp;&amp;
+( SBQQ__PrimaryQuote__r.SBQQ__SalesRep__c = null || SBQQ__PrimaryQuote__r.SBQQ__SalesRep__r.IsActive = false) &amp;&amp; NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)</errorConditionFormula>
+    <errorDisplayField>SBQQ__PrimaryQuote__c</errorDisplayField>
+    <errorMessage>The &apos;Sales Rep&apos; of &apos;Primary Quote&apos; must be set and assigned to an active user.</errorMessage>
+</ValidationRule>

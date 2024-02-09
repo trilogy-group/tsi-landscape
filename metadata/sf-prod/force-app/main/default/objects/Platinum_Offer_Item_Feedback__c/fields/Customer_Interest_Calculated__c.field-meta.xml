@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Interest_Calculated__c</fullName>
+    <description>This field is created to group the Customer Interest values to,
+
+- Positive
+- Negative
+- Not Discussed
+- Unknown
+- Null. 
+
+And these bucket values are used on the Renewals Dashboard --&gt; Platinum Feedback tab.</description>
+    <externalId>false</externalId>
+    <formula>CASE(Customer_Interest__c, 
+&quot;Positive&quot;,&quot;Positive&quot;, 
+&quot;No doubts, it&apos;s great&quot;,&apos;Positive&apos;,
+&quot;Interested&quot;,&apos;Positive&apos;,
+&quot;Using third-party service - will consider&quot;,&quot;Positive&quot;,
+&quot;Doing it in-house - will consider&quot;,&quot;Positive&quot;,
+&quot;Reseller offers the service&quot;,&quot;Positive&quot;,
+&quot;Negative&quot;,&quot;Negative&quot;,
+&quot;Doesn&apos;t add significant value&quot;,&quot;Negative&quot;,
+&quot;Not a priority, maybe in the future&quot;,&quot;Negative&quot;,
+&quot;Too expensive&quot;,&quot;Negative&quot;,
+&quot;Using third-party service - won&apos;t consider&quot;,&quot;Negative&quot;,
+&quot;Doing it in-house - won&apos;t consider&quot;,&quot;Negative&quot;,
+&quot;Unhappy with past delivery&quot;,&quot;Negative&quot;,
+&quot;Neutral&quot;,&quot;Neutral&quot;,
+&quot;Previously included in subscription&quot;,&quot;Neutral&quot;,   
+&quot;Not Discussed&quot;,&quot;Not Discussed&quot;,
+&quot;Unknown&quot;,&quot;Unknown&quot;,
+&quot;Not qualified to answer&quot;,&quot;Unknown&quot;,
+&quot;Unclear feedback&quot;,&quot;Unknown&quot;,
+&quot;Customer won&apos;t engage&quot;,&quot;Unknown&quot;,
+&quot;Null&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Customer Interest(Calculated)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Canceled_Before_Renewal_Cycle__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>True if the subscription was canceled before the renewal process started (120 days before the renewal).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check if the subscription was canceled before the renewal cycle started (before we sent the first email or made the first call to the customer).</inlineHelpText>
+    <label>Canceled Before Renewal Cycle</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

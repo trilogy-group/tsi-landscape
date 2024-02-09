@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspan__Description__c</fullName>
+    <deprecated>false</deprecated>
+    <description>OOB this is the same Description as on the Opportunity, but it can be changed on the Field Mapping page of the WorkSpan Admin tab. Note that this is a Rich Text field as opposed to the standard Description on the Opportunity, which will result in HTML tags appearing if you create Opportunity from Incoming Referral. See the user guide for more details.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Please provide following details:
+1. What is the customer pain point?
+2. What solution are you proposing to the customer?
+3. What is the end customer looking to do? What&apos;s the role of each partner?
+4. What are the software applications and tools used to support the solution?
+5. Specific department or subsidiary of the end customer you are working with?
+6. What is the pre-sales engagement you had with this customer on this opportunity?</inlineHelpText>
+    <label>Description</label>
+    <length>32000</length>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Co_Term_Co_Term_To_And_WinType_Required</fullName>
+    <active>true</active>
+    <description>Co-termed opps must have a link to the primary opp and Win Type set to &quot;Co-Term&quot;</description>
+    <errorConditionFormula>AND(
+NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c),
+TEXT(StageName) = &apos;Co-Term&apos;, 
+OR(ISBLANK(Co_Term_To__c),
+(TEXT(Win_Type__c)&lt;&gt;&quot;Co-Term&quot;))
+)</errorConditionFormula>
+    <errorMessage>Co-termed opps must have a link to the primary opp and Win Type set to &quot;Co-Term&quot;</errorMessage>
+</ValidationRule>

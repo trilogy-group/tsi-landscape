@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Send_Email_Reply_License_Extension</fullName>
+        <description>Send Email Reply License Extension</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/License_Extension_status</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Transfer_to_BU_approval_email_reply</fullName>
+        <description>Send Transfer to BU approval email reply</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Opportunity_transfer_to_BU_request_answer</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Transfer_to_BU_new_owner_email_notification</fullName>
+        <description>Send Transfer to BU new owner email notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>unfiled$public/Opportunity_transfer_to_BU_owner</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_email_reply</fullName>
+        <description>Send email reply</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Opportunity_cancel_request_answer</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Closed_Lost_Update</fullName>
+        <field>StageName</field>
+        <literalValue>Closed Lost</literalValue>
+        <name>Closed Lost Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ResetLossReason</fullName>
+        <description>Reset Loss Reason on Recall</description>
+        <field>Loss_Reason__c</field>
+        <name>ResetLossReason</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ResetWinType</fullName>
+        <description>Set empty Win Type</description>
+        <field>Win_Type__c</field>
+        <name>Reset Win Type</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Reset_Approved_to_Update_Owner</fullName>
+        <field>Approved_to_Update_Owner__c</field>
+        <literalValue>0</literalValue>
+        <name>Reset Approved to Update Owner</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Reset_Handled_by_BU</fullName>
+        <description>Reset Handled by BU on recall</description>
+        <field>Handled_by_BU__c</field>
+        <literalValue>0</literalValue>
+        <name>Reset Handled by BU</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SetIsLocked</fullName>
+        <field>IsLocked__c</field>
+        <literalValue>1</literalValue>
+        <name>SetIsLocked</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Approved_to_Update_Owner</fullName>
+        <description>Set Approved to Update field to true to trigger a flow to set new owner.</description>
+        <field>Approved_to_Update_Owner__c</field>
+        <literalValue>1</literalValue>
+        <name>Set Approved to Update Owner</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Close_Date</fullName>
+        <description>LAMBDA-60440 set the close date of the opportunity 14 days into future</description>
+        <field>CloseDate</field>
+        <formula>Latest_License_Extension_Commited_Date__c</formula>
+        <name>Set Close Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Closed_Lost_Stage</fullName>
+        <field>StageName</field>
+        <literalValue>Closed Lost</literalValue>
+        <name>Set Closed Lost Stage</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Extensions_Granted</fullName>
+        <description>LAMBDA-60440 Increase the value of</description>
+        <field>Extensions_Granted__c</field>
+        <name>Set Extensions Granted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>NextValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Finalizing_Stage</fullName>
+        <field>StageName</field>
+        <literalValue>Finalizing</literalValue>
+        <name>Set Finalizing Stage</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Handled_by_BU</fullName>
+        <description>Set Handled by BU to True</description>
+        <field>Handled_by_BU__c</field>
+        <literalValue>1</literalValue>
+        <name>Set Handled by BU</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Won_t_Process_Stage</fullName>
+        <field>StageName</field>
+        <literalValue>Won&apos;t Process</literalValue>
+        <name>Set Won&apos;t Process Stage</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Wont_Process_Approved_true</fullName>
+        <description>Sets Wont Process Approved to true</description>
+        <field>Wont_Process_Approved__c</field>
+        <literalValue>1</literalValue>
+        <name>Set Wont Process Approved true</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UnsetIsLocked</fullName>
+        <field>IsLocked__c</field>
+        <literalValue>0</literalValue>
+        <name>UnsetIsLocked</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <outboundMessages>
+        <fullName>TrayDedupObjFC_Z1SEdQS</fullName>
+        <apiVersion>55.0</apiVersion>
+        <endpointUrl>https://c0ef9012-3576-4e16-a18f-484786f636a1-c6ab01f2de90d21.trayapp.io</endpointUrl>
+        <fields>Id</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>sales.integration@trilogy.com</integrationUser>
+        <name>TrayDedupObjFC_Z1SEdQS</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <outboundMessages>
+        <fullName>TrayOnOpportunityInternalRe_Z2oP6lS</fullName>
+        <apiVersion>55.0</apiVersion>
+        <endpointUrl>https://e5aedfdc-48b1-41a8-b74d-3dadd9316d24-00e291754384f47.trayapp.io</endpointUrl>
+        <fields>Id</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>sales.integration@trilogy.com</integrationUser>
+        <name>TrayOnOpportunityInternalRe_Z2oP6lS</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <outboundMessages>
+        <fullName>TrayOnOpportunityNetSuiteID_11dyXH</fullName>
+        <apiVersion>55.0</apiVersion>
+        <endpointUrl>https://8cf2d9cc-613f-45a0-ad47-7683f65ca615-d594537c2bd2f43.trayapp.io</endpointUrl>
+        <fields>Id</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>sales.integration@trilogy.com</integrationUser>
+        <name>TrayOnOpportunityNetSuiteID_11dyXH</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <outboundMessages>
+        <fullName>TrayOnOpportunityOwnerIdChan_FLsLw</fullName>
+        <apiVersion>55.0</apiVersion>
+        <endpointUrl>https://9872d06f-8131-474e-a167-1d64c5ffc122-71b121fcc4cc31c.trayapp.io</endpointUrl>
+        <fields>Id</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>sales.integration@trilogy.com</integrationUser>
+        <name>TrayOnOpportunityOwnerIdChan_FLsLw</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <outboundMessages>
+        <fullName>TrayOnOpportunityStageNameCh_Z1BaFe7</fullName>
+        <apiVersion>55.0</apiVersion>
+        <endpointUrl>https://9ba96aff-6e7e-4d60-896c-8dc84c81abdf-769877d0c583bc8.trayapp.io</endpointUrl>
+        <fields>Id</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>sales.integration@trilogy.com</integrationUser>
+        <name>TrayOnOpportunityStageNameCh_Z1BaFe7</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <outboundMessages>
+        <fullName>TrayOnOpportunityStageNameCh_Z1wHt5K</fullName>
+        <apiVersion>55.0</apiVersion>
+        <endpointUrl>https://e161f82a-6471-4a19-9b75-d866487debb2-2da920b44de24a1.trayapp.io</endpointUrl>
+        <fields>Id</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>hussein.kahloul--tsi@trilogy.com</integrationUser>
+        <name>TrayOnOpportunityStageNameCh_Z1wHt5K</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+</Workflow>

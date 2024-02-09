@@ -1,0 +1,416 @@
+{
+  "type": "object",
+  "properties": {
+    "isInactive": {
+      "title": "Inactive",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_netsuitetotalamountfc": {
+      "title": "NetSuite Total Amount (foreign)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avataxtotaldiscount": {
+      "title": "AvaTax Total Discount",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avatotalexemption": {
+      "title": "AvaTax Total Exemption",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_netsuitetotaltaxfc": {
+      "title": "NetSuite Total Tax (foreign)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_netsuitedoctyp": {
+      "title": "NetSuite Doc Type",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_netsuitetotaltax": {
+      "title": "NetSuite Total Tax",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avacrtotaltaxable": {
+      "title": "AvaTax CR. Total Taxable",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avataxdate": {
+      "title": "AvaTax Tax Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_netsuitetotalamount": {
+      "title": "NetSuite Total Amount",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avacrtaxtotalamount": {
+      "title": "AvaTax CR. Total Amount",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "externalId": {
+      "title": "External ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_netsuitedocdate": {
+      "title": "NetSuite Doc Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_netsuitetotaldiscount": {
+      "title": "NetSuite Total Discount",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avacrtaxcrdocdate": {
+      "title": "AvaTax CR. Doc Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avataxtotalamount": {
+      "title": "AvaTax Total Amount",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avataxdocstatus": {
+      "title": "AvaTax Doc Status",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "scriptId": {
+      "title": "Script ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avataxdoctype": {
+      "title": "AvaTax Doc Type",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_batchmulticurrency": {
+      "title": "Multi-Currency",
+      "type": "boolean",
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avacrtaxcrdocstatus": {
+      "title": "AvaTax CR. Doc Status",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avacrtaxtotaldiscount": {
+      "title": "AvaTax CR. Total Discount",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "id": {
+      "title": "Internal ID",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_batchdocno": {
+      "title": "Batch Doc No",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_batchdoctype": {
+      "title": "Batch Doc Type",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avacrtotalexemption": {
+      "title": "AvaTax CR. Total Exemption",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "created": {
+      "title": "Created",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avacrtaxtotalamountfc": {
+      "title": "AvaTax CR. Total Amount (foreign)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_reconcilebatchname": {
+      "title": "Batch Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "abbreviation": {
+      "title": "Abbreviation",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avacrtaxdate": {
+      "title": "AvaTax CR. Tax Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "recordId": {
+      "title": "Record ID",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avacrtotaltax": {
+      "title": "AvaTax CR. Total Tax",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avatotaltax": {
+      "title": "AvaTax Total Tax",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avataxdocdate": {
+      "title": "AvaTax Doc Date",
+      "type": "string",
+      "format": "date",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_statusflag": {
+      "title": "Status",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "lastmodified": {
+      "title": "Last modified",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avacrtotaltaxfc": {
+      "title": "AvaTax CR. Total Tax (foreign)",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avacrtaxcrdoctype": {
+      "title": "AvaTax CR. Doc Type",
+      "type": "integer",
+      "format": "int64",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "custrecord_ava_avatotaltaxable": {
+      "title": "AvaTax Total Taxable",
+      "type": "number",
+      "format": "double",
+      "nullable": true,
+      "x-ns-custom-field": true
+    },
+    "refName": {
+      "title": "Reference Name",
+      "type": "string"
+    },
+    "links": {
+      "title": "Links",
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+      }
+    },
+    "custrecord_ava_batchid": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "lastmodifiedby": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Internal identifier",
+          "type": "string"
+        },
+        "refName": {
+          "title": "Reference Name",
+          "type": "string"
+        },
+        "externalId": {
+          "title": "External identifier",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "/services/rest/record/v1/metadata-catalog/nsLink"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "x-ns-filterable": [
+    "isInactive",
+    "custrecord_ava_netsuitetotalamountfc",
+    "custrecord_ava_avataxtotaldiscount",
+    "custrecord_ava_avatotalexemption",
+    "custrecord_ava_netsuitetotaltaxfc",
+    "custrecord_ava_netsuitedoctyp",
+    "custrecord_ava_netsuitetotaltax",
+    "custrecord_ava_avacrtotaltaxable",
+    "custrecord_ava_avataxdate",
+    "custrecord_ava_netsuitetotalamount",
+    "custrecord_ava_avacrtaxtotalamount",
+    "externalId",
+    "lastmodifiedby",
+    "custrecord_ava_netsuitedocdate",
+    "custrecord_ava_netsuitetotaldiscount",
+    "custrecord_ava_avacrtaxcrdocdate",
+    "custrecord_ava_avataxtotalamount",
+    "custrecord_ava_avataxdocstatus",
+    "scriptId",
+    "custrecord_ava_avataxdoctype",
+    "custrecord_ava_batchmulticurrency",
+    "custrecord_ava_avacrtaxcrdocstatus",
+    "custrecord_ava_avacrtaxtotaldiscount",
+    "id",
+    "custrecord_ava_batchdocno",
+    "custrecord_ava_batchdoctype",
+    "owner",
+    "custrecord_ava_batchid",
+    "custrecord_ava_avacrtotalexemption",
+    "created",
+    "custrecord_ava_avacrtaxtotalamountfc",
+    "custrecord_ava_reconcilebatchname",
+    "abbreviation",
+    "custrecord_ava_avacrtaxdate",
+    "recordId",
+    "custrecord_ava_avacrtotaltax",
+    "custrecord_ava_avatotaltax",
+    "custrecord_ava_avataxdocdate",
+    "custrecord_ava_statusflag",
+    "lastmodified",
+    "custrecord_ava_avacrtotaltaxfc",
+    "custrecord_ava_avacrtaxcrdoctype",
+    "name",
+    "custrecord_ava_avatotaltaxable"
+  ],
+  "x-ns-custom-record": true
+}

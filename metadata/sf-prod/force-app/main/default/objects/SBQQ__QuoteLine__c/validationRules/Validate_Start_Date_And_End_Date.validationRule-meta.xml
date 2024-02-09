@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Start_Date_And_End_Date</fullName>
+    <active>true</active>
+    <description>LAMBDA-65397: End Date cannot be earlier than or same as Start Date</description>
+    <errorConditionFormula>AND(
+NOT(ISBLANK( SBQQ__StartDate__c )),
+NOT(ISBLANK( SBQQ__EndDate__c )),
+SBQQ__StartDate__c &gt;= SBQQ__EndDate__c
+)</errorConditionFormula>
+    <errorMessage>End Date cannot be earlier than or same as Start Date.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transactional_Opp__c</fullName>
+    <externalId>false</externalId>
+    <formula>(ARR__c / CURRENCYRATE(Text( CurrencyIsoCode ))) &lt; 25000 &amp;&amp; (Current_ARR__c / CURRENCYRATE(Text( CurrencyIsoCode ))) &lt; 25000</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Transactional Opp</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,81 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "a816f00e-f4fe-4074-afa3-dabbc27caa70",
+      "created": "2023-06-15T18:03:50.521887Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "0c145cd5-0a3a-480f-bd7e-2cc8a66fd232",
+      "version": {
+        "id": "2843e15c-443a-4395-a9c7-e89dce8d1729",
+        "created": "2023-06-15T18:04:54.098950Z"
+      },
+      "title": "Trigger Sync SF Contact To NS Contact",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-1",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "trigger": {
+          "title": "Async call",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "call-workflow-1": {
+          "title": "Call subflow synchronously",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "eded41c8-5521-45c5-99f7-3737fbc7ee1e"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "sfContactId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.sfContactId"
+                }
+              }
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "eded41c8-5521-45c5-99f7-3737fbc7ee1e",
+          "name": "Sync SF Contact To NS Contact"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Self_Serve_Link__c</fullName>
+    <description>LAMBDA-68944 Formula to dynamically generate Self Serve URL for the opportunity</description>
+    <externalId>false</externalId>
+    <formula>IF(
+CONTAINS($Organization.Id, &apos;00D2x000000qNQa&apos;),
+HYPERLINK(&apos;https://renewals.ignitetech.com/signup?subscriptionId=&apos; &amp; Parent_Subscription_ID__c , &apos;Manage Subscription&apos;, &apos;_blank&apos;),
+HYPERLINK(&apos;https://renewals.dev.ignitetech.com/signup?subscriptionId=&apos; &amp; Parent_Subscription_ID__c, &apos;Manage Subscription&apos;, &apos;_blank&apos;)
+)</formula>
+    <inlineHelpText>This is dynamically generated to open this Subscription in Self-Serve Portal</inlineHelpText>
+    <label>Self Serve Link</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

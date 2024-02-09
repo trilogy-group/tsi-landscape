@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Termination_Deadline__c</fullName>
+    <description>LAMBDA-60525 Formula field to calculate Customer Termination deadline based on the Renewal date and Customer Termination notice period</description>
+    <externalId>false</externalId>
+    <formula>Renewal_Date__c - IF(ISNULL(Customer_Termination_Notice_Period__c),60,Customer_Termination_Notice_Period__c)</formula>
+    <inlineHelpText>Deadline is calculated based on Renewal Date and Customer Termination Notice Period</inlineHelpText>
+    <label>Customer Termination Deadline</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

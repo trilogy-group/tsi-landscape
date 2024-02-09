@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Finalizing_QuoteFollowUp_PreventRevert</fullName>
+    <active>true</active>
+    <description>LAMBDA-50369 This rule prevents the user from setting the stage value from Quote Follow-Up or Finalizing</description>
+    <errorConditionFormula>AND(
+    ISCHANGED(StageName),
+	OR(ISPICKVAL(PriorValue(StageName),&apos;Finalizing&apos;),
+		ISPICKVAL(PriorValue(StageName),&apos;Quote Follow-Up&apos;)
+	),
+	NOT(ISPICKVAL(StageName,&apos;Finalizing&apos;)),
+	NOT(ISPICKVAL(StageName,&apos;Closed Won&apos;)),
+        NOT(ISPICKVAL(StageName,&apos;Closed Lost&apos;)),
+	NOT($Setup.Quality_Bars_Configuration__c.Disabled_Opportunity_QBs__c)
+)</errorConditionFormula>
+    <errorMessage>Please use the Revert Stage button to move opportunity from Quote Follow-up or Finalizing to a prior stage.</errorMessage>
+</ValidationRule>

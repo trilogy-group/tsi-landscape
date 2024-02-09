@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DoNotAllowToSetAsPrimaryIfCancelled</fullName>
+    <active>true</active>
+    <description>Ensures that users cannot set a cancelled quote as primary.</description>
+    <errorConditionFormula>NOT($Setup.Quality_Bars_Configuration__c.Disabled_Quote_QBs__c)
+&amp;&amp; ISCHANGED(SBQQ__Primary__c)
+&amp;&amp; SBQQ__Primary__c = TRUE
+&amp;&amp; ISPICKVAL(SBQQ__Status__c, &apos;Cancelled&apos;)</errorConditionFormula>
+    <errorMessage>Cannot set a cancelled quote as primary.</errorMessage>
+</ValidationRule>

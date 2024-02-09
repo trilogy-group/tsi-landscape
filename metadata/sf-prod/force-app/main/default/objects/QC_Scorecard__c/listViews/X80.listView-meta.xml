@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X80</fullName>
+    <columns>NAME</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>Score__c</columns>
+    <columns>Result2__c</columns>
+    <columns>Grader_Comment__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Score__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>75.00</value>
+    </filters>
+    <label>&gt;75%</label>
+</ListView>

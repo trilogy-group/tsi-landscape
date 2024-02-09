@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <assignments>
+        <description>Add count to variable</description>
+        <name>Count_CSM_Milestone_Results</name>
+        <label>Count CSM Milestone Results</label>
+        <locationX>395</locationX>
+        <locationY>318</locationY>
+        <assignmentItems>
+            <assignToReference>CountSuccessCSMMilestoneResults</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_CSM_Milestone_Results</targetReference>
+        </connector>
+    </assignments>
+    <description>Update &quot;Count Success CSM Milestone Results&quot; field in opportunity when CSM Milestone Result status changed</description>
+    <interviewLabel>OnCSMMilestoneResultUpdate {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>On CSM_Milestone_Result Update</label>
+    <loops>
+        <name>Loop_through_CSM_Milestone_Results</name>
+        <label>Loop through CSM Milestone Results</label>
+        <locationX>615</locationX>
+        <locationY>319</locationY>
+        <collectionReference>Get_Success_CSM_Milestone_Results</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Count_CSM_Milestone_Results</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Count_Success_CSM_Milestone_Results_field_in_Opportunity</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get all success CSM Milestone Results from the same opportunity</description>
+        <name>Get_Success_CSM_Milestone_Results</name>
+        <label>Get Success CSM Milestone Results</label>
+        <locationX>507</locationX>
+        <locationY>124</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_through_CSM_Milestone_Results</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Opportunity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Opportunity__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Success</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>CSM_Milestone_Result__c</object>
+        <queriedFields>Id</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Update &quot;Count Success CSM Milestone Results&quot; in the opportunity related with this CSM Milestone Result</description>
+        <name>Update_Count_Success_CSM_Milestone_Results_field_in_Opportunity</name>
+        <label>Update Count Success CSM Milestone Results field in Opportunity</label>
+        <locationX>889</locationX>
+        <locationY>316</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Opportunity__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Count_Success_CSM_Milestone_Results__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>CountSuccessCSMMilestoneResults</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Count_Success_CSM_Milestone_Results__c</field>
+            <value>
+                <elementReference>CountSuccessCSMMilestoneResults</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Success_CSM_Milestone_Results</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>CSM_Milestone_Result__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Count of CSM Milestone Results with status = Success</description>
+        <name>CountSuccessCSMMilestoneResults</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+</Flow>

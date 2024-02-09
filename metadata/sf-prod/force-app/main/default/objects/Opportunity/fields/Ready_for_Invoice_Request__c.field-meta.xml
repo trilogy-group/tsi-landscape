@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ready_for_Invoice_Request__c</fullName>
+    <description>This field is automatically checked when the opportunity has all the data to create the Invoice Request Ticket. When this field is checked, Invoice Request Ticket is automatically generated. Conditions to be true are defined here: https://docs.google.com/document/d/1tW3jLMVTnze48wDBcmui5OwJMVBSYRO0q0ekpFq1TTo/edit#heading=h.txbpfbevpd0r</description>
+    <externalId>false</externalId>
+    <formula>(ISPICKVAL(StageName, &apos;Finalizing&apos;) || ISPICKVAL(StageName, &apos;Closed Won&apos;)) &amp;&amp; Manual_O2C__c = false &amp;&amp; ((ISPICKVAL(Win_Type__c, &apos;Quote Signed&apos;) &amp;&amp; (ISPICKVAL(Purchase_Order__c,&apos;Not Required&apos;) || (ISPICKVAL(Purchase_Order__c,&apos;Attached&apos;) &amp;&amp; !ISBLANK(Purchase_Order_Link__c)))) || 
+(ISPICKVAL(Win_Type__c, &apos;Auto-Renew&apos;) &amp;&amp; AR_Quote__r.SBQQ__Primary__c) || ISPICKVAL(Win_Type__c, &apos;PO Received&apos;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>This field is automatically checked when the opportunity has all the data to create the Invoice Request Ticket. When this field is checked, Invoice Request Ticket is automatically generated. Conditions to be true are defined here: https://docs.google.com/document/d/1tW3jLMVTnze48wDBcmui5OwJMVBSYRO0q0ekpFq1TTo/edit#heading=h.txbpfbevpd0r</inlineHelpText>
+    <label>Ready for Invoice Request?</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,3868 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "025f9884-f7e0-46cc-a603-0a39f5e50b76",
+      "created": "2022-05-25T07:13:38.960440Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "group": "81f1dedc-22a2-4f1a-a452-7e8e8c9402f2",
+      "creator": "5fded9ad-cf9a-43e3-9b08-28bde8b87d6e",
+      "version": {
+        "id": "4c084b75-ca3f-4fbc-a704-24858dc24022",
+        "created": "2024-01-31T01:30:15.643951Z"
+      },
+      "title": "Netsuite Events Webhook Trigger",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {},
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "type": "string",
+              "title": "result"
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "boolean-condition-9",
+          "type": "branch",
+          "content": {
+            "true": [],
+            "false": [
+              {
+                "name": "terminate-1",
+                "type": "normal",
+                "content": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "branch-1",
+          "type": "branch",
+          "content": {
+            "branch1": [
+              {
+                "name": "boolean-condition-6",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "salesforce-1",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-7",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "salesforce-2",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": []
+                      }
+                    }
+                  ],
+                  "false": [
+                    {
+                      "name": "call-workflow-1",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              }
+            ],
+            "__default__": [],
+            "branch2": [
+              {
+                "name": "boolean-condition-1",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "salesforce-3",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-8",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "salesforce-4",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": []
+                      }
+                    }
+                  ],
+                  "false": [
+                    {
+                      "name": "call-workflow-10",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-15",
+                      "type": "branch",
+                      "content": {
+                        "true": [],
+                        "false": [
+                          {
+                            "name": "call-workflow-2",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "branch3": [
+              {
+                "name": "call-workflow-4",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "branch4": [
+              {
+                "name": "call-workflow-5",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "branch5": [
+              {
+                "name": "boolean-condition-3",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "call-workflow-3",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ],
+            "branch6": [
+              {
+                "name": "boolean-condition-2",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "boolean-condition-4",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "object-helpers-1",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "call-workflow-6",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": []
+                      }
+                    }
+                  ],
+                  "false": []
+                }
+              },
+              {
+                "name": "boolean-condition-5",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "call-workflow-7",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ],
+            "branch7": [
+              {
+                "name": "boolean-condition-10",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "salesforce-5",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-11",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "salesforce-6",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "false": []
+                      }
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ],
+            "branch8": [
+              {
+                "name": "call-workflow-8",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "branch9": [
+              {
+                "name": "boolean-condition-13",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "call-workflow-9",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": []
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "steps": {
+        "boolean-condition-1": {
+          "title": "Record deleted?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.type"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "delete"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "boolean-condition-10": {
+          "title": "Record deleted?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.type"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "delete"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-11": {
+          "title": "Opp found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-5.total"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": ">"
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-13": {
+          "title": "Record created?",
+          "description": "The synchronization is only done at record creation.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.type"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "create"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-15": {
+          "title": "Is xedit?",
+          "description": "xedit is an update with the daily job that changes Platinum Customer, Has Active Subscriptions and ARRs. We don't want to sync customer to SF to this records because only one field is updated and the other fields are not returned by the script.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.type"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "xedit"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Is edition or deletion?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.type"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "edit"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.type"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "delete"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "Changed status and not deleted",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.type"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "delete"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.oldRecord.fields.custrecord_echosign_status",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.newRecord.fields.custrecord_echosign_status",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "Delete old record?",
+          "description": "The old record must be deleted:\n- for an edition, if the customer or the class was changed.\n- for an deletion.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.newRecord.fields.custrecord_default_subsidiary_customer",
+                      "fallback": {
+                        "value": null,
+                        "type": "null"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.oldRecord.fields.custrecord_default_subsidiary_customer"
+                    },
+                    "is_case_sensitive": {
+                      "value": false,
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.newRecord.fields.custrecord_default_subsidiary_class",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.oldRecord.fields.custrecord_default_subsidiary_class"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.type"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "delete"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "boolean-condition-5": {
+          "title": "Upsert new record?",
+          "description": "The new record must be:\n- inserted for a creation.\n- updated for an edit.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.type"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "create"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.type"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "edit"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "Any"
+            }
+          }
+        },
+        "boolean-condition-6": {
+          "title": "Record deleted?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.type"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "delete"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-7": {
+          "title": "Contact found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-1.total"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": ">"
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-8": {
+          "title": "Account found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.salesforce-3.total"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": ">"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "0"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-9": {
+          "title": "Matches actual NS realm?",
+          "description": "Returns true if the new/old record are from the expected NS realm; else, returns false.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.newRecord.fields._eml_nkey_",
+                      "fallback": {
+                        "type": "jsonpath",
+                        "value": "$.steps.trigger.body.scriptContext.oldRecord.fields._eml_nkey_"
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "starts with"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "{$.steps.script-1.result}~"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "branch-1": {
+          "title": "Branch",
+          "connector": {
+            "name": "branch",
+            "version": "1.0"
+          },
+          "operation": "simple",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.body.scriptContext.newRecord.type"
+            },
+            "branches": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "contact"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "contact"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "customer"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "customer"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "subsidiary"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "subsidiary"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "classification"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "classification"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "customrecord_echosign_agreement"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "echosign_agreement"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "customrecord_default_customer_subsidiary"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "default_customer_subsidiary"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "subscription"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "subscription"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "customrecord_contract_review"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "Contract Review"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "value": {
+                      "type": "string",
+                      "value": "estimate"
+                    },
+                    "label": {
+                      "type": "string",
+                      "value": "Quote"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Sync NS Contact->SF Contact",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "208d4bf4-9607-45cd-a9d9-d20c83eea969"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "contactId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.scriptContext.newRecord.id"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-10": {
+          "title": "Sync to Zendesk",
+          "description": "Sync to Zendesk the fields Active Subscription and Platinum Customer",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "8887f6e2-c9df-4096-a93b-0305b2202af1"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "newRecord": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.scriptContext.newRecord.fields"
+                },
+                "oldRecord": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.scriptContext.oldRecord.fields",
+                  "fallback": {
+                    "type": "null",
+                    "value": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "Sync Customer->SF Account",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "98338c07-89c2-4f47-bc5c-76f0f9fe6be1"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "CustomerId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.scriptContext.newRecord.fields.id"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-3": {
+          "title": "Sync NS Agreement",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "cc63a813-d260-4f5d-8f56-cb2d20f6a5c6"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "oldRecord": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.scriptContext.oldRecord"
+                },
+                "newRecord": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.scriptContext.newRecord"
+                },
+                "agreementId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.scriptContext.newRecord.id"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-4": {
+          "title": "Sync to SF subsidiary",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "5b56e196-f133-4e69-b1ea-348f8170e36b"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "subsidiaryId": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.scriptContext.newRecord.fields.id"
+                },
+                "updateType": {
+                  "type": "string",
+                  "value": "onlyChanges"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-5": {
+          "title": "Sync contracting entities",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "b1806369-1d89-494e-9608-107306db8837"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "class": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.scriptContext.newRecord.fields"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-6": {
+          "title": "Delete old record",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "f8f6f36d-9619-4049-83ee-9c886e98ad83"
+            },
+            "trigger_input": {
+              "type": "jsonpath",
+              "value": "$.steps.object-helpers-1.result"
+            }
+          }
+        },
+        "call-workflow-7": {
+          "title": "Upsert new record",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "f8f6f36d-9619-4049-83ee-9c886e98ad83"
+            },
+            "trigger_input": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.body.scriptContext.newRecord.fields"
+            }
+          }
+        },
+        "call-workflow-8": {
+          "title": "Call Sync subflow",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "810a2200-04af-4ded-9a5d-7f09aa3eade0"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "record": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.scriptContext.newRecord.fields"
+                },
+                "operation": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.scriptContext.type"
+                }
+              }
+            }
+          }
+        },
+        "call-workflow-9": {
+          "title": "Trigger Sync NS Quote to SF",
+          "description": "Calls asynchronously the subflow for syncing the NS quote into Salesforce.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_forget",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "102e1378-1e99-4db3-895f-9739f0f3594c"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {
+                "newRecord": {
+                  "type": "jsonpath",
+                  "value": "$.steps.trigger.body.scriptContext.newRecord"
+                }
+              }
+            }
+          }
+        },
+        "object-helpers-1": {
+          "title": "Add delete key",
+          "connector": {
+            "name": "object-helpers",
+            "version": "4.1"
+          },
+          "operation": "add_key_value_pairs",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "object",
+                "properties": {
+                  "delete": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "source": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.body.scriptContext.oldRecord.fields"
+            },
+            "list": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "delete"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "Delete"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "salesforce-1": {
+          "title": "Find contact",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Contacts",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Contact",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Contact ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Contact"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.newRecord.id"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "salesforce-2": {
+          "title": "Remove netsuite id",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "value": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "Contact"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-1.records[0].Id"
+            }
+          }
+        },
+        "salesforce-3": {
+          "title": "Find account",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Accounts",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Account",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Account ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Account"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.newRecord.id"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "salesforce-4": {
+          "title": "Remove NetSuite ID",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "value": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "Account"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-3.records[0].Id"
+            }
+          }
+        },
+        "salesforce-5": {
+          "title": "Find Opp",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "find_records",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "title": "Total count"
+              },
+              "next_page_offset": {
+                "type": "string",
+                "title": "Next page offset"
+              },
+              "records": {
+                "title": "Opportunities",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Opportunity",
+                  "properties": {
+                    "Id": {
+                      "name": "Id",
+                      "type": "string",
+                      "title": "Opportunity ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "Id"
+                }
+              ]
+            },
+            "conditions_type": {
+              "type": "string",
+              "value": "Match all conditions"
+            },
+            "include_all_fields": {
+              "type": "boolean",
+              "value": false
+            },
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "field": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "value": "Equal to"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.body.scriptContext.newRecord.id"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "salesforce-6": {
+          "title": "Clean NetSuiteID",
+          "connector": {
+            "name": "salesforce",
+            "version": "8.7"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "2c440ec0-5ac6-4a09-aef3-d861faa8c602",
+            "title": "SF-Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dd966f42-81e8-4770-a3d8-d095ca41ab45.png"
+            },
+            "scopes": [
+              "refresh_token",
+              "full"
+            ],
+            "service_name": "salesforce",
+            "service_version": 1
+          },
+          "properties": {
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "NetSuite_ID__c"
+                    },
+                    "value": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                }
+              ]
+            },
+            "object": {
+              "type": "string",
+              "value": "Opportunity"
+            },
+            "object_id": {
+              "type": "jsonpath",
+              "value": "$.steps.salesforce-5.records[0].Id"
+            }
+          }
+        },
+        "script-1": {
+          "title": "Get expected NS realm",
+          "description": "Determines the expected NS realm based on the workflow title.\nIf the workflow title starts with \"[full]\", then return \"4914352_SB2\"; else, return \"4914352\".",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "workflowTitle"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.env.workflow_title"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input, fileInput) {\n\treturn \"4914352\" + (input.workflowTitle.startsWith(\"[full]\") ? \"_SB2\" : \"\");\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "Skip any unexpected NS realm",
+          "description": "Skips all triggers from any unexpected NS realm.",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "terminate_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "trigger": {
+          "title": "Webhook",
+          "connector": {
+            "name": "webhook",
+            "version": "2.3"
+          },
+          "operation": "webhook",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              },
+              "body": {
+                "type": "object",
+                "properties": {
+                  "scriptContext": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "newRecord": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "isDynamic": {
+                            "type": "boolean"
+                          },
+                          "fields": {
+                            "type": "object",
+                            "properties": {
+                              "nlloc": {
+                                "type": "string"
+                              },
+                              "nlsub": {
+                                "type": "string"
+                              },
+                              "_button": {
+                                "type": "string"
+                              },
+                              "nsapiFC": {
+                                "type": "string"
+                              },
+                              "idnumber": {
+                                "type": "string"
+                              },
+                              "ignoretermboundary": {
+                                "type": "string"
+                              },
+                              "wfVF": {
+                                "type": "string"
+                              },
+                              "externalid": {
+                                "type": "string"
+                              },
+                              "memo": {
+                                "type": "string"
+                              },
+                              "subscriptionplan": {
+                                "type": "string"
+                              },
+                              "subscriptiontermtype": {
+                                "type": "string"
+                              },
+                              "_eml_nkey_": {
+                                "type": "string"
+                              },
+                              "hascustomfieldschanged": {
+                                "type": "string"
+                              },
+                              "sublinesorttype": {
+                                "type": "string"
+                              },
+                              "subscriptionenddate": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "sublinesort2dir": {
+                                "type": "string"
+                              },
+                              "approvaldate": {
+                                "type": "string"
+                              },
+                              "nsapiRC": {
+                                "type": "string"
+                              },
+                              "customwhence": {
+                                "type": "string"
+                              },
+                              "subscriptionchangeorderstatus": {
+                                "type": "string"
+                              },
+                              "whichfieldschanged": {
+                                "type": "string"
+                              },
+                              "sublineflags": {
+                                "type": "string"
+                              },
+                              "nsapiVF": {
+                                "type": "string"
+                              },
+                              "createdby": {
+                                "type": "string"
+                              },
+                              "nsapiVD": {
+                                "type": "string"
+                              },
+                              "nsbrowserenv": {
+                                "type": "string"
+                              },
+                              "action": {
+                                "type": "string"
+                              },
+                              "sublinefieldsets": {
+                                "type": "string"
+                              },
+                              "requestoffcycleinvoice": {
+                                "type": "string"
+                              },
+                              "sublinesortidx": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "nsapiVL": {
+                                "type": "string"
+                              },
+                              "nsapiVI": {
+                                "type": "string"
+                              },
+                              "sublinesortname": {
+                                "type": "string"
+                              },
+                              "wfPS": {
+                                "type": "string"
+                              },
+                              "entryformquerystring": {
+                                "type": "string"
+                              },
+                              "datecreated": {
+                                "type": "string"
+                              },
+                              "subsidiary": {
+                                "type": "string"
+                              },
+                              "submitted": {
+                                "type": "string"
+                              },
+                              "_multibtnstate_": {
+                                "type": "string"
+                              },
+                              "requestor_display": {
+                                "type": "string"
+                              },
+                              "linestatusnewvalue": {
+                                "type": "string"
+                              },
+                              "sublinelabels": {
+                                "type": "string"
+                              },
+                              "selectedtab": {
+                                "type": "string"
+                              },
+                              "subscriptionstartdate": {
+                                "type": "string"
+                              },
+                              "wfPI": {
+                                "type": "string"
+                              },
+                              "sublineparents": {
+                                "type": "string"
+                              },
+                              "wfinstances": {
+                                "type": "string"
+                              },
+                              "nsapiLI": {
+                                "type": "string"
+                              },
+                              "origeffectivedate": {
+                                "type": "string"
+                              },
+                              "sublinetypes": {
+                                "type": "string"
+                              },
+                              "sublinesortdir": {
+                                "type": "string"
+                              },
+                              "subscription": {
+                                "type": "string"
+                              },
+                              "effectivedate": {
+                                "type": "string"
+                              },
+                              "origidnumber": {
+                                "type": "string"
+                              },
+                              "delete": {
+                                "type": "string"
+                              },
+                              "nsapiPS": {
+                                "type": "string"
+                              },
+                              "inpt_modificationtype": {
+                                "type": "string"
+                              },
+                              "sublinesort2name": {
+                                "type": "string"
+                              },
+                              "nsapiCT": {
+                                "type": "string"
+                              },
+                              "sys_id": {
+                                "type": "string"
+                              },
+                              "nluser": {
+                                "type": "string"
+                              },
+                              "nldept": {
+                                "type": "string"
+                              },
+                              "sublinevalid": {
+                                "type": "string"
+                              },
+                              "billingaccount": {
+                                "type": "string"
+                              },
+                              "nsapiPI": {
+                                "type": "string"
+                              },
+                              "otherrecordnumber": {
+                                "type": "string"
+                              },
+                              "wfSR": {
+                                "type": "string"
+                              },
+                              "nsapiLC": {
+                                "type": "string"
+                              },
+                              "nsapiPD": {
+                                "type": "string"
+                              },
+                              "nsapiSR": {
+                                "type": "string"
+                              },
+                              "systemnotesdotted": {
+                                "type": "string"
+                              },
+                              "templatestored": {
+                                "type": "string"
+                              },
+                              "approvalstatus": {
+                                "type": "string"
+                              },
+                              "subscriptionname": {
+                                "type": "string"
+                              },
+                              "whence": {
+                                "type": "string"
+                              },
+                              "lastmodifieddate": {
+                                "type": "string"
+                              },
+                              "nlrole": {
+                                "type": "string"
+                              },
+                              "_csrf": {
+                                "type": "string"
+                              },
+                              "systemnotesloaded": {
+                                "type": "string"
+                              },
+                              "baserecordtype": {
+                                "type": "string"
+                              },
+                              "requestor": {
+                                "type": "string"
+                              },
+                              "formdisplayview": {
+                                "type": "string"
+                              },
+                              "sublineorigtypes": {
+                                "type": "string"
+                              },
+                              "customform": {
+                                "type": "string"
+                              },
+                              "modificationtype": {
+                                "type": "string"
+                              },
+                              "subscriptionnumber": {
+                                "type": "string"
+                              },
+                              "wfFC": {
+                                "type": "string"
+                              },
+                              "dateformat": {
+                                "type": "string"
+                              },
+                              "customer": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "sublists": {
+                            "type": "object",
+                            "properties": {
+                              "subline": {
+                                "type": "object",
+                                "properties": {
+                                  "line 1": {
+                                    "type": "object",
+                                    "properties": {
+                                      "apply": {
+                                        "type": "string"
+                                      },
+                                      "billingmode": {
+                                        "type": "string"
+                                      },
+                                      "changeordernextaction": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextid": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevaction": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevidurl": {
+                                        "type": "string"
+                                      },
+                                      "changeorderprevnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevnumberdisplay": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextnumber": {
+                                        "type": "null"
+                                      },
+                                      "decreaseenddate": {
+                                        "type": "string"
+                                      },
+                                      "discount": {
+                                        "type": "string"
+                                      },
+                                      "enddate": {
+                                        "type": "string"
+                                      },
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "includeinrenewal": {
+                                        "type": "string"
+                                      },
+                                      "item": {
+                                        "type": "string"
+                                      },
+                                      "itemurl": {
+                                        "type": "string"
+                                      },
+                                      "origapply": {
+                                        "type": "string"
+                                      },
+                                      "parentlinenumber": {
+                                        "type": "null"
+                                      },
+                                      "planitem": {
+                                        "type": "string"
+                                      },
+                                      "priceplan": {
+                                        "type": "string"
+                                      },
+                                      "priceplanurl": {
+                                        "type": "string"
+                                      },
+                                      "quantity": {
+                                        "type": "string"
+                                      },
+                                      "recurringamount": {
+                                        "type": "string"
+                                      },
+                                      "sequence": {
+                                        "type": "string"
+                                      },
+                                      "startdate": {
+                                        "type": "string"
+                                      },
+                                      "status": {
+                                        "type": "string"
+                                      },
+                                      "statusnew": {
+                                        "type": "string"
+                                      },
+                                      "statusnext": {
+                                        "type": "string"
+                                      },
+                                      "statusnextaction": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusnextdate": {
+                                        "type": "null"
+                                      },
+                                      "statusorig": {
+                                        "type": "string"
+                                      },
+                                      "statusprev": {
+                                        "type": "string"
+                                      },
+                                      "statusprevaction": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusprevdate": {
+                                        "type": "null"
+                                      },
+                                      "subscriptionline": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinename": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinetype": {
+                                        "type": "string"
+                                      },
+                                      "sys_id": {
+                                        "type": "string"
+                                      },
+                                      "sys_parentid": {
+                                        "type": "string"
+                                      },
+                                      "terminationdate": {
+                                        "type": "null"
+                                      },
+                                      "terminationdatedisplay": {
+                                        "type": "null"
+                                      }
+                                    }
+                                  },
+                                  "line 2": {
+                                    "type": "object",
+                                    "properties": {
+                                      "apply": {
+                                        "type": "string"
+                                      },
+                                      "billingmode": {
+                                        "type": "string"
+                                      },
+                                      "changeordernextaction": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextid": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevaction": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevidurl": {
+                                        "type": "string"
+                                      },
+                                      "changeorderprevnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevnumberdisplay": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextnumber": {
+                                        "type": "null"
+                                      },
+                                      "decreaseenddate": {
+                                        "type": "string"
+                                      },
+                                      "discount": {
+                                        "type": "string"
+                                      },
+                                      "enddate": {
+                                        "type": "string"
+                                      },
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "includeinrenewal": {
+                                        "type": "string"
+                                      },
+                                      "item": {
+                                        "type": "string"
+                                      },
+                                      "itemurl": {
+                                        "type": "string"
+                                      },
+                                      "origapply": {
+                                        "type": "string"
+                                      },
+                                      "parentlinenumber": {
+                                        "type": "null"
+                                      },
+                                      "planitem": {
+                                        "type": "string"
+                                      },
+                                      "priceplan": {
+                                        "type": "string"
+                                      },
+                                      "priceplanurl": {
+                                        "type": "string"
+                                      },
+                                      "quantity": {
+                                        "type": "string"
+                                      },
+                                      "recurringamount": {
+                                        "type": "string"
+                                      },
+                                      "sequence": {
+                                        "type": "string"
+                                      },
+                                      "startdate": {
+                                        "type": "string"
+                                      },
+                                      "status": {
+                                        "type": "string"
+                                      },
+                                      "statusnew": {
+                                        "type": "string"
+                                      },
+                                      "statusnext": {
+                                        "type": "string"
+                                      },
+                                      "statusnextaction": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusnextdate": {
+                                        "type": "null"
+                                      },
+                                      "statusorig": {
+                                        "type": "string"
+                                      },
+                                      "statusprev": {
+                                        "type": "string"
+                                      },
+                                      "statusprevaction": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusprevdate": {
+                                        "type": "null"
+                                      },
+                                      "subscriptionline": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinename": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinetype": {
+                                        "type": "string"
+                                      },
+                                      "sys_id": {
+                                        "type": "string"
+                                      },
+                                      "sys_parentid": {
+                                        "type": "string"
+                                      },
+                                      "terminationdate": {
+                                        "type": "null"
+                                      },
+                                      "terminationdatedisplay": {
+                                        "type": "null"
+                                      }
+                                    }
+                                  },
+                                  "line 3": {
+                                    "type": "object",
+                                    "properties": {
+                                      "apply": {
+                                        "type": "string"
+                                      },
+                                      "billingmode": {
+                                        "type": "string"
+                                      },
+                                      "changeordernextaction": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextid": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevaction": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevidurl": {
+                                        "type": "string"
+                                      },
+                                      "changeorderprevnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevnumberdisplay": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextnumber": {
+                                        "type": "null"
+                                      },
+                                      "decreaseenddate": {
+                                        "type": "string"
+                                      },
+                                      "discount": {
+                                        "type": "string"
+                                      },
+                                      "enddate": {
+                                        "type": "string"
+                                      },
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "includeinrenewal": {
+                                        "type": "string"
+                                      },
+                                      "item": {
+                                        "type": "string"
+                                      },
+                                      "itemurl": {
+                                        "type": "string"
+                                      },
+                                      "origapply": {
+                                        "type": "string"
+                                      },
+                                      "parentlinenumber": {
+                                        "type": "null"
+                                      },
+                                      "planitem": {
+                                        "type": "string"
+                                      },
+                                      "priceplan": {
+                                        "type": "string"
+                                      },
+                                      "priceplanurl": {
+                                        "type": "string"
+                                      },
+                                      "quantity": {
+                                        "type": "string"
+                                      },
+                                      "recurringamount": {
+                                        "type": "string"
+                                      },
+                                      "sequence": {
+                                        "type": "string"
+                                      },
+                                      "startdate": {
+                                        "type": "string"
+                                      },
+                                      "status": {
+                                        "type": "string"
+                                      },
+                                      "statusnew": {
+                                        "type": "string"
+                                      },
+                                      "statusnext": {
+                                        "type": "string"
+                                      },
+                                      "statusnextaction": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusnextdate": {
+                                        "type": "null"
+                                      },
+                                      "statusorig": {
+                                        "type": "string"
+                                      },
+                                      "statusprev": {
+                                        "type": "string"
+                                      },
+                                      "statusprevaction": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusprevdate": {
+                                        "type": "null"
+                                      },
+                                      "subscriptionline": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinename": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinetype": {
+                                        "type": "string"
+                                      },
+                                      "sys_id": {
+                                        "type": "string"
+                                      },
+                                      "sys_parentid": {
+                                        "type": "string"
+                                      },
+                                      "terminationdate": {
+                                        "type": "null"
+                                      },
+                                      "terminationdatedisplay": {
+                                        "type": "null"
+                                      }
+                                    }
+                                  },
+                                  "line 4": {
+                                    "type": "object",
+                                    "properties": {
+                                      "apply": {
+                                        "type": "string"
+                                      },
+                                      "billingmode": {
+                                        "type": "string"
+                                      },
+                                      "changeordernextaction": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextid": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevaction": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevidurl": {
+                                        "type": "string"
+                                      },
+                                      "changeorderprevnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevnumberdisplay": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextnumber": {
+                                        "type": "null"
+                                      },
+                                      "decreaseenddate": {
+                                        "type": "string"
+                                      },
+                                      "discount": {
+                                        "type": "string"
+                                      },
+                                      "enddate": {
+                                        "type": "string"
+                                      },
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "includeinrenewal": {
+                                        "type": "string"
+                                      },
+                                      "item": {
+                                        "type": "string"
+                                      },
+                                      "itemurl": {
+                                        "type": "string"
+                                      },
+                                      "origapply": {
+                                        "type": "string"
+                                      },
+                                      "parentlinenumber": {
+                                        "type": "null"
+                                      },
+                                      "planitem": {
+                                        "type": "string"
+                                      },
+                                      "priceplan": {
+                                        "type": "string"
+                                      },
+                                      "priceplanurl": {
+                                        "type": "string"
+                                      },
+                                      "quantity": {
+                                        "type": "string"
+                                      },
+                                      "recurringamount": {
+                                        "type": "string"
+                                      },
+                                      "sequence": {
+                                        "type": "string"
+                                      },
+                                      "startdate": {
+                                        "type": "string"
+                                      },
+                                      "status": {
+                                        "type": "string"
+                                      },
+                                      "statusnew": {
+                                        "type": "string"
+                                      },
+                                      "statusnext": {
+                                        "type": "string"
+                                      },
+                                      "statusnextaction": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusnextdate": {
+                                        "type": "null"
+                                      },
+                                      "statusorig": {
+                                        "type": "string"
+                                      },
+                                      "statusprev": {
+                                        "type": "string"
+                                      },
+                                      "statusprevaction": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusprevdate": {
+                                        "type": "null"
+                                      },
+                                      "subscriptionline": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinename": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinetype": {
+                                        "type": "string"
+                                      },
+                                      "sys_id": {
+                                        "type": "string"
+                                      },
+                                      "sys_parentid": {
+                                        "type": "string"
+                                      },
+                                      "terminationdate": {
+                                        "type": "null"
+                                      },
+                                      "terminationdatedisplay": {
+                                        "type": "null"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "oldRecord": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "isDynamic": {
+                            "type": "boolean"
+                          },
+                          "fields": {
+                            "type": "object",
+                            "properties": {
+                              "origeffectivedate": {
+                                "type": "string"
+                              },
+                              "idnumber": {
+                                "type": "string"
+                              },
+                              "ignoretermboundary": {
+                                "type": "string"
+                              },
+                              "subscriptionplan": {
+                                "type": "string"
+                              },
+                              "subscriptiontermtype": {
+                                "type": "string"
+                              },
+                              "_eml_nkey_": {
+                                "type": "string"
+                              },
+                              "hascustomfieldschanged": {
+                                "type": "string"
+                              },
+                              "subscription": {
+                                "type": "string"
+                              },
+                              "effectivedate": {
+                                "type": "string"
+                              },
+                              "origidnumber": {
+                                "type": "string"
+                              },
+                              "subscriptionenddate": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "nsapiCT": {
+                                "type": "string"
+                              },
+                              "subscriptionchangeorderstatus": {
+                                "type": "string"
+                              },
+                              "sys_id": {
+                                "type": "string"
+                              },
+                              "whichfieldschanged": {
+                                "type": "string"
+                              },
+                              "createdby": {
+                                "type": "string"
+                              },
+                              "billingaccount": {
+                                "type": "string"
+                              },
+                              "action": {
+                                "type": "string"
+                              },
+                              "otherrecordnumber": {
+                                "type": "string"
+                              },
+                              "requestoffcycleinvoice": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "templatestored": {
+                                "type": "string"
+                              },
+                              "approvalstatus": {
+                                "type": "string"
+                              },
+                              "subscriptionname": {
+                                "type": "string"
+                              },
+                              "lastmodifieddate": {
+                                "type": "string"
+                              },
+                              "entryformquerystring": {
+                                "type": "string"
+                              },
+                              "_csrf": {
+                                "type": "string"
+                              },
+                              "datecreated": {
+                                "type": "string"
+                              },
+                              "requestor": {
+                                "type": "string"
+                              },
+                              "subsidiary": {
+                                "type": "string"
+                              },
+                              "customform": {
+                                "type": "string"
+                              },
+                              "modificationtype": {
+                                "type": "string"
+                              },
+                              "subscriptionnumber": {
+                                "type": "string"
+                              },
+                              "dateformat": {
+                                "type": "string"
+                              },
+                              "linestatusnewvalue": {
+                                "type": "string"
+                              },
+                              "customer": {
+                                "type": "string"
+                              },
+                              "subscriptionstartdate": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "sublists": {
+                            "type": "object",
+                            "properties": {
+                              "subline": {
+                                "type": "object",
+                                "properties": {
+                                  "line 1": {
+                                    "type": "object",
+                                    "properties": {
+                                      "apply": {
+                                        "type": "string"
+                                      },
+                                      "billingmode": {
+                                        "type": "string"
+                                      },
+                                      "changeordernextaction": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextid": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevaction": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevidurl": {
+                                        "type": "string"
+                                      },
+                                      "changeorderprevnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevnumberdisplay": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextnumber": {
+                                        "type": "null"
+                                      },
+                                      "decreaseenddate": {
+                                        "type": "string"
+                                      },
+                                      "discount": {
+                                        "type": "string"
+                                      },
+                                      "discountdisplay": {
+                                        "type": "string"
+                                      },
+                                      "enddate": {
+                                        "type": "string"
+                                      },
+                                      "enddatedisplay": {
+                                        "type": "string"
+                                      },
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "includeinrenewal": {
+                                        "type": "string"
+                                      },
+                                      "item": {
+                                        "type": "string"
+                                      },
+                                      "itemdisplay": {
+                                        "type": "string"
+                                      },
+                                      "itemurl": {
+                                        "type": "string"
+                                      },
+                                      "origapply": {
+                                        "type": "string"
+                                      },
+                                      "parentlinenumber": {
+                                        "type": "null"
+                                      },
+                                      "planitem": {
+                                        "type": "string"
+                                      },
+                                      "priceplan": {
+                                        "type": "string"
+                                      },
+                                      "priceplandisplay": {
+                                        "type": "string"
+                                      },
+                                      "priceplanurl": {
+                                        "type": "string"
+                                      },
+                                      "quantity": {
+                                        "type": "string"
+                                      },
+                                      "quantitydisplay": {
+                                        "type": "string"
+                                      },
+                                      "recurringamount": {
+                                        "type": "string"
+                                      },
+                                      "recurringamountdisplay": {
+                                        "type": "string"
+                                      },
+                                      "sequence": {
+                                        "type": "string"
+                                      },
+                                      "sequencedisplay": {
+                                        "type": "string"
+                                      },
+                                      "startdate": {
+                                        "type": "string"
+                                      },
+                                      "status": {
+                                        "type": "string"
+                                      },
+                                      "statusdisplay": {
+                                        "type": "string"
+                                      },
+                                      "statusnew": {
+                                        "type": "string"
+                                      },
+                                      "statusnext": {
+                                        "type": "string"
+                                      },
+                                      "statusnextaction": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusnextdate": {
+                                        "type": "null"
+                                      },
+                                      "statusorig": {
+                                        "type": "string"
+                                      },
+                                      "statusprev": {
+                                        "type": "string"
+                                      },
+                                      "statusprevaction": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusprevdate": {
+                                        "type": "null"
+                                      },
+                                      "subscriptionline": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinename": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinetype": {
+                                        "type": "string"
+                                      },
+                                      "sys_id": {
+                                        "type": "string"
+                                      },
+                                      "sys_parentid": {
+                                        "type": "string"
+                                      },
+                                      "terminationdate": {
+                                        "type": "null"
+                                      },
+                                      "terminationdatedisplay": {
+                                        "type": "null"
+                                      }
+                                    }
+                                  },
+                                  "line 2": {
+                                    "type": "object",
+                                    "properties": {
+                                      "apply": {
+                                        "type": "string"
+                                      },
+                                      "billingmode": {
+                                        "type": "string"
+                                      },
+                                      "changeordernextaction": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextid": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevaction": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevidurl": {
+                                        "type": "string"
+                                      },
+                                      "changeorderprevnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevnumberdisplay": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextnumber": {
+                                        "type": "null"
+                                      },
+                                      "decreaseenddate": {
+                                        "type": "string"
+                                      },
+                                      "discount": {
+                                        "type": "string"
+                                      },
+                                      "discountdisplay": {
+                                        "type": "string"
+                                      },
+                                      "enddate": {
+                                        "type": "string"
+                                      },
+                                      "enddatedisplay": {
+                                        "type": "string"
+                                      },
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "includeinrenewal": {
+                                        "type": "string"
+                                      },
+                                      "item": {
+                                        "type": "string"
+                                      },
+                                      "itemdisplay": {
+                                        "type": "string"
+                                      },
+                                      "itemurl": {
+                                        "type": "string"
+                                      },
+                                      "origapply": {
+                                        "type": "string"
+                                      },
+                                      "parentlinenumber": {
+                                        "type": "null"
+                                      },
+                                      "planitem": {
+                                        "type": "string"
+                                      },
+                                      "priceplan": {
+                                        "type": "string"
+                                      },
+                                      "priceplandisplay": {
+                                        "type": "string"
+                                      },
+                                      "priceplanurl": {
+                                        "type": "string"
+                                      },
+                                      "quantity": {
+                                        "type": "string"
+                                      },
+                                      "quantitydisplay": {
+                                        "type": "string"
+                                      },
+                                      "recurringamount": {
+                                        "type": "string"
+                                      },
+                                      "recurringamountdisplay": {
+                                        "type": "string"
+                                      },
+                                      "sequence": {
+                                        "type": "string"
+                                      },
+                                      "sequencedisplay": {
+                                        "type": "string"
+                                      },
+                                      "startdate": {
+                                        "type": "string"
+                                      },
+                                      "status": {
+                                        "type": "string"
+                                      },
+                                      "statusdisplay": {
+                                        "type": "string"
+                                      },
+                                      "statusnew": {
+                                        "type": "string"
+                                      },
+                                      "statusnext": {
+                                        "type": "string"
+                                      },
+                                      "statusnextaction": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusnextdate": {
+                                        "type": "null"
+                                      },
+                                      "statusorig": {
+                                        "type": "string"
+                                      },
+                                      "statusprev": {
+                                        "type": "string"
+                                      },
+                                      "statusprevaction": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusprevdate": {
+                                        "type": "null"
+                                      },
+                                      "subscriptionline": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinename": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinetype": {
+                                        "type": "string"
+                                      },
+                                      "sys_id": {
+                                        "type": "string"
+                                      },
+                                      "sys_parentid": {
+                                        "type": "string"
+                                      },
+                                      "terminationdate": {
+                                        "type": "null"
+                                      },
+                                      "terminationdatedisplay": {
+                                        "type": "null"
+                                      }
+                                    }
+                                  },
+                                  "line 3": {
+                                    "type": "object",
+                                    "properties": {
+                                      "apply": {
+                                        "type": "string"
+                                      },
+                                      "billingmode": {
+                                        "type": "string"
+                                      },
+                                      "changeordernextaction": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextid": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevaction": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevidurl": {
+                                        "type": "string"
+                                      },
+                                      "changeorderprevnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevnumberdisplay": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextnumber": {
+                                        "type": "null"
+                                      },
+                                      "decreaseenddate": {
+                                        "type": "string"
+                                      },
+                                      "discount": {
+                                        "type": "string"
+                                      },
+                                      "discountdisplay": {
+                                        "type": "string"
+                                      },
+                                      "enddate": {
+                                        "type": "string"
+                                      },
+                                      "enddatedisplay": {
+                                        "type": "string"
+                                      },
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "includeinrenewal": {
+                                        "type": "string"
+                                      },
+                                      "item": {
+                                        "type": "string"
+                                      },
+                                      "itemdisplay": {
+                                        "type": "string"
+                                      },
+                                      "itemurl": {
+                                        "type": "string"
+                                      },
+                                      "origapply": {
+                                        "type": "string"
+                                      },
+                                      "parentlinenumber": {
+                                        "type": "null"
+                                      },
+                                      "planitem": {
+                                        "type": "string"
+                                      },
+                                      "priceplan": {
+                                        "type": "string"
+                                      },
+                                      "priceplandisplay": {
+                                        "type": "string"
+                                      },
+                                      "priceplanurl": {
+                                        "type": "string"
+                                      },
+                                      "quantity": {
+                                        "type": "string"
+                                      },
+                                      "quantitydisplay": {
+                                        "type": "string"
+                                      },
+                                      "recurringamount": {
+                                        "type": "string"
+                                      },
+                                      "recurringamountdisplay": {
+                                        "type": "string"
+                                      },
+                                      "sequence": {
+                                        "type": "string"
+                                      },
+                                      "sequencedisplay": {
+                                        "type": "string"
+                                      },
+                                      "startdate": {
+                                        "type": "string"
+                                      },
+                                      "status": {
+                                        "type": "string"
+                                      },
+                                      "statusdisplay": {
+                                        "type": "string"
+                                      },
+                                      "statusnew": {
+                                        "type": "string"
+                                      },
+                                      "statusnext": {
+                                        "type": "string"
+                                      },
+                                      "statusnextaction": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusnextdate": {
+                                        "type": "null"
+                                      },
+                                      "statusorig": {
+                                        "type": "string"
+                                      },
+                                      "statusprev": {
+                                        "type": "string"
+                                      },
+                                      "statusprevaction": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusprevdate": {
+                                        "type": "null"
+                                      },
+                                      "subscriptionline": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinename": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinetype": {
+                                        "type": "string"
+                                      },
+                                      "sys_id": {
+                                        "type": "string"
+                                      },
+                                      "sys_parentid": {
+                                        "type": "string"
+                                      },
+                                      "terminationdate": {
+                                        "type": "null"
+                                      },
+                                      "terminationdatedisplay": {
+                                        "type": "null"
+                                      }
+                                    }
+                                  },
+                                  "line 4": {
+                                    "type": "object",
+                                    "properties": {
+                                      "apply": {
+                                        "type": "string"
+                                      },
+                                      "billingmode": {
+                                        "type": "string"
+                                      },
+                                      "changeordernextaction": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextid": {
+                                        "type": "null"
+                                      },
+                                      "changeordernextnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevaction": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevidurl": {
+                                        "type": "string"
+                                      },
+                                      "changeorderprevnumber": {
+                                        "type": "null"
+                                      },
+                                      "changeorderprevnumberdisplay": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextdate": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextid": {
+                                        "type": "null"
+                                      },
+                                      "changeorderrenewnextnumber": {
+                                        "type": "null"
+                                      },
+                                      "decreaseenddate": {
+                                        "type": "string"
+                                      },
+                                      "discount": {
+                                        "type": "string"
+                                      },
+                                      "discountdisplay": {
+                                        "type": "string"
+                                      },
+                                      "enddate": {
+                                        "type": "string"
+                                      },
+                                      "enddatedisplay": {
+                                        "type": "string"
+                                      },
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "includeinrenewal": {
+                                        "type": "string"
+                                      },
+                                      "item": {
+                                        "type": "string"
+                                      },
+                                      "itemdisplay": {
+                                        "type": "string"
+                                      },
+                                      "itemurl": {
+                                        "type": "string"
+                                      },
+                                      "origapply": {
+                                        "type": "string"
+                                      },
+                                      "parentlinenumber": {
+                                        "type": "null"
+                                      },
+                                      "planitem": {
+                                        "type": "string"
+                                      },
+                                      "priceplan": {
+                                        "type": "string"
+                                      },
+                                      "priceplandisplay": {
+                                        "type": "string"
+                                      },
+                                      "priceplanurl": {
+                                        "type": "string"
+                                      },
+                                      "quantity": {
+                                        "type": "string"
+                                      },
+                                      "quantitydisplay": {
+                                        "type": "string"
+                                      },
+                                      "recurringamount": {
+                                        "type": "string"
+                                      },
+                                      "recurringamountdisplay": {
+                                        "type": "string"
+                                      },
+                                      "sequence": {
+                                        "type": "string"
+                                      },
+                                      "sequencedisplay": {
+                                        "type": "string"
+                                      },
+                                      "startdate": {
+                                        "type": "string"
+                                      },
+                                      "status": {
+                                        "type": "string"
+                                      },
+                                      "statusdisplay": {
+                                        "type": "string"
+                                      },
+                                      "statusnew": {
+                                        "type": "string"
+                                      },
+                                      "statusnext": {
+                                        "type": "string"
+                                      },
+                                      "statusnextaction": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusnextcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusnextdate": {
+                                        "type": "null"
+                                      },
+                                      "statusorig": {
+                                        "type": "string"
+                                      },
+                                      "statusprev": {
+                                        "type": "string"
+                                      },
+                                      "statusprevaction": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoid": {
+                                        "type": "null"
+                                      },
+                                      "statusprevcoidnumber": {
+                                        "type": "string"
+                                      },
+                                      "statusprevdate": {
+                                        "type": "null"
+                                      },
+                                      "subscriptionline": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinename": {
+                                        "type": "string"
+                                      },
+                                      "subscriptionlinetype": {
+                                        "type": "string"
+                                      },
+                                      "sys_id": {
+                                        "type": "string"
+                                      },
+                                      "sys_parentid": {
+                                        "type": "string"
+                                      },
+                                      "terminationdate": {
+                                        "type": "null"
+                                      },
+                                      "terminationdatedisplay": {
+                                        "type": "null"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "UserEventType": {
+                        "type": "object",
+                        "properties": {
+                          "COPY": {
+                            "type": "string"
+                          },
+                          "CREATE": {
+                            "type": "string"
+                          },
+                          "VIEW": {
+                            "type": "string"
+                          },
+                          "EDIT": {
+                            "type": "string"
+                          },
+                          "XEDIT": {
+                            "type": "string"
+                          },
+                          "DELETE": {
+                            "type": "string"
+                          },
+                          "DROPSHIP": {
+                            "type": "string"
+                          },
+                          "SPECIALORDER": {
+                            "type": "string"
+                          },
+                          "ORDERITEMS": {
+                            "type": "string"
+                          },
+                          "CANCEL": {
+                            "type": "string"
+                          },
+                          "APPROVE": {
+                            "type": "string"
+                          },
+                          "REJECT": {
+                            "type": "string"
+                          },
+                          "RETRACT": {
+                            "type": "string"
+                          },
+                          "SAVESUBMIT": {
+                            "type": "string"
+                          },
+                          "PACK": {
+                            "type": "string"
+                          },
+                          "SHIP": {
+                            "type": "string"
+                          },
+                          "EDITFORECAST": {
+                            "type": "string"
+                          },
+                          "REASSIGN": {
+                            "type": "string"
+                          },
+                          "MARKCOMPLETE": {
+                            "type": "string"
+                          },
+                          "PRINT": {
+                            "type": "string"
+                          },
+                          "EMAIL": {
+                            "type": "string"
+                          },
+                          "CHANGEPASSWORD": {
+                            "type": "string"
+                          },
+                          "TRANSFORM": {
+                            "type": "string"
+                          },
+                          "PAYBILLS": {
+                            "type": "string"
+                          },
+                          "QUICKVIEW": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "query": {
+                "type": "object",
+                "properties": {}
+              },
+              "headers": {
+                "type": "object",
+                "properties": {
+                  "accept": {
+                    "type": "string"
+                  },
+                  "accept-encoding": {
+                    "type": "string"
+                  },
+                  "content-length": {
+                    "type": "string"
+                  },
+                  "content-type": {
+                    "type": "string"
+                  },
+                  "host": {
+                    "type": "string"
+                  },
+                  "user-agent": {
+                    "type": "string"
+                  },
+                  "x-amzn-trace-id": {
+                    "type": "string"
+                  },
+                  "x-csrf-token": {
+                    "type": "string"
+                  },
+                  "x-forwarded-for": {
+                    "type": "string"
+                  },
+                  "x-forwarded-port": {
+                    "type": "string"
+                  },
+                  "x-forwarded-proto": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {
+            "allow_cors": {
+              "type": "boolean",
+              "value": false
+            },
+            "token": {
+              "type": "string",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQSflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "102e1378-1e99-4db3-895f-9739f0f3594c",
+          "name": "Trigger Sync NS Quote to SF Quote"
+        },
+        {
+          "id": "208d4bf4-9607-45cd-a9d9-d20c83eea969",
+          "name": "On NS Contact created/updated, create/update SF Contact"
+        },
+        {
+          "id": "5b56e196-f133-4e69-b1ea-348f8170e36b",
+          "name": "Subflow sync NS subsidiary to SF"
+        },
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "810a2200-04af-4ded-9a5d-7f09aa3eade0",
+          "name": "Sync Contract Review Status NS -> SF"
+        },
+        {
+          "id": "8887f6e2-c9df-4096-a93b-0305b2202af1",
+          "name": "Sync Active and Platinum Customer from Netsuite to Zendesk"
+        },
+        {
+          "id": "98338c07-89c2-4f47-bc5c-76f0f9fe6be1",
+          "name": "On NS Customer created/updated, create/update SF Account"
+        },
+        {
+          "id": "b1806369-1d89-494e-9608-107306db8837",
+          "name": "Trigger Sync NS Class and SF Product Configuration"
+        },
+        {
+          "id": "cc63a813-d260-4f5d-8f56-cb2d20f6a5c6",
+          "name": "On NS Agreement status changed, update SF Quote"
+        },
+        {
+          "id": "f8f6f36d-9619-4049-83ee-9c886e98ad83",
+          "name": "Subflow sync NS Default Customer Subsidiary to SF"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}

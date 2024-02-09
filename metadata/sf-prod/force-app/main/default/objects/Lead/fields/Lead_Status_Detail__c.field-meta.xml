@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Status_Detail__c</fullName>
+    <description>Additional details, e.g. why a lead was recycled</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Additional details, e.g. why a lead was recycled</inlineHelpText>
+    <label>Lead Status Detail</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Already engaged with Aurea AE</fullName>
+                <default>false</default>
+                <label>Already engaged with Aurea AE</label>
+            </value>
+            <value>
+                <fullName>FedRamp Limitations</fullName>
+                <default>false</default>
+                <label>FedRamp Limitations</label>
+            </value>
+            <value>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+                <label>Duplicate</label>
+            </value>
+            <value>
+                <fullName>Student/Professor</fullName>
+                <default>false</default>
+                <label>Student/Professor</label>
+            </value>
+            <value>
+                <fullName>Partnership</fullName>
+                <default>false</default>
+                <label>Partnership</label>
+            </value>
+            <value>
+                <fullName>Competitor</fullName>
+                <default>false</default>
+                <label>Competitor</label>
+            </value>
+            <value>
+                <fullName>Working with alternative contact</fullName>
+                <default>false</default>
+                <label>Working with alternative contact</label>
+            </value>
+            <value>
+                <fullName>No AWS</fullName>
+                <default>false</default>
+                <label>No AWS</label>
+            </value>
+            <value>
+                <fullName>AWS Spend &lt;$100k/year</fullName>
+                <default>false</default>
+                <label>AWS Spend &lt;$100k/year</label>
+            </value>
+            <value>
+                <fullName>Bad Data</fullName>
+                <default>false</default>
+                <label>Bad Data</label>
+            </value>
+            <value>
+                <fullName>Referral</fullName>
+                <default>false</default>
+                <label>Referral</label>
+            </value>
+            <value>
+                <fullName>Not Appropriate Contact</fullName>
+                <default>false</default>
+                <label>Not Appropriate Contact</label>
+            </value>
+            <value>
+                <fullName>Not a Fit</fullName>
+                <default>false</default>
+                <label>Not a Fit</label>
+            </value>
+            <value>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+                <label>Not Interested</label>
+            </value>
+            <value>
+                <fullName>Opted Out</fullName>
+                <default>false</default>
+                <label>Opted Out</label>
+            </value>
+            <value>
+                <fullName>No Longer with Company</fullName>
+                <default>false</default>
+                <label>No Longer with Company</label>
+            </value>
+            <value>
+                <fullName>Unresponsive</fullName>
+                <default>false</default>
+                <label>Unresponsive</label>
+            </value>
+            <value>
+                <fullName>Do Not Call</fullName>
+                <default>false</default>
+                <label>Do Not Call</label>
+            </value>
+            <value>
+                <fullName>Test Lead</fullName>
+                <default>false</default>
+                <label>Test Lead</label>
+            </value>
+            <value>
+                <fullName>No Show</fullName>
+                <default>false</default>
+                <label>No Show</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,989 @@
+ {
+  "tray_export_version": 4,
+  "export_type": "workflow",
+  "workflows": [
+    {
+      "id": "c6af6bca-ca60-4a38-ba67-4531f0095ed6",
+      "created": "2023-06-23T12:22:14.262422Z",
+      "workspace_id": "d3800da2-85c2-4b09-83cb-f805e217d38a",
+      "creator": "0c145cd5-0a3a-480f-bd7e-2cc8a66fd232",
+      "version": {
+        "id": "c8d2ed9b-db33-46b9-9fae-dd0578d371ae",
+        "created": "2023-07-06T02:58:09.377708Z"
+      },
+      "title": "Download NS file",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "alerting_workflow_id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "title": "ID",
+              "type": "string"
+            },
+            "fail": {
+              "title": "Fail",
+              "description": "Fail run if file can't be found or can't be downloaded",
+              "type": "boolean",
+              "default": true
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "title": "File",
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Name"
+                },
+                "url": {
+                  "title": "URL",
+                  "type": "string"
+                },
+                "mime_type": {
+                  "title": "MIME type",
+                  "type": "string"
+                },
+                "expires": {
+                  "title": "Expires",
+                  "type": "number"
+                }
+              },
+              "additionalProperties": false,
+              "required": [],
+              "advanced": []
+            },
+            "success": {
+              "title": "Success",
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "storage-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "loop-1",
+          "type": "loop",
+          "content": {
+            "_loop": [
+              {
+                "name": "storage-2",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "netsuite-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "boolean-condition-1",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "script-3",
+                      "type": "normal",
+                      "content": {}
+                    },
+                    {
+                      "name": "boolean-condition-2",
+                      "type": "branch",
+                      "content": {
+                        "true": [
+                          {
+                            "name": "boolean-condition-3",
+                            "type": "branch",
+                            "content": {
+                              "true": [
+                                {
+                                  "name": "script-2",
+                                  "type": "normal",
+                                  "content": {}
+                                },
+                                {
+                                  "name": "boolean-condition-4",
+                                  "type": "branch",
+                                  "content": {
+                                    "true": [
+                                      {
+                                        "name": "storage-3",
+                                        "type": "normal",
+                                        "content": {}
+                                      },
+                                      {
+                                        "name": "break-loop-1",
+                                        "type": "break",
+                                        "content": {},
+                                        "target": "loop-1"
+                                      }
+                                    ],
+                                    "false": []
+                                  }
+                                }
+                              ],
+                              "false": []
+                            }
+                          }
+                        ],
+                        "false": [
+                          {
+                            "name": "call-workflow-1",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "script-1",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "netsuite-soap-1",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "file-helpers-1",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "netsuite-soap-2",
+                            "type": "normal",
+                            "content": {}
+                          },
+                          {
+                            "name": "callable-workflow-response-1",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "false": []
+                }
+              },
+              {
+                "name": "boolean-condition-5",
+                "type": "branch",
+                "content": {
+                  "true": [
+                    {
+                      "name": "terminate-1",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "false": [
+                    {
+                      "name": "callable-workflow-response-2",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "steps": {
+        "script-1": {
+          "title": "Get file name",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "name"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.items[0].name"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "fileType"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.items[0].filetype"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// if the file doesn't end with the extension, SF doesn't properly show the file\nexports.step = function(input) {\n  const netSuiteFileTypes = new Map([\n    ['BMPIMAGE', ['.bmp']],\n    ['CSV', ['.csv']],\n    ['EOT', ['.eot']],\n    ['EXCEL', ['.xls','.xlsx']],\n    ['FREEMARKER', ['.ftl']],\n    ['GIFIMAGE', ['.gif']],\n    ['HTMLDOC', ['.html','.htm']],\n    ['JAVASCRIPT', ['.js']],\n    ['JPGIMAGE', ['.jpg','.jpeg']],\n    ['JSON', ['.json']],\n    ['MESSAGERFC', ['.eml']],\n    ['MISCTEXT', ['.txt']],\n    ['MP3', ['.mp3']],\n    ['PDF', ['.pdf']],\n    ['PJPGIMAGE', ['.jpg']],\n    ['PLAINTEXT', ['.txt','.htm','.html']],\n    ['PNGIMAGE', ['.png']],\n    ['POWERPOINT', ['.ppt','.pptx']],\n    ['QUICKTIME', ['.mov']],\n    ['RTF', ['.rtf']],\n    ['STYLESHEET', ['.css']],\n    ['SVG', ['.svg']],\n    ['TIFFIMAGE', ['.tiff','.tif']],\n    ['TTF', ['.ttf']],\n    ['WOFF', ['.woff']],\n    ['WOFF2', ['.woff2']],\n    ['WORD', ['.doc','.docx','.dot']],\n    ['XMLDOC', ['.xml']],\n    ['XSD', ['.xsd']],\n    ['ZIP', ['.zip']]\n\t]);\n  const name = input.name.trim();\n  const expectedExtensions = netSuiteFileTypes.get(input.fileType);\n  if (!expectedExtensions) {\n    console.log(`Unknown file type: ${input.fileType}`);\n    return name;\n  }\n  const hasExpectedExtension = expectedExtensions.some(extension => name.toLowerCase().endsWith(extension));\n  if (!hasExpectedExtension) {\n    return name + expectedExtensions[0];\n  }\n  return name;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "storage-2": {
+          "title": "Get file id",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "get",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "fileId"
+            },
+            "default_value": {
+              "type": "null",
+              "value": null
+            }
+          }
+        },
+        "boolean-condition-5": {
+          "title": "Fail run?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.fail"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": true
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "boolean-condition-2": {
+          "title": "Other Binary File?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.items[0].filetype"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "MISCBINARY"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-3.result"
+                    },
+                    "value2": {
+                      "type": "boolean",
+                      "value": false
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "storage-3": {
+          "title": "Set file id",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "fileId"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.script-2.result"
+            }
+          }
+        },
+        "call-workflow-1": {
+          "title": "Get NS metadata",
+          "description": "Gets NS metadata for the target instance.",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "8cd05cfc-a86e-4be8-8e66-4a05cf6550c5"
+            },
+            "trigger_input": {
+              "type": "object",
+              "value": {}
+            }
+          }
+        },
+        "terminate-1": {
+          "title": "Fail",
+          "description": "Fails due to the missing file.",
+          "connector": {
+            "name": "terminate",
+            "version": "1.1"
+          },
+          "operation": "terminate_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "callable-workflow-response-2": {
+          "title": "Return file metadata",
+          "description": "Returns the file metadata of the copied NS file.",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "type": "object",
+              "value": {
+                "file": {
+                  "type": "object",
+                  "value": {}
+                },
+                "success": {
+                  "value": false,
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "netsuite-soap-2": {
+          "title": "Set file offline",
+          "description": "Sets back the file offline.",
+          "connector": {
+            "name": "netsuite-soap",
+            "version": "1.0"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "record": {
+              "type": "object",
+              "value": {
+                "xmlns_namespace": {
+                  "type": "string",
+                  "value": "documentFilecabinet"
+                },
+                "type": {
+                  "type": "string",
+                  "value": "File"
+                }
+              }
+            },
+            "internal_id": {
+              "type": "jsonpath",
+              "value": "$.steps.storage-2.value"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "isOnline"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "false"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "storage-1": {
+          "title": "Set file id",
+          "connector": {
+            "name": "storage",
+            "version": "1.4"
+          },
+          "operation": "set",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "scope": {
+              "type": "string",
+              "value": "Current Run"
+            },
+            "key": {
+              "type": "string",
+              "value": "fileId"
+            },
+            "value": {
+              "type": "jsonpath",
+              "value": "$.steps.trigger.data.id"
+            }
+          }
+        },
+        "netsuite-1": {
+          "title": "Get file metadata",
+          "description": "Gets the file metadata, including the name and the URL.",
+          "connector": {
+            "name": "netsuite",
+            "version": "2.8"
+          },
+          "operation": "execute_suiteql",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "account_id": {
+              "type": "jsonpath",
+              "value": "$.auth.account_id"
+            },
+            "consumer_key": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_key"
+            },
+            "consumer_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.consumer_secret"
+            },
+            "token_id": {
+              "type": "jsonpath",
+              "value": "$.auth.token_id"
+            },
+            "token_secret": {
+              "type": "jsonpath",
+              "value": "$.auth.token_secret"
+            },
+            "limit": {
+              "type": "number",
+              "value": 1
+            },
+            "offset": {
+              "type": "number",
+              "value": 0
+            },
+            "raw_query": {
+              "type": "string",
+              "value": "SELECT name, url, filetype from file where id = {$.steps.storage-2.value}"
+            }
+          }
+        },
+        "break-loop-1": {
+          "title": "Continue Loop",
+          "connector": {
+            "name": "break-loop",
+            "version": "1.1"
+          },
+          "operation": "continue",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "callable-workflow-response-1": {
+          "title": "Return file metadata",
+          "description": "Returns the file metadata of the copied NS file.",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "type": "object",
+              "value": {
+                "file": {
+                  "type": "jsonpath",
+                  "value": "$.steps.file-helpers-1.file"
+                },
+                "success": {
+                  "value": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "script-3": {
+          "title": "file in netsuite?",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "url"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.items[0].url"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n\treturn input.url.startsWith('/core/media/media.nl');\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-4": {
+          "title": "field found?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result",
+                      "fallback": {
+                        "type": "null",
+                        "value": null
+                      }
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "value2": {
+                      "type": "null",
+                      "value": null
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "!=="
+                    },
+                    "is_case_sensitive": {
+                      "type": "boolean",
+                      "value": false
+                    },
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.script-2.result"
+                    },
+                    "value2": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.id"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "loop-1": {
+          "title": "Loop",
+          "connector": {
+            "name": "loop",
+            "version": "1.3"
+          },
+          "operation": "loop_forever",
+          "output_schema": {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "properties": {
+              "index": {
+                "type": "number",
+                "id": "http://jsonschema.net/index"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {}
+        },
+        "boolean-condition-1": {
+          "title": "File exists?",
+          "description": "Continues only if the file exists.",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.count"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "==="
+                    },
+                    "value2": {
+                      "type": "number",
+                      "value": 1
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "netsuite-soap-1": {
+          "title": "Set file online",
+          "description": "Sets the file online, leading the file URL to be a public URL.",
+          "connector": {
+            "name": "netsuite-soap",
+            "version": "1.0"
+          },
+          "operation": "update_record",
+          "output_schema": {},
+          "error_handling": {},
+          "authentication": {
+            "group": "acf5ed7f-c1d0-49ae-a8d1-89dd2b001a92",
+            "title": "NS Prod",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/static/service/icons/eb27b52bd4378b8bc0288428d585968b.png"
+            },
+            "scopes": [],
+            "service_name": "netsuite",
+            "service_version": 4
+          },
+          "properties": {
+            "record": {
+              "type": "object",
+              "value": {
+                "xmlns_namespace": {
+                  "type": "string",
+                  "value": "documentFilecabinet"
+                },
+                "type": {
+                  "type": "string",
+                  "value": "File"
+                }
+              }
+            },
+            "internal_id": {
+              "type": "jsonpath",
+              "value": "$.steps.storage-2.value"
+            },
+            "fields": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "isOnline"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "true"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "script-2": {
+          "title": "Get field from URL",
+          "connector": {
+            "name": "script",
+            "version": "3.3"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "url"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.items[0].url"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "exports.step = function(input) {\n  const regex = /id=(?<id>\\d+)/;\n  return input.url.match(regex)?.groups.id;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "boolean-condition-3": {
+          "title": "is media?",
+          "connector": {
+            "name": "boolean-condition",
+            "version": "2.3"
+          },
+          "operation": "boolean_condition",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "conditions": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "value1": {
+                      "type": "jsonpath",
+                      "value": "$.steps.netsuite-1.items[0].url"
+                    },
+                    "comparison_type": {
+                      "type": "string",
+                      "value": "contains"
+                    },
+                    "value2": {
+                      "type": "string",
+                      "value": "netsuite.com/core/media/media.nl?"
+                    }
+                  }
+                }
+              ]
+            },
+            "strictness": {
+              "type": "string",
+              "value": "All"
+            }
+          }
+        },
+        "file-helpers-1": {
+          "title": "Download file",
+          "description": "Downloads the NS file from the URL.",
+          "connector": {
+            "name": "file-helpers",
+            "version": "2.5"
+          },
+          "operation": "create_file",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "url": {
+              "type": "string",
+              "value": "{$.steps.call-workflow-1.response.url}{$.steps.netsuite-1.items[0].url}&_xd=T"
+            },
+            "name": {
+              "type": "jsonpath",
+              "value": "$.steps.script-1.result"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Sync call",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": [
+        {
+          "id": "5b94881f-4352-4ac4-8ee9-ffe85036bfca",
+          "name": "Error Notification"
+        },
+        {
+          "id": "8cd05cfc-a86e-4be8-8e66-4a05cf6550c5",
+          "name": "Get NS metadata"
+        }
+      ]
+    }
+  ],
+  "projects": []
+}
