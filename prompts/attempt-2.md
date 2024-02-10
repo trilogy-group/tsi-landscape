@@ -2,11 +2,11 @@
 
 ## Context
 
-- Chat-GPT 4-32k
+- Chat-GPT 4
 
 ## Transcript
 
-https://chat.openai.com/share/50b3a587-5374-42c3-96eb-94b558850edb
+https://chat.openai.com/share/bd33cd4d-8c45-4092-a5a5-24bc77b0765e
 
 ## Setup
 
@@ -33,12 +33,4 @@ I accept that the result of this analysis may be split into multiple parts:
 - A diagram or table of mapping between SF Objects and NS Records and their fields and access permissions (read/write).
 - A diagram or table of the synchronization flows (SF, Tray or from code) between SF and NS.
 
-As a first task, I want to provide you with the input data to analyze for the above goal.
-This should contain:
-- the SF data schema and existing Workflows and code;
-- the NS data schema and existing events, triggers and RESTlets;
-- the Tray.io workflows;
-- the source code of the 3 APIs mentioned above (which reside in a single GitHub repo);
-- anything else you think might be important.
-
-Let's take them one by one, and advise me on how to best provide this information to you.
+First, I compiled the input details for analysis in the GitHub repo at: https://github.com/trilogy-group/tsi-landscape
