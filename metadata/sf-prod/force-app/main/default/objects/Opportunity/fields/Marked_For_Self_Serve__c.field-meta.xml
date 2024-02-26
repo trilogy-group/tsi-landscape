@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Marked_For_Self_Serve__c</fullName>
+    <description>This field calculates whether the current renewal is Marked for self-serve email sequence or not</description>
+    <externalId>false</externalId>
+    <formula>AND(
+     Transactional_Opp__c, 
+     Self_Serve_Eligible__c,
+     Product_Configuration__r.NetSuite_Product__c,
+     Product_Configuration__r.Processed_via_OTC__c,
+     Primary_Contact__c != null,
+     Primary_Contact__r.NetSuite_ID__c!=null,
+     Primary_Contact__r.Email !=null,
+     NOT(Exclude_from_Self_Serve__c)
+)</formula>
+    <inlineHelpText>If checked then this opportunity is marked to be scheduled for Self-Serve email sequence</inlineHelpText>
+    <label>Marked For Self-Serve</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

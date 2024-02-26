@@ -65,14 +65,24 @@
             <label>ClosedWon_NegativeSentiment</label>
         </rules>
     </decisions>
-    <description>When a High Value Opportunity is Closed Won with Negative Sentiment, create a Proactive Win-Back Case to initiate the Proactive Win-Back Process</description>
+    <description>When an Opportunity is Closed Won with Negative Sentiment, create a Proactive Win-Back Case to initiate the Proactive Win-Back Process</description>
+    <formulas>
+        <name>newCloseDate</name>
+        <dataType>Date</dataType>
+        <expression>IF(ISBLANK({!$Record.Opportunity_Term__c}), {!$Record.CloseDate} - 180, ADDMONTHS({!$Record.CloseDate},{!$Record.Opportunity_Term__c}) - 180)</expression>
+    </formulas>
+    <formulas>
+        <name>oppName</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Record.Name}, 98)  + &quot; - Proactive Win-Back&quot;</expression>
+    </formulas>
     <formulas>
         <name>TrimmedCaseSubject</name>
         <dataType>String</dataType>
         <expression>LEFT({!Subject},250)</expression>
     </formulas>
-    <interviewLabel>OnOpportunityCreateOrUpdate_OnOpportunityClosewithNegativeSentimentCreateCase {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>OnOpportunityCreateOrUpdate_OnOpportunityClosewithNegativeSentimentCreateCase</label>
+    <interviewLabel>OnOpportunityCreateOrUpdate_CloseWithNegativeSentimentCreateOpportunity {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>OnOpportunityCreateOrUpdate_CloseWithNegativeSentimentCreateOpportunity</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -93,10 +103,10 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordCreates>
-        <name>createCase</name>
-        <label>createCase</label>
+        <name>Proactive_Win_Back_Opportunity</name>
+        <label>Proactive Win-Back Opportunity</label>
         <locationX>50</locationX>
-        <locationY>539</locationY>
+        <locationY>647</locationY>
         <inputAssignments>
             <field>AccountId</field>
             <value>
@@ -104,54 +114,66 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Closed_Won_Opportunity__c</field>
+            <field>CloseDate</field>
             <value>
-                <elementReference>$Record.Id</elementReference>
+                <elementReference>newCloseDate</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>ContactId</field>
+            <field>Description</field>
             <value>
-                <elementReference>$Record.Primary_Contact__c</elementReference>
+                <elementReference>description</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Description__c</field>
+            <field>Name</field>
             <value>
-                <elementReference>CaseDescription</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Origin</field>
-            <value>
-                <stringValue>Proactive Win-Back</stringValue>
+                <elementReference>oppName</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>OwnerId</field>
             <value>
-                <elementReference>getProductConfigurations.BU_Manager__r.Id</elementReference>
+                <elementReference>getProductConfigurations.BU_Manager__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Priority</field>
+            <field>Previous_Renewal_Opportunity__c</field>
             <value>
-                <stringValue>Medium</stringValue>
+                <elementReference>$Record.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Status</field>
+            <field>Product_Configuration__c</field>
+            <value>
+                <elementReference>$Record.Product_Configuration__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Product__c</field>
+            <value>
+                <elementReference>$Record.Product__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>Proactive_Win_Back_Record_Type.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>StageName</field>
             <value>
                 <stringValue>Review</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Subject</field>
+            <field>Type</field>
             <value>
-                <elementReference>TrimmedCaseSubject</elementReference>
+                <stringValue>Other</stringValue>
             </value>
         </inputAssignments>
-        <object>Case</object>
+        <object>Opportunity</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
@@ -161,7 +183,7 @@
         <locationY>431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>createCase</targetReference>
+            <targetReference>Proactive_Win_Back_Record_Type</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -175,6 +197,34 @@
         <object>Product_Configuration__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>Proactive_Win_Back_Record_Type</name>
+        <label>Proactive Win-Back Record Type</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Proactive_Win_Back_Opportunity</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Opportunity</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Proactive_Win_Back</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <start>
         <locationX>56</locationX>
         <locationY>0</locationY>
@@ -185,7 +235,7 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
     <textTemplates>
         <name>CaseDescription</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
@@ -195,6 +245,11 @@
         <name>CaseSubject</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
         <text>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 247, 214); font-size: 14px; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen, Ubuntu, &amp;quot;Fira Sans&amp;quot;, &amp;quot;Droid Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; color: rgb(23, 43, 77);&quot;&gt;Proactive Winback -{!$Record.Name}&lt;/span&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>description</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;This opportunity has been initiated under the Proactive Win-Back process due to the customer’s concerns identified during the recent contract renewal. This opportunity seeks to transform customer sentiment positively, reinforcing their decision to continue with our product/service.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please follow the steps outlined in the playbook to work through the opportunity - https://docs.google.com/document/d/1cI0N_QxRZm2hoAXmDyvcUZrF8aWl7LTsetss6b5AWTk/edit?usp=sharing.&lt;/p&gt;&lt;p&gt;Log all developments in &apos;Internal Comments&apos; with the format: &amp;lt;Date&amp;gt; &amp;lt;Initials&amp;gt;: &amp;lt;Activities and outcomes&amp;gt;.&lt;/p&gt;&lt;p&gt;Before closing the opportunity:&lt;/p&gt;&lt;p&gt;Add a proof of work URL showing resolution outcome/ attempts as relevant.&lt;/p&gt;&lt;p&gt;Update &apos;Next Renewal Opportunity&apos; with the upcoming renewal opportunity corresponding to the current contract.&lt;/p&gt;</text>
     </textTemplates>
     <variables>
         <name>Subject</name>

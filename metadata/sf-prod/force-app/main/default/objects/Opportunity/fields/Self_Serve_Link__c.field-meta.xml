@@ -5,11 +5,33 @@
     <externalId>false</externalId>
     <formula>IF(
 CONTAINS($Organization.Id, &apos;00D2x000000qNQa&apos;),
-HYPERLINK(&apos;https://renewals.ignitetech.com/signup?subscriptionId=&apos; &amp; Parent_Subscription_ID__c , &apos;Manage Subscription&apos;, &apos;_blank&apos;),
-HYPERLINK(&apos;https://renewals.dev.ignitetech.com/signup?subscriptionId=&apos; &amp; Parent_Subscription_ID__c, &apos;Manage Subscription&apos;, &apos;_blank&apos;)
+HYPERLINK(
+&apos;https://renewals.&apos;&amp; Product_Configuration__r.Mailbox_Override__c &amp;&apos;/manage-subscriptions?subscriptionId=&apos; &amp; Parent_Subscription_ID__c
+&amp; &apos;&amp;email=&apos; &amp; SUBSTITUTE(
+SUBSTITUTE(
+Primary_Contact__r.Email,
+&apos;+&apos;, &apos;%2B&apos;
+),
+&apos;@&apos;, &apos;%40&apos;
+),
+&apos;Manage Subscription&apos;,
+&apos;_blank&apos;
+),
+HYPERLINK(
+&apos;https://renewals.dev.&apos;&amp; Product_Configuration__r.Mailbox_Override__c &amp;&apos;/manage-subscriptions?subscriptionId=&apos; &amp; Parent_Subscription_ID__c
+&amp; &apos;&amp;email=&apos; &amp; SUBSTITUTE(
+SUBSTITUTE(
+Primary_Contact__r.Email,
+&apos;+&apos;, &apos;%2B&apos;
+),
+&apos;@&apos;, &apos;%40&apos;
+),
+&apos;Manage Subscription&apos;,
+&apos;_blank&apos;
+)
 )</formula>
     <inlineHelpText>This is dynamically generated to open this Subscription in Self-Serve Portal</inlineHelpText>
-    <label>Self Serve Link</label>
+    <label>Self-Serve Link</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <type>Text</type>

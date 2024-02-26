@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Serial_or_License_Number__c</fullName>
+    <description>This field is used by resellers to uniquely identify contracts with end users through a serial or license number, enabling precise tracking and management of these contracts across Salesforce (SFDC) Opportunities and NetSuite (NS) Subscriptions. In SFDC, this field is writable, allowing updates to be made. These updates are automatically synchronized to NS (via a Tray.io workflow), where the field is read-only, ensuring data integrity.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field is used by resellers to uniquely identify contracts with end users through a serial or license number, enabling precise tracking and management of these contracts across Salesforce (SFDC) Opportunities and NetSuite (NS) Subscriptions. In SFDC, this field is writable, allowing updates to be made. These updates are automatically synchronized to NS (via a Tray.io workflow), where the field is read-only, ensuring data integrity.</inlineHelpText>
+    <label>Serial or License Number</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

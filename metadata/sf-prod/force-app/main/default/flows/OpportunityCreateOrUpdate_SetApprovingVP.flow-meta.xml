@@ -6,7 +6,7 @@
         <name>Set_BU_as_AVP</name>
         <label>Set BU as AVP</label>
         <locationX>710</locationX>
-        <locationY>803</locationY>
+        <locationY>911</locationY>
         <assignmentItems>
             <assignToReference>$Record.Approving_VP__c</assignToReference>
             <operator>Assign</operator>
@@ -16,11 +16,27 @@
         </assignmentItems>
     </assignments>
     <assignments>
+        <name>Set_BU_Manager</name>
+        <label>Set BU Manager</label>
+        <locationX>710</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.BU_Manager__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Product_Config.BU_Manager__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Opportunity_Record_Type</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <description>If record type is New business then set New business manager as AVP if it is not null</description>
         <name>Set_New_Business_Manager_as_AVP</name>
         <label>Set New Business Manager as AVP</label>
         <locationX>50</locationX>
-        <locationY>503</locationY>
+        <locationY>611</locationY>
         <assignmentItems>
             <assignToReference>$Record.Approving_VP__c</assignToReference>
             <operator>Assign</operator>
@@ -34,7 +50,7 @@
         <name>Set_Renewal_Manger_as_AVP</name>
         <label>Set Renewal Manger as AVP</label>
         <locationX>314</locationX>
-        <locationY>503</locationY>
+        <locationY>611</locationY>
         <assignmentItems>
             <assignToReference>$Record.Approving_VP__c</assignToReference>
             <operator>Assign</operator>
@@ -47,7 +63,7 @@
         <name>Check_Opportunity_Record_Type</name>
         <label>Check Opportunity Record Type</label>
         <locationX>710</locationX>
-        <locationY>395</locationY>
+        <locationY>503</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Is_New_Business</name>
@@ -226,7 +242,7 @@
         <locationY>287</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_Opportunity_Record_Type</targetReference>
+            <targetReference>Set_BU_Manager</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>

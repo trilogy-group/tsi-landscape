@@ -8,6 +8,9 @@
         <locationY>464</locationY>
         <actionName>emailSimple</actionName>
         <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>If_Skyvera_PS_or_Upsell</targetReference>
+        </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>emailBody</name>
@@ -56,6 +59,21 @@
             </value>
         </inputParameters>
     </actionCalls>
+    <actionCalls>
+        <name>Send_Fulfilment_Email_for_Skyvera_PS_or_Upsell</name>
+        <label>Send Fulfilment Email for Skyvera PS or Upsell</label>
+        <locationX>977</locationX>
+        <locationY>468</locationY>
+        <actionName>Opportunity.Opportunity_Skyvera_PS_or_Upsell_Closed_Won_Notification</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>iVarR_Opportunity.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <apiVersion>53.0</apiVersion>
     <assignments>
         <description>append product line to the variable and increment the counter</description>
@@ -82,10 +100,53 @@
         </connector>
     </assignments>
     <decisions>
+        <name>If_Skyvera_PS_or_Upsell</name>
+        <label>If Skyvera PS or Upsell</label>
+        <locationX>766</locationX>
+        <locationY>466</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>If_Skyvera_PS_or_Upsell_Yes</name>
+            <conditionLogic>1 AND (2 OR 3) AND 4</conditionLogic>
+            <conditions>
+                <leftValueReference>iVarR_Opportunity.Business_Unit__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Skyvera</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>iVarR_Opportunity.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Upsell</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>iVarR_Opportunity.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Professional Services</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>iVarR_Opportunity.IsWon</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Fulfilment_Email_for_Skyvera_PS_or_Upsell</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
         <description>Does account contains TEST?</description>
         <name>IsTestAccount</name>
         <label>IsTestAccount</label>
-        <locationX>452</locationX>
+        <locationX>451</locationX>
         <locationY>555</locationY>
         <defaultConnector>
             <targetReference>OnOpportunityCloseSendFullfilmentEmail</targetReference>
@@ -262,7 +323,7 @@ IF(ISBLANK({!Get_Product_Configuration.Fulfillment_Email__c}),&apos;&apos;,&apos
         <name>Get_Opportunity_Product</name>
         <label>Get Opportunity Product</label>
         <locationX>212</locationX>
-        <locationY>231</locationY>
+        <locationY>230</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Product_Configuration</targetReference>

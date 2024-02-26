@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Previous_Renewal_Opportunity__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>This linked opportunity is the previous Closed Won renewal opportunity that identified that the customer is unhappy and at risk to churn</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This is the previous renewal that revealed the customer sentiment that they are considering cancelling next renewal</inlineHelpText>
+    <label>Previous Renewal Opportunity</label>
+    <referenceTo>Opportunity</referenceTo>
+    <relationshipLabel>Opportunities (Proactive Win-Back &amp; AI Pre-Sale)</relationshipLabel>
+    <relationshipName>Opportunities2</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

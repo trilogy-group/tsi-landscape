@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Result2__c</fullName>
-    <description>Pass if the Score is equal or above 80%</description>
+    <description>Pass if the Score is equal or above 60%</description>
     <externalId>false</externalId>
-    <formula>IF(ISNULL(Score__c), &apos;Unable to Grade&apos;, IF(Score__c &gt;= 0.8, &apos;Pass&apos;, &apos;Fail&apos;))</formula>
+    <formula>IF(ISNULL(Score__c), &apos;Unable to Grade&apos;, IF(Score__c &gt;= 0.6, &apos;Pass&apos;, &apos;Fail&apos;))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <inlineHelpText>Pass if the Score is equal or above 80%</inlineHelpText>
+    <inlineHelpText>Pass if the Score is equal or above 60%</inlineHelpText>
     <label>Result</label>
     <required>false</required>
     <trackTrending>false</trackTrending>

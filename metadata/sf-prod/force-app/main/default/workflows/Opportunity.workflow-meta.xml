@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>Opportunity_Skyvera_PS_or_Upsell_Closed_Won_Notification</fullName>
+        <ccEmails>parameswaran.cs@skyvera.com</ccEmails>
+        <ccEmails>bharat.kalra@skyvera.com</ccEmails>
+        <ccEmails>praful.pujar@skyvera.com</ccEmails>
+        <ccEmails>dealdesk@skyvera.com</ccEmails>
+        <description>Opportunity: Skyvera PS or Upsell Closed Won Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Skyvera_PS_Team</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Opportunity_Skyvera_PS_or_Upsell_Closed_Won_Notification_Email</template>
+    </alerts>
+    <alerts>
         <fullName>Send_Email_Reply_License_Extension</fullName>
         <description>Send Email Reply License Extension</description>
         <protected>false</protected>
@@ -207,6 +222,17 @@
         <useDeadLetterQueue>false</useDeadLetterQueue>
     </outboundMessages>
     <outboundMessages>
+        <fullName>TrayOnOpportunityFieldsChange_Z1MXJlh</fullName>
+        <apiVersion>55.0</apiVersion>
+        <endpointUrl>https://b74875d1-8db0-476b-be83-fab9d3409d1b-fd62cf301c3f5c9.trayapp.io</endpointUrl>
+        <fields>Id</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>sales.integration@trilogy.com</integrationUser>
+        <name>TrayOnOpportunityFieldsChange_Z1MXJlh</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <outboundMessages>
         <fullName>TrayOnOpportunityInternalRe_Z2oP6lS</fullName>
         <apiVersion>55.0</apiVersion>
         <endpointUrl>https://e5aedfdc-48b1-41a8-b74d-3dadd9316d24-00e291754384f47.trayapp.io</endpointUrl>
@@ -236,6 +262,17 @@
         <includeSessionId>false</includeSessionId>
         <integrationUser>sales.integration@trilogy.com</integrationUser>
         <name>TrayOnOpportunityOwnerIdChan_FLsLw</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <outboundMessages>
+        <fullName>TrayOnOpportunitySerialor_L_8L6OB</fullName>
+        <apiVersion>55.0</apiVersion>
+        <endpointUrl>https://9285e2eb-435d-4a91-b8c8-d88eb8dae6bd-6ba94cdf36f2d8b.trayapp.io</endpointUrl>
+        <fields>Id</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>sales.integration@trilogy.com</integrationUser>
+        <name>TrayOnOpportunitySerialor_L_8L6OB</name>
         <protected>false</protected>
         <useDeadLetterQueue>false</useDeadLetterQueue>
     </outboundMessages>

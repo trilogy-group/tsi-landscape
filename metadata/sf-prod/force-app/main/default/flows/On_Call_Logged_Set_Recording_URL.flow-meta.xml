@@ -91,9 +91,7 @@
             <label>Yes</label>
         </rules>
     </decisions>
-    <description>For Zoom calls logged with the meeting ID in the Proof Of Work URL, the flow extracts the sharable video link by contacting Zoom API and sets it to the Call Recording URL field, for Twilio calls it copies the link as is.
-
-30/08/2023 LAMBDA-64763 enable Automation Setting in entry criteria</description>
+    <description>For Zoom calls logged with the meeting ID in the Proof Of Work URL, the flow extracts the sharable video link by contacting Zoom API and sets it to the Call Recording URL field, for Twilio calls it copies the link as is.</description>
     <formulas>
         <name>IsTwilioMeetingURL</name>
         <dataType>Boolean</dataType>
@@ -102,7 +100,7 @@
     <formulas>
         <name>IsZoomMeetingURL</name>
         <dataType>Boolean</dataType>
-        <expression>BEGINS({!$Record.Proof_Of_Work_URL__c}, &quot;https://crossover.zoom.us/recording/detail?meeting_id=&quot;) || BEGINS({!$Record.Proof_Of_Work_URL__c}, &quot;https://zoom.us/recording/detail?meeting_id=&quot;)</expression>
+        <expression>(BEGINS({!$Record.Proof_Of_Work_URL__c}, &quot;https://zoom.us&quot;)  ||  BEGINS({!$Record.Proof_Of_Work_URL__c}, &quot;https://crossover.zoom.us&quot;) ) &amp;&amp; CONTAINS({!$Record.Proof_Of_Work_URL__c}, &quot;meeting_id=&quot;)</expression>
     </formulas>
     <formulas>
         <description>Get Zoom Meeting Id</description>
@@ -164,6 +162,42 @@
             <targetReference>Is_Zoom_Meeting_Sync</targetReference>
         </connector>
         <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>1 AND (2 OR 3 OR 4) AND 5</filterLogic>
+        <filters>
+            <field>Proof_Of_Work_URL__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Proof_Of_Work_URL__c</field>
+            <operator>StartsWith</operator>
+            <value>
+                <stringValue>https://api.twilio.com</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Proof_Of_Work_URL__c</field>
+            <operator>StartsWith</operator>
+            <value>
+                <stringValue>https://zoom.us</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Proof_Of_Work_URL__c</field>
+            <operator>StartsWith</operator>
+            <value>
+                <stringValue>https://crossover.zoom.us</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Call_Recording_URL__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <object>Task</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <scheduledPaths>
