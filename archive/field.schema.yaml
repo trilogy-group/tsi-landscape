@@ -1,0 +1,61 @@
+---
+$schema: http://json-schema.org/draft-07/schema#
+title: SerialOrLicenseNumberField
+version:
+  type: string
+  pattern: "^\\d+\\.\\d+\\.\\d+(-\\w+)?$"
+last_updated:
+  type: string
+  format: date
+type: object
+properties:
+  title:
+    type: string
+  description:
+    type: string
+  source:
+    type: object
+    properties:
+      platform:
+        type: string
+      object:
+        type: string
+      field:
+        type: string
+      type:
+        type: string
+      ui-access:
+        type: string
+        enum: [writable, read-only]
+    required: [platform, object, field, ui-access]
+  target:
+    type: object
+    properties:
+      platform:
+        type: string
+      object:
+        type: string
+      field:
+        type: string
+      type:
+        type: string
+      ui-access:
+        type: string
+        enum: [writable, read-only]
+    required: [platform, object, field, ui-access]
+  via:
+    type: object
+    properties:
+      platform:
+        type: string
+      workflow:
+        type: string
+      trigger:
+        type: string
+      when:
+        type: string
+      url:
+        type: string
+        format: uri
+    required: [platform, workflow, trigger, when, url]
+required: [title, description, source, target, via]

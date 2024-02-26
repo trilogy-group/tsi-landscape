@@ -1,0 +1,26 @@
+---
+last_updated: 2024-01-01
+
+# The API name of the SF Workflow.
+name: SF_API_Workflow_Name__c
+title: Short descriptive title for this workflow
+link: The URL to where this workflow can be opened and configured in SF, if possible.
+
+description: >
+  A short explanation of what is the purpose of this workflow.
+
+trigger: >
+  An accurate explanation of what triggers this workflow.
+  For example: When fields `X` or `Y` are changed on an `Opportunity` object.
+
+# The API name of the SF Outbound Message (or similar construct) that is used by this Workflow (if any).
+message:
+  - name: SF_API_Outbound_Message_Name
+  - link: The URL to where this workflow can be opened and configured in SF, if possible.
+
+action: >
+  A descriptive explanation of what is performed when this workflow is triggered.
+  For example: Renews associated Opportunity.
+
+related: >
+  Other related details that are relevant and important for understanding how this entity is used or integrates with in the SF platform.

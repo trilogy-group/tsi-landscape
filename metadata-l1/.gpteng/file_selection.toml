@@ -1,0 +1,9 @@
+# Remove '#' to select a file.
+
+# gpt-engineer can only read selected files. Including irrelevant files will degrade performance, cost additional tokens and potentially overflow token limit.
+
+[files]
+prompt = "selected"
+"templates/SF-Workflow-<Workflow_Name>.yaml" = "selected"
+"templates/SF-Object-<Object_Name>.yaml" = "selected"
+"../metadata/sf-prod/force-app/main/default/objects/Opportunity" = "selected"

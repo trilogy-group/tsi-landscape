@@ -1,0 +1,31 @@
+---
+title: Serial or License Number
+version: 1.0.0
+last_updated: 2023-04-01
+
+description: >
+  This field is used by resellers to uniquely identify contracts with end users through a serial or license number,
+  enabling precise tracking and management of these contracts across Salesforce (SFDC) Opportunities and NetSuite
+  (NS) Subscriptions. In SFDC, this field is writable, allowing updates to be made. These updates are automatically
+  synchronized to NS (via a Tray.io workflow), where the field is read-only, ensuring data integrity.
+
+source:
+  platform: SFDC
+  object: Opportunity
+  field: Serial_or_License_Number__c
+  type: string
+  ui-access: write
+
+target:
+  platform: NS
+  object: Subscription
+  field: custrecord_serial_or_license_number
+  type: string
+  ui-access: read-only
+
+via:
+  platform: Tray.io
+  workflow: Sync
+  trigger: webhook
+  when: on update
+  url: https://example.com/your-webhook-url
