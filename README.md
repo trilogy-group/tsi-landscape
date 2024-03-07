@@ -7,7 +7,7 @@ This repo is intended for AI work.
 The goal is to build comprehensive "map", called "The TSI Landscape" of the data models and integrations between NetSuite, Salesforce, Tray.io, APIs and Apps.
 We want to create a clear picture for the team, of how these platforms are working together including the mentioned APIs and apps. The result must be conscise, visual as much as possible and should serve as a great reference to any developer or future AI that will have to quickly understand and produce actual code for this environment.
 
-## Folders for AI analysis input
+## L0 Metadata - Raw input
 
 These folders are meant to serve as input for AI analysis:
 
@@ -25,6 +25,17 @@ These folders are meant to serve as input for AI analysis:
 - `./codebases`: ZIP files with the source code of the main projects relevant to the TSI ecosystem:
     - `si-billing-api-main.zip`: this project contains codes for Proxy-API, Portal-API and the main back-end API implemented as a NetSuite RESTlet;
     - `tsi-netsuite-salesforce-integration-main.zip`: this project contains exported Tray.io flows and various scripts used in the NS-SF integration (saved manually; these are not as accurate as the exported data under the `metadata` folder);
+
+## L1 Metadata - For AI analysis
+
+The `./metadata-l1` folder contains the scripts and outputs of an intermediate level metadata, which is a condensed, simplified version of the raw inputs described above.
+
+Notes:
+- Currently only the script to generate `SF-Objects.yaml` has been generated.
+- Similar scripts should be generated for SF Layouts, SF Workflows and then for NetSuite Objects and Workflows.
+- Once these are created, they can be either:
+    - further simplified/reduced, or...
+    - feed into an AI for analysis, diagrams, generating documentation, insights etc.
 
 ## Archival folders
 These folders contain archived information, to keep a history of this effort.
