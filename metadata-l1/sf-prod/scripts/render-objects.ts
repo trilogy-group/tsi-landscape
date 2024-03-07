@@ -39,6 +39,17 @@ const getRelationshipType = (fieldData: any): string | null => {
     return null;
 };
 
+// Helper function to extract picklist values
+const getPicklistValues = (fieldData: any): string[] | null => {
+    if (fieldData.type[0] === 'Picklist' && fieldData.valueSet && fieldData.valueSet[0].valueSetDefinition) {
+        const valueSetDefinition = fieldData.valueSet[0].valueSetDefinition[0];
+        if (valueSetDefinition.value) {
+            return valueSetDefinition.value.map((v: any) => v.fullName[0]);
+        }
+    }
+    return null;
+};
+
 // Process each object
 fs.readdir(metadataDir, async (err, objectFolders) => {
     if (err) {
@@ -70,15 +81,21 @@ fs.readdir(metadataDir, async (err, objectFolders) => {
                     const fieldMetaFilePath = path.join(fieldsDirPath, fieldFile);
                     const fieldMeta = await parseXmlFile(fieldMetaFilePath);
                     const fieldData = fieldMeta.CustomField;
-                    fields.push({
-                        api_name: fieldData.fullName ? fieldData.fullName[0] : 'No API name available',
-                        label: fieldData.label ? fieldData.label[0] : 'No label available',
-                        type: fieldData.type ? fieldData.type[0] : 'No type available',
-                        description: fieldData.description ? fieldData.description[0] : 'No description available',
-                        required: fieldData.required ? fieldData.required[0] === 'true' : false,
-                        // Add relationship details if present
-                        relationship: getRelationshipType(fieldData)
-                    });
+                    const fieldEntry: Record<string, any> = {};
+                    if (fieldData.fullName) fieldEntry.api_name = fieldData.fullName[0];
+                    if (fieldData.label) fieldEntry.label = fieldData.label[0];
+                    if (fieldData.type) fieldEntry.type = fieldData.type[0];
+                    if (fieldData.description) fieldEntry.description = fieldData.description[0];
+                    if (fieldData.required) fieldEntry.required = fieldData.required[0] === 'true';
+                    const relationshipType = getRelationshipType(fieldData);
+                    if (relationshipType) fieldEntry.relationship = relationshipType;
+
+                    // Add picklist values if the field is a picklist
+                    if (fieldData.type?.[0] === 'Picklist') {
+                        fieldEntry.picklist_values = getPicklistValues(fieldData);
+                    }
+
+                    fields.push(fieldEntry);
                 }
             }
 
