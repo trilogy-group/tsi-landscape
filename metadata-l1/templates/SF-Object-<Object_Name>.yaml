@@ -1,41 +1,45 @@
 ---
 # Date when this information was generated (YYYY-MM-DD).
-last_updated: ...
+last_updated: <value>
 
 # The API name of the SF Object.
-api_name: ...
+api_name: <value>
 # Descriptive object title
-title: ...
+title: <value>
 # The URL to where this object can be opened and configured in SF, if possible.
-link: ...
+link: <value>
 
 # A detailed description of the object.
-description: ...
+description: <value>
 
 # Any relevant permissions rules found for this object.
-access_rules: ...
+access_rules: <value>
 
-# An array of custom or standard fields which are found for this object.
+# An array of custom and standard fields which are found for this object.
 fields:
   # The API name of the SF Field.
-  - api_name: ...
+  - api_name: <value>
     # Descriptive field title
-    title: 
+    label: 
     # The URL to where this field can be opened and configured in SF, if possible.
-    link: 
+    link: <value>
+    # The field type, e.g. number, currency, text. If Picklist, 
+    type: <value>
     # A detailed description of this field.
-    description: ...
+    description: <value>
+    # Boolean: true if field is required.
+    required: <value>
     # Any relevant permissions rules found for this field.
-    access_rules: ...
+    access_rules: <value>
 
 # An array of all relevant Page Layouts that display this object.
 layouts:
   # Page Layout API Name
-  - api_name: ...
+  - api_name: <value>
     # A descriptive title for ths layout
-    title: ...
+    title: <value>
     # A detailed description of what purpose this layout serves.
-    description: ...
+    description: <value>
 
 # Other related details that are relevant and important for understanding how this entity is used or integrates with in the SF platform.
-related_details: ...
+related_details: <value>

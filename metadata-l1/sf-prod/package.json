@@ -5,7 +5,10 @@
     "license": "UNLICENSED",
     "main": "scripts/render-object.ts",
     "scripts": {
-        "object": "ts-node scripts/render-object-2.ts"
+        "objects": "ts-node scripts/render-objects.ts",
+        "layouts": "ts-node scripts/render-layouts.ts",
+        "workflows": "ts-node scripts/render-workflows.ts",
+        "start": "npm run objects && npm run layouts && npm run workflows"
     },
     "dependencies": {
         "js-yaml": "^4.1.0",
